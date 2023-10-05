@@ -36,7 +36,11 @@
                                 City
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add City</a></li>
+                                <li>
+                                    <a onclick="showInPopup('@Url.Action("AddOrEdit", "City", new { Id = 0 }, Context.Request.Scheme)', 'Add City')" class="dropdown-item" role='button'>
+                                        <i class="fas fa-random"></i> Add City
+                                    </a>
+                                </li>
                                 <li><a class="dropdown-item" href="#">List Cities</a></li>
                             </ul>
                         </li>
@@ -45,7 +49,11 @@
                                 State
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add State</a></li>
+                                <li>
+                                    <a onclick="showInPopup('@Url.Action("AddOrEdit", "State", new { Id = 0 }, Context.Request.Scheme)', 'Add State')" class="dropdown-item" role='button'>
+                                        <i class="fas fa-random"></i> Add State
+                                    </a>
+                                </li>
                                 <li><a class="dropdown-item" href="#">List States</a></li>
                             </ul>
                         </li>
@@ -67,6 +75,19 @@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
+    </div>
+
+    <div class="modal" tabindex="-1" id="form-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title"></h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
     </div>
 
     <footer class="border-top footer fixed-bottom">

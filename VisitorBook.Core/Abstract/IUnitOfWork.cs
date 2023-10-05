@@ -10,7 +10,6 @@ namespace VisitorBook.Core.Abstract
 {
     public interface IUnitOfWork<T> where T : BaseModel
     {
-        IRepository<T> Repository { get; }
         Task SaveAsync();
     }
 }

@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Models;
+using VisitorBook.DAL.Concrete;
+using VisitorBook.UI.ViewModels;
 
 namespace VisitorBook.UI.Controllers
 {
@@ -20,9 +24,24 @@ namespace VisitorBook.UI.Controllers
             return View();
         }
 
-        public IActionResult AddOrEdit(int id = 0)
+        public async Task<IActionResult> AddOrEdit(int id = 0)
         {
-            return View();
+            if (id == 0)
+            {
+                return View(new City());
+            }
+
+            else
+            {
+                var city = await _service.GetAsync(id);
+
+                if (city == null)
+                {
+                    return NotFound();
+                }
+
+                return View(city);
+            }
         }
 
         [HttpPost]

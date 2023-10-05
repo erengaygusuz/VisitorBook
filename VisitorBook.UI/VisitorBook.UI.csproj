@@ -18,8 +18,4 @@
     <ProjectReference Include="..\VisitorBook.DAL\VisitorBook.DAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
-
 </Project>

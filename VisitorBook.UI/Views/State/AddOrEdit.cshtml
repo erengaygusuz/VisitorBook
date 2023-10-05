@@ -1,5 +1,61 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model StateViewModel
+
 @{
+    ViewData["Title"] = "Add or Edit";
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="AddOrEdit" asp-route-id="@Model.State.Id" onsubmit="return jQueryAjaxPost(this);" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="State.Id" />
+            <div class="row mt-4">
+                <div class="form-group">
+                    <label asp-for="State.Name" class="control-label"></label>
+                    <input asp-for="State.Name" class="form-control" />
+                    <span asp-validation-for="State.Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="State.Latitude" class="control-label"></label>
+                        <input asp-for="State.Latitude" class="form-control" />
+                        <span asp-validation-for="State.Latitude" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="State.Longitude" class="control-label"></label>
+                        <input asp-for="State.Longitude" class="form-control" />
+                        <span asp-validation-for="State.Longitude" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="form-group">
+                    <label asp-for="State.CityId" class="ms-2"></label>
+                    <select asp-for="State.CityId" asp-items="@Model.CityList" class="form-select border-0 shadow">
+                        <option disabled selected>--Select City--</option>
+                    </select>
+                    
+                    <span asp-validation-for="State.CityId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="form-group mt-4">
+                        <input type="submit" value="Submit" class="btn btn-primary w-100" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
