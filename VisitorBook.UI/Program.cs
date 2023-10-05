@@ -1,7 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using VisitorBook.DAL.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<AppDbContext>(opt =>
+{
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("SQLServerConnection"));
+});
 
 var app = builder.Build();
 
