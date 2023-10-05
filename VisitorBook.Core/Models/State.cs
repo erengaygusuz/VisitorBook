@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace VisitorBook.Core.Models
 {
-    public class State
+    public class State : BaseModel
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public double Longitude { get; set; }
         public double Latitude { get; set; }

@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\VisitorBook.Core\VisitorBook.Core.csproj" />
   </ItemGroup>
 
 </Project>

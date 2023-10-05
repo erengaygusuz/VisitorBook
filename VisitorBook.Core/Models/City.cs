@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace VisitorBook.Core.Models
 {
-    public class City
+    public class City : BaseModel
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }
 

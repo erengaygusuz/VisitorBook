@@ -40,7 +40,7 @@ namespace VisitorBook.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cities");
+                    b.ToTable("Cities", (string)null);
 
                     b.HasData(
                         new
@@ -88,7 +88,7 @@ namespace VisitorBook.DAL.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.ToTable("States");
+                    b.ToTable("States", (string)null);
 
                     b.HasData(
                         new
@@ -188,7 +188,7 @@ namespace VisitorBook.DAL.Migrations
 
                     b.HasIndex("VisitorId");
 
-                    b.ToTable("VisitedStates");
+                    b.ToTable("VisitedStates", (string)null);
 
                     b.HasData(
                         new
@@ -301,7 +301,7 @@ namespace VisitorBook.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Visitors");
+                    b.ToTable("Visitors", (string)null);
 
                     b.HasData(
                         new
@@ -351,7 +351,7 @@ namespace VisitorBook.DAL.Migrations
                     b.HasIndex("StateId")
                         .IsUnique();
 
-                    b.ToTable("VisitorAddresses");
+                    b.ToTable("VisitorAddresses", (string)null);
 
                     b.HasData(
                         new
