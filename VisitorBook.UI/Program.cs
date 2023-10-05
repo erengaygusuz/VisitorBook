@@ -1,4 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using VisitorBook.BL.Concrete;
+using VisitorBook.Core.Abstract;
+using VisitorBook.DAL.Concrete;
 using VisitorBook.DAL.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +13,10 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("SQLServerConnection"));
 });
+
+builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
+builder.Services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 var app = builder.Build();
 

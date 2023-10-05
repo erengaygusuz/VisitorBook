@@ -9,7 +9,7 @@ using VisitorBook.Core.Models;
 
 namespace VisitorBook.BL.Concrete
 {
-    public class Service<T> where T : BaseModel
+    public class Service<T> : IService<T> where T : BaseModel
     {
         private readonly IUnitOfWork<T> _unitOfWork;
 

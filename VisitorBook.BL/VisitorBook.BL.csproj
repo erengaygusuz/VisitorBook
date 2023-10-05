@@ -10,4 +10,8 @@
     <ProjectReference Include="..\VisitorBook.Core\VisitorBook.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>
