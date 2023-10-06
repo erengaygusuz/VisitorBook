@@ -27,7 +27,11 @@
                                 Visitor
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add Visitor</a></li>
+                                <li>
+                                    <a onclick="showInPopup('@Url.Action("AddOrEdit", "Visitor", new { Id = 0 }, Context.Request.Scheme)', 'Add Visitor')" class="dropdown-item" role='button'>
+                                        <i class="fas fa-random"></i> Add Visitor
+                                    </a>
+                                </li>
                                 <li><a class="dropdown-item" href="#">List Visitors</a></li>
                             </ul>
                         </li>
@@ -62,7 +66,11 @@
                                 Visited States
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add Visited State</a></li>
+                                <li>
+                                    <a onclick="showInPopup('@Url.Action("AddOrEdit", "VisitedState", new { Id = 0 }, Context.Request.Scheme)', 'Add Visited State')" class="dropdown-item" role='button'>
+                                        <i class="fas fa-random"></i> Add Visited State
+                                    </a>
+                                </li>
                                 <li><a class="dropdown-item" href="#">List Visited States</a></li>
                             </ul>
                         </li>

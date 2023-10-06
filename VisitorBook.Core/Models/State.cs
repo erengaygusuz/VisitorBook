@@ -14,6 +14,7 @@ namespace VisitorBook.Core.Models
         public double Longitude { get; set; }
         public double Latitude { get; set; }
 
+        [Display(Name = "City")]
         public int CityId { get; set; }
         public City City { get; set; }
 

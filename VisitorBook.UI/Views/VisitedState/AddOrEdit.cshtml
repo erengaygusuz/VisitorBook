@@ -1,5 +1,45 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model VisitedStateViewModel
+
 @{
+    ViewData["Title"] = "Add or Edit";
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="AddOrEdit" onsubmit="return jQueryAjaxPost(this);" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row mt-4">
+                <div class="form-group">
+                    <label asp-for="VisitedState.StateId" class="control-label"></label>
+                    <select asp-for="VisitedState.StateId" asp-items="@Model.StateList" class="form-select">
+                        <option disabled selected>--Select State--</option>
+                    </select>
+                    <span asp-validation-for="VisitedState.StateId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="form-group">
+                    <label asp-for="VisitedState.VisitorId" class="control-label"></label>
+                    <select asp-for="VisitedState.VisitorId" asp-items="@Model.VisitorList" class="form-select">
+                        <option disabled selected>--Select Visitor--</option>
+                    </select>
+                    <span asp-validation-for="VisitedState.VisitorId" class=" text-danger"></span>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="form-group mt-4">
+                        <input type="submit" value="Submit" class="btn btn-primary w-100" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

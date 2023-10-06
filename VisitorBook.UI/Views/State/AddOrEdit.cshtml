@@ -35,11 +35,10 @@
             </div>
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="State.CityId" class="ms-2"></label>
-                    <select asp-for="State.CityId" asp-items="@Model.CityList" class="form-select border-0 shadow">
+                    <label asp-for="State.CityId" class="control-label"></label>
+                    <select asp-for="State.CityId" asp-items="@Model.CityList" class="form-select">
                         <option disabled selected>--Select City--</option>
                     </select>
-                    
                     <span asp-validation-for="State.CityId" class="text-danger"></span>
                 </div>
             </div>

@@ -9,7 +9,9 @@ namespace VisitorBook.Core.Models
 {
     public class VisitedState : BaseModel
     {
+        [Display(Name = "Visitor")]
         public int VisitorId { get; set; }
+        [Display(Name = "State")]
         public int StateId { get; set; }
         public DateTime Date { get; set; }
     }
