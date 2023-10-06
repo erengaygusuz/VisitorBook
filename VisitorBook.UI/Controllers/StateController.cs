@@ -47,7 +47,7 @@ namespace VisitorBook.UI.Controllers
                 State = new State()
             };
 
-            if (id == null || id == 0)
+            if (id == 0)
             {
                 // create
                 return View(stateViewModel);
@@ -56,7 +56,7 @@ namespace VisitorBook.UI.Controllers
             else
             {
                 // update
-                stateViewModel.State = _stateService.GetAsync(id).GetAwaiter().GetResult();
+                stateViewModel.State = _stateService.GetAsync(u => u.Id == id).GetAwaiter().GetResult();
 
                 return View(stateViewModel);
             }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Models;
 using VisitorBook.UI.ViewModels;
@@ -35,7 +36,7 @@ namespace VisitorBook.UI.Controllers
             });
         }
 
-        public IActionResult AddOrEdit(int id = 0)
+        public IActionResult AddOrEdit(int id)
         {
             VisitorViewModel visitorViewModel = new VisitorViewModel()
             {
@@ -61,7 +62,7 @@ namespace VisitorBook.UI.Controllers
                    })
             };
 
-            if (id == null || id == 0)
+            if (id == 0)
             {
                 // create
                 return View(visitorViewModel);
@@ -70,6 +71,12 @@ namespace VisitorBook.UI.Controllers
             else
             {
                 // update
+                visitorViewModel.Visitor = _visitorService.GetAsync(u => u.Id == id, include: u => u.Include(a => a.VisitorAddress)).GetAwaiter().GetResult();
+
+                if (visitorViewModel.Visitor.VisitorAddress != null)
+                {
+                    visitorViewModel.VisitorAddress = visitorViewModel.Visitor.VisitorAddress;
+                }
 
                 return View(visitorViewModel);
             }

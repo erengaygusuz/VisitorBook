@@ -15,7 +15,10 @@ namespace VisitorBook.Core.Abstract
            Expression<Func<T, bool>>? expression = null,
            bool trackChanges = false,
            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null);
-        Task<T> GetAsync(int id);
+        Task<T> GetAsync(
+           Expression<Func<T, bool>>? expression = null,
+           bool trackChanges = false,
+           Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null);
         Task UpdateAsync(T entity);
         Task RemoveAsync(T entity);
         Task AddAsync(T entity);

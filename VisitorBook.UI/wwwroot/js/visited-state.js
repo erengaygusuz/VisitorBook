@@ -26,14 +26,13 @@ function loadDataTable() {
       {
         data: 'id',
         render: function (data) {
-          return `<div class="w-75 btn-group" role="group">
-                        <a href="/visitedstate/upsert?id=${data}" class="btn btn-primary mx-2">
-                          Edit
-                        </a>
-                         <a onClick=Delete('/visitedstate/delete/${data}') class="btn btn-danger mx-2">
-                          Delete
-                        </a>
-                    </div>`
+            return `
+                   <a onclick="showInPopup('/visitedstate/addoredit/${data}', 
+                   'Update Visited State')" class="btn btn-info text-white"> Edit</a>
+                   <a onClick=Delete('/visitedstate/delete/${data}') class="btn btn-danger mx-2">
+                     Delete
+                   </a>
+                 `
         },
         width: '20%',
       },

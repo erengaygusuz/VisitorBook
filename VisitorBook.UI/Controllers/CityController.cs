@@ -44,7 +44,7 @@ namespace VisitorBook.UI.Controllers
 
             else
             {
-                var city = await _service.GetAsync(id);
+                var city = await _service.GetAsync(u => u.Id == id);
 
                 if (city == null)
                 {

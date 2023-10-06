@@ -32,9 +32,12 @@ namespace VisitorBook.BL.Concrete
             return entities;
         }
 
-        public async Task<T> GetAsync(int id)
+        public async Task<T> GetAsync(
+           Expression<Func<T, bool>>? expression = null,
+           bool trackChanges = false,
+           Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null)
         {
-            var entity = await _repository.GetAsync(u => u.Id == id);
+            var entity = await _repository.GetAsync(expression, trackChanges, include);
 
             return entity;
         }

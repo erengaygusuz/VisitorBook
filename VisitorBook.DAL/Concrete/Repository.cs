@@ -59,13 +59,16 @@ namespace VisitorBook.DAL.Concrete
         }
 
         public async Task<T> GetAsync(
-            Expression<Func<T, bool>> expression,
+            Expression<Func<T, bool>>? expression = null,
             bool trackChanges = false,
             Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null)
         {
             IQueryable<T> query = _appDbContext.Set<T>();
 
-            query = query.Where(expression);
+            if (expression != null)
+            {
+                query = query.Where(expression);
+            }
 
             if (include != null)
             {
