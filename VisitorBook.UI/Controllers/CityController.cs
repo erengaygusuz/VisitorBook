@@ -21,7 +21,18 @@ namespace VisitorBook.UI.Controllers
         {
             var cities = await _service.GetAllAsync();
 
-            return View();
+            return View(cities);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var cities = await _service.GetAllAsync();
+
+            return Json(new
+            {
+                data = cities
+            });
         }
 
         public async Task<IActionResult> AddOrEdit(int id = 0)

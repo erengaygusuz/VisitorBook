@@ -12,7 +12,7 @@ namespace VisitorBook.Core.Abstract
     public interface IRepository<T> where T : BaseModel
     {
         Task<T> GetAsync(
-           Expression<Func<T, bool>> expression,
+           Expression<Func<T, bool>>? expression = null,
            bool trackChanges = false,
            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null);
 

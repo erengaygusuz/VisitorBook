@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,14 +8,16 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/VisitorBook.UI.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Visitor Book</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
@@ -23,55 +26,78 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 Visitor
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a onclick="showInPopup('@Url.Action("AddOrEdit", "Visitor", new { Id = 0 }, Context.Request.Scheme)', 'Add Visitor')" class="dropdown-item" role='button'>
+                                    <a onclick="showInPopup('@Url.Action("AddOrEdit", "Visitor", new { Id = 0 }, Context.Request.Scheme)', 'Add Visitor')"
+                                        class="dropdown-item" role='button'>
                                         <i class="fas fa-random"></i> Add Visitor
                                     </a>
                                 </li>
-                                <li><a class="dropdown-item" href="#">List Visitors</a></li>
+                                <li>
+                                    <a class="dropdown-item" asp-controller="visitor" asp-action="index"
+                                        role='button'>List
+                                        Cities</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 City
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a onclick="showInPopup('@Url.Action("AddOrEdit", "City", new { Id = 0 }, Context.Request.Scheme)', 'Add City')" class="dropdown-item" role='button'>
+                                    <a onclick="showInPopup('@Url.Action("AddOrEdit", "City", new { Id = 0 }, Context.Request.Scheme)', 'Add City')"
+                                        class="dropdown-item" role='button'>
                                         <i class="fas fa-random"></i> Add City
                                     </a>
                                 </li>
-                                <li><a class="dropdown-item" href="#">List Cities</a></li>
+                                <li>
+                                    <a class="dropdown-item" asp-controller="city" asp-action="index" role='button'>List
+                                        Cities</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 State
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a onclick="showInPopup('@Url.Action("AddOrEdit", "State", new { Id = 0 }, Context.Request.Scheme)', 'Add State')" class="dropdown-item" role='button'>
+                                    <a onclick="showInPopup('@Url.Action("AddOrEdit", "State", new { Id = 0 }, Context.Request.Scheme)', 'Add State')"
+                                        class="dropdown-item" role='button'>
                                         <i class="fas fa-random"></i> Add State
                                     </a>
                                 </li>
-                                <li><a class="dropdown-item" href="#">List States</a></li>
+                                <li>
+                                    <a class="dropdown-item" asp-controller="state" asp-action="index"
+                                        role='button'>List
+                                        States</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 Visited States
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a onclick="showInPopup('@Url.Action("AddOrEdit", "VisitedState", new { Id = 0 }, Context.Request.Scheme)', 'Add Visited State')" class="dropdown-item" role='button'>
+                                    <a onclick="showInPopup('@Url.Action("AddOrEdit", "VisitedState", new { Id = 0 }, Context.Request.Scheme)', 'Add Visited State')"
+                                        class="dropdown-item" role='button'>
                                         <i class="fas fa-random"></i> Add Visited State
                                     </a>
                                 </li>
-                                <li><a class="dropdown-item" href="#">List Visited States</a></li>
+                                <li>
+                                    <a class="dropdown-item" asp-controller="visitedstate" asp-action="index"
+                                        role='button'>List
+                                        Visited States</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -106,6 +132,10 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js" asp-append-version="true"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/1.13.6/sorting/datetime-moment.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

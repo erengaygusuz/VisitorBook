@@ -14,4 +14,8 @@
     <Folder Include="Services\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="update" Version="2.4.7" />
+  </ItemGroup>
+
 </Project>

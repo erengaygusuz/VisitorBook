@@ -10,16 +10,29 @@ namespace VisitorBook.UI.Controllers
     {
         private readonly IService<State> _stateService;
         private readonly IService<City> _cityService;
+        private readonly IService<Visitor> _visitorService;
 
-        public VisitorController(IService<State> stateService, IService<City> cityService)
+        public VisitorController(IService<State> stateService, IService<City> cityService, IService<Visitor> visitorService)
         {
             _stateService = stateService;
             _cityService = cityService;
+            _visitorService = visitorService;
         }
 
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var visitors = await _visitorService.GetAllAsync();
+
+            return Json(new
+            {
+                data = visitors
+            });
         }
 
         public IActionResult AddOrEdit(int id = 0)

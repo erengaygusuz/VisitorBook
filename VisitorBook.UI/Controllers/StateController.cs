@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Models;
 using VisitorBook.UI.ViewModels;
@@ -20,6 +21,17 @@ namespace VisitorBook.UI.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var states = await _stateService.GetAllAsync(include: u => u.Include(a => a.City));
+
+            return Json(new
+            {
+                data = states
+            });
         }
 
         public IActionResult AddOrEdit(int id)
