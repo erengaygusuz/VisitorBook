@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="AddOrEdit" onsubmit="return jQueryAjaxPost(this);" autocomplete="off">
+        <form asp-action="AddOrEdit" onsubmit="return AddRecord(this);" autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row mt-4">
                 <div class="form-group">

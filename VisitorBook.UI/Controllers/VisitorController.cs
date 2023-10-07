@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Models;
+using VisitorBook.Core.Utilities;
 using VisitorBook.UI.ViewModels;
 
 namespace VisitorBook.UI.Controllers
@@ -12,6 +13,9 @@ namespace VisitorBook.UI.Controllers
         private readonly IService<State> _stateService;
         private readonly IService<City> _cityService;
         private readonly IService<Visitor> _visitorService;
+
+        [BindProperty]
+        public VisitorViewModel VisitorViewModel { get; set; }
 
         public VisitorController(IService<State> stateService, IService<City> cityService, IService<Visitor> visitorService)
         {
@@ -36,12 +40,11 @@ namespace VisitorBook.UI.Controllers
             });
         }
 
-        public IActionResult AddOrEdit(int id)
+        public async Task<IActionResult> AddOrEdit(int id)
         {
             VisitorViewModel visitorViewModel = new VisitorViewModel()
             {
                 Visitor = new Visitor(),
-                VisitorAddress = new VisitorAddress(),
                 GenderList = new List<Gender> { Gender.Man, Gender.Woman }
                     .Select(u => new SelectListItem
                     {
@@ -71,29 +74,48 @@ namespace VisitorBook.UI.Controllers
             else
             {
                 // update
-                visitorViewModel.Visitor = _visitorService.GetAsync(u => u.Id == id, include: u => u.Include(a => a.VisitorAddress)).GetAwaiter().GetResult();
-
-                if (visitorViewModel.Visitor.VisitorAddress != null)
-                {
-                    visitorViewModel.VisitorAddress = visitorViewModel.Visitor.VisitorAddress;
-                }
+                visitorViewModel.Visitor = await _visitorService.GetAsync(u => u.Id == id, include: u => u.Include(a => a.VisitorAddress));
 
                 return View(visitorViewModel);
             }
         }
 
+        [ActionName("AddOrEdit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddOrEdit()
+        public async Task<IActionResult> AddOrEditPost(int id)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                if (id == 0)
+                {
+                    await _visitorService.AddAsync(VisitorViewModel.Visitor);
+                }
+
+                else
+                {
+                    await _visitorService.UpdateAsync(VisitorViewModel.Visitor);
+                }
+
+                return Json(new { isValid = true });
+            }
+
+            return Json(new { isValid = false, html = RazorViewConverter.GetStringFromRazorView(this, "AddOrEdit", VisitorViewModel.Visitor) });
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id)
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            var visitor = await _visitorService.GetAsync(u => u.Id == id);
+
+            var visitorName = visitor.Name + " " + visitor.Surname;
+
+            if (visitor != null)
+            {
+                await _visitorService.RemoveAsync(visitor);
+            }
+
+            return Json(new { entityValue = visitorName });
         }
     }
 }

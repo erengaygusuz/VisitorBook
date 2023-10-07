@@ -92,7 +92,7 @@ namespace VisitorBook.UI.Controllers
                 await _service.RemoveAsync(city);
             }
 
-            return Json(new { cityName = cityName });
+            return Json(new { entityValue = cityName });
         }
     }
 }

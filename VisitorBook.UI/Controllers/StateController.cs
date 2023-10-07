@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Models;
+using VisitorBook.Core.Utilities;
 using VisitorBook.UI.ViewModels;
 
 namespace VisitorBook.UI.Controllers
@@ -64,16 +65,39 @@ namespace VisitorBook.UI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddOrEdit()
+        public async Task<IActionResult> AddOrEdit(int id, State state)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                if (id == 0)
+                {
+                    await _stateService.AddAsync(state);
+                }
+
+                else
+                {
+                    await _stateService.UpdateAsync(state);
+                }
+
+                return Json(new { isValid = true });
+            }
+
+            return Json(new { isValid = false, html = RazorViewConverter.GetStringFromRazorView(this, "AddOrEdit", state) });
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id)
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            var state = await _stateService.GetAsync(u => u.Id == id);
+
+            var stateName = state.Name;
+
+            if (state != null)
+            {
+                await _stateService.RemoveAsync(state);
+            }
+
+            return Json(new { entityValue = stateName });
         }
     }
 }

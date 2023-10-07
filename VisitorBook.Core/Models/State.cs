@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace VisitorBook.Core.Models
 {
@@ -19,6 +20,7 @@ namespace VisitorBook.Core.Models
         public int CityId { get; set; }
         public City City { get; set; }
 
+        [ValidateNever]
         [JsonIgnore]
         public List<Visitor> Visitors { get; set; }
     }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Models;
+using VisitorBook.Core.Utilities;
 using VisitorBook.UI.ViewModels;
 
 namespace VisitorBook.UI.Controllers
@@ -73,16 +74,39 @@ namespace VisitorBook.UI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddOrEdit()
+        public async Task<IActionResult> AddOrEdit(int id, VisitedState visitedState)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                if (id == 0)
+                {
+                    await _visitedStateService.AddAsync(visitedState);
+                }
+
+                else
+                {
+                    await _visitedStateService.UpdateAsync(visitedState);
+                }
+
+                return Json(new { isValid = true });
+            }
+
+            return Json(new { isValid = false, html = RazorViewConverter.GetStringFromRazorView(this, "AddOrEdit", visitedState) });
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id)
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            var visitedState = await _visitedStateService.GetAsync(u => u.Id == id);
+
+            var visitedStateInfo = "Visited State Record for " + visitedState.Visitor.Name + " at " + visitedState.State.Name;
+
+            if (visitedState != null)
+            {
+                await _visitedStateService.RemoveAsync(visitedState);
+            }
+
+            return Json(new { entityValue = visitedStateInfo });
         }
     }
 }
