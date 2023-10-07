@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using VisitorBook.Core.Abstract;
+using VisitorBook.Core.Dtos;
 using VisitorBook.Core.Models;
+using VisitorBook.Core.Utilities;
 using VisitorBook.DAL.Concrete;
 using VisitorBook.UI.ViewModels;
 
@@ -35,6 +37,7 @@ namespace VisitorBook.UI.Controllers
             });
         }
 
+        [NoDirectAccess]
         public async Task<IActionResult> AddOrEdit(int id = 0)
         {
             if (id == 0)
@@ -57,16 +60,39 @@ namespace VisitorBook.UI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddOrEdit()
+        public async Task<IActionResult> AddOrEdit(int id, City city)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                if (id == 0)
+                {
+                    await _service.AddAsync(city);
+                }
+
+                else
+                {
+                    await _service.UpdateAsync(city);
+                }
+
+                return Json(new { isValid = true });
+            }
+
+            return Json(new { isValid = false, html = RazorViewConverter.GetStringFromRazorView(this, "AddOrEdit", city) });
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id)
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            var city = await _service.GetAsync(u => u.Id == id);
+
+            var cityName = city.Name;
+
+            if (city != null)
+            {
+                await _service.RemoveAsync(city);
+            }
+
+            return Json(new { cityName = cityName });
         }
     }
 }
