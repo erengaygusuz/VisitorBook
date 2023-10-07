@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata;
 using VisitorBook.Core.Models;
 
 namespace VisitorBook.DAL.Data
@@ -9,7 +10,7 @@ namespace VisitorBook.DAL.Data
         public DbSet<State> States { get; set; }
         public DbSet<Visitor> Visitors { get; set; }
         public DbSet<VisitedState> VisitedStates { get; set; }
-        public DbSet<VisitorAddress> VisitorAddresses { get; set; }
+        public DbSet<VisitorAddress> VisitorAddress { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base (options)
         {
@@ -32,26 +33,17 @@ namespace VisitorBook.DAL.Data
             // one to one relationship
             // visitor - visitor address relationship definition
             modelBuilder.Entity<Visitor>()
-                .HasOne(e => e.VisitorAddress)
-                .WithOne(e => e.Visitor)
-                .HasForeignKey<VisitorAddress>()
-                .OnDelete(DeleteBehavior.Cascade);
+               .HasOne(e => e.VisitorAddress)
+               .WithOne()
+               .HasForeignKey<Visitor>(e => e.VisitorAddressId)
+               .OnDelete(DeleteBehavior.Cascade);
 
             // many to many relationship
             // visitor - state - visited state relationship definition
             modelBuilder.Entity<Visitor>()
                .HasMany(e => e.States)
                .WithMany(e => e.Visitors)
-               .UsingEntity<VisitedState>();
-
-            // one to one relationship
-            // visitor address - state relationship definition
-            modelBuilder.Entity<VisitorAddress>()
-               .HasOne(e => e.State)
-               .WithOne()
-               .HasForeignKey<VisitorAddress>(e => e.StateId)
-               .OnDelete(DeleteBehavior.NoAction)
-               .IsRequired();
+               .UsingEntity<VisitedState>();            
 
             // data seeding
             modelBuilder.Entity<City>().HasData(
@@ -150,6 +142,21 @@ namespace VisitorBook.DAL.Data
                 }
             );
 
+            modelBuilder.Entity<VisitorAddress>().HasData(
+                new VisitorAddress()
+                {
+                    Id = 1,
+                    StateId = 1,
+                    CityId = 1,
+                },
+                new VisitorAddress()
+                {
+                    Id = 2,
+                    StateId = 7,
+                    CityId = 3,
+                }
+            );
+
             modelBuilder.Entity<Visitor>().HasData(
                 new Visitor()
                 {
@@ -157,7 +164,8 @@ namespace VisitorBook.DAL.Data
                     Name = "Eren",
                     Surname = "Gaygusuz",
                     BirthDate = new DateTime(day: 14, month: 12, year: 1992),
-                    Gender = Gender.Man
+                    Gender = Gender.Man,
+                    VisitorAddressId = 1
                 },
                 new Visitor()
                 {
@@ -165,7 +173,8 @@ namespace VisitorBook.DAL.Data
                     Name = "Eren",
                     Surname = "Özcan",
                     BirthDate = new DateTime(day: 05, month: 11, year: 1995),
-                    Gender = Gender.Man
+                    Gender = Gender.Man,
+                    VisitorAddressId = null
                 },
                 new Visitor()
                 {
@@ -173,7 +182,8 @@ namespace VisitorBook.DAL.Data
                     Name = "Ceyda",
                     Surname = "Meyda",
                     BirthDate = new DateTime(day: 22, month: 3, year: 1996),
-                    Gender = Gender.Woman
+                    Gender = Gender.Woman,
+                    VisitorAddressId = 2
                 },
                 new Visitor()
                 {
@@ -181,30 +191,8 @@ namespace VisitorBook.DAL.Data
                     Name = "Tuğçe",
                     Surname = "Güzel",
                     BirthDate = new DateTime(day: 11, month: 5, year: 1990),
-                    Gender = Gender.Woman
-                }
-            );
-
-            modelBuilder.Entity<VisitorAddress>().HasData(
-                new VisitorAddress()
-                {
-                    Id = 1,
-                    StateId = 1
-                },
-                new VisitorAddress()
-                {
-                    Id = 2,
-                    StateId = 7
-                },
-                new VisitorAddress()
-                {
-                    Id = 3,
-                    StateId = 5
-                },
-                new VisitorAddress()
-                {
-                    Id = 4,
-                    StateId = 3
+                    Gender = Gender.Woman,
+                    VisitorAddressId = null
                 }
             );
 

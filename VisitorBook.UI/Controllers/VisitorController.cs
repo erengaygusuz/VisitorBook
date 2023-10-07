@@ -13,15 +13,18 @@ namespace VisitorBook.UI.Controllers
         private readonly IService<State> _stateService;
         private readonly IService<City> _cityService;
         private readonly IService<Visitor> _visitorService;
+        private readonly IService<VisitorAddress> _visitorAddressService;
 
         [BindProperty]
         public VisitorViewModel VisitorViewModel { get; set; }
 
-        public VisitorController(IService<State> stateService, IService<City> cityService, IService<Visitor> visitorService)
+        public VisitorController(IService<State> stateService, IService<City> cityService, 
+            IService<Visitor> visitorService, IService<VisitorAddress> visitorAddressService)
         {
             _stateService = stateService;
             _cityService = cityService;
             _visitorService = visitorService;
+            _visitorAddressService = visitorAddressService;
         }
 
         public IActionResult Index()
@@ -42,7 +45,7 @@ namespace VisitorBook.UI.Controllers
 
         public async Task<IActionResult> AddOrEdit(int id)
         {
-            VisitorViewModel visitorViewModel = new VisitorViewModel()
+            VisitorViewModel = new VisitorViewModel()
             {
                 Visitor = new Visitor(),
                 GenderList = new List<Gender> { Gender.Man, Gender.Woman }
@@ -68,15 +71,15 @@ namespace VisitorBook.UI.Controllers
             if (id == 0)
             {
                 // create
-                return View(visitorViewModel);
+                return View(VisitorViewModel);
             }
 
             else
             {
                 // update
-                visitorViewModel.Visitor = await _visitorService.GetAsync(u => u.Id == id, include: u => u.Include(a => a.VisitorAddress));
+                VisitorViewModel.Visitor = await _visitorService.GetAsync(u => u.Id == id, include: u => u.Include(a => a.VisitorAddress));
 
-                return View(visitorViewModel);
+                return View(VisitorViewModel);
             }
         }
 
@@ -94,7 +97,34 @@ namespace VisitorBook.UI.Controllers
 
                 else
                 {
-                    await _visitorService.UpdateAsync(VisitorViewModel.Visitor);
+                    var visitor = await _visitorService.GetAsync(u => u.Id == id, include: u => u.Include(a => a.VisitorAddress));
+
+                    visitor.Name = VisitorViewModel.Visitor.Name;
+                    visitor.Surname = VisitorViewModel.Visitor.Surname;
+                    visitor.BirthDate = VisitorViewModel.Visitor.BirthDate;
+                    visitor.Gender = VisitorViewModel.Visitor.Gender;
+
+                    if (VisitorViewModel.Visitor.VisitorAddress != null)
+                    {
+                        var newStateWithCity = await _stateService.GetAsync(u => u.Id == VisitorViewModel.Visitor.VisitorAddress.StateId, include: u => u.Include(a => a.City));
+
+                        if (visitor.VisitorAddress != null)
+                        {
+                            visitor.VisitorAddress.CityId = newStateWithCity.City.Id;
+                            visitor.VisitorAddress.StateId = newStateWithCity.Id;
+                        }
+
+                        else
+                        {
+                            visitor.VisitorAddress = new VisitorAddress 
+                            { 
+                                StateId = newStateWithCity.Id,
+                                CityId = newStateWithCity.City.Id
+                            };
+                        }                        
+                    }
+
+                    await _visitorService.UpdateAsync(visitor);
                 }
 
                 return Json(new { isValid = true });

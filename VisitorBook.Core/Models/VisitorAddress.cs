@@ -1,21 +1,18 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace VisitorBook.Core.Models
 {
     public class VisitorAddress : BaseModel
     {
-        [ValidateNever]
-        public Visitor Visitor { get; set; }
-
-        [Display(Name = "State")]
+        [Display(Name = "Address State")]
         public int StateId { get; set; }
-        [ValidateNever]
-        public State State { get; set; }
+        [Display(Name = "Address City")]
+        public int CityId { get; set; }
     }
 }

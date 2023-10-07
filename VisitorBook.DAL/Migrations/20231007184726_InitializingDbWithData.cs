@@ -28,19 +28,17 @@ namespace VisitorBook.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Visitors",
+                name: "VisitorAddress",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Gender = table.Column<int>(type: "int", nullable: false)
+                    StateId = table.Column<int>(type: "int", nullable: false),
+                    CityId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Visitors", x => x.Id);
+                    table.PrimaryKey("PK_VisitorAddress", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -61,6 +59,29 @@ namespace VisitorBook.DAL.Migrations
                         name: "FK_States_Cities_CityId",
                         column: x => x.CityId,
                         principalTable: "Cities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Visitors",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Gender = table.Column<int>(type: "int", nullable: false),
+                    VisitorAddressId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Visitors", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Visitors_VisitorAddress_VisitorAddressId",
+                        column: x => x.VisitorAddressId,
+                        principalTable: "VisitorAddress",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -92,29 +113,6 @@ namespace VisitorBook.DAL.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "VisitorAddresses",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    StateId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_VisitorAddresses", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_VisitorAddresses_States_StateId",
-                        column: x => x.StateId,
-                        principalTable: "States",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_VisitorAddresses_Visitors_Id",
-                        column: x => x.Id,
-                        principalTable: "Visitors",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.InsertData(
                 table: "Cities",
                 columns: new[] { "Id", "Code", "Name" },
@@ -126,14 +124,21 @@ namespace VisitorBook.DAL.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Visitors",
-                columns: new[] { "Id", "BirthDate", "Gender", "Name", "Surname" },
+                table: "VisitorAddress",
+                columns: new[] { "Id", "CityId", "StateId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(1992, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "Eren", "Gaygusuz" },
-                    { 2, new DateTime(1995, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "Eren", "Özcan" },
-                    { 3, new DateTime(1996, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Ceyda", "Meyda" },
-                    { 4, new DateTime(1990, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Tuğçe", "Güzel" }
+                    { 1, 1, 1 },
+                    { 2, 3, 7 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Visitors",
+                columns: new[] { "Id", "BirthDate", "Gender", "Name", "Surname", "VisitorAddressId" },
+                values: new object[,]
+                {
+                    { 2, new DateTime(1995, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "Eren", "Özcan", null },
+                    { 4, new DateTime(1990, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Tuğçe", "Güzel", null }
                 });
 
             migrationBuilder.InsertData(
@@ -150,6 +155,15 @@ namespace VisitorBook.DAL.Migrations
                     { 7, 3, 40.9812333, 28.980652599999999, "Kadıköy" },
                     { 8, 3, 40.984420299999996, 28.974454399999999, "Ataşehir" },
                     { 9, 3, 41.024865200000001, 28.637796699999999, "Avcılar" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Visitors",
+                columns: new[] { "Id", "BirthDate", "Gender", "Name", "Surname", "VisitorAddressId" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(1992, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "Eren", "Gaygusuz", 1 },
+                    { 3, new DateTime(1996, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Ceyda", "Meyda", 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -171,17 +185,6 @@ namespace VisitorBook.DAL.Migrations
                     { 12, new DateTime(2000, 8, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), 7, 4 }
                 });
 
-            migrationBuilder.InsertData(
-                table: "VisitorAddresses",
-                columns: new[] { "Id", "StateId" },
-                values: new object[,]
-                {
-                    { 1, 1 },
-                    { 2, 7 },
-                    { 3, 5 },
-                    { 4, 3 }
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_States_CityId",
                 table: "States",
@@ -198,10 +201,11 @@ namespace VisitorBook.DAL.Migrations
                 column: "VisitorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_VisitorAddresses_StateId",
-                table: "VisitorAddresses",
-                column: "StateId",
-                unique: true);
+                name: "IX_Visitors_VisitorAddressId",
+                table: "Visitors",
+                column: "VisitorAddressId",
+                unique: true,
+                filter: "[VisitorAddressId] IS NOT NULL");
         }
 
         /// <inheritdoc />
@@ -211,9 +215,6 @@ namespace VisitorBook.DAL.Migrations
                 name: "VisitedStates");
 
             migrationBuilder.DropTable(
-                name: "VisitorAddresses");
-
-            migrationBuilder.DropTable(
                 name: "States");
 
             migrationBuilder.DropTable(
@@ -221,6 +222,9 @@ namespace VisitorBook.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Cities");
+
+            migrationBuilder.DropTable(
+                name: "VisitorAddress");
         }
     }
 }
