@@ -7,8 +7,9 @@
 
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="AddOrEdit" onsubmit="return AddRecord(this);" autocomplete="off">
+        <form asp-action="AddOrEdit" asp-route-id="@Model.VisitedState.Id" onsubmit="return AddRecord(this);" autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="VisitedState.Id" />
             <div class="row mt-4">
                 <div class="form-group">
                     <label asp-for="VisitedState.StateId" class="control-label"></label>

@@ -13,18 +13,16 @@ namespace VisitorBook.UI.Controllers
         private readonly IService<State> _stateService;
         private readonly IService<City> _cityService;
         private readonly IService<Visitor> _visitorService;
-        private readonly IService<VisitorAddress> _visitorAddressService;
 
         [BindProperty]
         public VisitorViewModel VisitorViewModel { get; set; }
 
         public VisitorController(IService<State> stateService, IService<City> cityService, 
-            IService<Visitor> visitorService, IService<VisitorAddress> visitorAddressService)
+            IService<Visitor> visitorService)
         {
             _stateService = stateService;
             _cityService = cityService;
             _visitorService = visitorService;
-            _visitorAddressService = visitorAddressService;
         }
 
         public IActionResult Index()

@@ -1,7 +1,9 @@
 var dataTable
 
 $(document).ready(function () {
-  loadDataTable()
+    $.fn.dataTable.moment('DD/MM/YYYY');
+
+    loadDataTable();
 })
 
 function loadDataTable() {

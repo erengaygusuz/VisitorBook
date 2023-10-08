@@ -14,6 +14,9 @@ namespace VisitorBook.UI.Controllers
     {
         private readonly IService<City> _service;
 
+        [BindProperty]
+        public City City { get; set; }
+
         public CityController(IService<City> service)
         {
             _service = service;
@@ -40,44 +43,47 @@ namespace VisitorBook.UI.Controllers
         [NoDirectAccess]
         public async Task<IActionResult> AddOrEdit(int id = 0)
         {
+            City = new City();
+
             if (id == 0)
             {
-                return View(new City());
+                return View(City);
             }
 
             else
             {
-                var city = await _service.GetAsync(u => u.Id == id);
+                City = await _service.GetAsync(u => u.Id == id);
 
-                if (city == null)
+                if (City == null)
                 {
                     return NotFound();
                 }
 
-                return View(city);
+                return View(City);
             }
         }
 
+        [ActionName("AddOrEdit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit(int id, City city)
+        public async Task<IActionResult> AddOrEditPost(int id)
         {
             if (ModelState.IsValid)
             {
                 if (id == 0)
                 {
-                    await _service.AddAsync(city);
+                    await _service.AddAsync(City);
                 }
 
                 else
                 {
-                    await _service.UpdateAsync(city);
+                    await _service.UpdateAsync(City);
                 }
 
                 return Json(new { isValid = true });
             }
 
-            return Json(new { isValid = false, html = RazorViewConverter.GetStringFromRazorView(this, "AddOrEdit", city) });
+            return Json(new { isValid = false, html = RazorViewConverter.GetStringFromRazorView(this, "AddOrEdit", City) });
         }
 
         [HttpDelete]

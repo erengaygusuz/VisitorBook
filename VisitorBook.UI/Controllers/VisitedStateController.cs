@@ -14,6 +14,9 @@ namespace VisitorBook.UI.Controllers
         private readonly IService<Visitor> _visitorService;
         private readonly IService<VisitedState> _visitedStateService;
 
+        [BindProperty]
+        public VisitedStateViewModel VisitedStateViewModel { get; set; }
+
         public VisitedStateController(IService<State> stateService, IService<Visitor> visitorService,
         IService<VisitedState> visitedStateService)
         {
@@ -40,7 +43,7 @@ namespace VisitorBook.UI.Controllers
 
         public IActionResult AddOrEdit(int id)
         {
-            VisitedStateViewModel visitedStateViewModel = new VisitedStateViewModel()
+            VisitedStateViewModel = new VisitedStateViewModel()
             {
                 VisitedState = new VisitedState(),
                 StateList = _stateService.GetAllAsync().GetAwaiter().GetResult().ToList()
@@ -60,38 +63,39 @@ namespace VisitorBook.UI.Controllers
             if (id == 0)
             {
                 // create
-                return View(visitedStateViewModel);
+                return View(VisitedStateViewModel);
             }
 
             else
             {
                 // update
-                visitedStateViewModel.VisitedState = _visitedStateService.GetAsync(u => u.Id == id).GetAwaiter().GetResult();
+                VisitedStateViewModel.VisitedState = _visitedStateService.GetAsync(u => u.Id == id).GetAwaiter().GetResult();
 
-                return View(visitedStateViewModel);
+                return View(VisitedStateViewModel);
             }
         }
 
+        [ActionName("AddOrEdit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit(int id, VisitedState visitedState)
+        public async Task<IActionResult> AddOrEditPost(int id)
         {
             if (ModelState.IsValid)
             {
                 if (id == 0)
                 {
-                    await _visitedStateService.AddAsync(visitedState);
+                    await _visitedStateService.AddAsync(VisitedStateViewModel.VisitedState);
                 }
 
                 else
                 {
-                    await _visitedStateService.UpdateAsync(visitedState);
+                    await _visitedStateService.UpdateAsync(VisitedStateViewModel.VisitedState);
                 }
 
                 return Json(new { isValid = true });
             }
 
-            return Json(new { isValid = false, html = RazorViewConverter.GetStringFromRazorView(this, "AddOrEdit", visitedState) });
+            return Json(new { isValid = false, html = RazorViewConverter.GetStringFromRazorView(this, "AddOrEdit", VisitedStateViewModel.VisitedState) });
         }
 
         [HttpDelete]

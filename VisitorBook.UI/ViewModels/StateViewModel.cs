@@ -7,6 +7,7 @@ namespace VisitorBook.UI.ViewModels
     public class StateViewModel
     {
         public State State { get; set; }
+        [ValidateNever]
         public IEnumerable<SelectListItem> CityList { get; set; }
     }
 }
