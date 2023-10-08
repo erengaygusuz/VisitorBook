@@ -21,6 +21,9 @@ namespace VisitorBook.Core.Models
         [ValidateNever]
         public State State { get; set; }
 
-        public DateTime Date { get; set; }
+        [Display(Name = "City")]
+        public int CityId { get; set; }
+
+        public DateTime Date { get; set; }        
     }
 }

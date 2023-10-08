@@ -11,5 +11,7 @@ namespace VisitorBook.UI.ViewModels
         public IEnumerable<SelectListItem> VisitorList { get; set; }
         [ValidateNever]
         public IEnumerable<SelectListItem> StateList { get; set; }
+        [ValidateNever]
+        public IEnumerable<SelectListItem> CityList { get; set; }
     }
 }

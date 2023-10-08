@@ -13,16 +13,18 @@ namespace VisitorBook.UI.Controllers
         private readonly IService<State> _stateService;
         private readonly IService<Visitor> _visitorService;
         private readonly IService<VisitedState> _visitedStateService;
+        private readonly IService<City> _cityService;
 
         [BindProperty]
         public VisitedStateViewModel VisitedStateViewModel { get; set; }
 
         public VisitedStateController(IService<State> stateService, IService<Visitor> visitorService,
-        IService<VisitedState> visitedStateService)
+        IService<VisitedState> visitedStateService, IService<City> cityService)
         {
             _stateService = stateService;
             _visitorService = visitorService;
             _visitedStateService = visitedStateService;
+            _cityService = cityService;
         }
 
         public IActionResult Index()
@@ -33,7 +35,7 @@ namespace VisitorBook.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var visitedStates = await _visitedStateService.GetAllAsync(include: u => u.Include(a => a.Visitor).Include(a => a.State));
+            var visitedStates = await _visitedStateService.GetAllAsync(include: u => u.Include(a => a.Visitor).Include(a => a.State).ThenInclude(b => b.City));
 
             return Json(new
             {
@@ -41,12 +43,13 @@ namespace VisitorBook.UI.Controllers
             });
         }
 
-        public IActionResult AddOrEdit(int id)
+        public async Task<IActionResult> AddOrEdit(int id)
         {
             VisitedStateViewModel = new VisitedStateViewModel()
             {
                 VisitedState = new VisitedState(),
-                StateList = _stateService.GetAllAsync().GetAwaiter().GetResult().ToList()
+                StateList = new List<SelectListItem>(),
+                CityList = _cityService.GetAllAsync().GetAwaiter().GetResult().ToList()
                    .Select(u => new SelectListItem
                    {
                        Text = u.Name,
@@ -55,7 +58,7 @@ namespace VisitorBook.UI.Controllers
                 VisitorList = _visitorService.GetAllAsync().GetAwaiter().GetResult().ToList()
                    .Select(u => new SelectListItem
                    {
-                       Text = u.Name,
+                       Text = u.Name + " " + u.Surname,
                        Value = u.Id.ToString()
                    })
             };
@@ -70,6 +73,13 @@ namespace VisitorBook.UI.Controllers
             {
                 // update
                 VisitedStateViewModel.VisitedState = _visitedStateService.GetAsync(u => u.Id == id).GetAwaiter().GetResult();
+
+                VisitedStateViewModel.StateList = _stateService.GetAllAsync(u => u.CityId == VisitedStateViewModel.VisitedState.CityId).GetAwaiter().GetResult().ToList()
+                  .Select(u => new SelectListItem
+                  {
+                      Text = u.Name,
+                      Value = u.Id.ToString()
+                  });
 
                 return View(VisitedStateViewModel);
             }
@@ -89,7 +99,17 @@ namespace VisitorBook.UI.Controllers
 
                 else
                 {
-                    await _visitedStateService.UpdateAsync(VisitedStateViewModel.VisitedState);
+                    var visitedState = await _visitedStateService.GetAsync(u => u.Id == id);
+
+                    visitedState.Date = VisitedStateViewModel.VisitedState.Date;
+                    visitedState.VisitorId = VisitedStateViewModel.VisitedState.VisitorId;
+
+                    var newStateWithCity = await _stateService.GetAsync(u => u.Id == VisitedStateViewModel.VisitedState.StateId, include: u => u.Include(a => a.City));
+
+                    visitedState.CityId = newStateWithCity.City.Id;
+                    visitedState.StateId = newStateWithCity.Id;
+
+                    await _visitedStateService.UpdateAsync(visitedState);
                 }
 
                 return Json(new { isValid = true });

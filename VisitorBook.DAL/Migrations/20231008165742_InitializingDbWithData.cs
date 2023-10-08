@@ -94,6 +94,7 @@ namespace VisitorBook.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     VisitorId = table.Column<int>(type: "int", nullable: false),
                     StateId = table.Column<int>(type: "int", nullable: false),
+                    CityId = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -161,21 +162,21 @@ namespace VisitorBook.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "VisitedStates",
-                columns: new[] { "Id", "Date", "StateId", "VisitorId" },
+                columns: new[] { "Id", "CityId", "Date", "StateId", "VisitorId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2015, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1 },
-                    { 2, new DateTime(2015, 10, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, 1 },
-                    { 3, new DateTime(2017, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), 7, 1 },
-                    { 4, new DateTime(2022, 8, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 8, 1 },
-                    { 5, new DateTime(2012, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, 2 },
-                    { 6, new DateTime(2023, 8, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2 },
-                    { 7, new DateTime(2010, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 3 },
-                    { 8, new DateTime(2002, 10, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 9, 3 },
-                    { 9, new DateTime(2011, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 9, 3 },
-                    { 10, new DateTime(2020, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 8, 3 },
-                    { 11, new DateTime(2008, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 7, 4 },
-                    { 12, new DateTime(2000, 8, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), 7, 4 }
+                    { 1, 1, new DateTime(2015, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1 },
+                    { 2, 2, new DateTime(2015, 10, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, 1 },
+                    { 3, 3, new DateTime(2017, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), 7, 1 },
+                    { 4, 3, new DateTime(2022, 8, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 8, 1 },
+                    { 5, 2, new DateTime(2012, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, 2 },
+                    { 6, 1, new DateTime(2023, 8, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2 },
+                    { 7, 1, new DateTime(2010, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 3 },
+                    { 8, 3, new DateTime(2002, 10, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 9, 3 },
+                    { 9, 3, new DateTime(2011, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 9, 3 },
+                    { 10, 3, new DateTime(2020, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 8, 3 },
+                    { 11, 3, new DateTime(2008, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 7, 4 },
+                    { 12, 3, new DateTime(2000, 8, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), 7, 4 }
                 });
 
             migrationBuilder.CreateIndex(

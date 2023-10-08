@@ -17,7 +17,8 @@ function loadDataTable() {
           return data.name + ' ' + data.surname
         },
       },
-      { data: 'state.name', width: '30%' },
+        { data: 'state.name', width: '15%' },
+        { data: 'state.city.name', width: '15%' },
       {
         data: 'date',
         width: '20%',
@@ -49,9 +50,41 @@ showInPopup = (url, title) => {
     success: function (res) {
       $('#form-modal .modal-body').html(res)
       $('#form-modal .modal-title').html(title)
-      $('#form-modal').modal('show')
+        $('#form-modal').modal('show')
+
+        if ($('#citylist option:selected').val() == 0) {
+            $('#statelist').hide();
+        }
+        else {
+            $('#statelist').show();
+        }
     },
   })
+}
+
+function fillStateList(cityId, selectedIndex) {
+    $.ajax({
+        type: 'GET',
+        url: '/state/getallbycity?cityId=' + cityId,
+        success: function (res) {
+
+            $('#VisitedState_StateId').empty();
+
+            $('#VisitedState_StateId').append(
+                $('<option disabled value="0">--Select State--</option>'));
+
+            $.each(res.data, function (index, value) {
+                $('#VisitedState_StateId').append(
+                    $('<option value="' + value.id + '">' + value.name + '</option>'))
+            }
+            );
+
+            $('#VisitedState_StateId option:eq(' + selectedIndex + ')').prop('selected', true);
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
 }
 
 AddRecord = (form) => {
@@ -107,3 +140,15 @@ function deleteRecord(url) {
   return false
 }
 
+function cityChange() {
+    if ($('#citylist option:selected').val() == 0) {
+        $('#statelist').hide();
+    }
+    else {
+        $('#statelist').show();
+
+        var cityId = $('#citylist option:selected').val();
+
+        fillStateList(cityId, 0);
+    }
+}

@@ -199,6 +199,7 @@ namespace VisitorBook.DAL.Data
                 {
                     Id = 1,
                     VisitorId = 1,
+                    CityId = 1,
                     StateId = 2,
                     Date = new DateTime(day: 2, month: 11, year: 2015)
                 },
@@ -206,6 +207,7 @@ namespace VisitorBook.DAL.Data
                 {
                     Id = 2,
                     VisitorId = 1,
+                    CityId = 2,
                     StateId = 5,
                     Date = new DateTime(day: 4, month: 10, year: 2015)
                 },
@@ -213,6 +215,7 @@ namespace VisitorBook.DAL.Data
                 {
                     Id = 3,
                     VisitorId = 1,
+                    CityId = 3,
                     StateId = 7,
                     Date = new DateTime(day: 24, month: 1, year: 2017)
                 },
@@ -220,6 +223,7 @@ namespace VisitorBook.DAL.Data
                 {
                     Id = 4,
                     VisitorId = 1,
+                    CityId = 3,
                     StateId = 8,
                     Date = new DateTime(day: 16, month: 8, year: 2022)
                 },
@@ -227,6 +231,7 @@ namespace VisitorBook.DAL.Data
                 {
                     Id = 5,
                     VisitorId = 2,
+                    CityId = 2,
                     StateId = 4,
                     Date = new DateTime(day: 15, month: 12, year: 2012)
                 },
@@ -234,6 +239,7 @@ namespace VisitorBook.DAL.Data
                 {
                     Id = 6,
                     VisitorId = 2,
+                    CityId = 1,
                     StateId = 1,
                     Date = new DateTime(day: 6, month: 8, year: 2023)
                 },
@@ -241,6 +247,7 @@ namespace VisitorBook.DAL.Data
                 {
                     Id = 7,
                     VisitorId = 3,
+                    CityId = 1,
                     StateId = 1,
                     Date = new DateTime(day: 1, month: 7, year: 2010)
                 },
@@ -248,6 +255,7 @@ namespace VisitorBook.DAL.Data
                 {
                     Id = 8,
                     VisitorId = 3,
+                    CityId = 3,
                     StateId = 9,
                     Date = new DateTime(day: 23, month: 10, year: 2002)
                 },
@@ -255,6 +263,7 @@ namespace VisitorBook.DAL.Data
                 {
                     Id = 9,
                     VisitorId = 3,
+                    CityId = 3,
                     StateId = 9,
                     Date = new DateTime(day: 15, month: 2, year: 2011)
                 },
@@ -262,6 +271,7 @@ namespace VisitorBook.DAL.Data
                 {
                     Id = 10,
                     VisitorId = 3,
+                    CityId = 3,
                     StateId = 8,
                     Date = new DateTime(day: 16, month: 5, year: 2020)
                 },
@@ -269,6 +279,7 @@ namespace VisitorBook.DAL.Data
                 {
                     Id = 11,
                     VisitorId = 4,
+                    CityId = 3,
                     StateId = 7,
                     Date = new DateTime(day: 1, month: 12, year: 2008)
                 },
@@ -276,6 +287,7 @@ namespace VisitorBook.DAL.Data
                 {
                     Id = 12,
                     VisitorId = 4,
+                    CityId = 3,
                     StateId = 7,
                     Date = new DateTime(day: 6, month: 8, year: 2000)
                 }

@@ -12,7 +12,7 @@ using VisitorBook.DAL.Data;
 namespace VisitorBook.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231008151541_InitializingDbWithData")]
+    [Migration("20231008165742_InitializingDbWithData")]
     partial class InitializingDbWithData
     {
         /// <inheritdoc />
@@ -176,6 +176,9 @@ namespace VisitorBook.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
@@ -197,6 +200,7 @@ namespace VisitorBook.DAL.Migrations
                         new
                         {
                             Id = 1,
+                            CityId = 1,
                             Date = new DateTime(2015, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             StateId = 2,
                             VisitorId = 1
@@ -204,6 +208,7 @@ namespace VisitorBook.DAL.Migrations
                         new
                         {
                             Id = 2,
+                            CityId = 2,
                             Date = new DateTime(2015, 10, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             StateId = 5,
                             VisitorId = 1
@@ -211,6 +216,7 @@ namespace VisitorBook.DAL.Migrations
                         new
                         {
                             Id = 3,
+                            CityId = 3,
                             Date = new DateTime(2017, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             StateId = 7,
                             VisitorId = 1
@@ -218,6 +224,7 @@ namespace VisitorBook.DAL.Migrations
                         new
                         {
                             Id = 4,
+                            CityId = 3,
                             Date = new DateTime(2022, 8, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             StateId = 8,
                             VisitorId = 1
@@ -225,6 +232,7 @@ namespace VisitorBook.DAL.Migrations
                         new
                         {
                             Id = 5,
+                            CityId = 2,
                             Date = new DateTime(2012, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             StateId = 4,
                             VisitorId = 2
@@ -232,6 +240,7 @@ namespace VisitorBook.DAL.Migrations
                         new
                         {
                             Id = 6,
+                            CityId = 1,
                             Date = new DateTime(2023, 8, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             StateId = 1,
                             VisitorId = 2
@@ -239,6 +248,7 @@ namespace VisitorBook.DAL.Migrations
                         new
                         {
                             Id = 7,
+                            CityId = 1,
                             Date = new DateTime(2010, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             StateId = 1,
                             VisitorId = 3
@@ -246,6 +256,7 @@ namespace VisitorBook.DAL.Migrations
                         new
                         {
                             Id = 8,
+                            CityId = 3,
                             Date = new DateTime(2002, 10, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             StateId = 9,
                             VisitorId = 3
@@ -253,6 +264,7 @@ namespace VisitorBook.DAL.Migrations
                         new
                         {
                             Id = 9,
+                            CityId = 3,
                             Date = new DateTime(2011, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             StateId = 9,
                             VisitorId = 3
@@ -260,6 +272,7 @@ namespace VisitorBook.DAL.Migrations
                         new
                         {
                             Id = 10,
+                            CityId = 3,
                             Date = new DateTime(2020, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             StateId = 8,
                             VisitorId = 3
@@ -267,6 +280,7 @@ namespace VisitorBook.DAL.Migrations
                         new
                         {
                             Id = 11,
+                            CityId = 3,
                             Date = new DateTime(2008, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             StateId = 7,
                             VisitorId = 4
@@ -274,6 +288,7 @@ namespace VisitorBook.DAL.Migrations
                         new
                         {
                             Id = 12,
+                            CityId = 3,
                             Date = new DateTime(2000, 8, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             StateId = 7,
                             VisitorId = 4

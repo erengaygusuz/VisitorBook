@@ -12,9 +12,18 @@
             <input type="hidden" asp-for="VisitedState.Id" />
             <div class="row mt-4">
                 <div class="form-group">
+                    <label asp-for="VisitedState.CityId" class="control-label"></label>
+                    <select id="citylist" onchange="cityChange()" asp-for="VisitedState.CityId" asp-items="@Model.CityList" class="form-select">
+                        <option disabled selected value="0">--Select City--</option>
+                    </select>
+                    <span asp-validation-for="VisitedState.StateId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mt-4" id="statelist">
+                <div class="form-group">
                     <label asp-for="VisitedState.StateId" class="control-label"></label>
                     <select asp-for="VisitedState.StateId" asp-items="@Model.StateList" class="form-select">
-                        <option disabled selected>--Select State--</option>
+                        <option disabled selected value="0">--Select State--</option>
                     </select>
                     <span asp-validation-for="VisitedState.StateId" class="text-danger"></span>
                 </div>
