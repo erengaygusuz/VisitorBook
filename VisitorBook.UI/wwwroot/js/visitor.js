@@ -39,12 +39,46 @@ showInPopup = (url, title) => {
   $.ajax({
     type: 'GET',
     url: url,
-    success: function (res) {
+      success: function (res) {
+          console.log(url);
+
       $('#form-modal .modal-body').html(res)
       $('#form-modal .modal-title').html(title)
-      $('#form-modal').modal('show')
+        $('#form-modal').modal('show')
+
+        if ($('#citylist option:selected').val() == 0) {
+            $('#statelist').hide();
+        }
+        else {
+            $('#statelist').show();
+        }
     },
   })
+}
+
+function fillStateList(cityId, selectedIndex) {
+    $.ajax({
+        type: 'GET',
+        url: '/state/getallbycity?cityId=' + cityId,
+        success: function (res) {
+
+            $('#Visitor_VisitorAddress_StateId').empty();
+
+            $('#Visitor_VisitorAddress_StateId').append(
+                $('<option disabled value="0">--Select State--</option>'));
+
+            $.each(res.data, function (index, value) {
+                $('#Visitor_VisitorAddress_StateId').append(
+                    $('<option value="' + value.id + '">' + value.name + '</option>'))
+                }
+            );
+
+            $('#Visitor_VisitorAddress_StateId option:eq(' + selectedIndex + ')').prop('selected', true);
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
 }
 
 AddRecord = (form) => {
@@ -100,3 +134,15 @@ function deleteRecord(url) {
   return false
 }
 
+function cityChange() {
+    if ($('#citylist option:selected').val() == 0) {
+        $('#statelist').hide();
+    }
+    else {
+        $('#statelist').show();
+
+        var cityId = $('#citylist option:selected').val();
+
+        fillStateList(cityId, 0);
+    }
+}

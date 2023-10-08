@@ -35,6 +35,16 @@ namespace VisitorBook.UI.Controllers
             });
         }
 
+        public async Task<IActionResult> GetAllByCity(int cityId)
+        {
+            var states = await _stateService.GetAllAsync(u => u.CityId == cityId);
+
+            return Json(new
+            {
+                data = states
+            });
+        }
+
         public IActionResult AddOrEdit(int id)
         {
             StateViewModel stateViewModel = new StateViewModel()

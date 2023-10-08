@@ -60,12 +60,7 @@ namespace VisitorBook.UI.Controllers
                        Text = u.Name,
                        Value = u.Id.ToString()
                    }),
-                StateList = _stateService.GetAllAsync().GetAwaiter().GetResult().ToList()
-                   .Select(u => new SelectListItem
-                   {
-                       Text = u.Name,
-                       Value = u.Id.ToString()
-                   })
+                StateList = new List<SelectListItem>()
             };
 
             if (id == 0)
@@ -78,6 +73,16 @@ namespace VisitorBook.UI.Controllers
             {
                 // update
                 VisitorViewModel.Visitor = await _visitorService.GetAsync(u => u.Id == id, include: u => u.Include(a => a.VisitorAddress));
+
+                if (VisitorViewModel.Visitor.VisitorAddress != null)
+                {
+                    VisitorViewModel.StateList = _stateService.GetAllAsync(u => u.CityId == VisitorViewModel.Visitor.VisitorAddress.CityId).GetAwaiter().GetResult().ToList()
+                   .Select(u => new SelectListItem
+                   {
+                       Text = u.Name,
+                       Value = u.Id.ToString()
+                   });
+                }
 
                 return View(VisitorViewModel);
             }
