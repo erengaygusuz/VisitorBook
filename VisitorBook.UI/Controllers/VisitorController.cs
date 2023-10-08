@@ -33,7 +33,15 @@ namespace VisitorBook.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var visitors = await _visitorService.GetAllAsync();
+            var visitors = _visitorService.GetAllAsync().GetAwaiter().GetResult().ToList()
+                .Select(u => new
+            {
+                Id = u.Id,
+                Name = u.Name,
+                Surname = u.Surname,
+                Gender = u.Gender.ToString(),
+                BirthDate = u.BirthDate
+            });
 
             return Json(new
             {

@@ -28,17 +28,19 @@ namespace VisitorBook.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "VisitorAddress",
+                name: "Visitors",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StateId = table.Column<int>(type: "int", nullable: false),
-                    CityId = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Gender = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_VisitorAddress", x => x.Id);
+                    table.PrimaryKey("PK_Visitors", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -64,24 +66,22 @@ namespace VisitorBook.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Visitors",
+                name: "VisitorAddress",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Gender = table.Column<int>(type: "int", nullable: false),
-                    VisitorAddressId = table.Column<int>(type: "int", nullable: true)
+                    StateId = table.Column<int>(type: "int", nullable: false),
+                    CityId = table.Column<int>(type: "int", nullable: false),
+                    VisitorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Visitors", x => x.Id);
+                    table.PrimaryKey("PK_VisitorAddress", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Visitors_VisitorAddress_VisitorAddressId",
-                        column: x => x.VisitorAddressId,
-                        principalTable: "VisitorAddress",
+                        name: "FK_VisitorAddress_Visitors_VisitorId",
+                        column: x => x.VisitorId,
+                        principalTable: "Visitors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -124,21 +124,14 @@ namespace VisitorBook.DAL.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "VisitorAddress",
-                columns: new[] { "Id", "CityId", "StateId" },
-                values: new object[,]
-                {
-                    { 1, 1, 1 },
-                    { 2, 3, 7 }
-                });
-
-            migrationBuilder.InsertData(
                 table: "Visitors",
-                columns: new[] { "Id", "BirthDate", "Gender", "Name", "Surname", "VisitorAddressId" },
+                columns: new[] { "Id", "BirthDate", "Gender", "Name", "Surname" },
                 values: new object[,]
                 {
-                    { 2, new DateTime(1995, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "Eren", "Özcan", null },
-                    { 4, new DateTime(1990, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Tuğçe", "Güzel", null }
+                    { 1, new DateTime(1992, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "Eren", "Gaygusuz" },
+                    { 2, new DateTime(1995, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "Eren", "Özcan" },
+                    { 3, new DateTime(1996, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Ceyda", "Meyda" },
+                    { 4, new DateTime(1990, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Tuğçe", "Güzel" }
                 });
 
             migrationBuilder.InsertData(
@@ -158,12 +151,12 @@ namespace VisitorBook.DAL.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Visitors",
-                columns: new[] { "Id", "BirthDate", "Gender", "Name", "Surname", "VisitorAddressId" },
+                table: "VisitorAddress",
+                columns: new[] { "Id", "CityId", "StateId", "VisitorId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(1992, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "Eren", "Gaygusuz", 1 },
-                    { 3, new DateTime(1996, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Ceyda", "Meyda", 2 }
+                    { 1, 1, 1, 1 },
+                    { 2, 3, 7, 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -201,11 +194,10 @@ namespace VisitorBook.DAL.Migrations
                 column: "VisitorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Visitors_VisitorAddressId",
-                table: "Visitors",
-                column: "VisitorAddressId",
-                unique: true,
-                filter: "[VisitorAddressId] IS NOT NULL");
+                name: "IX_VisitorAddress_VisitorId",
+                table: "VisitorAddress",
+                column: "VisitorId",
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -215,6 +207,9 @@ namespace VisitorBook.DAL.Migrations
                 name: "VisitedStates");
 
             migrationBuilder.DropTable(
+                name: "VisitorAddress");
+
+            migrationBuilder.DropTable(
                 name: "States");
 
             migrationBuilder.DropTable(
@@ -222,9 +217,6 @@ namespace VisitorBook.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Cities");
-
-            migrationBuilder.DropTable(
-                name: "VisitorAddress");
         }
     }
 }

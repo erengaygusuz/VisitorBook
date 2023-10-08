@@ -31,11 +31,11 @@ namespace VisitorBook.DAL.Data
                .IsRequired();
 
             // one to one relationship
-            // visitor - visitor address relationship definition
-            modelBuilder.Entity<Visitor>()
-               .HasOne(e => e.VisitorAddress)
-               .WithOne()
-               .HasForeignKey<Visitor>(e => e.VisitorAddressId)
+            // visitor address - visitor relationship definition
+            modelBuilder.Entity<VisitorAddress>()
+               .HasOne(e => e.Visitor)
+               .WithOne(e => e.VisitorAddress)
+               .HasForeignKey<VisitorAddress>(e => e.VisitorId)
                .OnDelete(DeleteBehavior.Cascade);
 
             // many to many relationship
@@ -146,12 +146,14 @@ namespace VisitorBook.DAL.Data
                 new VisitorAddress()
                 {
                     Id = 1,
+                    VisitorId = 1,
                     StateId = 1,
                     CityId = 1,
                 },
                 new VisitorAddress()
                 {
                     Id = 2,
+                    VisitorId = 3,
                     StateId = 7,
                     CityId = 3,
                 }
@@ -164,8 +166,7 @@ namespace VisitorBook.DAL.Data
                     Name = "Eren",
                     Surname = "Gaygusuz",
                     BirthDate = new DateTime(day: 14, month: 12, year: 1992),
-                    Gender = Gender.Man,
-                    VisitorAddressId = 1
+                    Gender = Gender.Man
                 },
                 new Visitor()
                 {
@@ -173,8 +174,7 @@ namespace VisitorBook.DAL.Data
                     Name = "Eren",
                     Surname = "Özcan",
                     BirthDate = new DateTime(day: 05, month: 11, year: 1995),
-                    Gender = Gender.Man,
-                    VisitorAddressId = null
+                    Gender = Gender.Man
                 },
                 new Visitor()
                 {
@@ -182,8 +182,7 @@ namespace VisitorBook.DAL.Data
                     Name = "Ceyda",
                     Surname = "Meyda",
                     BirthDate = new DateTime(day: 22, month: 3, year: 1996),
-                    Gender = Gender.Woman,
-                    VisitorAddressId = 2
+                    Gender = Gender.Woman
                 },
                 new Visitor()
                 {
@@ -191,8 +190,7 @@ namespace VisitorBook.DAL.Data
                     Name = "Tuğçe",
                     Surname = "Güzel",
                     BirthDate = new DateTime(day: 11, month: 5, year: 1990),
-                    Gender = Gender.Woman,
-                    VisitorAddressId = null
+                    Gender = Gender.Woman
                 }
             );
 

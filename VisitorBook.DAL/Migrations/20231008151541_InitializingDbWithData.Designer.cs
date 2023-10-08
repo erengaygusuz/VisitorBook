@@ -12,7 +12,7 @@ using VisitorBook.DAL.Data;
 namespace VisitorBook.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231007184726_InitializingDbWithData")]
+    [Migration("20231008151541_InitializingDbWithData")]
     partial class InitializingDbWithData
     {
         /// <inheritdoc />
@@ -302,14 +302,7 @@ namespace VisitorBook.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("VisitorAddressId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("VisitorAddressId")
-                        .IsUnique()
-                        .HasFilter("[VisitorAddressId] IS NOT NULL");
 
                     b.ToTable("Visitors");
 
@@ -320,8 +313,7 @@ namespace VisitorBook.DAL.Migrations
                             BirthDate = new DateTime(1992, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Gender = 0,
                             Name = "Eren",
-                            Surname = "Gaygusuz",
-                            VisitorAddressId = 1
+                            Surname = "Gaygusuz"
                         },
                         new
                         {
@@ -337,8 +329,7 @@ namespace VisitorBook.DAL.Migrations
                             BirthDate = new DateTime(1996, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Gender = 1,
                             Name = "Ceyda",
-                            Surname = "Meyda",
-                            VisitorAddressId = 2
+                            Surname = "Meyda"
                         },
                         new
                         {
@@ -364,7 +355,13 @@ namespace VisitorBook.DAL.Migrations
                     b.Property<int>("StateId")
                         .HasColumnType("int");
 
+                    b.Property<int>("VisitorId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("VisitorId")
+                        .IsUnique();
 
                     b.ToTable("VisitorAddress");
 
@@ -373,13 +370,15 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 1,
                             CityId = 1,
-                            StateId = 1
+                            StateId = 1,
+                            VisitorId = 1
                         },
                         new
                         {
                             Id = 2,
                             CityId = 3,
-                            StateId = 7
+                            StateId = 7,
+                            VisitorId = 3
                         });
                 });
 
@@ -413,19 +412,25 @@ namespace VisitorBook.DAL.Migrations
                     b.Navigation("Visitor");
                 });
 
-            modelBuilder.Entity("VisitorBook.Core.Models.Visitor", b =>
+            modelBuilder.Entity("VisitorBook.Core.Models.VisitorAddress", b =>
                 {
-                    b.HasOne("VisitorBook.Core.Models.VisitorAddress", "VisitorAddress")
-                        .WithOne()
-                        .HasForeignKey("VisitorBook.Core.Models.Visitor", "VisitorAddressId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("VisitorBook.Core.Models.Visitor", "Visitor")
+                        .WithOne("VisitorAddress")
+                        .HasForeignKey("VisitorBook.Core.Models.VisitorAddress", "VisitorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("VisitorAddress");
+                    b.Navigation("Visitor");
                 });
 
             modelBuilder.Entity("VisitorBook.Core.Models.City", b =>
                 {
                     b.Navigation("States");
+                });
+
+            modelBuilder.Entity("VisitorBook.Core.Models.Visitor", b =>
+                {
+                    b.Navigation("VisitorAddress");
                 });
 #pragma warning restore 612, 618
         }

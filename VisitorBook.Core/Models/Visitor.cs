@@ -21,9 +21,9 @@ namespace VisitorBook.Core.Models
         public string Surname { get; set; }
         [Display(Name = "Birth Date")]
         public DateTime BirthDate { get; set; }
+
         public Gender Gender { get; set; }
 
-        public int? VisitorAddressId { get; set; }
         [ValidateNever]
         public VisitorAddress? VisitorAddress { get; set; }
 
