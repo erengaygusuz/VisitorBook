@@ -42,7 +42,16 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-4">
+            <div class="row mt-4" id = "CityDropdown">
+                <div class="form-group">
+                    <label asp-for="Visitor.VisitorAddress.CityId" class="control-label"></label>
+                    <select asp-for="Visitor.VisitorAddress.CityId" asp-items="@Model.CityList" class="form-select">
+                        <option disabled selected>--Select City--</option>
+                    </select>
+                    <span asp-validation-for="Visitor.VisitorAddress.StateId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mt-4" id = "StateDropdown">
                 <div class="form-group">
                     <label asp-for="Visitor.VisitorAddress.StateId" class="control-label"></label>
                     <select asp-for="Visitor.VisitorAddress.StateId" asp-items="@Model.StateList" class="form-select">

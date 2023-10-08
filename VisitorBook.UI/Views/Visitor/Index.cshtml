@@ -1,6 +1,13 @@
 ﻿<div class="container">
+    <h1 class="text-center">Visitor List</h1>
     <table id="tblData" class="table table-bordered table-striped" style="width: 100%">
         <thead>
+            <tr>
+                <a onclick="showInPopup('@Url.Action("AddOrEdit", "Visitor", new { Id = 0 }, Context.Request.Scheme)', 'Add Visitor')"
+                   class="btn btn-primary mb-3 float-end" role='button'>
+                   Add Visitor
+                </a>
+            </tr>
             <tr>
                 <th>
                     Name

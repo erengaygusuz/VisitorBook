@@ -28,6 +28,13 @@
                 </div>
             </div>
             <div class="row mt-4">
+                <div class="form-group">
+                    <label asp-for="VisitedState.Date" class="control-label"></label>
+                    <input asp-for="VisitedState.Date" class="form-control" />
+                    <span asp-validation-for="VisitedState.Date" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mt-4">
                 <div class="col-md-12">
                     <div class="form-group mt-4">
                         <input type="submit" value="Submit" class="btn btn-primary w-100" />

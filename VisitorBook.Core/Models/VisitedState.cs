@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,12 +13,12 @@ namespace VisitorBook.Core.Models
     {
         [Display(Name = "Visitor")]
         public int VisitorId { get; set; }
-
+        [ValidateNever]
         public Visitor Visitor { get; set; }
 
         [Display(Name = "State")]
         public int StateId { get; set; }
-
+        [ValidateNever]
         public State State { get; set; }
 
         public DateTime Date { get; set; }

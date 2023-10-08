@@ -18,6 +18,7 @@ namespace VisitorBook.Core.Models
 
         [Display(Name = "City")]
         public int CityId { get; set; }
+        [ValidateNever]
         public City City { get; set; }
 
         [ValidateNever]

@@ -99,7 +99,10 @@ namespace VisitorBook.UI.Controllers
         {
             var visitedState = await _visitedStateService.GetAsync(u => u.Id == id);
 
-            var visitedStateInfo = "Visited State Record for " + visitedState.Visitor.Name + " at " + visitedState.State.Name;
+            var visitor = await _visitorService.GetAsync(u => u.Id == visitedState.VisitorId);
+            var state = await _stateService.GetAsync(u => u.Id == visitedState.StateId, include: u => u.Include(a => a.City));
+
+            var visitedStateInfo = "Visited State Record for " + visitor.Name + " " + visitor.Surname + " at " + state.Name + "/" + state.City.Name;
 
             if (visitedState != null)
             {

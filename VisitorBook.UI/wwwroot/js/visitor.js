@@ -23,8 +23,8 @@ function loadDataTable() {
         render: function (data) {
           return `
                    <a onclick="showInPopup('/visitor/addoredit/${data}', 
-                   'Update Visitor')" class="btn btn-info text-white"> Edit</a>
-                   <a onclick=deleteRecord('/visitor/delete/${data}') class="btn btn-danger mx-2">
+                   'Update Visitor')" class="btn btn-warning"> Edit</a>
+                   <a onclick=deleteRecord('/visitor/delete/${data}') class="btn btn-danger">
                      Delete
                    </a>
                  `
@@ -99,3 +99,4 @@ function deleteRecord(url) {
 
   return false
 }
+
