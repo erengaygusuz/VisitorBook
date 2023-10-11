@@ -1,4 +1,6 @@
-﻿@{
+﻿@model VisitorStatisticViewModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -7,48 +9,48 @@
         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
             <div class="card border-success mb-3">
                 <div class="card-body text-success text-center">
-                    <h1 class="card-title">232</h1>
+                    <h1 class="card-title">@Model.GetLongestDistanceByVisitorOneTime.Item2</h1>
                     <h4>km</h4>
-                    <h5>Eren Gaygusuz</h5>
+                    <h5>@Model.GetLongestDistanceByVisitorOneTime.Item1</h5>
                 </div>
                 <div class="card-footer bg-transparent border-success text-center">
-                    <h5>Tek Seferde Gidilen En Uzun Mesafe</h5>
+                    <h5>Longest Distance By Visitor One Time</h5>
                 </div> 
             </div>
         </div>
         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
             <div class="card border-success mb-3">
                 <div class="card-body text-success text-center">
-                    <h1 class="card-title">576</h1>
+                    <h1 class="card-title">@Model.GetLongestDistanceByVisitorAllTime.Item2</h1>
                     <h4>km</h4>
-                    <h5>Eren Özcan</h5>
+                    <h5>@Model.GetLongestDistanceByVisitorAllTime.Item1</h5>
                 </div>
                 <div class="card-footer bg-transparent border-success text-center">
-                    <h5>Toplam Gidilen En Uzun Mesafe</h5>
+                    <h5>Longest Distance By Visitor All Time</h5>
                 </div>
             </div>
         </div>
         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
             <div class="card border-success mb-3">
                 <div class="card-body text-success text-center">
-                    <h1 class="card-title">76</h1>
-                    <h4>ilçe</h4>
-                    <h5>Ceyda Meyda</h5>
+                    <h1 class="card-title">@Model.GetHighestCountOfVisitedStateByVisitor.Item2</h1>
+                    <h4>state</h4>
+                    <h5>@Model.GetHighestCountOfVisitedStateByVisitor.Item1</h5>
                 </div>
                 <div class="card-footer bg-transparent border-success text-center">
-                    <h5>En Çok İlçe Gezen Kişi</h5>
+                    <h5>Highest Count Of Visited State By Visitor</h5>
                 </div>
             </div>
         </div>
         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
             <div class="card border-success mb-3">
                 <div class="card-body text-success text-center">
-                    <h1 class="card-title">24</h1>
-                    <h4>il</h4>
-                    <h5>Tuğçe Sevgi</h5>
+                    <h1 class="card-title">@Model.GetHighestCountOfVisitedCityByVisitor.Item2</h1>
+                    <h4>city</h4>
+                    <h5>@Model.GetHighestCountOfVisitedCityByVisitor.Item1</h5>
                 </div>
                 <div class="card-footer bg-transparent border-success text-center">
-                    <h5>En Çok İl Gezen Kişi</h5>
+                    <h5>Highest Count Of Visited City By Visitor</h5>
                 </div>
             </div>
         </div>

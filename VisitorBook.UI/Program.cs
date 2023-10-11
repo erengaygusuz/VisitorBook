@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using VisitorBook.BL.Concrete;
+using VisitorBook.BL.Services;
 using VisitorBook.Core.Abstract;
 using VisitorBook.DAL.Concrete;
 using VisitorBook.DAL.Data;
@@ -17,6 +18,7 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
 builder.Services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped(typeof(VisitorStatisticService));
 
 var app = builder.Build();
 
