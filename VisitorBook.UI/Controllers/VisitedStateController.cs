@@ -55,7 +55,7 @@ namespace VisitorBook.UI.Controllers
                        Text = u.Name,
                        Value = u.Id.ToString()
                    }),
-                VisitorList = _visitorService.GetAllAsync().GetAwaiter().GetResult().ToList()
+                VisitorList = _visitorService.GetAllAsync(v => v.VisitorAddress != null).GetAwaiter().GetResult().ToList()
                    .Select(u => new SelectListItem
                    {
                        Text = u.Name + " " + u.Surname,

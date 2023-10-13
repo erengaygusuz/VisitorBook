@@ -17,41 +17,32 @@ namespace VisitorBook.BL.Services
     {
         private readonly IService<VisitedState> _visitedStateService;
         private readonly IService<State> _stateService;
+        private readonly IService<Visitor> _visitorService;
 
-        public VisitorStatisticService(IService<VisitedState> visitedStateService, IService<State> stateService)
+        public VisitorStatisticService(IService<VisitedState> visitedStateService, IService<State> stateService, IService<Visitor> visitorService)
         {
             _visitedStateService = visitedStateService;
             _stateService = stateService;
+            _visitorService = visitorService;
         }
 
         public Tuple<string, int> GetHighestCountOfVisitedStateByVisitor()
         {
-            var visitedStatesWithVisitorAndVisitorAddress = _visitedStateService
-                .GetAllAsync(v => v.Visitor.VisitorAddress != null, include: u => u.Include(a => a.State).Include(a => a.Visitor)).GetAwaiter().GetResult();
+            var visitors = _visitorService.GetAllAsync(v => v.VisitorAddress != null, include: v => v.Include(a => a.States)).GetAwaiter().GetResult();
 
-            var groupedVisitedList = visitedStatesWithVisitorAndVisitorAddress.GroupBy(a => a.VisitorId);
+            var visitor = visitors.OrderByDescending(a => a.States.Count).ThenBy(b => b.Name + " " + b.Surname).First();
 
-            var highestCountOfVisitedStateByVisitor = groupedVisitedList.ToDictionary(
-                value => value.First().Visitor.Name + " " + value.First().Visitor.Surname,
-                value => value.Count()).OrderByDescending(a => a.Value).ThenBy(b => b.Key).First(); 
-
-            var tuple = new Tuple<string, int>(highestCountOfVisitedStateByVisitor.Key, highestCountOfVisitedStateByVisitor.Value);
+            var tuple = new Tuple<string, int>(visitor.Name + " " + visitor.Surname, visitor.States.Count);
 
             return tuple;
         }
 
         public Tuple<string, int> GetHighestCountOfVisitedCityByVisitor()
         {
-            var visitedStatesWithVisitorAndVisitorAddress = _visitedStateService
-                .GetAllAsync(v => v.Visitor.VisitorAddress != null, include: u => u.Include(a => a.State).ThenInclude(b => b.City).Include(a => a.Visitor)).GetAwaiter().GetResult();
+            var visitors = _visitorService.GetAllAsync(v => v.VisitorAddress != null, include: v => v.Include(a => a.States).ThenInclude(s => s.City)).GetAwaiter().GetResult();
 
-            var groupedVisitedList = visitedStatesWithVisitorAndVisitorAddress.GroupBy(a => a.VisitorId);
-
-            var highestCountOfVisitedCityByVisitor = groupedVisitedList.ToDictionary(
-                value => value.First().Visitor.Name + " " + value.First().Visitor.Surname,
-                value => value.GroupBy(c => c.State.City).Count()).OrderByDescending(a => a.Value).ThenBy(b => b.Key).First();
-
-            var tuple = new Tuple<string, int>(highestCountOfVisitedCityByVisitor.Key, highestCountOfVisitedCityByVisitor.Value);
+            var tuple = visitors.OrderByDescending(a => a.States.Select(s => s.City).Distinct().Count()).ThenBy(b => b.Name + " " + b.Surname)
+                .Select(a => new Tuple<string, int> (a.Name + " " + a.Surname, a.States.Select(s => s.City).Distinct().Count())).First();
 
             return tuple;
         }
