@@ -1,12 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using VisitorBook.Core.Abstract;
-using VisitorBook.Core.Dtos;
 using VisitorBook.Core.Models;
 using VisitorBook.Core.Utilities;
-using VisitorBook.DAL.Concrete;
-using VisitorBook.UI.ViewModels;
 
 namespace VisitorBook.UI.Controllers
 {

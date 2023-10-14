@@ -12,14 +12,14 @@
             <input type="hidden" asp-for="Visitor.Id" />
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="Visitor.Name" class="control-label"></label>
+                    <label asp-for="Visitor.Name" class="control-label">@localization["Visitors.Table.Column1.Text"]</label>
                     <input asp-for="Visitor.Name" class="form-control" />
                     <span asp-validation-for="Visitor.Name" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="Visitor.Surname" class="control-label"></label>
+                    <label asp-for="Visitor.Surname" class="control-label">@localization["Visitors.Table.Column2.Text"]</label>
                     <input asp-for="Visitor.Surname" class="form-control" />
                     <span asp-validation-for="Visitor.Surname" class="text-danger"></span>
                 </div>
@@ -27,16 +27,16 @@
             <div class="row mt-4">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="Visitor.BirthDate" class="control-label"></label>
+                        <label asp-for="Visitor.BirthDate" class="control-label">@localization["Visitors.Table.Column3.Text"]</label>
                         <input asp-for="Visitor.BirthDate" class="form-control" />
                         <span asp-validation-for="Visitor.BirthDate" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="Visitor.Gender" class="control-label"></label>
+                        <label asp-for="Visitor.Gender" class="control-label">@localization["Visitors.Table.Column4.Text"]</label>
                         <select asp-for="Visitor.Gender" asp-items="@Model.GenderList" class="form-select">
-                            <option disabled selected>--Select Gender--</option>
+                            <option disabled selected>@localization["AddOrEditModal.GenderSelection.Text"]</option>
                         </select>
                         <span asp-validation-for="Visitor.Gender" class="text-danger"></span>
                     </div>
@@ -44,18 +44,18 @@
             </div>
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="Visitor.VisitorAddress.CityId" class="control-label"></label>
+                    <label asp-for="Visitor.VisitorAddress.CityId" class="control-label">@localization["Visitors.Table.Column6.Text"]</label>
                     <select id="citylist" onchange="cityChange()" asp-for="Visitor.VisitorAddress.CityId" asp-items="@Model.CityList" class="form-select">
-                        <option disabled selected value="0">--Select City--</option>
+                        <option disabled selected value="0">@localization["AddOrEditModal.CitySelection.Text"]</option>
                     </select>
                     <span asp-validation-for="Visitor.VisitorAddress.StateId" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4" id="statelist">
                 <div class="form-group">
-                    <label asp-for="Visitor.VisitorAddress.StateId" class="control-label"></label>
+                    <label asp-for="Visitor.VisitorAddress.StateId" class="control-label">@localization["Visitors.Table.Column7.Text"]</label>
                     <select asp-for="Visitor.VisitorAddress.StateId" asp-items="@Model.StateList" class="form-select">
-                        <option disabled selected value="0">--Select State--</option>
+                        <option disabled selected value="0">@localization["AddOrEditModal.StateSelection.Text"]</option>
                     </select>
                     <span asp-validation-for="Visitor.VisitorAddress.StateId" class="text-danger"></span>
                 </div>
@@ -63,7 +63,7 @@
             <div class="row mt-4">
                 <div class="col-md-12">
                     <div class="form-group mt-4">
-                        <input type="submit" value="Submit" class="btn btn-primary w-100" />
+                        <input type="submit" value="@localization["AddOrEditModal.SubmitBtn.Text"]" class="btn btn-primary w-100" />
                     </div>
                 </div>
             </div>

@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="~/VisitorBook.UI.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css" />
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.11.0/css/flag-icons.min.css" />
 </head>
 
 <body>
@@ -41,14 +43,18 @@
                     </ul>
                     <div class="btn-group">
                         <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            Action
+                            <span class="fi fi-gb"></span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-sm-end dropdown-menu-md-end dropdown-menu-lg-end dropdown-menu-xl-end dropdown-menu-xxl-end">
                             <li>
-                                <a class="dropdown-item" asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US">İngilizce</a>
+                                <a class="dropdown-item" asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US">
+                                    <span class="fi fi-gb"></span> İngilizce
+                                </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="tr-TR">Türkçe</a>
+                                <a class="dropdown-item" asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="tr-TR">
+                                    <span class="fi fi-tr"></span> Türkçe
+                                </a>
                             </li>
                         </ul>
                     </div>

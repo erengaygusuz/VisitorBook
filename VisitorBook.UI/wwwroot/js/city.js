@@ -1,16 +1,21 @@
 var dataTable
 
 $(document).ready(function () {
-    loadDataTable();
+
+    var exportBtnText = document.getElementById("CitiesExportCityBtnText").value;
+    var editBtnText = document.getElementById("CitiesTableColumn3EditBtnText").value;
+    var deleteBtnText = document.getElementById("CitiesTableColumn3DeleteBtnText").value;
+
+    loadDataTable(exportBtnText, editBtnText, deleteBtnText);
 })
 
-function loadDataTable() {
+function loadDataTable(exportBtnText, editBtnText, deleteBtnText) {
     dataTable = $('#tblData').DataTable({
         dom: 'lfrtBip',
         buttons: [
             {
                 extend: 'pdfHtml5',
-                text: 'Export as PDF',
+                text: exportBtnText,
                 filename: 'VisitorBook-Cities',
                 orientation: 'landscape',
                 pageSize: 'A4',
@@ -37,10 +42,16 @@ function loadDataTable() {
                 }
             }
         ],
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/tr.json',
+        },
         initComplete: function () {
             var btns = $('.dt-button, .buttons-pdf, .buttons-html5');
             btns.removeClass();
             btns.addClass('btn btn-success');
+            btns.attr("id", "ExportBtn");
+
+            $("#ExportBtn").prependTo($("#outside"));
         },
         ajax: { url: '/city/getall' },
         columns: [
@@ -50,17 +61,23 @@ function loadDataTable() {
                 data: 'id',
                 render: function (data) {
                     return `
-                   <a onclick="showInPopup('/city/addoredit/${data}', 
-                   'Update City')" class="btn btn-warning"> Edit</a>
-                   <a onclick=deleteRecord('/city/delete/${data}') class="btn btn-danger">
-                     Delete
-                   </a>
-                 `
+                            <div class="d-flex justify-content-around align-items-center">
+                                <a onclick="showInPopup('/city/addoredit/${data}', 
+                               'Update City')" class="btn btn-warning">${editBtnText}</a>
+                               <a onclick=deleteRecord('/city/delete/${data}') class="btn btn-danger">
+                                 ${deleteBtnText}
+                               </a>
+                            </div>
+                           `
                 },
                 width: '20%',
             },
         ],
-    }).buttons().container().prependTo("#outside");
+        columnDefs: [{
+            'targets': [2],
+            'orderable': false
+        }]
+    });
 }
 
 showInPopup = (url, title) => {

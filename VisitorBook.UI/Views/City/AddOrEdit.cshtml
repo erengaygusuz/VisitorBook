@@ -12,14 +12,14 @@
             <input type="hidden" asp-for="Id" />
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="Name" class="control-label"></label>
+                    <label asp-for="Name" class="control-label">@localization["Cities.Table.Column1.Text"]</label>
                     <input asp-for="Name" class="form-control" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="Code" class="control-label"></label>
+                    <label asp-for="Code" class="control-label">@localization["Cities.Table.Column2.Text"]</label>
                     <input asp-for="Code" class="form-control" />
                     <span asp-validation-for="Code" class="text-danger"></span>
                 </div>
@@ -27,7 +27,7 @@
             <div class="row mt-4">
                 <div class="col-md-12">
                     <div class="form-group mt-4">
-                        <input type="submit" value="Submit" class="btn btn-primary w-100" />
+                        <input type="submit" value="@localization["AddOrEditModal.SubmitBtn.Text"]" class="btn btn-primary w-100" />
                     </div>
                 </div>
             </div>

@@ -117,14 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddOrEditModal.CitySelection.Text" xml:space="preserve">
+    <value>--Select City--</value>
+  </data>
+  <data name="AddOrEditModal.GenderSelection.Text" xml:space="preserve">
+    <value>--Select Gender--</value>
+  </data>
+  <data name="AddOrEditModal.StateSelection.Text" xml:space="preserve">
+    <value>--Select State--</value>
+  </data>
+  <data name="AddOrEditModal.SubmitBtn.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="AddOrEditModal.VisitorSelection.Text" xml:space="preserve">
+    <value>--Select Visitor--</value>
+  </data>
   <data name="Cities.AddCityBtn.Text" xml:space="preserve">
     <value>Add City</value>
   </data>
-  <data name="Cities.ExportBtn.Text" xml:space="preserve">
+  <data name="Cities.ExportCityBtn.Text" xml:space="preserve">
     <value>Export City List</value>
-  </data>
-  <data name="Cities.Table.Body.Description.Text" xml:space="preserve">
-    <value />
   </data>
   <data name="Cities.Table.Column1.Text" xml:space="preserve">
     <value>Name</value>
@@ -137,18 +149,6 @@
   </data>
   <data name="Cities.Table.Column3.EditBtn.Text" xml:space="preserve">
     <value>Edit</value>
-  </data>
-  <data name="Cities.Table.Down.Item1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Cities.Table.Down.Item2.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Cities.Table.Top.Item1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Cities.Table.Top.Item2.Text" xml:space="preserve">
-    <value />
   </data>
   <data name="Cities.Title.Text" xml:space="preserve">
     <value>City List</value>
@@ -204,9 +204,6 @@
   <data name="States.ExportStateBtn.Text" xml:space="preserve">
     <value>Export State List</value>
   </data>
-  <data name="States.Table.Body.Description.Text" xml:space="preserve">
-    <value />
-  </data>
   <data name="States.Table.Column1.Text" xml:space="preserve">
     <value>State Name</value>
   </data>
@@ -225,18 +222,6 @@
   <data name="States.Table.Column5.EditBtn.Text" xml:space="preserve">
     <value>Edit</value>
   </data>
-  <data name="States.Table.Down.Item1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="States.Table.Down.Item2.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="States.Table.Top.Item1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="States.Table.Top.Item2.Text" xml:space="preserve">
-    <value />
-  </data>
   <data name="States.Title.Text" xml:space="preserve">
     <value>State List</value>
   </data>
@@ -245,9 +230,6 @@
   </data>
   <data name="VisitedStates.ExportVisitedStateBtn.Text" xml:space="preserve">
     <value>Export Visited State List</value>
-  </data>
-  <data name="VisitedStates.Table.Body.Description.Text" xml:space="preserve">
-    <value />
   </data>
   <data name="VisitedStates.Table.Column1.Text" xml:space="preserve">
     <value>Visitor Name</value>
@@ -267,29 +249,14 @@
   <data name="VisitedStates.Table.Column5.EditBtn.Text" xml:space="preserve">
     <value>Edit</value>
   </data>
-  <data name="VisitedStates.Table.Down.Item1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="VisitedStates.Table.Down.Item2.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="VisitedStates.Table.Top.Item1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="VisitedStates.Table.Top.Item2.Text" xml:space="preserve">
-    <value />
-  </data>
   <data name="VisitedStates.Title.Text" xml:space="preserve">
     <value>Visited State List</value>
   </data>
   <data name="Visitors.AddVisitorBtn.Text" xml:space="preserve">
     <value>Add Visitor</value>
   </data>
-  <data name="Visitors.ExportBtn.Text" xml:space="preserve">
+  <data name="Visitors.ExportVisitorBtn.Text" xml:space="preserve">
     <value>Export Visitor List</value>
-  </data>
-  <data name="Visitors.Table.Body.Description.Text" xml:space="preserve">
-    <value />
   </data>
   <data name="Visitors.Table.Column1.Text" xml:space="preserve">
     <value>Name</value>
@@ -309,17 +276,11 @@
   <data name="Visitors.Table.Column5.EditBtn.Text" xml:space="preserve">
     <value>Edit</value>
   </data>
-  <data name="Visitors.Table.Down.Item1.Text" xml:space="preserve">
-    <value />
+  <data name="Visitors.Table.Column6.Text" xml:space="preserve">
+    <value>Address City</value>
   </data>
-  <data name="Visitors.Table.Down.Item2.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Visitors.Table.Top.Item1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Visitors.Table.Top.Item2.Text" xml:space="preserve">
-    <value />
+  <data name="Visitors.Table.Column7.Text" xml:space="preserve">
+    <value>Address State</value>
   </data>
   <data name="Visitors.Title.Text" xml:space="preserve">
     <value>Visitor List</value>
