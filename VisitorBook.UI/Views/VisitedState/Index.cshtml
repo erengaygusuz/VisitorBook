@@ -1,12 +1,12 @@
 ﻿<div class="container">
-    <h1 class="text-center">Visited State List</h1>
+    <h1 class="text-center">@localization["VisitedStates.Title.Text"]</h1>
     <div>
         <div class="float-start" id="outside">
         </div>
         <div class="float-end">
-            <a onclick="showInPopup('@Url.Action("AddOrEdit", "VisitedState", new { Id = 0 }, Context.Request.Scheme)', 'Add Visited State')"
+            <a onclick="showInPopup('@Url.Action("AddOrEdit", "VisitedState", new { Id = 0 }, Context.Request.Scheme)', '@localization["VisitedStates.AddVisitedStateBtn.Text"]')"
                class="btn btn-primary mb-3 float-end" role='button'>
-                Add Visited State
+                @localization["VisitedStates.AddVisitedStateBtn.Text"]
             </a>
         </div>
     </div>
@@ -14,16 +14,16 @@
         <thead>
             <tr>
                 <th>
-                    Visitor Name
+                    @localization["VisitedStates.Table.Column1.Text"]
                 </th>
                 <th>
-                    State Name
+                    @localization["VisitedStates.Table.Column2.Text"]
                 </th>
                 <th>
-                    City Name
+                    @localization["VisitedStates.Table.Column3.Text"]
                 </th>
                 <th>
-                    Date
+                    @localization["VisitedStates.Table.Column4.Text"]
                 </th>
                 <th>
 

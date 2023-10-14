@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
 using VisitorBook.BL.Services;
 using VisitorBook.UI.ViewModels;
 
@@ -24,6 +25,11 @@ namespace VisitorBook.UI.Controllers
             };            
 
             return View(visitorStatisticViewModel);
+        }
+
+        public IActionResult ChangeLanguage(string culture)
+        {
+            return Redirect(Request.Headers["Referer"].ToString());
         }
     }
 }
