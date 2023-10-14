@@ -10,8 +10,7 @@
     <link rel="stylesheet" href="~/VisitorBook.UI.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css" />
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.11.0/css/flag-icons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.11.0/css/flag-icons.min.css" />
 </head>
 
 <body>
@@ -43,16 +42,35 @@
                     </ul>
                     <div class="btn-group">
                         <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="fi fi-gb"></span>
+                            @{
+                                var engLanguageActive = "";
+                                var trLanguageActive = "";
+                            }
+
+                            @if (Thread.CurrentThread.CurrentCulture.Name == "tr-TR")
+                            {
+                                <span class="fi fi-tr"></span>
+
+                                engLanguageActive = "";
+                                trLanguageActive = "active";
+                            }
+
+                            else
+                            {
+                                <span class="fi fi-gb"></span>
+
+                                engLanguageActive = "active";
+                                trLanguageActive = "";
+                            }
                         </button>
                         <ul class="dropdown-menu dropdown-menu-sm-end dropdown-menu-md-end dropdown-menu-lg-end dropdown-menu-xl-end dropdown-menu-xxl-end">
                             <li>
-                                <a class="dropdown-item" asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US">
+                                <a class="dropdown-item @engLanguageActive" asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US">
                                     <span class="fi fi-gb"></span> İngilizce
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="tr-TR">
+                                <a class="dropdown-item @trLanguageActive" asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="tr-TR">
                                     <span class="fi fi-tr"></span> Türkçe
                                 </a>
                             </li>
@@ -98,6 +116,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

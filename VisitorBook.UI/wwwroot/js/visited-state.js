@@ -7,10 +7,25 @@ $(document).ready(function () {
     var editBtnText = document.getElementById("VisitedStatesTableColumn5EditBtnText").value;
     var deleteBtnText = document.getElementById("VisitedStatesTableColumn5DeleteBtnText").value;
 
-    loadDataTable(exportBtnText, editBtnText, deleteBtnText);
+    var activeLanguage = document.getElementById("ActiveLanguage").value;
+
+    var trLanguagePath = "//cdn.datatables.net/plug-ins/1.13.6/i18n/tr.json";
+    var enLanguagePath = "//cdn.datatables.net/plug-ins/1.13.6/i18n/en-GB.json"
+
+    var activeLanguagePath = "";
+
+    if (activeLanguage == "tr-TR") {
+        activeLanguagePath = trLanguagePath;
+    }
+
+    else {
+        activeLanguagePath = enLanguagePath;
+    }
+
+    loadDataTable(exportBtnText, editBtnText, deleteBtnText, activeLanguagePath);
 })
 
-function loadDataTable(exportBtnText, editBtnText, deleteBtnText) {
+function loadDataTable(exportBtnText, editBtnText, deleteBtnText, activeLanguagePath) {
     dataTable = $('#tblData').DataTable({
         dom: 'lfrtBip',
         buttons: [
@@ -44,7 +59,7 @@ function loadDataTable(exportBtnText, editBtnText, deleteBtnText) {
             }
         ],
         language: {
-            url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/tr.json',
+            url: activeLanguagePath,
         },
         initComplete: function () {
             var btns = $('.dt-button, .buttons-pdf, .buttons-html5');
