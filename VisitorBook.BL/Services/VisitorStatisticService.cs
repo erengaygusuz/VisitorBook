@@ -15,87 +15,96 @@ namespace VisitorBook.BL.Services
 {
     public class VisitorStatisticService
     {
-        private readonly IService<VisitedState> _visitedStateService;
         private readonly IService<State> _stateService;
         private readonly IService<Visitor> _visitorService;
 
-        public VisitorStatisticService(IService<VisitedState> visitedStateService, IService<State> stateService, IService<Visitor> visitorService)
+        public VisitorStatisticService(IService<State> stateService, IService<Visitor> visitorService)
         {
-            _visitedStateService = visitedStateService;
             _stateService = stateService;
             _visitorService = visitorService;
         }
 
         public Tuple<string, int> GetHighestCountOfVisitedStateByVisitor()
         {
-            var visitors = _visitorService.GetAllAsync(v => v.VisitorAddress != null, include: v => v.Include(a => a.States)).GetAwaiter().GetResult();
+            var visitors = _visitorService.GetAllAsync(v => v.VisitorAddress != null, 
+                include: v => v.Include(a => a.States)).GetAwaiter().GetResult();
 
-            var visitor = visitors.OrderByDescending(a => a.States.Count).ThenBy(b => b.Name + " " + b.Surname).First();
+            var visitor = visitors.Select(a => 
+                new 
+                { 
+                    VisitorInfo = a.Name + " " + a.Surname, 
+                    CountOfDistinctVisitedState = a.States.Distinct().Count() 
+                }).OrderByDescending(a => a.CountOfDistinctVisitedState).ThenBy(b => b.VisitorInfo).First();
 
-            var tuple = new Tuple<string, int>(visitor.Name + " " + visitor.Surname, visitor.States.Count);
+            var tuple = new Tuple<string, int>(visitor.VisitorInfo, visitor.CountOfDistinctVisitedState);
 
             return tuple;
         }
 
         public Tuple<string, int> GetHighestCountOfVisitedCityByVisitor()
         {
-            var visitors = _visitorService.GetAllAsync(v => v.VisitorAddress != null, include: v => v.Include(a => a.States).ThenInclude(s => s.City)).GetAwaiter().GetResult();
+            var visitors = _visitorService.GetAllAsync(v => v.VisitorAddress != null, 
+                include: v => v.Include(a => a.States).ThenInclude(s => s.City)).GetAwaiter().GetResult();
 
-            var tuple = visitors.OrderByDescending(a => a.States.Select(s => s.City).Distinct().Count()).ThenBy(b => b.Name + " " + b.Surname)
-                .Select(a => new Tuple<string, int> (a.Name + " " + a.Surname, a.States.Select(s => s.City).Distinct().Count())).First();
+            var visitor = visitors.Select(a => 
+                new 
+                { 
+                    VisitorInfo = a.Name + " " + a.Surname, 
+                    CountOfDistinctVisitedCity = a.States.Select(s => s.City).Distinct().Count() 
+                }).OrderByDescending(a => a.CountOfDistinctVisitedCity).ThenBy(b => b.VisitorInfo).First();
+
+            var tuple = new Tuple<string, int>(visitor.VisitorInfo, visitor.CountOfDistinctVisitedCity);
 
             return tuple;
         }
 
         public Tuple<string, double> GetLongestDistanceByVisitorOneTime()
         {
-            var visitedStatesWithVisitorAndVisitorAddress = _visitedStateService
-                .GetAllAsync(v => v.Visitor.VisitorAddress != null, include: u => u.Include(a => a.State).Include(a => a.Visitor)
-                .ThenInclude(v => v.VisitorAddress)).GetAwaiter().GetResult();
+            var visitors = _visitorService.GetAllAsync(v => v.VisitorAddress != null, 
+                include: v => v.Include(a => a.States).ThenInclude(s => s.City).Include(b => b.VisitorAddress)).GetAwaiter().GetResult();
 
-            var groupedVisitedList = visitedStatesWithVisitorAndVisitorAddress.GroupBy(a => a.VisitorId);
+            var longestDistanceWithVisitorInfo = visitors.Select(v =>
+                new
+                {
+                    VisitorInfo = v.Name + " " + v.Surname,
+                    LongestDistance = v.States.Select(s => CalculateDistance(v, s)).Max()
+                }).OrderByDescending(a => a.LongestDistance).ThenBy(b => b.VisitorInfo).First();
 
-            var longestDistanceWithVisitorInfo = groupedVisitedList.ToDictionary(
-                value => value.First().Visitor.Name + " " + value.First().Visitor.Surname,
-                value => (value.Select(visitedState => CalculateDistance(visitedState)).Max())
-                ).OrderByDescending(a => a.Value).First();
-
-            var tuple = new Tuple<string, double>(longestDistanceWithVisitorInfo.Key, longestDistanceWithVisitorInfo.Value);
+            var tuple = new Tuple<string, double>(longestDistanceWithVisitorInfo.VisitorInfo, longestDistanceWithVisitorInfo.LongestDistance);
 
             return tuple;
         }
 
         public Tuple<string, double> GetLongestDistanceByVisitorAllTime()
         {
-            var visitedStatesWithVisitorAndVisitorAddress = _visitedStateService
-                .GetAllAsync(v => v.Visitor.VisitorAddress != null, include: u => u.Include(a => a.State).Include(a => a.Visitor)
-                .ThenInclude(v => v.VisitorAddress)).GetAwaiter().GetResult();
+            var visitors = _visitorService.GetAllAsync(v => v.VisitorAddress != null,
+                include: v => v.Include(a => a.States).ThenInclude(s => s.City).Include(b => b.VisitorAddress)).GetAwaiter().GetResult();
 
-            var groupedVisitedList = visitedStatesWithVisitorAndVisitorAddress.GroupBy(a => a.VisitorId);
+            var longestDistanceWithVisitorInfo = visitors.Select(v => 
+                new 
+                { 
+                    VisitorInfo = v.Name + " " + v.Surname, 
+                    LongestDistance = v.States.Select(s => CalculateDistance(v, s)).Sum()
+                }).OrderByDescending(a => a.LongestDistance).ThenBy(b => b.VisitorInfo).First();
 
-            var longestDistanceWithVisitorInfo = groupedVisitedList.ToDictionary(
-                value => value.First().Visitor.Name + " " + value.First().Visitor.Surname, 
-                value => (value.Select(visitedState => CalculateDistance(visitedState)).Sum())
-                ).OrderByDescending(a => a.Value).First(); 
-
-            var tuple = new Tuple<string, double>(longestDistanceWithVisitorInfo.Key, longestDistanceWithVisitorInfo.Value);
+            var tuple = new Tuple<string, double>(longestDistanceWithVisitorInfo.VisitorInfo, longestDistanceWithVisitorInfo.LongestDistance);
 
             return tuple;
         }
 
-        private double CalculateDistance(VisitedState visitedState)
+        private double CalculateDistance(Visitor visitor, State visitedState)
         {
             return Math.Round(LocationHelper.GetDistance(
-                        new Location()
-                        {
-                            Latitude = _stateService.GetAsync(s => s.Id == visitedState.Visitor.VisitorAddress.StateId).GetAwaiter().GetResult().Latitude,
-                            Longitude = _stateService.GetAsync(s => s.Id == visitedState.Visitor.VisitorAddress.StateId).GetAwaiter().GetResult().Longitude
-                        },
-                        new Location()
-                        {
-                            Latitude = visitedState.State.Latitude,
-                            Longitude = visitedState.State.Longitude
-                        }) / 1000, 2, MidpointRounding.ToEven);
+                   new Location()
+                   {
+                       Latitude = _stateService.GetAsync(s => s.Id == visitor.VisitorAddress.StateId).GetAwaiter().GetResult().Latitude,
+                       Longitude = _stateService.GetAsync(s => s.Id == visitor.VisitorAddress.StateId).GetAwaiter().GetResult().Longitude
+                   },
+                   new Location()
+                   {
+                       Latitude = visitedState.Latitude,
+                       Longitude = visitedState.Longitude
+                   }) / 1000, 2, MidpointRounding.ToEven);
         }
     }
 }
