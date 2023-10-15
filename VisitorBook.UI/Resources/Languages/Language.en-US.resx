@@ -132,23 +132,11 @@
   <data name="AddOrEditModal.VisitorSelection.Text" xml:space="preserve">
     <value>--Select Visitor--</value>
   </data>
-  <data name="Cities.AddCityBtn.Text" xml:space="preserve">
-    <value>Add City</value>
-  </data>
-  <data name="Cities.ExportCityBtn.Text" xml:space="preserve">
-    <value>Export City List</value>
-  </data>
   <data name="Cities.Table.Column1.Text" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="Cities.Table.Column2.Text" xml:space="preserve">
     <value>Code</value>
-  </data>
-  <data name="Cities.Table.Column3.DeleteBtn.Text" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="Cities.Table.Column3.EditBtn.Text" xml:space="preserve">
-    <value>Edit</value>
   </data>
   <data name="Cities.Title.Text" xml:space="preserve">
     <value>City List</value>
@@ -198,12 +186,6 @@
   <data name="Layout.Header.Title.Text" xml:space="preserve">
     <value>Visitor Book</value>
   </data>
-  <data name="States.AddStateBtn.Text" xml:space="preserve">
-    <value>Add State</value>
-  </data>
-  <data name="States.ExportStateBtn.Text" xml:space="preserve">
-    <value>Export State List</value>
-  </data>
   <data name="States.Table.Column1.Text" xml:space="preserve">
     <value>State Name</value>
   </data>
@@ -216,20 +198,20 @@
   <data name="States.Table.Column4.Text" xml:space="preserve">
     <value>Longitude</value>
   </data>
-  <data name="States.Table.Column5.DeleteBtn.Text" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="States.Table.Column5.EditBtn.Text" xml:space="preserve">
-    <value>Edit</value>
-  </data>
   <data name="States.Title.Text" xml:space="preserve">
     <value>State List</value>
   </data>
-  <data name="VisitedStates.AddVisitedStateBtn.Text" xml:space="preserve">
-    <value>Add Visited State</value>
+  <data name="Table.AddBtn.Text" xml:space="preserve">
+    <value>Add</value>
   </data>
-  <data name="VisitedStates.ExportVisitedStateBtn.Text" xml:space="preserve">
-    <value>Export Visited State List</value>
+  <data name="Table.DeleteBtn.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Table.EditBtn.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Table.ExportBtn.Text" xml:space="preserve">
+    <value>Export</value>
   </data>
   <data name="VisitedStates.Table.Column1.Text" xml:space="preserve">
     <value>Visitor Name</value>
@@ -243,20 +225,8 @@
   <data name="VisitedStates.Table.Column4.Text" xml:space="preserve">
     <value>Visited Date</value>
   </data>
-  <data name="VisitedStates.Table.Column5.DeleteBtn.Text" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="VisitedStates.Table.Column5.EditBtn.Text" xml:space="preserve">
-    <value>Edit</value>
-  </data>
   <data name="VisitedStates.Title.Text" xml:space="preserve">
     <value>Visited State List</value>
-  </data>
-  <data name="Visitors.AddVisitorBtn.Text" xml:space="preserve">
-    <value>Add Visitor</value>
-  </data>
-  <data name="Visitors.ExportVisitorBtn.Text" xml:space="preserve">
-    <value>Export Visitor List</value>
   </data>
   <data name="Visitors.Table.Column1.Text" xml:space="preserve">
     <value>Name</value>
@@ -269,12 +239,6 @@
   </data>
   <data name="Visitors.Table.Column4.Text" xml:space="preserve">
     <value>Gender</value>
-  </data>
-  <data name="Visitors.Table.Column5.DeleteBtn.Text" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="Visitors.Table.Column5.EditBtn.Text" xml:space="preserve">
-    <value>Edit</value>
   </data>
   <data name="Visitors.Table.Column6.Text" xml:space="preserve">
     <value>Address City</value>

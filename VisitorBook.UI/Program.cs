@@ -2,12 +2,9 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Globalization;
-using System.Reflection;
 using VisitorBook.BL.Concrete;
 using VisitorBook.BL.Services;
 using VisitorBook.Core.Abstract;
-using VisitorBook.Core.Middlewares;
-using VisitorBook.Core.Utilities;
 using VisitorBook.DAL.Concrete;
 using VisitorBook.DAL.Data;
 
@@ -31,7 +28,6 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US");
     options.SupportedCultures = supportedCultures;
     options.SupportedUICultures = supportedCultures;
-    options.RequestCultureProviders.Insert(0, new QueryStringRequestCultureProvider());
 });
 
 builder.Services.AddDbContext<AppDbContext>(opt =>
@@ -43,8 +39,6 @@ builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
 builder.Services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(VisitorStatisticService));
-
-builder.Services.AddScoped<RequestLocalizationCookiesMiddleware>();
 
 var app = builder.Build();
 
@@ -59,8 +53,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseRequestLocalization();
-app.UseRequestLocalizationCookies();
+app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
 
 app.UseRouting();
 

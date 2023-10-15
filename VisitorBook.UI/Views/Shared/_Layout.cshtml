@@ -40,42 +40,7 @@
                             <a class="nav-link text-dark" asp-controller="VisitedState" asp-action="Index">@localization["Layout.Header.Navbar.Items5.Text"]</a>
                         </li>
                     </ul>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            @{
-                                var engLanguageActive = "";
-                                var trLanguageActive = "";
-                            }
-
-                            @if (Thread.CurrentThread.CurrentCulture.Name == "tr-TR")
-                            {
-                                <span class="fi fi-tr"></span>
-
-                                engLanguageActive = "";
-                                trLanguageActive = "active";
-                            }
-
-                            else
-                            {
-                                <span class="fi fi-gb"></span>
-
-                                engLanguageActive = "active";
-                                trLanguageActive = "";
-                            }
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-sm-end dropdown-menu-md-end dropdown-menu-lg-end dropdown-menu-xl-end dropdown-menu-xxl-end">
-                            <li>
-                                <a class="dropdown-item @engLanguageActive" asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US">
-                                    <span class="fi fi-gb"></span> İngilizce
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item @trLanguageActive" asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="tr-TR">
-                                    <span class="fi fi-tr"></span> Türkçe
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    @await Html.PartialAsync("_CulturePartial")
                 </div>
             </div>
         </nav>

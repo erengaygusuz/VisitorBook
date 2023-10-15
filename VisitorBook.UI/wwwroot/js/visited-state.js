@@ -3,9 +3,9 @@ var dataTable
 $(document).ready(function () {
     $.fn.dataTable.moment('DD/MM/YYYY');
 
-    var exportBtnText = document.getElementById("VisitedStatesExportVisitedStateBtnText").value;
-    var editBtnText = document.getElementById("VisitedStatesTableColumn5EditBtnText").value;
-    var deleteBtnText = document.getElementById("VisitedStatesTableColumn5DeleteBtnText").value;
+    var exportBtnText = document.getElementById("TableExportBtnText").value;
+    var editBtnText = document.getElementById("TableEditBtnText").value;
+    var deleteBtnText = document.getElementById("TableDeleteBtnText").value;
 
     var activeLanguage = document.getElementById("ActiveLanguage").value;
 

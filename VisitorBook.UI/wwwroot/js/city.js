@@ -2,9 +2,9 @@ var dataTable
 
 $(document).ready(function () {
 
-    var exportBtnText = document.getElementById("CitiesExportCityBtnText").value;
-    var editBtnText = document.getElementById("CitiesTableColumn3EditBtnText").value;
-    var deleteBtnText = document.getElementById("CitiesTableColumn3DeleteBtnText").value;
+    var exportBtnText = document.getElementById("TableExportBtnText").value;
+    var editBtnText = document.getElementById("TableEditBtnText").value;
+    var deleteBtnText = document.getElementById("TableDeleteBtnText").value;
 
     var activeLanguage = document.getElementById("ActiveLanguage").value;
 
