@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Models;
 using VisitorBook.Core.Utilities;
+using VisitorBook.UI.Languages;
 using VisitorBook.UI.ViewModels;
 
 namespace VisitorBook.UI.Controllers
@@ -12,14 +14,16 @@ namespace VisitorBook.UI.Controllers
     {
         private readonly IService<State> _stateService;
         private readonly IService<City> _cityService;
+        private readonly IStringLocalizer<Language> _localization;
 
         [BindProperty]
         public StateViewModel StateViewModel { get; set; }
 
-        public StateController(IService<State> stateService, IService<City> cityService)
+        public StateController(IService<State> stateService, IService<City> cityService, IStringLocalizer<Language> localization)
         {
             _stateService = stateService;
             _cityService = cityService;
+            _localization = localization;
         }
 
         public IActionResult Index()
@@ -86,14 +90,16 @@ namespace VisitorBook.UI.Controllers
                 if (id == 0)
                 {
                     await _stateService.AddAsync(StateViewModel.State);
+
+                    return Json(new { isValid = true, message = _localization["States.Notification.Add.Text"].Value });
                 }
 
                 else
                 {
                     await _stateService.UpdateAsync(StateViewModel.State);
-                }
 
-                return Json(new { isValid = true });
+                    return Json(new { isValid = true, message = _localization["States.Notification.Edit.Text"].Value });
+                }
             }
 
             return Json(new { isValid = false, html = RazorViewConverter.GetStringFromRazorView(this, "AddOrEdit", StateViewModel.State) });
@@ -111,7 +117,7 @@ namespace VisitorBook.UI.Controllers
                 await _stateService.RemoveAsync(state);
             }
 
-            return Json(new { entityValue = stateName });
+            return Json(new { message = _localization["States.Notification.Delete.Text"].Value });
         }
     }
 }

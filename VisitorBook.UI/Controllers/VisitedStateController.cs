@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Models;
 using VisitorBook.Core.Utilities;
+using VisitorBook.UI.Languages;
 using VisitorBook.UI.ViewModels;
 
 namespace VisitorBook.UI.Controllers
@@ -14,17 +16,19 @@ namespace VisitorBook.UI.Controllers
         private readonly IService<Visitor> _visitorService;
         private readonly IService<VisitedState> _visitedStateService;
         private readonly IService<City> _cityService;
+        private readonly IStringLocalizer<Language> _localization;
 
         [BindProperty]
         public VisitedStateViewModel VisitedStateViewModel { get; set; }
 
         public VisitedStateController(IService<State> stateService, IService<Visitor> visitorService,
-        IService<VisitedState> visitedStateService, IService<City> cityService)
+        IService<VisitedState> visitedStateService, IService<City> cityService, IStringLocalizer<Language> localization)
         {
             _stateService = stateService;
             _visitorService = visitorService;
             _visitedStateService = visitedStateService;
             _cityService = cityService;
+            _localization = localization;
         }
 
         public IActionResult Index()
@@ -95,6 +99,8 @@ namespace VisitorBook.UI.Controllers
                 if (id == 0)
                 {
                     await _visitedStateService.AddAsync(VisitedStateViewModel.VisitedState);
+
+                    return Json(new { isValid = true, message = _localization["VisitedStates.Notification.Add.Text"].Value });
                 }
 
                 else
@@ -110,9 +116,9 @@ namespace VisitorBook.UI.Controllers
                     visitedState.StateId = newStateWithCity.Id;
 
                     await _visitedStateService.UpdateAsync(visitedState);
-                }
 
-                return Json(new { isValid = true });
+                    return Json(new { isValid = true, message = _localization["VisitedStates.Notification.Edit.Text"].Value });
+                }
             }
 
             return Json(new { isValid = false, html = RazorViewConverter.GetStringFromRazorView(this, "AddOrEdit", VisitedStateViewModel.VisitedState) });
@@ -133,7 +139,7 @@ namespace VisitorBook.UI.Controllers
                 await _visitedStateService.RemoveAsync(visitedState);
             }
 
-            return Json(new { entityValue = visitedStateInfo });
+            return Json(new { message = _localization["VisitedStates.Notification.Delete.Text"].Value });
         }
     }
 }

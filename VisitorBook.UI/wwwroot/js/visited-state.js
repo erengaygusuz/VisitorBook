@@ -6,6 +6,9 @@ $(document).ready(function () {
   var exportBtnText = document.getElementById('TableExportBtnText').value
   var editBtnText = document.getElementById('TableEditBtnText').value
   var deleteBtnText = document.getElementById('TableDeleteBtnText').value
+  var editModalTitleText = document.getElementById(
+    'VisitedStatesEditModalTitleText'
+  ).value
 
   var activeLanguage = document.getElementById('ActiveLanguage').value
 
@@ -20,14 +23,21 @@ $(document).ready(function () {
     activeLanguagePath = enLanguagePath
   }
 
-  loadDataTable(exportBtnText, editBtnText, deleteBtnText, activeLanguagePath)
+  loadDataTable(
+    exportBtnText,
+    editBtnText,
+    deleteBtnText,
+    activeLanguagePath,
+    editModalTitleText
+  )
 })
 
 function loadDataTable(
   exportBtnText,
   editBtnText,
   deleteBtnText,
-  activeLanguagePath
+  activeLanguagePath,
+  editModalTitleText
 ) {
   dataTable = $('#tblData').DataTable({
     dom: 'lfrtBip',
@@ -111,7 +121,7 @@ function loadDataTable(
           return `
                             <div class="d-flex justify-content-around align-items-center">
                                <a onclick="showInPopup('/visitedstate/addoredit/${data}', 
-                               'Update Visited State')" class="btn btn-warning"> ${editBtnText}</a>
+                               '${editModalTitleText}')" class="btn btn-warning"> ${editBtnText}</a>
                                <a onclick=deleteRecord('/visitedstate/delete/${data}') class="btn btn-danger">
                                   ${deleteBtnText}
                                </a>
@@ -195,6 +205,7 @@ AddRecord = (form) => {
           $('#form-modal').modal('hide')
 
           dataTable.ajax.reload()
+          toastr.success(res.message)
         } else {
           $('#form-modal .modal-body').html(res.html)
         }
@@ -211,24 +222,43 @@ AddRecord = (form) => {
 }
 
 function deleteRecord(url) {
-  if (confirm('Are you sure to delete this record?')) {
-    try {
+  var deleteRequestPopupTitleText = document.getElementById(
+    'DeleteRequestPopupTitleText'
+  ).value
+  var deleteRequestPopupBodyText = document.getElementById(
+    'DeleteRequestPopupBodyText'
+  ).value
+  var deleteRequestPopupConfirmBtnText = document.getElementById(
+    'DeleteRequestPopupConfirmBtnText'
+  ).value
+  var deleteRequestPopupCancelBtnText = document.getElementById(
+    'DeleteRequestPopupCancelBtnText'
+  ).value
+
+  Swal.fire({
+    title: deleteRequestPopupTitleText,
+    text: deleteRequestPopupBodyText,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: deleteRequestPopupConfirmBtnText,
+    cancelButtonText: deleteRequestPopupCancelBtnText,
+  }).then((result) => {
+    if (result.isConfirmed) {
       $.ajax({
         type: 'DELETE',
         url: url,
         success: function (res) {
-          alert(res.entityValue + ' Deleted Successfully')
-
           dataTable.ajax.reload()
+          toastr.success(res.message)
         },
         error: function (err) {
-          alert('An Error Occurred While Deleting')
-
-          console.log(err)
+          toastr.error('An Error Occurred While Deleting')
         },
       })
-    } catch (e) {}
-  }
+    }
+  })
 
   return false
 }

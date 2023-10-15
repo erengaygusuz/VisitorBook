@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Models;
 using VisitorBook.Core.Utilities;
+using VisitorBook.UI.Languages;
 using VisitorBook.UI.ViewModels;
 
 namespace VisitorBook.UI.Controllers
@@ -13,16 +15,18 @@ namespace VisitorBook.UI.Controllers
         private readonly IService<State> _stateService;
         private readonly IService<City> _cityService;
         private readonly IService<Visitor> _visitorService;
+        private readonly IStringLocalizer<Language> _localization;
 
         [BindProperty]
         public VisitorViewModel VisitorViewModel { get; set; }
 
-        public VisitorController(IService<State> stateService, IService<City> cityService, 
-            IService<Visitor> visitorService)
+        public VisitorController(IService<State> stateService, IService<City> cityService,
+            IService<Visitor> visitorService, IStringLocalizer<Language> localization)
         {
             _stateService = stateService;
             _cityService = cityService;
             _visitorService = visitorService;
+            _localization = localization;
         }
 
         public IActionResult Index()
@@ -35,13 +39,13 @@ namespace VisitorBook.UI.Controllers
         {
             var visitors = _visitorService.GetAllAsync().GetAwaiter().GetResult().ToList()
                 .Select(u => new
-            {
-                Id = u.Id,
-                Name = u.Name,
-                Surname = u.Surname,
-                Gender = u.Gender.ToString(),
-                BirthDate = u.BirthDate
-            });
+                {
+                    Id = u.Id,
+                    Name = u.Name,
+                    Surname = u.Surname,
+                    Gender = u.Gender.ToString(),
+                    BirthDate = u.BirthDate
+                });
 
             return Json(new
             {
@@ -104,6 +108,8 @@ namespace VisitorBook.UI.Controllers
                 if (id == 0)
                 {
                     await _visitorService.AddAsync(VisitorViewModel.Visitor);
+
+                    return Json(new { isValid = true, message = _localization["Visitors.Notification.Add.Text"].Value });
                 }
 
                 else
@@ -127,18 +133,18 @@ namespace VisitorBook.UI.Controllers
 
                         else
                         {
-                            visitor.VisitorAddress = new VisitorAddress 
-                            { 
+                            visitor.VisitorAddress = new VisitorAddress
+                            {
                                 StateId = newStateWithCity.Id,
                                 CityId = newStateWithCity.City.Id
                             };
-                        }                        
+                        }
                     }
 
                     await _visitorService.UpdateAsync(visitor);
-                }
 
-                return Json(new { isValid = true });
+                    return Json(new { isValid = true, message = _localization["Visitors.Notification.Edit.Text"].Value });
+                }
             }
 
             return Json(new { isValid = false, html = RazorViewConverter.GetStringFromRazorView(this, "AddOrEdit", VisitorViewModel.Visitor) });
@@ -156,7 +162,7 @@ namespace VisitorBook.UI.Controllers
                 await _visitorService.RemoveAsync(visitor);
             }
 
-            return Json(new { entityValue = visitorName });
+            return Json(new { message = _localization["Visitors.Notification.Delete.Text"].Value });
         }
     }
 }

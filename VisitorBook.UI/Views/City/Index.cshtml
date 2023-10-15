@@ -5,12 +5,19 @@
         <input type="hidden" id="TableEditBtnText" value="@localization["Table.EditBtn.Text"]" />
         <input type="hidden" id="TableDeleteBtnText" value="@localization["Table.DeleteBtn.Text"]" />
         <input type="hidden" id="ActiveLanguage" value="@Thread.CurrentThread.CurrentCulture.Name" />
+        <input type="hidden" id="CitiesEditModalTitleText" value="@localization["Cities.EditModal.Title.Text"]" />
+        <input type="hidden" id="DeleteRequestPopupTitleText" value="@localization["DeleteRequestPopup.Title.Text"]" />
+        <input type="hidden" id="DeleteRequestPopupBodyText" value="@localization["DeleteRequestPopup.Body.Text"]" />
+        <input type="hidden" id="DeleteRequestPopupConfirmBtnText"
+            value="@localization["DeleteRequestPopup.ConfirmBtn.Text"]" />
+        <input type="hidden" id="DeleteRequestPopupCancelBtnText"
+            value="@localization["DeleteRequestPopup.CancelBtn.Text"]" />
         <div class="float-start" id="outside">
 
         </div>
         <div class="float-end">
-            <a onclick="showInPopup('@Url.Action("AddOrEdit", "City", new { Id = 0 }, Context.Request.Scheme)', '@localization["Table.AddBtn.Text"]')"
-               class="btn btn-primary mb-3 float-end" role='button'>
+            <a onclick="showInPopup('@Url.Action("AddOrEdit", "City", new { Id = 0 }, Context.Request.Scheme)', '@localization["Cities.AddModal.Title.Text"]')"
+                class="btn btn-primary mb-3 float-end" role='button'>
                 @localization["Table.AddBtn.Text"]
             </a>
         </div>

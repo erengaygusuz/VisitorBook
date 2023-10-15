@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,79 +26,79 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -119,134 +119,274 @@
   </resheader>
   <data name="AddOrEditModal.CitySelection.Text" xml:space="preserve">
     <value>--Şehir Seç--</value>
+    <comment/>
   </data>
   <data name="AddOrEditModal.GenderSelection.Text" xml:space="preserve">
     <value>--Cinsiyet Seç--</value>
+    <comment/>
   </data>
   <data name="AddOrEditModal.StateSelection.Text" xml:space="preserve">
     <value>--İlçe Seç--</value>
+    <comment/>
   </data>
   <data name="AddOrEditModal.SubmitBtn.Text" xml:space="preserve">
     <value>Kaydet</value>
+    <comment/>
   </data>
   <data name="AddOrEditModal.VisitorSelection.Text" xml:space="preserve">
     <value>--Ziyaretçi Seç--</value>
+    <comment/>
   </data>
   <data name="Cities.Table.Column1.Text" xml:space="preserve">
     <value>İl Adı</value>
+    <comment/>
   </data>
   <data name="Cities.Table.Column2.Text" xml:space="preserve">
     <value>İl Kodu</value>
+    <comment/>
   </data>
   <data name="Cities.Title.Text" xml:space="preserve">
     <value>İl Listesi</value>
+    <comment/>
   </data>
   <data name="HomePage.Card1.Body.Text" xml:space="preserve">
     <value>km</value>
+    <comment/>
   </data>
   <data name="HomePage.Card1.Footer.Text" xml:space="preserve">
     <value>Tek Seferde En Uzun Mesafe Giden Ziyaretçi</value>
+    <comment/>
   </data>
   <data name="HomePage.Card2.Body.Text" xml:space="preserve">
     <value>km</value>
+    <comment/>
   </data>
   <data name="HomePage.Card2.Footer.Text" xml:space="preserve">
     <value>Toplam En Uzun Mesafe Giden Ziyaretçi</value>
+    <comment/>
   </data>
   <data name="HomePage.Card3.Body.Text" xml:space="preserve">
     <value>ilçe</value>
+    <comment/>
   </data>
   <data name="HomePage.Card3.Footer.Text" xml:space="preserve">
     <value>En Çok İlçe Gezen Ziyaretçi</value>
+    <comment/>
   </data>
   <data name="HomePage.Card4.Body.Text" xml:space="preserve">
     <value>il</value>
+    <comment/>
   </data>
   <data name="HomePage.Card4.Footer.Text" xml:space="preserve">
     <value>En Çok İl Gezen Ziyaretçi</value>
+    <comment/>
   </data>
   <data name="Layout.Footer.Text" xml:space="preserve">
     <value>&amp;copy; 2023 - Ziyaretçi Defteri</value>
+    <comment/>
   </data>
   <data name="Layout.Header.Navbar.Items1.Text" xml:space="preserve">
     <value>Ana Sayfa</value>
+    <comment/>
   </data>
   <data name="Layout.Header.Navbar.Items2.Text" xml:space="preserve">
     <value>Ziyaretçiler</value>
+    <comment/>
   </data>
   <data name="Layout.Header.Navbar.Items3.Text" xml:space="preserve">
     <value>İller</value>
+    <comment/>
   </data>
   <data name="Layout.Header.Navbar.Items4.Text" xml:space="preserve">
     <value>İlçeler</value>
+    <comment/>
   </data>
   <data name="Layout.Header.Navbar.Items5.Text" xml:space="preserve">
     <value>Ziyaret Edilen İlçeler</value>
+    <comment/>
   </data>
   <data name="Layout.Header.Title.Text" xml:space="preserve">
     <value>Ziyaretçi Defteri</value>
+    <comment/>
   </data>
   <data name="States.Table.Column1.Text" xml:space="preserve">
     <value>İlçe Adı</value>
+    <comment/>
   </data>
   <data name="States.Table.Column2.Text" xml:space="preserve">
     <value>İl Adı</value>
+    <comment/>
   </data>
   <data name="States.Table.Column3.Text" xml:space="preserve">
     <value>Enlem</value>
+    <comment/>
   </data>
   <data name="States.Table.Column4.Text" xml:space="preserve">
     <value>Boylam</value>
+    <comment/>
   </data>
   <data name="States.Title.Text" xml:space="preserve">
     <value>İlçe Listesi</value>
+    <comment/>
   </data>
   <data name="Table.AddBtn.Text" xml:space="preserve">
     <value>Ekle</value>
+    <comment/>
   </data>
   <data name="Table.DeleteBtn.Text" xml:space="preserve">
     <value>Sil</value>
+    <comment/>
   </data>
   <data name="Table.EditBtn.Text" xml:space="preserve">
     <value>Düzenle</value>
+    <comment/>
   </data>
   <data name="Table.ExportBtn.Text" xml:space="preserve">
     <value>Çıktı Al</value>
+    <comment/>
   </data>
   <data name="VisitedStates.Table.Column1.Text" xml:space="preserve">
     <value>Ziyaretçi Ad - Soyad</value>
+    <comment/>
   </data>
   <data name="VisitedStates.Table.Column2.Text" xml:space="preserve">
     <value>İlçe Adı</value>
+    <comment/>
   </data>
   <data name="VisitedStates.Table.Column3.Text" xml:space="preserve">
     <value>Şehir Adı</value>
+    <comment/>
   </data>
   <data name="VisitedStates.Table.Column4.Text" xml:space="preserve">
     <value>Ziyaret Tarihi</value>
+    <comment/>
   </data>
   <data name="VisitedStates.Title.Text" xml:space="preserve">
     <value>Ziyaret Edilen İlçe Listesi</value>
+    <comment/>
   </data>
   <data name="Visitors.Table.Column1.Text" xml:space="preserve">
     <value>Ad</value>
+    <comment/>
   </data>
   <data name="Visitors.Table.Column2.Text" xml:space="preserve">
     <value>Soyad</value>
+    <comment/>
   </data>
   <data name="Visitors.Table.Column3.Text" xml:space="preserve">
     <value>Doğum Tarihi</value>
+    <comment/>
   </data>
   <data name="Visitors.Table.Column4.Text" xml:space="preserve">
     <value>Cinsiyet</value>
+    <comment/>
   </data>
   <data name="Visitors.Table.Column6.Text" xml:space="preserve">
     <value>Adres İl</value>
+    <comment/>
   </data>
   <data name="Visitors.Table.Column7.Text" xml:space="preserve">
     <value>Adres İlçe</value>
+    <comment/>
   </data>
   <data name="Visitors.Title.Text" xml:space="preserve">
     <value>Ziyaretçi Listesi</value>
+    <comment/>
+  </data>
+  <data name="Cities.Notification.Add.Text" xml:space="preserve">
+    <value>İl başarılı bir şekilde eklendi</value>
+    <comment/>
+  </data>
+  <data name="Cities.Notification.Edit.Text" xml:space="preserve">
+    <value>İl başarılı bir şekilde düzenlendi</value>
+    <comment/>
+  </data>
+  <data name="Cities.Notification.Delete.Text" xml:space="preserve">
+    <value>İl başarılı bir şekilde silindi</value>
+    <comment/>
+  </data>
+  <data name="VisitedStates.Notification.Add.Text" xml:space="preserve">
+    <value>Ziyaret edilen ilçe bilgisi başarılı bir şekilde eklendi</value>
+    <comment/>
+  </data>
+  <data name="VisitedStates.Notification.Edit.Text" xml:space="preserve">
+    <value>Ziyaret edilen ilçe bilgisi başarılı bir şekilde düzenlendi</value>
+    <comment/>
+  </data>
+  <data name="VisitedStates.Notification.Delete.Text" xml:space="preserve">
+    <value>Ziyaret edilen ilçe bilgisi başarılı bir şekilde silindi</value>
+    <comment/>
+  </data>
+  <data name="States.Notification.Add.Text" xml:space="preserve">
+    <value>İlçe başarılı bir şekilde eklendi</value>
+    <comment/>
+  </data>
+  <data name="States.Notification.Edit.Text" xml:space="preserve">
+    <value>İlçe başarılı bir şekilde düzenlendi</value>
+    <comment/>
+  </data>
+  <data name="States.Notification.Delete.Text" xml:space="preserve">
+    <value>İlçe başarılı bir şekilde silindi</value>
+    <comment/>
+  </data>
+  <data name="Visitors.Notification.Add.Text" xml:space="preserve">
+    <value>Ziyaretçi başarılı bir şekilde eklendi</value>
+    <comment/>
+  </data>
+  <data name="Visitors.Notification.Edit.Text" xml:space="preserve">
+    <value>Ziyaretçi başarılı bir şekilde düzenlendi</value>
+    <comment/>
+  </data>
+  <data name="Visitors.Notification.Delete.Text" xml:space="preserve">
+    <value>Ziyaretçi başarılı bir şekilde silindi</value>
+    <comment/>
+  </data>
+  <data name="DeleteRequestPopup.Title.Text" xml:space="preserve">
+    <value>Emin misiniz?</value>
+    <comment/>
+  </data>
+  <data name="DeleteRequestPopup.Body.Text" xml:space="preserve">
+    <value>Bu işlemi geri alamayacaksınız!</value>
+    <comment/>
+  </data>
+  <data name="DeleteRequestPopup.ConfirmBtn.Text" xml:space="preserve">
+    <value>Evet, sil!</value>
+    <comment/>
+  </data>
+  <data name="Visitors.AddModal.Title.Text" xml:space="preserve">
+    <value>Ziyaretçi Ekle</value>
+    <comment/>
+  </data>
+  <data name="Visitors.EditModal.Title.Text" xml:space="preserve">
+    <value>Ziyaretçi Düzenle</value>
+    <comment/>
+  </data>
+  <data name="States.AddModal.Title.Text" xml:space="preserve">
+    <value>İlçe Ekle</value>
+    <comment/>
+  </data>
+  <data name="States.EditModal.Title.Text" xml:space="preserve">
+    <value>İlçe Düzenle</value>
+    <comment/>
+  </data>
+  <data name="Cities.AddModal.Title.Text" xml:space="preserve">
+    <value>İl Ekle</value>
+    <comment/>
+  </data>
+  <data name="Cities.EditModal.Title.Text" xml:space="preserve">
+    <value>İl Düzenle</value>
+    <comment/>
+  </data>
+  <data name="VisitedStates.AddModal.Title.Text" xml:space="preserve">
+    <value>Ziyaret Edilen İlçe Ekle</value>
+    <comment/>
+  </data>
+  <data name="VisitedStates.EditModal.Title.Text" xml:space="preserve">
+    <value>Ziyaret Edilen İlçe Düzenle</value>
+    <comment/>
+  </data>
+  <data name="DeleteRequestPopup.CancelBtn.Text" xml:space="preserve">
+    <value>İptal</value>
+    <comment/>
   </data>
 </root>
