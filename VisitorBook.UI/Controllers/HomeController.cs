@@ -14,14 +14,14 @@ namespace VisitorBook.UI.Controllers
             _visitorStatisticService = visitorStatisticService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             VisitorStatisticViewModel visitorStatisticViewModel = new VisitorStatisticViewModel()
             {
-                GetHighestCountOfVisitedCityByVisitor = _visitorStatisticService.GetHighestCountOfVisitedCityByVisitor(),
-                GetHighestCountOfVisitedCountyByVisitor = _visitorStatisticService.GetHighestCountOfVisitedCountyByVisitor(),
-                GetLongestDistanceByVisitorOneTime = _visitorStatisticService.GetLongestDistanceByVisitorOneTime(),
-                GetLongestDistanceByVisitorAllTime = _visitorStatisticService.GetLongestDistanceByVisitorAllTime()
+                GetHighestCountOfVisitedCityByVisitor = await _visitorStatisticService.GetHighestCountOfVisitedCityByVisitorAsync(),
+                GetHighestCountOfVisitedCountyByVisitor = await _visitorStatisticService.GetHighestCountOfVisitedCountyByVisitorAsync(),
+                GetLongestDistanceByVisitorOneTime = await _visitorStatisticService.GetLongestDistanceByVisitorOneTimeAsync(),
+                GetLongestDistanceByVisitorAllTime = await _visitorStatisticService.GetLongestDistanceByVisitorAllTimeAsync()
             };            
 
             return View(visitorStatisticViewModel);
