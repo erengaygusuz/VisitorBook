@@ -36,18 +36,24 @@ namespace VisitorBook.DAL.Concrete
         public IQueryable<T> GetAll(
             Expression<Func<T, bool>>? expression = null,
             bool trackChanges = false,
-            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null)
+            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null)
         {
             IQueryable<T> query = _appDbContext.Set<T>();
+
+            if (include != null)
+            {
+                query = include(query);
+            }
 
             if (expression != null)
             {
                 query = query.Where(expression);
             }
 
-            if (include != null)
+            if (orderBy != null)
             {
-                query = include(query);
+                query = orderBy(query);
             }
 
             if (!trackChanges)
@@ -56,6 +62,44 @@ namespace VisitorBook.DAL.Concrete
             }
 
             return query;
+        }
+
+        public Tuple<int, int, IQueryable<T>> GetAll(
+            int page, int pageSize,
+            Expression<Func<T, bool>>? expression = null,
+            bool trackChanges = false,
+            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null)
+        {
+            IQueryable<T> query = _appDbContext.Set<T>();
+
+            if (include != null)
+            {
+                query = include(query);
+            }
+
+            int totalCount = query.Count();
+            int filteredCount = totalCount;
+
+            if (expression != null)
+            {
+                query = query.Where(expression);
+                filteredCount = query.Count();
+            }
+
+            if (orderBy != null)
+            {
+                query = orderBy(query);
+            }
+
+            query = query.Skip((page - 1) * pageSize).Take(pageSize);
+
+            if (!trackChanges)
+            {
+                query.AsNoTracking();
+            }
+
+            return new Tuple<int, int, IQueryable<T>>(totalCount, filteredCount, query);
         }
 
         public async Task<T> GetAsync(

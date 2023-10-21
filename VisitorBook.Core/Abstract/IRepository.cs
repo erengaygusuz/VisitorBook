@@ -19,7 +19,15 @@ namespace VisitorBook.Core.Abstract
         IQueryable<T> GetAll(
             Expression<Func<T, bool>>? expression = null,
             bool trackChanges = false,
-            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null);
+            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null);
+
+        Tuple<int, int, IQueryable<T>> GetAll(
+            int page, int pageSize,
+            Expression<Func<T, bool>>? expression = null,
+            bool trackChanges = false,
+            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null);
 
         void Remove(T entity);
 
