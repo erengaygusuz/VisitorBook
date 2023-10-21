@@ -12,10 +12,7 @@ namespace VisitorBook.Core.Models
     public class City : BaseModel
     {
         public string Name { get; set; }
-        public string Code { get; set; }
 
-        [ValidateNever]
-        [JsonIgnore]
-        public ICollection<State> States { get; set; }
+        public string Code { get; set; }
     }
 }

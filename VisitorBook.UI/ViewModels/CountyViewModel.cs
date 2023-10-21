@@ -4,9 +4,10 @@ using VisitorBook.Core.Models;
 
 namespace VisitorBook.UI.ViewModels
 {
-    public class StateViewModel
+    public class CountyViewModel
     {
-        public State State { get; set; }
+        public County County { get; set; }
+
         [ValidateNever]
         public IEnumerable<SelectListItem> CityList { get; set; }
     }

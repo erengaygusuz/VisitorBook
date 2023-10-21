@@ -19,7 +19,7 @@ namespace VisitorBook.UI.Controllers
             VisitorStatisticViewModel visitorStatisticViewModel = new VisitorStatisticViewModel()
             {
                 GetHighestCountOfVisitedCityByVisitor = _visitorStatisticService.GetHighestCountOfVisitedCityByVisitor(),
-                GetHighestCountOfVisitedStateByVisitor = _visitorStatisticService.GetHighestCountOfVisitedStateByVisitor(),
+                GetHighestCountOfVisitedCountyByVisitor = _visitorStatisticService.GetHighestCountOfVisitedCountyByVisitor(),
                 GetLongestDistanceByVisitorOneTime = _visitorStatisticService.GetLongestDistanceByVisitorOneTime(),
                 GetLongestDistanceByVisitorAllTime = _visitorStatisticService.GetLongestDistanceByVisitorAllTime()
             };            

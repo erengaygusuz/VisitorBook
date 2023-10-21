@@ -12,7 +12,7 @@ using VisitorBook.DAL.Data;
 namespace VisitorBook.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231008165742_InitializingDbWithData")]
+    [Migration("20231021092506_InitializingDbWithData")]
     partial class InitializingDbWithData
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace VisitorBook.DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("ProductVersion", "7.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -37,9 +37,15 @@ namespace VisitorBook.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -50,23 +56,26 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 1,
                             Code = "06",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Ankara"
                         },
                         new
                         {
                             Id = 2,
                             Code = "35",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "İzmir"
                         },
                         new
                         {
                             Id = 3,
                             Code = "34",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "İstanbul"
                         });
                 });
 
-            modelBuilder.Entity("VisitorBook.Core.Models.State", b =>
+            modelBuilder.Entity("VisitorBook.Core.Models.County", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -76,6 +85,9 @@ namespace VisitorBook.DAL.Migrations
 
                     b.Property<int>("CityId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("Latitude")
                         .HasColumnType("float");
@@ -87,17 +99,21 @@ namespace VisitorBook.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CityId");
 
-                    b.ToTable("States");
+                    b.ToTable("Counties");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             CityId = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Latitude = 39.796688099999997,
                             Longitude = 32.223354700000002,
                             Name = "Çankaya"
@@ -106,6 +122,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 2,
                             CityId = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Latitude = 39.905137199999999,
                             Longitude = 32.692093999999997,
                             Name = "Mamak"
@@ -114,6 +131,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 3,
                             CityId = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Latitude = 40.086525000000002,
                             Longitude = 32.820312000000001,
                             Name = "Keçiören"
@@ -122,6 +140,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 4,
                             CityId = 2,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Latitude = 38.422052700000002,
                             Longitude = 26.964354,
                             Name = "Konak"
@@ -130,6 +149,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 5,
                             CityId = 2,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Latitude = 38.478544100000001,
                             Longitude = 27.075009600000001,
                             Name = "Bayraklı"
@@ -138,6 +158,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 6,
                             CityId = 2,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Latitude = 38.5013997,
                             Longitude = 26.96218,
                             Name = "Karşıyaka"
@@ -146,6 +167,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 7,
                             CityId = 3,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Latitude = 40.9812333,
                             Longitude = 28.980652599999999,
                             Name = "Kadıköy"
@@ -154,6 +176,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 8,
                             CityId = 3,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Latitude = 40.984420299999996,
                             Longitude = 28.974454399999999,
                             Name = "Ataşehir"
@@ -162,13 +185,14 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 9,
                             CityId = 3,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Latitude = 41.024865200000001,
                             Longitude = 28.637796699999999,
                             Name = "Avcılar"
                         });
                 });
 
-            modelBuilder.Entity("VisitorBook.Core.Models.VisitedState", b =>
+            modelBuilder.Entity("VisitorBook.Core.Models.VisitedCounty", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -176,121 +200,124 @@ namespace VisitorBook.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CityId")
+                    b.Property<int>("CountyId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("StateId")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("VisitDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("VisitorId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StateId");
+                    b.HasIndex("CountyId");
 
                     b.HasIndex("VisitorId");
 
-                    b.ToTable("VisitedStates");
+                    b.ToTable("VisitedCounties");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CityId = 1,
-                            Date = new DateTime(2015, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StateId = 2,
+                            CountyId = 2,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VisitDate = new DateTime(2015, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VisitorId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CityId = 2,
-                            Date = new DateTime(2015, 10, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StateId = 5,
+                            CountyId = 5,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VisitDate = new DateTime(2015, 10, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VisitorId = 1
                         },
                         new
                         {
                             Id = 3,
-                            CityId = 3,
-                            Date = new DateTime(2017, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StateId = 7,
+                            CountyId = 7,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VisitDate = new DateTime(2017, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VisitorId = 1
                         },
                         new
                         {
                             Id = 4,
-                            CityId = 3,
-                            Date = new DateTime(2022, 8, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StateId = 8,
+                            CountyId = 8,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VisitDate = new DateTime(2022, 8, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VisitorId = 1
                         },
                         new
                         {
                             Id = 5,
-                            CityId = 2,
-                            Date = new DateTime(2012, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StateId = 4,
+                            CountyId = 4,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VisitDate = new DateTime(2012, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VisitorId = 2
                         },
                         new
                         {
                             Id = 6,
-                            CityId = 1,
-                            Date = new DateTime(2023, 8, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StateId = 1,
+                            CountyId = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VisitDate = new DateTime(2023, 8, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VisitorId = 2
                         },
                         new
                         {
                             Id = 7,
-                            CityId = 1,
-                            Date = new DateTime(2010, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StateId = 1,
+                            CountyId = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VisitDate = new DateTime(2010, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VisitorId = 3
                         },
                         new
                         {
                             Id = 8,
-                            CityId = 3,
-                            Date = new DateTime(2002, 10, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StateId = 9,
+                            CountyId = 9,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VisitDate = new DateTime(2002, 10, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VisitorId = 3
                         },
                         new
                         {
                             Id = 9,
-                            CityId = 3,
-                            Date = new DateTime(2011, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StateId = 9,
+                            CountyId = 9,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VisitDate = new DateTime(2011, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VisitorId = 3
                         },
                         new
                         {
                             Id = 10,
-                            CityId = 3,
-                            Date = new DateTime(2020, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StateId = 8,
+                            CountyId = 8,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VisitDate = new DateTime(2020, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VisitorId = 3
                         },
                         new
                         {
                             Id = 11,
-                            CityId = 3,
-                            Date = new DateTime(2008, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StateId = 7,
+                            CountyId = 7,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VisitDate = new DateTime(2008, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VisitorId = 4
                         },
                         new
                         {
                             Id = 12,
-                            CityId = 3,
-                            Date = new DateTime(2000, 8, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StateId = 7,
+                            CountyId = 7,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VisitDate = new DateTime(2000, 8, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VisitorId = 4
                         });
                 });
@@ -306,6 +333,9 @@ namespace VisitorBook.DAL.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("Gender")
                         .HasColumnType("int");
 
@@ -317,7 +347,15 @@ namespace VisitorBook.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("VisitorAddressId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("VisitorAddressId");
 
                     b.ToTable("Visitors");
 
@@ -326,14 +364,17 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 1,
                             BirthDate = new DateTime(1992, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Gender = 0,
                             Name = "Eren",
-                            Surname = "Gaygusuz"
+                            Surname = "Gaygusuz",
+                            VisitorAddressId = 1
                         },
                         new
                         {
                             Id = 2,
                             BirthDate = new DateTime(1995, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Gender = 0,
                             Name = "Eren",
                             Surname = "Özcan"
@@ -342,14 +383,17 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 3,
                             BirthDate = new DateTime(1996, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Gender = 1,
                             Name = "Ceyda",
-                            Surname = "Meyda"
+                            Surname = "Meyda",
+                            VisitorAddressId = 2
                         },
                         new
                         {
                             Id = 4,
                             BirthDate = new DateTime(1990, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Gender = 1,
                             Name = "Tuğçe",
                             Surname = "Güzel"
@@ -364,19 +408,18 @@ namespace VisitorBook.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CityId")
+                    b.Property<int>("CountyId")
                         .HasColumnType("int");
 
-                    b.Property<int>("StateId")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
-                    b.Property<int>("VisitorId")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VisitorId")
-                        .IsUnique();
+                    b.HasIndex("CountyId");
 
                     b.ToTable("VisitorAddress");
 
@@ -384,23 +427,21 @@ namespace VisitorBook.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            CityId = 1,
-                            StateId = 1,
-                            VisitorId = 1
+                            CountyId = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2,
-                            CityId = 3,
-                            StateId = 7,
-                            VisitorId = 3
+                            CountyId = 7,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
-            modelBuilder.Entity("VisitorBook.Core.Models.State", b =>
+            modelBuilder.Entity("VisitorBook.Core.Models.County", b =>
                 {
                     b.HasOne("VisitorBook.Core.Models.City", "City")
-                        .WithMany("States")
+                        .WithMany()
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -408,11 +449,11 @@ namespace VisitorBook.DAL.Migrations
                     b.Navigation("City");
                 });
 
-            modelBuilder.Entity("VisitorBook.Core.Models.VisitedState", b =>
+            modelBuilder.Entity("VisitorBook.Core.Models.VisitedCounty", b =>
                 {
-                    b.HasOne("VisitorBook.Core.Models.State", "State")
+                    b.HasOne("VisitorBook.Core.Models.County", "County")
                         .WithMany()
-                        .HasForeignKey("StateId")
+                        .HasForeignKey("CountyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -422,30 +463,29 @@ namespace VisitorBook.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("State");
+                    b.Navigation("County");
 
                     b.Navigation("Visitor");
-                });
-
-            modelBuilder.Entity("VisitorBook.Core.Models.VisitorAddress", b =>
-                {
-                    b.HasOne("VisitorBook.Core.Models.Visitor", "Visitor")
-                        .WithOne("VisitorAddress")
-                        .HasForeignKey("VisitorBook.Core.Models.VisitorAddress", "VisitorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Visitor");
-                });
-
-            modelBuilder.Entity("VisitorBook.Core.Models.City", b =>
-                {
-                    b.Navigation("States");
                 });
 
             modelBuilder.Entity("VisitorBook.Core.Models.Visitor", b =>
                 {
+                    b.HasOne("VisitorBook.Core.Models.VisitorAddress", "VisitorAddress")
+                        .WithMany()
+                        .HasForeignKey("VisitorAddressId");
+
                     b.Navigation("VisitorAddress");
+                });
+
+            modelBuilder.Entity("VisitorBook.Core.Models.VisitorAddress", b =>
+                {
+                    b.HasOne("VisitorBook.Core.Models.County", "County")
+                        .WithMany()
+                        .HasForeignKey("CountyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("County");
                 });
 #pragma warning restore 612, 618
         }

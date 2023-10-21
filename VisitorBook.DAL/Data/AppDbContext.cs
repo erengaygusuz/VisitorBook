@@ -7,9 +7,9 @@ namespace VisitorBook.DAL.Data
     public class AppDbContext : DbContext
     {
         public DbSet<City> Cities { get; set; }
-        public DbSet<State> States { get; set; }
+        public DbSet<County> Counties { get; set; }
         public DbSet<Visitor> Visitors { get; set; }
-        public DbSet<VisitedState> VisitedStates { get; set; }
+        public DbSet<VisitedCounty> VisitedCounties { get; set; }
         public DbSet<VisitorAddress> VisitorAddress { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base (options)
@@ -21,31 +21,8 @@ namespace VisitorBook.DAL.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // one to many relationship
-            // city - state relationship definition
-            modelBuilder.Entity<City>()
-               .HasMany(e => e.States)
-               .WithOne(e => e.City)
-               .HasForeignKey(e => e.CityId)
-               .OnDelete(DeleteBehavior.Cascade)
-               .IsRequired();
+            #region Data Seeding 
 
-            // one to one relationship
-            // visitor address - visitor relationship definition
-            modelBuilder.Entity<VisitorAddress>()
-               .HasOne(e => e.Visitor)
-               .WithOne(e => e.VisitorAddress)
-               .HasForeignKey<VisitorAddress>(e => e.VisitorId)
-               .OnDelete(DeleteBehavior.Cascade);
-
-            // many to many relationship
-            // visitor - state - visited state relationship definition
-            modelBuilder.Entity<Visitor>()
-               .HasMany(e => e.States)
-               .WithMany(e => e.Visitors)
-               .UsingEntity<VisitedState>();            
-
-            // data seeding
             modelBuilder.Entity<City>().HasData(
                 new City()
                 {
@@ -67,8 +44,8 @@ namespace VisitorBook.DAL.Data
                 }
             );
 
-            modelBuilder.Entity<State>().HasData(
-                new State()
+            modelBuilder.Entity<County>().HasData(
+                new County()
                 {
                     Id = 1,
                     Name = "Çankaya",
@@ -76,7 +53,7 @@ namespace VisitorBook.DAL.Data
                     Longitude = 32.2233547,
                     CityId = 1
                 },
-                new State()
+                new County()
                 {
                     Id = 2,
                     Name = "Mamak",
@@ -84,7 +61,7 @@ namespace VisitorBook.DAL.Data
                     Longitude = 32.692094,
                     CityId = 1
                 },
-                new State()
+                new County()
                 {
                     Id = 3,
                     Name = "Keçiören",
@@ -92,7 +69,7 @@ namespace VisitorBook.DAL.Data
                     Longitude = 32.820312,
                     CityId = 1
                 },
-                new State()
+                new County()
                 {
                     Id = 4,
                     Name = "Konak",
@@ -100,7 +77,7 @@ namespace VisitorBook.DAL.Data
                     Longitude = 26.964354,
                     CityId = 2
                 },
-                new State()
+                new County()
                 {
                     Id = 5,
                     Name = "Bayraklı",
@@ -108,7 +85,7 @@ namespace VisitorBook.DAL.Data
                     Longitude = 27.0750096,
                     CityId = 2
                 },
-                new State()
+                new County()
                 {
                     Id = 6,
                     Name = "Karşıyaka",
@@ -116,7 +93,7 @@ namespace VisitorBook.DAL.Data
                     Longitude = 26.96218,
                     CityId = 2
                 },
-                new State()
+                new County()
                 {
                     Id = 7,
                     Name = "Kadıköy",
@@ -124,7 +101,7 @@ namespace VisitorBook.DAL.Data
                     Longitude = 28.9806526,
                     CityId = 3
                 },
-                new State()
+                new County()
                 {
                     Id = 8,
                     Name = "Ataşehir",
@@ -132,7 +109,7 @@ namespace VisitorBook.DAL.Data
                     Longitude = 28.9744544,
                     CityId = 3
                 },
-                new State()
+                new County()
                 {
                     Id = 9,
                     Name = "Avcılar",
@@ -146,16 +123,12 @@ namespace VisitorBook.DAL.Data
                 new VisitorAddress()
                 {
                     Id = 1,
-                    VisitorId = 1,
-                    StateId = 1,
-                    CityId = 1,
+                    CountyId = 1
                 },
                 new VisitorAddress()
                 {
                     Id = 2,
-                    VisitorId = 3,
-                    StateId = 7,
-                    CityId = 3,
+                    CountyId = 7
                 }
             );
 
@@ -166,7 +139,8 @@ namespace VisitorBook.DAL.Data
                     Name = "Eren",
                     Surname = "Gaygusuz",
                     BirthDate = new DateTime(day: 14, month: 12, year: 1992),
-                    Gender = Gender.Man
+                    Gender = Gender.Man,
+                    VisitorAddressId = 1
                 },
                 new Visitor()
                 {
@@ -174,7 +148,8 @@ namespace VisitorBook.DAL.Data
                     Name = "Eren",
                     Surname = "Özcan",
                     BirthDate = new DateTime(day: 05, month: 11, year: 1995),
-                    Gender = Gender.Man
+                    Gender = Gender.Man,
+                    VisitorAddressId = null
                 },
                 new Visitor()
                 {
@@ -182,7 +157,8 @@ namespace VisitorBook.DAL.Data
                     Name = "Ceyda",
                     Surname = "Meyda",
                     BirthDate = new DateTime(day: 22, month: 3, year: 1996),
-                    Gender = Gender.Woman
+                    Gender = Gender.Woman,
+                    VisitorAddressId = 2
                 },
                 new Visitor()
                 {
@@ -190,108 +166,139 @@ namespace VisitorBook.DAL.Data
                     Name = "Tuğçe",
                     Surname = "Güzel",
                     BirthDate = new DateTime(day: 11, month: 5, year: 1990),
-                    Gender = Gender.Woman
+                    Gender = Gender.Woman,
+                    VisitorAddressId = null
                 }
             );
 
-            modelBuilder.Entity<VisitedState>().HasData(
-                new VisitedState()
+            modelBuilder.Entity<VisitedCounty>().HasData(
+                new VisitedCounty()
                 {
                     Id = 1,
                     VisitorId = 1,
-                    CityId = 1,
-                    StateId = 2,
-                    Date = new DateTime(day: 2, month: 11, year: 2015)
+                    CountyId = 2,
+                    VisitDate = new DateTime(day: 2, month: 11, year: 2015)
                 },
-                new VisitedState()
+                new VisitedCounty()
                 {
                     Id = 2,
                     VisitorId = 1,
-                    CityId = 2,
-                    StateId = 5,
-                    Date = new DateTime(day: 4, month: 10, year: 2015)
+                    CountyId = 5,
+                    VisitDate = new DateTime(day: 4, month: 10, year: 2015)
                 },
-                new VisitedState()
+                new VisitedCounty()
                 {
                     Id = 3,
                     VisitorId = 1,
-                    CityId = 3,
-                    StateId = 7,
-                    Date = new DateTime(day: 24, month: 1, year: 2017)
+                    CountyId = 7,
+                    VisitDate = new DateTime(day: 24, month: 1, year: 2017)
                 },
-                new VisitedState()
+                new VisitedCounty()
                 {
                     Id = 4,
                     VisitorId = 1,
-                    CityId = 3,
-                    StateId = 8,
-                    Date = new DateTime(day: 16, month: 8, year: 2022)
+                    CountyId = 8,
+                    VisitDate = new DateTime(day: 16, month: 8, year: 2022)
                 },
-                new VisitedState()
+                new VisitedCounty()
                 {
                     Id = 5,
                     VisitorId = 2,
-                    CityId = 2,
-                    StateId = 4,
-                    Date = new DateTime(day: 15, month: 12, year: 2012)
+                    CountyId = 4,
+                    VisitDate = new DateTime(day: 15, month: 12, year: 2012)
                 },
-                new VisitedState()
+                new VisitedCounty()
                 {
                     Id = 6,
                     VisitorId = 2,
-                    CityId = 1,
-                    StateId = 1,
-                    Date = new DateTime(day: 6, month: 8, year: 2023)
+                    CountyId = 1,
+                    VisitDate = new DateTime(day: 6, month: 8, year: 2023)
                 },
-                new VisitedState()
+                new VisitedCounty()
                 {
                     Id = 7,
                     VisitorId = 3,
-                    CityId = 1,
-                    StateId = 1,
-                    Date = new DateTime(day: 1, month: 7, year: 2010)
+                    CountyId = 1,
+                    VisitDate = new DateTime(day: 1, month: 7, year: 2010)
                 },
-                new VisitedState()
+                new VisitedCounty()
                 {
                     Id = 8,
                     VisitorId = 3,
-                    CityId = 3,
-                    StateId = 9,
-                    Date = new DateTime(day: 23, month: 10, year: 2002)
+                    CountyId = 9,
+                    VisitDate = new DateTime(day: 23, month: 10, year: 2002)
                 },
-                new VisitedState()
+                new VisitedCounty()
                 {
                     Id = 9,
                     VisitorId = 3,
-                    CityId = 3,
-                    StateId = 9,
-                    Date = new DateTime(day: 15, month: 2, year: 2011)
+                    CountyId = 9,
+                    VisitDate = new DateTime(day: 15, month: 2, year: 2011)
                 },
-                new VisitedState()
+                new VisitedCounty()
                 {
                     Id = 10,
                     VisitorId = 3,
-                    CityId = 3,
-                    StateId = 8,
-                    Date = new DateTime(day: 16, month: 5, year: 2020)
+                    CountyId = 8,
+                    VisitDate = new DateTime(day: 16, month: 5, year: 2020)
                 },
-                new VisitedState()
+                new VisitedCounty()
                 {
                     Id = 11,
                     VisitorId = 4,
-                    CityId = 3,
-                    StateId = 7,
-                    Date = new DateTime(day: 1, month: 12, year: 2008)
+                    CountyId = 7,
+                    VisitDate = new DateTime(day: 1, month: 12, year: 2008)
                 },
-                new VisitedState()
+                new VisitedCounty()
                 {
                     Id = 12,
                     VisitorId = 4,
-                    CityId = 3,
-                    StateId = 7,
-                    Date = new DateTime(day: 6, month: 8, year: 2000)
+                    CountyId = 7,
+                    VisitDate = new DateTime(day: 6, month: 8, year: 2000)
                 }
             );
+
+            #endregion
+        }
+
+        public override int SaveChanges()
+        {
+            UpdateChangeTracker();
+
+            return base.SaveChanges();
+        }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            UpdateChangeTracker();
+
+            return base.SaveChangesAsync(cancellationToken);
+        }
+
+        public void UpdateChangeTracker()
+        {
+            foreach (var item in ChangeTracker.Entries())
+            {
+                if (item.Entity is BaseModel entityReference)
+                {
+                    switch (item.State)
+                    {
+                        case EntityState.Added:
+                            {
+                                Entry(entityReference).Property(x => x.UpdatedDate).IsModified = false;
+                                entityReference.CreatedDate = DateTime.Now;
+                                break;
+                            }
+                        case EntityState.Modified:
+                            {
+                                Entry(entityReference).Property(x => x.CreatedDate).IsModified = false;
+
+                                entityReference.UpdatedDate = DateTime.Now;
+                                break;
+                            }
+                    }
+                }
+            }
         }
     }
 }

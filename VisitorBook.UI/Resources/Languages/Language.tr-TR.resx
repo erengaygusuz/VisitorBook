@@ -125,7 +125,7 @@
     <value>--Cinsiyet Seç--</value>
     <comment/>
   </data>
-  <data name="AddOrEditModal.StateSelection.Text" xml:space="preserve">
+  <data name="AddOrEditModal.CountySelection.Text" xml:space="preserve">
     <value>--İlçe Seç--</value>
     <comment/>
   </data>
@@ -209,23 +209,23 @@
     <value>Ziyaretçi Defteri</value>
     <comment/>
   </data>
-  <data name="States.Table.Column1.Text" xml:space="preserve">
+  <data name="Counties.Table.Column1.Text" xml:space="preserve">
     <value>İlçe Adı</value>
     <comment/>
   </data>
-  <data name="States.Table.Column2.Text" xml:space="preserve">
+  <data name="Counties.Table.Column2.Text" xml:space="preserve">
     <value>İl Adı</value>
     <comment/>
   </data>
-  <data name="States.Table.Column3.Text" xml:space="preserve">
+  <data name="Counties.Table.Column3.Text" xml:space="preserve">
     <value>Enlem</value>
     <comment/>
   </data>
-  <data name="States.Table.Column4.Text" xml:space="preserve">
+  <data name="Counties.Table.Column4.Text" xml:space="preserve">
     <value>Boylam</value>
     <comment/>
   </data>
-  <data name="States.Title.Text" xml:space="preserve">
+  <data name="Counties.Title.Text" xml:space="preserve">
     <value>İlçe Listesi</value>
     <comment/>
   </data>
@@ -245,23 +245,23 @@
     <value>Çıktı Al</value>
     <comment/>
   </data>
-  <data name="VisitedStates.Table.Column1.Text" xml:space="preserve">
+  <data name="VisitedCounties.Table.Column1.Text" xml:space="preserve">
     <value>Ziyaretçi Ad - Soyad</value>
     <comment/>
   </data>
-  <data name="VisitedStates.Table.Column2.Text" xml:space="preserve">
+  <data name="VisitedCounties.Table.Column2.Text" xml:space="preserve">
     <value>İlçe Adı</value>
     <comment/>
   </data>
-  <data name="VisitedStates.Table.Column3.Text" xml:space="preserve">
+  <data name="VisitedCounties.Table.Column3.Text" xml:space="preserve">
     <value>Şehir Adı</value>
     <comment/>
   </data>
-  <data name="VisitedStates.Table.Column4.Text" xml:space="preserve">
+  <data name="VisitedCounties.Table.Column4.Text" xml:space="preserve">
     <value>Ziyaret Tarihi</value>
     <comment/>
   </data>
-  <data name="VisitedStates.Title.Text" xml:space="preserve">
+  <data name="VisitedCounties.Title.Text" xml:space="preserve">
     <value>Ziyaret Edilen İlçe Listesi</value>
     <comment/>
   </data>
@@ -305,27 +305,27 @@
     <value>İl başarılı bir şekilde silindi</value>
     <comment/>
   </data>
-  <data name="VisitedStates.Notification.Add.Text" xml:space="preserve">
+  <data name="VisitedCounties.Notification.Add.Text" xml:space="preserve">
     <value>Ziyaret edilen ilçe bilgisi başarılı bir şekilde eklendi</value>
     <comment/>
   </data>
-  <data name="VisitedStates.Notification.Edit.Text" xml:space="preserve">
+  <data name="VisitedCounties.Notification.Edit.Text" xml:space="preserve">
     <value>Ziyaret edilen ilçe bilgisi başarılı bir şekilde düzenlendi</value>
     <comment/>
   </data>
-  <data name="VisitedStates.Notification.Delete.Text" xml:space="preserve">
+  <data name="VisitedCounties.Notification.Delete.Text" xml:space="preserve">
     <value>Ziyaret edilen ilçe bilgisi başarılı bir şekilde silindi</value>
     <comment/>
   </data>
-  <data name="States.Notification.Add.Text" xml:space="preserve">
+  <data name="Counties.Notification.Add.Text" xml:space="preserve">
     <value>İlçe başarılı bir şekilde eklendi</value>
     <comment/>
   </data>
-  <data name="States.Notification.Edit.Text" xml:space="preserve">
+  <data name="Counties.Notification.Edit.Text" xml:space="preserve">
     <value>İlçe başarılı bir şekilde düzenlendi</value>
     <comment/>
   </data>
-  <data name="States.Notification.Delete.Text" xml:space="preserve">
+  <data name="Counties.Notification.Delete.Text" xml:space="preserve">
     <value>İlçe başarılı bir şekilde silindi</value>
     <comment/>
   </data>
@@ -361,11 +361,11 @@
     <value>Ziyaretçi Düzenle</value>
     <comment/>
   </data>
-  <data name="States.AddModal.Title.Text" xml:space="preserve">
+  <data name="Counties.AddModal.Title.Text" xml:space="preserve">
     <value>İlçe Ekle</value>
     <comment/>
   </data>
-  <data name="States.EditModal.Title.Text" xml:space="preserve">
+  <data name="Counties.EditModal.Title.Text" xml:space="preserve">
     <value>İlçe Düzenle</value>
     <comment/>
   </data>
@@ -377,11 +377,11 @@
     <value>İl Düzenle</value>
     <comment/>
   </data>
-  <data name="VisitedStates.AddModal.Title.Text" xml:space="preserve">
+  <data name="VisitedCounties.AddModal.Title.Text" xml:space="preserve">
     <value>Ziyaret Edilen İlçe Ekle</value>
     <comment/>
   </data>
-  <data name="VisitedStates.EditModal.Title.Text" xml:space="preserve">
+  <data name="VisitedCounties.EditModal.Title.Text" xml:space="preserve">
     <value>Ziyaret Edilen İlçe Düzenle</value>
     <comment/>
   </data>

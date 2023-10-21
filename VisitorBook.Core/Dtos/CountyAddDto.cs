@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace VisitorBook.Core.Dtos
 {
-    public class VisitedStateAddDto
+    public class CountyAddDto
     {
-        public int VisitorId { get; set; }
-        public int StateId { get; set; }
-        public DateTime Date { get; set; }
+        public string Name { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
     }
 }

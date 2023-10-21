@@ -4,13 +4,16 @@ using VisitorBook.Core.Models;
 
 namespace VisitorBook.UI.ViewModels
 {
-    public class VisitedStateViewModel
+    public class VisitedCountyViewModel
     {
-        public VisitedState VisitedState { get; set; }
+        public VisitedCounty VisitedCounty { get; set; }
+
         [ValidateNever]
         public IEnumerable<SelectListItem> VisitorList { get; set; }
+
         [ValidateNever]
-        public IEnumerable<SelectListItem> StateList { get; set; }
+        public IEnumerable<SelectListItem> CountyList { get; set; }
+
         [ValidateNever]
         public IEnumerable<SelectListItem> CityList { get; set; }
     }

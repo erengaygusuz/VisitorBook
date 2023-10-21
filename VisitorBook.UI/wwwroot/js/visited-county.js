@@ -6,7 +6,7 @@ $(document).ready(function () {
     var exportBtnText = document.getElementById('TableExportBtnText').value
     var editBtnText = document.getElementById('TableEditBtnText').value
     var deleteBtnText = document.getElementById('TableDeleteBtnText').value
-    var editModalTitleText = document.getElementById('VisitorsEditModalTitleText').value
+    var editModalTitleText = document.getElementById('VisitedCountiesEditModalTitleText').value
 
     var activeLanguage = document.getElementById('ActiveLanguage').value
 
@@ -43,7 +43,7 @@ function loadDataTable(
             {
                 extend: 'pdfHtml5',
                 text: exportBtnText,
-                filename: 'VisitorBook-Visitors',
+                filename: 'VisitorBook-VisitedCounties',
                 orientation: 'landscape',
                 pageSize: 'A4',
                 customize: function (doc) {
@@ -95,30 +95,36 @@ function loadDataTable(
 
             $('#ExportBtn').prependTo($('#outside'))
         },
-        ajax: { url: '/visitor/getall' },
+        ajax: { url: '/visitedcounty/getall' },
         columns: [
-            { data: 'name', width: '30%' },
-            { data: 'surname', width: '30%' },
             {
-                data: 'birthDate',
-                width: '12%',
+                data: 'visitor',
+                width: '30%',
+                render: function (data) {
+                    return data.name + ' ' + data.surname
+                },
+            },
+            { data: 'county.name', width: '15%' },
+            { data: 'county.city.name', width: '15%' },
+            {
+                data: 'visitDate',
+                width: '20%',
                 render: function (data) {
                     return moment(data).format('DD/MM/YYYY')
                 },
             },
-            { data: 'gender', width: '8%' },
             {
                 data: 'id',
                 render: function (data) {
                     return `
                             <div class="d-flex justify-content-around align-items-center">
-                               <a onclick="showInPopup('/visitor/addoredit/${data}', 
+                               <a onclick="showInPopup('/visitedcounty/addoredit/${data}', 
                                '${editModalTitleText}')" class="btn btn-warning"> ${editBtnText}</a>
-                               <a onclick=deleteRecord('/visitor/delete/${data}') class="btn btn-danger">
+                               <a onclick=deleteRecord('/visitedcounty/delete/${data}') class="btn btn-danger">
                                   ${deleteBtnText}
                                </a>
                             </div>
-                           `
+                            `
                 },
                 width: '20%',
             },
@@ -150,24 +156,27 @@ showInPopup = (url, title) => {
     })
 }
 
-function fillCountyList(cityId, selectedIndex) {
+function fillcountyList(cityId, selectedIndex) {
     $.ajax({
         type: 'GET',
         url: '/county/getallbycity?cityId=' + cityId,
         success: function (res) {
-            $('#Visitor_VisitorAddress_CountyId').empty()
+            $('#VisitedCounty_CountyId').empty()
 
             var countySelectionText = document.getElementById('AddOrEditModalCountySelectionText').value
 
-            $('#Visitor_VisitorAddress_CountyId').append($('<option disabled value="0">' + countySelectionText + '</option>'))
+            $('#VisitedCounty_CountyId').append($('<option disabled value="0">-' + countySelectionText + '</option>'))
 
             $.each(res.data, function (index, value) {
-                $('#Visitor_VisitorAddress_CountyId').append(
+                $('#VisitedCounty_CountyId').append(
                     $('<option value="' + value.id + '">' + value.name + '</option>')
                 )
             })
 
-            $('#Visitor_VisitorAddress_CountyId option:eq(' + selectedIndex + ')').prop('selected', true)
+            $('#VisitedCounty_CountyId option:eq(' + selectedIndex + ')').prop(
+                'selected',
+                true
+            )
         },
         error: function (err) {
             console.log(err)
@@ -248,6 +257,6 @@ function cityChange() {
 
         var cityId = $('#citylist option:selected').val()
 
-        fillCountyList(cityId, 0)
+        fillcountyList(cityId, 0)
     }
 }

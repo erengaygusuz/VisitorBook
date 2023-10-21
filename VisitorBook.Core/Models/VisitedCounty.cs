@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -9,21 +10,20 @@ using System.Threading.Tasks;
 
 namespace VisitorBook.Core.Models
 {
-    public class VisitedState : BaseModel
+    public class VisitedCounty : BaseModel
     {
-        [Display(Name = "Visitor")]
         public int VisitorId { get; set; }
+
         [ValidateNever]
+        [ForeignKey("VisitorId")]
         public Visitor Visitor { get; set; }
 
-        [Display(Name = "State")]
-        public int StateId { get; set; }
+        public int CountyId { get; set; }
+
         [ValidateNever]
-        public State State { get; set; }
+        [ForeignKey("CountyId")]
+        public County County { get; set; }
 
-        [Display(Name = "City")]
-        public int CityId { get; set; }
-
-        public DateTime Date { get; set; }        
+        public DateTime VisitDate { get; set; }        
     }
 }

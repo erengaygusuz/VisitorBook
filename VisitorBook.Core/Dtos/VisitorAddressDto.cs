@@ -9,6 +9,6 @@ namespace VisitorBook.Core.Dtos
     public class VisitorAddressDto
     {
         public int Id { get; set; }
-        public int StateId { get; set; }
+        public int CountyId { get; set; }
     }
 }

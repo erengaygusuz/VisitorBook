@@ -44,20 +44,20 @@
             </div>
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="Visitor.VisitorAddress.CityId" class="control-label">@localization["Visitors.Table.Column6.Text"]</label>
-                    <select id="citylist" onchange="cityChange()" asp-for="Visitor.VisitorAddress.CityId" asp-items="@Model.CityList" class="form-select">
+                    <label asp-for="Visitor.VisitorAddress.County.CityId" class="control-label">@localization["Visitors.Table.Column6.Text"]</label>
+                    <select id="citylist" onchange="cityChange()" asp-for="Visitor.VisitorAddress.County.CityId" asp-items="@Model.CityList" class="form-select">
                         <option disabled selected value="0">@localization["AddOrEditModal.CitySelection.Text"]</option>
                     </select>
-                    <span asp-validation-for="Visitor.VisitorAddress.StateId" class="text-danger"></span>
+                    <span asp-validation-for="Visitor.VisitorAddress.CountyId" class="text-danger"></span>
                 </div>
             </div>
-            <div class="row mt-4" id="statelist">
+            <div class="row mt-4" id="countylist">
                 <div class="form-group">
-                    <label asp-for="Visitor.VisitorAddress.StateId" class="control-label">@localization["Visitors.Table.Column7.Text"]</label>
-                    <select asp-for="Visitor.VisitorAddress.StateId" asp-items="@Model.StateList" class="form-select">
-                        <option disabled selected value="0">@localization["AddOrEditModal.StateSelection.Text"]</option>
+                    <label asp-for="Visitor.VisitorAddress.CountyId" class="control-label">@localization["Visitors.Table.Column7.Text"]</label>
+                    <select asp-for="Visitor.VisitorAddress.CountyId" asp-items="@Model.CountyList" class="form-select">
+                        <option disabled selected value="0">@localization["AddOrEditModal.CountySelection.Text"]</option>
                     </select>
-                    <span asp-validation-for="Visitor.VisitorAddress.StateId" class="text-danger"></span>
+                    <span asp-validation-for="Visitor.VisitorAddress.CountyId" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4">

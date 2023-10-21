@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,79 +26,79 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -119,274 +119,206 @@
   </resheader>
   <data name="AddOrEditModal.CitySelection.Text" xml:space="preserve">
     <value>--Select City--</value>
-    <comment/>
   </data>
   <data name="AddOrEditModal.GenderSelection.Text" xml:space="preserve">
     <value>--Select Gender--</value>
-    <comment/>
   </data>
-  <data name="AddOrEditModal.StateSelection.Text" xml:space="preserve">
-    <value>--Select State--</value>
-    <comment/>
+  <data name="AddOrEditModal.CountySelection.Text" xml:space="preserve">
+    <value>--Select County--</value>
   </data>
   <data name="AddOrEditModal.SubmitBtn.Text" xml:space="preserve">
     <value>Save</value>
-    <comment/>
   </data>
   <data name="AddOrEditModal.VisitorSelection.Text" xml:space="preserve">
     <value>--Select Visitor--</value>
-    <comment/>
   </data>
   <data name="Cities.Table.Column1.Text" xml:space="preserve">
     <value>Name</value>
-    <comment/>
   </data>
   <data name="Cities.Table.Column2.Text" xml:space="preserve">
     <value>Code</value>
-    <comment/>
   </data>
   <data name="Cities.Title.Text" xml:space="preserve">
     <value>City List</value>
-    <comment/>
   </data>
   <data name="HomePage.Card1.Body.Text" xml:space="preserve">
     <value>km</value>
-    <comment/>
   </data>
   <data name="HomePage.Card1.Footer.Text" xml:space="preserve">
     <value>Longest Distance By Visitor One Time</value>
-    <comment/>
   </data>
   <data name="HomePage.Card2.Body.Text" xml:space="preserve">
     <value>km</value>
-    <comment/>
   </data>
   <data name="HomePage.Card2.Footer.Text" xml:space="preserve">
     <value>Longest Distance By Visitor All Time</value>
-    <comment/>
   </data>
   <data name="HomePage.Card3.Body.Text" xml:space="preserve">
-    <value>state</value>
-    <comment/>
+    <value>county</value>
   </data>
   <data name="HomePage.Card3.Footer.Text" xml:space="preserve">
-    <value>Highest Count Of Visited State By Visitor</value>
-    <comment/>
+    <value>Highest Count Of Visited County By Visitor</value>
   </data>
   <data name="HomePage.Card4.Body.Text" xml:space="preserve">
     <value>city</value>
-    <comment/>
   </data>
   <data name="HomePage.Card4.Footer.Text" xml:space="preserve">
     <value>Highest Count Of Visited City By Visitor</value>
-    <comment/>
   </data>
   <data name="Layout.Footer.Text" xml:space="preserve">
     <value>&amp;copy; 2023 - Visitor Book</value>
-    <comment/>
   </data>
   <data name="Layout.Header.Navbar.Items1.Text" xml:space="preserve">
     <value>Home</value>
-    <comment/>
   </data>
   <data name="Layout.Header.Navbar.Items2.Text" xml:space="preserve">
     <value>Visitors</value>
-    <comment/>
   </data>
   <data name="Layout.Header.Navbar.Items3.Text" xml:space="preserve">
     <value>Cities</value>
-    <comment/>
   </data>
   <data name="Layout.Header.Navbar.Items4.Text" xml:space="preserve">
-    <value>States</value>
-    <comment/>
+    <value>Counties</value>
   </data>
   <data name="Layout.Header.Navbar.Items5.Text" xml:space="preserve">
-    <value>Visited States</value>
-    <comment/>
+    <value>Visited Counties</value>
   </data>
   <data name="Layout.Header.Title.Text" xml:space="preserve">
     <value>Visitor Book</value>
-    <comment/>
   </data>
-  <data name="States.Table.Column1.Text" xml:space="preserve">
-    <value>State Name</value>
-    <comment/>
+  <data name="Counties.Table.Column1.Text" xml:space="preserve">
+    <value>County Name</value>
   </data>
-  <data name="States.Table.Column2.Text" xml:space="preserve">
+  <data name="Counties.Table.Column2.Text" xml:space="preserve">
     <value>City Name</value>
-    <comment/>
   </data>
-  <data name="States.Table.Column3.Text" xml:space="preserve">
+  <data name="Counties.Table.Column3.Text" xml:space="preserve">
     <value>Latitude</value>
-    <comment/>
   </data>
-  <data name="States.Table.Column4.Text" xml:space="preserve">
+  <data name="Counties.Table.Column4.Text" xml:space="preserve">
     <value>Longitude</value>
-    <comment/>
   </data>
-  <data name="States.Title.Text" xml:space="preserve">
-    <value>State List</value>
-    <comment/>
+  <data name="Counties.Title.Text" xml:space="preserve">
+    <value>County List</value>
   </data>
   <data name="Table.AddBtn.Text" xml:space="preserve">
     <value>Add</value>
-    <comment/>
   </data>
   <data name="Table.DeleteBtn.Text" xml:space="preserve">
     <value>Delete</value>
-    <comment/>
   </data>
   <data name="Table.EditBtn.Text" xml:space="preserve">
     <value>Edit</value>
-    <comment/>
   </data>
   <data name="Table.ExportBtn.Text" xml:space="preserve">
     <value>Export</value>
-    <comment/>
   </data>
-  <data name="VisitedStates.Table.Column1.Text" xml:space="preserve">
+  <data name="VisitedCounties.Table.Column1.Text" xml:space="preserve">
     <value>Visitor Name</value>
-    <comment/>
   </data>
-  <data name="VisitedStates.Table.Column2.Text" xml:space="preserve">
-    <value>State Name</value>
-    <comment/>
+  <data name="VisitedCounties.Table.Column2.Text" xml:space="preserve">
+    <value>County Name</value>
   </data>
-  <data name="VisitedStates.Table.Column3.Text" xml:space="preserve">
+  <data name="VisitedCounties.Table.Column3.Text" xml:space="preserve">
     <value>City Name</value>
-    <comment/>
   </data>
-  <data name="VisitedStates.Table.Column4.Text" xml:space="preserve">
+  <data name="VisitedCounties.Table.Column4.Text" xml:space="preserve">
     <value>Visited Date</value>
-    <comment/>
   </data>
-  <data name="VisitedStates.Title.Text" xml:space="preserve">
-    <value>Visited State List</value>
-    <comment/>
+  <data name="VisitedCounties.Title.Text" xml:space="preserve">
+    <value>Visited County List</value>
   </data>
   <data name="Visitors.Table.Column1.Text" xml:space="preserve">
     <value>Name</value>
-    <comment/>
   </data>
   <data name="Visitors.Table.Column2.Text" xml:space="preserve">
     <value>Surname</value>
-    <comment/>
   </data>
   <data name="Visitors.Table.Column3.Text" xml:space="preserve">
     <value>Birth Date</value>
-    <comment/>
   </data>
   <data name="Visitors.Table.Column4.Text" xml:space="preserve">
     <value>Gender</value>
-    <comment/>
   </data>
   <data name="Visitors.Table.Column6.Text" xml:space="preserve">
     <value>Address City</value>
-    <comment/>
   </data>
   <data name="Visitors.Table.Column7.Text" xml:space="preserve">
-    <value>Address State</value>
-    <comment/>
+    <value>Address County</value>
   </data>
   <data name="Visitors.Title.Text" xml:space="preserve">
     <value>Visitor List</value>
-    <comment/>
   </data>
   <data name="Cities.Notification.Add.Text" xml:space="preserve">
     <value>City added successfully</value>
-    <comment/>
   </data>
   <data name="Cities.Notification.Edit.Text" xml:space="preserve">
     <value>City edited successfully</value>
-    <comment/>
   </data>
   <data name="Cities.Notification.Delete.Text" xml:space="preserve">
     <value>City deleted successfully</value>
-    <comment/>
   </data>
-  <data name="VisitedStates.Notification.Add.Text" xml:space="preserve">
-    <value>Visited State added successfully</value>
-    <comment/>
+  <data name="VisitedCounties.Notification.Add.Text" xml:space="preserve">
+    <value>Visited County added successfully</value>
   </data>
-  <data name="VisitedStates.Notification.Edit.Text" xml:space="preserve">
-    <value>Visited State edited successfully</value>
-    <comment/>
+  <data name="VisitedCounties.Notification.Edit.Text" xml:space="preserve">
+    <value>Visited County edited successfully</value>
   </data>
-  <data name="VisitedStates.Notification.Delete.Text" xml:space="preserve">
-    <value>isited State deleted successfully</value>
-    <comment/>
+  <data name="VisitedCounties.Notification.Delete.Text" xml:space="preserve">
+    <value>Visited County deleted successfully</value>
   </data>
-  <data name="States.Notification.Add.Text" xml:space="preserve">
-    <value>State added successfully</value>
-    <comment/>
+  <data name="Counties.Notification.Add.Text" xml:space="preserve">
+    <value>County added successfully</value>
   </data>
-  <data name="States.Notification.Edit.Text" xml:space="preserve">
-    <value>State edited successfully</value>
-    <comment/>
+  <data name="Counties.Notification.Edit.Text" xml:space="preserve">
+    <value>County edited successfully</value>
   </data>
-  <data name="States.Notification.Delete.Text" xml:space="preserve">
-    <value>State deleted successfully</value>
-    <comment/>
+  <data name="Counties.Notification.Delete.Text" xml:space="preserve">
+    <value>County deleted successfully</value>
   </data>
   <data name="Visitors.Notification.Add.Text" xml:space="preserve">
     <value>Visitor added successfully</value>
-    <comment/>
   </data>
   <data name="Visitors.Notification.Edit.Text" xml:space="preserve">
     <value>Visitor edited successfully</value>
-    <comment/>
   </data>
   <data name="Visitors.Notification.Delete.Text" xml:space="preserve">
     <value>Visitor deleted successfully</value>
-    <comment/>
   </data>
   <data name="DeleteRequestPopup.Title.Text" xml:space="preserve">
     <value>Are you sure?</value>
-    <comment/>
   </data>
   <data name="DeleteRequestPopup.Body.Text" xml:space="preserve">
     <value>You will not revert this process!</value>
-    <comment/>
   </data>
   <data name="DeleteRequestPopup.ConfirmBtn.Text" xml:space="preserve">
     <value>Yes, delete it!</value>
-    <comment/>
   </data>
   <data name="Visitors.AddModal.Title.Text" xml:space="preserve">
     <value>Add Visitor</value>
-    <comment/>
   </data>
   <data name="Visitors.EditModal.Title.Text" xml:space="preserve">
     <value>Edit Visitor</value>
-    <comment/>
   </data>
-  <data name="States.AddModal.Title.Text" xml:space="preserve">
-    <value>Add State</value>
-    <comment/>
+  <data name="Counties.AddModal.Title.Text" xml:space="preserve">
+    <value>Add County</value>
   </data>
-  <data name="States.EditModal.Title.Text" xml:space="preserve">
-    <value>Edit State</value>
-    <comment/>
+  <data name="Counties.EditModal.Title.Text" xml:space="preserve">
+    <value>Edit County</value>
   </data>
   <data name="Cities.AddModal.Title.Text" xml:space="preserve">
     <value>Add City</value>
-    <comment/>
   </data>
   <data name="Cities.EditModal.Title.Text" xml:space="preserve">
     <value>Edit City</value>
-    <comment/>
   </data>
-  <data name="VisitedStates.AddModal.Title.Text" xml:space="preserve">
-    <value>Add Visited State</value>
-    <comment/>
+  <data name="VisitedCounties.AddModal.Title.Text" xml:space="preserve">
+    <value>Add Visited County</value>
   </data>
-  <data name="VisitedStates.EditModal.Title.Text" xml:space="preserve">
-    <value>Edit Visited State</value>
-    <comment/>
+  <data name="VisitedCounties.EditModal.Title.Text" xml:space="preserve">
+    <value>Edit Visited County</value>
   </data>
   <data name="DeleteRequestPopup.CancelBtn.Text" xml:space="preserve">
     <value>Cancel</value>
-    <comment/>
   </data>
 </root>

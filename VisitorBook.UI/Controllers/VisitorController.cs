@@ -12,7 +12,7 @@ namespace VisitorBook.UI.Controllers
 {
     public class VisitorController : Controller
     {
-        private readonly IService<State> _stateService;
+        private readonly IService<County> _countyService;
         private readonly IService<City> _cityService;
         private readonly IService<Visitor> _visitorService;
         private readonly IStringLocalizer<Language> _localization;
@@ -20,10 +20,10 @@ namespace VisitorBook.UI.Controllers
         [BindProperty]
         public VisitorViewModel VisitorViewModel { get; set; }
 
-        public VisitorController(IService<State> stateService, IService<City> cityService,
+        public VisitorController(IService<County> countyService, IService<City> cityService,
             IService<Visitor> visitorService, IStringLocalizer<Language> localization)
         {
-            _stateService = stateService;
+            _countyService = countyService;
             _cityService = cityService;
             _visitorService = visitorService;
             _localization = localization;
@@ -70,7 +70,7 @@ namespace VisitorBook.UI.Controllers
                        Text = u.Name,
                        Value = u.Id.ToString()
                    }),
-                StateList = new List<SelectListItem>()
+                CountyList = new List<SelectListItem>()
             };
 
             if (id == 0)
@@ -86,7 +86,7 @@ namespace VisitorBook.UI.Controllers
 
                 if (VisitorViewModel.Visitor.VisitorAddress != null)
                 {
-                    VisitorViewModel.StateList = _stateService.GetAllAsync(u => u.CityId == VisitorViewModel.Visitor.VisitorAddress.CityId).GetAwaiter().GetResult().ToList()
+                    VisitorViewModel.CountyList = _countyService.GetAllAsync(u => u.CityId == VisitorViewModel.Visitor.VisitorAddress.County.CityId).GetAwaiter().GetResult().ToList()
                    .Select(u => new SelectListItem
                    {
                        Text = u.Name,
@@ -123,20 +123,18 @@ namespace VisitorBook.UI.Controllers
 
                     if (VisitorViewModel.Visitor.VisitorAddress != null)
                     {
-                        var newStateWithCity = await _stateService.GetAsync(u => u.Id == VisitorViewModel.Visitor.VisitorAddress.StateId, include: u => u.Include(a => a.City));
+                        var newCountyWithCity = await _countyService.GetAsync(u => u.Id == VisitorViewModel.Visitor.VisitorAddress.CountyId, include: u => u.Include(a => a.City));
 
                         if (visitor.VisitorAddress != null)
                         {
-                            visitor.VisitorAddress.CityId = newStateWithCity.City.Id;
-                            visitor.VisitorAddress.StateId = newStateWithCity.Id;
+                            visitor.VisitorAddress.CountyId = newCountyWithCity.Id;
                         }
 
                         else
                         {
                             visitor.VisitorAddress = new VisitorAddress
                             {
-                                StateId = newStateWithCity.Id,
-                                CityId = newStateWithCity.City.Id
+                                CountyId = newCountyWithCity.Id
                             };
                         }
                     }

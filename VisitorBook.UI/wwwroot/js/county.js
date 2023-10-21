@@ -1,12 +1,10 @@
 var dataTable
 
 $(document).ready(function () {
-    $.fn.dataTable.moment('DD/MM/YYYY')
-
     var exportBtnText = document.getElementById('TableExportBtnText').value
     var editBtnText = document.getElementById('TableEditBtnText').value
     var deleteBtnText = document.getElementById('TableDeleteBtnText').value
-    var editModalTitleText = document.getElementById('VisitorsEditModalTitleText').value
+    var editModalTitleText = document.getElementById('CountiesEditModalTitleText').value
 
     var activeLanguage = document.getElementById('ActiveLanguage').value
 
@@ -43,7 +41,7 @@ function loadDataTable(
             {
                 extend: 'pdfHtml5',
                 text: exportBtnText,
-                filename: 'VisitorBook-Visitors',
+                filename: 'VisitorBook-Counties',
                 orientation: 'landscape',
                 pageSize: 'A4',
                 customize: function (doc) {
@@ -95,30 +93,24 @@ function loadDataTable(
 
             $('#ExportBtn').prependTo($('#outside'))
         },
-        ajax: { url: '/visitor/getall' },
+        ajax: { url: '/county/getall' },
         columns: [
-            { data: 'name', width: '30%' },
-            { data: 'surname', width: '30%' },
-            {
-                data: 'birthDate',
-                width: '12%',
-                render: function (data) {
-                    return moment(data).format('DD/MM/YYYY')
-                },
-            },
-            { data: 'gender', width: '8%' },
+            { data: 'name', width: '25%' },
+            { data: 'city.name', width: '25%' },
+            { data: 'latitude', width: '15%' },
+            { data: 'longitude', width: '15%' },
             {
                 data: 'id',
                 render: function (data) {
                     return `
                             <div class="d-flex justify-content-around align-items-center">
-                               <a onclick="showInPopup('/visitor/addoredit/${data}', 
+                               <a onclick="showInPopup('/county/addoredit/${data}', 
                                '${editModalTitleText}')" class="btn btn-warning"> ${editBtnText}</a>
-                               <a onclick=deleteRecord('/visitor/delete/${data}') class="btn btn-danger">
-                                  ${deleteBtnText}
+                               <a onclick=deleteRecord('/county/delete/${data}') class="btn btn-danger">
+                                 ${deleteBtnText}
                                </a>
                             </div>
-                           `
+                            `
                 },
                 width: '20%',
             },
@@ -140,37 +132,6 @@ showInPopup = (url, title) => {
             $('#form-modal .modal-body').html(res)
             $('#form-modal .modal-title').html(title)
             $('#form-modal').modal('show')
-
-            if ($('#citylist option:selected').val() == 0) {
-                $('#countylist').hide()
-            } else {
-                $('#countylist').show()
-            }
-        },
-    })
-}
-
-function fillCountyList(cityId, selectedIndex) {
-    $.ajax({
-        type: 'GET',
-        url: '/county/getallbycity?cityId=' + cityId,
-        success: function (res) {
-            $('#Visitor_VisitorAddress_CountyId').empty()
-
-            var countySelectionText = document.getElementById('AddOrEditModalCountySelectionText').value
-
-            $('#Visitor_VisitorAddress_CountyId').append($('<option disabled value="0">' + countySelectionText + '</option>'))
-
-            $.each(res.data, function (index, value) {
-                $('#Visitor_VisitorAddress_CountyId').append(
-                    $('<option value="' + value.id + '">' + value.name + '</option>')
-                )
-            })
-
-            $('#Visitor_VisitorAddress_CountyId option:eq(' + selectedIndex + ')').prop('selected', true)
-        },
-        error: function (err) {
-            console.log(err)
         },
     })
 }
@@ -238,16 +199,4 @@ function deleteRecord(url) {
     })
 
     return false
-}
-
-function cityChange() {
-    if ($('#citylist option:selected').val() == 0) {
-        $('#countylist').hide()
-    } else {
-        $('#countylist').show()
-
-        var cityId = $('#citylist option:selected').val()
-
-        fillCountyList(cityId, 0)
-    }
 }

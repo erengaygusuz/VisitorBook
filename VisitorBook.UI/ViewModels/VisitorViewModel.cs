@@ -13,6 +13,6 @@ namespace VisitorBook.UI.ViewModels
         [ValidateNever]
         public IEnumerable<SelectListItem> CityList { get; set; }
         [ValidateNever]
-        public IEnumerable<SelectListItem> StateList { get; set; }
+        public IEnumerable<SelectListItem> CountyList { get; set; }
     }
 }
