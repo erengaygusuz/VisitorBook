@@ -12,7 +12,7 @@ using VisitorBook.DAL.Data;
 namespace VisitorBook.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231021092506_InitializingDbWithData")]
+    [Migration("20231021132506_InitializingDbWithData")]
     partial class InitializingDbWithData
     {
         /// <inheritdoc />
@@ -258,22 +258,6 @@ namespace VisitorBook.DAL.Migrations
                         },
                         new
                         {
-                            Id = 5,
-                            CountyId = 4,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            VisitDate = new DateTime(2012, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            VisitorId = 2
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CountyId = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            VisitDate = new DateTime(2023, 8, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            VisitorId = 2
-                        },
-                        new
-                        {
                             Id = 7,
                             CountyId = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -303,22 +287,6 @@ namespace VisitorBook.DAL.Migrations
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VisitDate = new DateTime(2020, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VisitorId = 3
-                        },
-                        new
-                        {
-                            Id = 11,
-                            CountyId = 7,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            VisitDate = new DateTime(2008, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            VisitorId = 4
-                        },
-                        new
-                        {
-                            Id = 12,
-                            CountyId = 7,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            VisitDate = new DateTime(2000, 8, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            VisitorId = 4
                         });
                 });
 

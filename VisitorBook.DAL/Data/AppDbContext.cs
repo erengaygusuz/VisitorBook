@@ -202,20 +202,6 @@ namespace VisitorBook.DAL.Data
                 },
                 new VisitedCounty()
                 {
-                    Id = 5,
-                    VisitorId = 2,
-                    CountyId = 4,
-                    VisitDate = new DateTime(day: 15, month: 12, year: 2012)
-                },
-                new VisitedCounty()
-                {
-                    Id = 6,
-                    VisitorId = 2,
-                    CountyId = 1,
-                    VisitDate = new DateTime(day: 6, month: 8, year: 2023)
-                },
-                new VisitedCounty()
-                {
                     Id = 7,
                     VisitorId = 3,
                     CountyId = 1,
@@ -241,20 +227,6 @@ namespace VisitorBook.DAL.Data
                     VisitorId = 3,
                     CountyId = 8,
                     VisitDate = new DateTime(day: 16, month: 5, year: 2020)
-                },
-                new VisitedCounty()
-                {
-                    Id = 11,
-                    VisitorId = 4,
-                    CountyId = 7,
-                    VisitDate = new DateTime(day: 1, month: 12, year: 2008)
-                },
-                new VisitedCounty()
-                {
-                    Id = 12,
-                    VisitorId = 4,
-                    CountyId = 7,
-                    VisitDate = new DateTime(day: 6, month: 8, year: 2000)
                 }
             );
 

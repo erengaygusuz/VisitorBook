@@ -163,17 +163,6 @@ namespace VisitorBook.DAL.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "VisitedCounties",
-                columns: new[] { "Id", "CountyId", "CreatedDate", "UpdatedDate", "VisitDate", "VisitorId" },
-                values: new object[,]
-                {
-                    { 5, 4, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2012, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
-                    { 6, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2023, 8, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
-                    { 11, 7, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2008, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 4 },
-                    { 12, 7, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2000, 8, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), 4 }
-                });
-
-            migrationBuilder.InsertData(
                 table: "VisitorAddress",
                 columns: new[] { "Id", "CountyId", "CreatedDate", "UpdatedDate" },
                 values: new object[,]
