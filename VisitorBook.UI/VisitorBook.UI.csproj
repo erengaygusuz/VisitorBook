@@ -7,12 +7,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="datatables.net-autofill-bs5" Version="2.6.0" />
+    <PackageReference Include="datatables.net-bs5" Version="1.13.6" />
+    <PackageReference Include="datatables.net-buttons-bs5" Version="2.4.2" />
+    <PackageReference Include="datatables.net-colreorder-bs5" Version="1.7.0" />
+    <PackageReference Include="datatables.net-datetime" Version="1.4.0" />
+    <PackageReference Include="datatables.net-fixedcolumns-bs5" Version="4.3.0" />
+    <PackageReference Include="datatables.net-fixedheader-bs5" Version="3.4.0" />
+    <PackageReference Include="datatables.net-keytable-bs5" Version="2.10.0" />
+    <PackageReference Include="datatables.net-responsive-bs5" Version="2.5.0" />
+    <PackageReference Include="datatables.net-rowgroup-bs5" Version="1.4.1" />
+    <PackageReference Include="datatables.net-rowreorder-bs5" Version="1.4.1" />
+    <PackageReference Include="datatables.net-scroller-bs5" Version="2.2.0" />
+    <PackageReference Include="datatables.net-searchbuilder-bs5" Version="1.6.0" />
+    <PackageReference Include="datatables.net-searchpanes-bs5" Version="2.2.0" />
+    <PackageReference Include="datatables.net-select-bs5" Version="1.7.0" />
+    <PackageReference Include="datatables.net-staterestore-bs5" Version="1.3.0" />
+    <PackageReference Include="jszip" Version="3.7.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.12">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.12" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.10" />
+    <PackageReference Include="pdfmake" Version="0.1.18" />
   </ItemGroup>
 
   <ItemGroup>
