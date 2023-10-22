@@ -1,10 +1,11 @@
-﻿namespace VisitorBook.UI.ViewModels
+﻿
+namespace VisitorBook.UI.ViewModels
 {
     public class VisitorStatisticViewModel
     {
-        public Tuple<string, int> GetHighestCountOfVisitedCityByVisitor { get; set; }
-        public Tuple<string, int> GetHighestCountOfVisitedCountyByVisitor { get; set; }
-        public Tuple<string, double> GetLongestDistanceByVisitorOneTime { get; set; }
-        public Tuple<string, double> GetLongestDistanceByVisitorAllTime { get; set; }
+        public Tuple<string, string> GetHighestCountOfVisitedCityByVisitor { get; set; }
+        public Tuple<string, string> GetHighestCountOfVisitedCountyByVisitor { get; set; }
+        public Tuple<string, string> GetLongestDistanceByVisitorOneTime { get; set; }
+        public Tuple<string, string> GetLongestDistanceByVisitorAllTime { get; set; }
     }
 }

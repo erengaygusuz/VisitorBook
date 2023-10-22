@@ -53,21 +53,21 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 1,
                             Code = "06",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4560),
                             Name = "Ankara"
                         },
                         new
                         {
                             Id = 2,
                             Code = "35",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4573),
                             Name = "İzmir"
                         },
                         new
                         {
                             Id = 3,
                             Code = "34",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4574),
                             Name = "İstanbul"
                         });
                 });
@@ -110,7 +110,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 1,
                             CityId = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4720),
                             Latitude = 39.796688099999997,
                             Longitude = 32.223354700000002,
                             Name = "Çankaya"
@@ -119,7 +119,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 2,
                             CityId = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4721),
                             Latitude = 39.905137199999999,
                             Longitude = 32.692093999999997,
                             Name = "Mamak"
@@ -128,7 +128,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 3,
                             CityId = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4723),
                             Latitude = 40.086525000000002,
                             Longitude = 32.820312000000001,
                             Name = "Keçiören"
@@ -137,7 +137,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 4,
                             CityId = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4724),
                             Latitude = 38.422052700000002,
                             Longitude = 26.964354,
                             Name = "Konak"
@@ -146,7 +146,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 5,
                             CityId = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4726),
                             Latitude = 38.478544100000001,
                             Longitude = 27.075009600000001,
                             Name = "Bayraklı"
@@ -155,7 +155,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 6,
                             CityId = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4727),
                             Latitude = 38.5013997,
                             Longitude = 26.96218,
                             Name = "Karşıyaka"
@@ -164,7 +164,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 7,
                             CityId = 3,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4728),
                             Latitude = 40.9812333,
                             Longitude = 28.980652599999999,
                             Name = "Kadıköy"
@@ -173,7 +173,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 8,
                             CityId = 3,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4730),
                             Latitude = 40.984420299999996,
                             Longitude = 28.974454399999999,
                             Name = "Ataşehir"
@@ -182,7 +182,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 9,
                             CityId = 3,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4731),
                             Latitude = 41.024865200000001,
                             Longitude = 28.637796699999999,
                             Name = "Avcılar"
@@ -225,7 +225,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 1,
                             CountyId = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4839),
                             VisitDate = new DateTime(2015, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VisitorId = 1
                         },
@@ -233,7 +233,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 2,
                             CountyId = 5,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4840),
                             VisitDate = new DateTime(2015, 10, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VisitorId = 1
                         },
@@ -241,7 +241,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 3,
                             CountyId = 7,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4842),
                             VisitDate = new DateTime(2017, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VisitorId = 1
                         },
@@ -249,7 +249,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 4,
                             CountyId = 8,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4843),
                             VisitDate = new DateTime(2022, 8, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VisitorId = 1
                         },
@@ -257,7 +257,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 7,
                             CountyId = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4845),
                             VisitDate = new DateTime(2010, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VisitorId = 3
                         },
@@ -265,7 +265,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 8,
                             CountyId = 9,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4846),
                             VisitDate = new DateTime(2002, 10, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VisitorId = 3
                         },
@@ -273,7 +273,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 9,
                             CountyId = 9,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4847),
                             VisitDate = new DateTime(2011, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VisitorId = 3
                         },
@@ -281,7 +281,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 10,
                             CountyId = 8,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4848),
                             VisitDate = new DateTime(2020, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VisitorId = 3
                         });
@@ -329,7 +329,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 1,
                             BirthDate = new DateTime(1992, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4775),
                             Gender = 0,
                             Name = "Eren",
                             Surname = "Gaygusuz",
@@ -339,7 +339,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 2,
                             BirthDate = new DateTime(1995, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4778),
                             Gender = 0,
                             Name = "Eren",
                             Surname = "Özcan"
@@ -348,7 +348,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 3,
                             BirthDate = new DateTime(1996, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4779),
                             Gender = 1,
                             Name = "Ceyda",
                             Surname = "Meyda",
@@ -358,7 +358,7 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 4,
                             BirthDate = new DateTime(1990, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4781),
                             Gender = 1,
                             Name = "Tuğçe",
                             Surname = "Güzel"
@@ -393,13 +393,13 @@ namespace VisitorBook.DAL.Migrations
                         {
                             Id = 1,
                             CountyId = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4755)
                         },
                         new
                         {
                             Id = 2,
                             CountyId = 7,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            CreatedDate = new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4756)
                         });
                 });
 

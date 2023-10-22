@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata;
 using VisitorBook.Core.Models;
 
 namespace VisitorBook.DAL.Data
@@ -28,19 +27,22 @@ namespace VisitorBook.DAL.Data
                 {
                     Id = 1,
                     Name = "Ankara",
-                    Code = "06"
+                    Code = "06",
+                    CreatedDate = DateTime.Now
                 },
                 new City()
                 {
                     Id = 2,
                     Name = "İzmir",
-                    Code = "35"
+                    Code = "35",
+                    CreatedDate = DateTime.Now
                 },
                 new City()
                 {
                     Id = 3,
                     Name = "İstanbul",
-                    Code = "34"
+                    Code = "34",
+                    CreatedDate = DateTime.Now
                 }
             );
 
@@ -51,7 +53,8 @@ namespace VisitorBook.DAL.Data
                     Name = "Çankaya",
                     Latitude = 39.7966881,
                     Longitude = 32.2233547,
-                    CityId = 1
+                    CityId = 1,
+                    CreatedDate = DateTime.Now
                 },
                 new County()
                 {
@@ -59,7 +62,8 @@ namespace VisitorBook.DAL.Data
                     Name = "Mamak",
                     Latitude = 39.9051372,
                     Longitude = 32.692094,
-                    CityId = 1
+                    CityId = 1,
+                    CreatedDate = DateTime.Now
                 },
                 new County()
                 {
@@ -67,7 +71,8 @@ namespace VisitorBook.DAL.Data
                     Name = "Keçiören",
                     Latitude = 40.086525,
                     Longitude = 32.820312,
-                    CityId = 1
+                    CityId = 1,
+                    CreatedDate = DateTime.Now
                 },
                 new County()
                 {
@@ -75,7 +80,8 @@ namespace VisitorBook.DAL.Data
                     Name = "Konak",
                     Latitude = 38.4220527,
                     Longitude = 26.964354,
-                    CityId = 2
+                    CityId = 2,
+                    CreatedDate = DateTime.Now
                 },
                 new County()
                 {
@@ -83,7 +89,8 @@ namespace VisitorBook.DAL.Data
                     Name = "Bayraklı",
                     Latitude = 38.4785441,
                     Longitude = 27.0750096,
-                    CityId = 2
+                    CityId = 2,
+                    CreatedDate = DateTime.Now
                 },
                 new County()
                 {
@@ -91,7 +98,8 @@ namespace VisitorBook.DAL.Data
                     Name = "Karşıyaka",
                     Latitude = 38.5013997,
                     Longitude = 26.96218,
-                    CityId = 2
+                    CityId = 2,
+                    CreatedDate = DateTime.Now
                 },
                 new County()
                 {
@@ -99,7 +107,8 @@ namespace VisitorBook.DAL.Data
                     Name = "Kadıköy",
                     Latitude = 40.9812333,
                     Longitude = 28.9806526,
-                    CityId = 3
+                    CityId = 3,
+                    CreatedDate = DateTime.Now
                 },
                 new County()
                 {
@@ -107,7 +116,8 @@ namespace VisitorBook.DAL.Data
                     Name = "Ataşehir",
                     Latitude = 40.9844203,
                     Longitude = 28.9744544,
-                    CityId = 3
+                    CityId = 3,
+                    CreatedDate = DateTime.Now
                 },
                 new County()
                 {
@@ -115,7 +125,8 @@ namespace VisitorBook.DAL.Data
                     Name = "Avcılar",
                     Latitude = 41.0248652,
                     Longitude = 28.6377967,
-                    CityId = 3
+                    CityId = 3,
+                    CreatedDate = DateTime.Now
                 }
             );
 
@@ -123,12 +134,14 @@ namespace VisitorBook.DAL.Data
                 new VisitorAddress()
                 {
                     Id = 1,
-                    CountyId = 1
+                    CountyId = 1,
+                    CreatedDate = DateTime.Now
                 },
                 new VisitorAddress()
                 {
                     Id = 2,
-                    CountyId = 7
+                    CountyId = 7,
+                    CreatedDate = DateTime.Now
                 }
             );
 
@@ -140,7 +153,8 @@ namespace VisitorBook.DAL.Data
                     Surname = "Gaygusuz",
                     BirthDate = new DateTime(day: 14, month: 12, year: 1992),
                     Gender = Gender.Man,
-                    VisitorAddressId = 1
+                    VisitorAddressId = 1,
+                    CreatedDate = DateTime.Now
                 },
                 new Visitor()
                 {
@@ -149,7 +163,8 @@ namespace VisitorBook.DAL.Data
                     Surname = "Özcan",
                     BirthDate = new DateTime(day: 05, month: 11, year: 1995),
                     Gender = Gender.Man,
-                    VisitorAddressId = null
+                    VisitorAddressId = null,
+                    CreatedDate = DateTime.Now
                 },
                 new Visitor()
                 {
@@ -158,7 +173,8 @@ namespace VisitorBook.DAL.Data
                     Surname = "Meyda",
                     BirthDate = new DateTime(day: 22, month: 3, year: 1996),
                     Gender = Gender.Woman,
-                    VisitorAddressId = 2
+                    VisitorAddressId = 2,
+                    CreatedDate = DateTime.Now
                 },
                 new Visitor()
                 {
@@ -167,7 +183,8 @@ namespace VisitorBook.DAL.Data
                     Surname = "Güzel",
                     BirthDate = new DateTime(day: 11, month: 5, year: 1990),
                     Gender = Gender.Woman,
-                    VisitorAddressId = null
+                    VisitorAddressId = null,
+                    CreatedDate = DateTime.Now
                 }
             );
 
@@ -177,56 +194,64 @@ namespace VisitorBook.DAL.Data
                     Id = 1,
                     VisitorId = 1,
                     CountyId = 2,
-                    VisitDate = new DateTime(day: 2, month: 11, year: 2015)
+                    VisitDate = new DateTime(day: 2, month: 11, year: 2015),
+                    CreatedDate = DateTime.Now
                 },
                 new VisitedCounty()
                 {
                     Id = 2,
                     VisitorId = 1,
                     CountyId = 5,
-                    VisitDate = new DateTime(day: 4, month: 10, year: 2015)
+                    VisitDate = new DateTime(day: 4, month: 10, year: 2015),
+                    CreatedDate = DateTime.Now
                 },
                 new VisitedCounty()
                 {
                     Id = 3,
                     VisitorId = 1,
                     CountyId = 7,
-                    VisitDate = new DateTime(day: 24, month: 1, year: 2017)
+                    VisitDate = new DateTime(day: 24, month: 1, year: 2017),
+                    CreatedDate = DateTime.Now
                 },
                 new VisitedCounty()
                 {
                     Id = 4,
                     VisitorId = 1,
                     CountyId = 8,
-                    VisitDate = new DateTime(day: 16, month: 8, year: 2022)
+                    VisitDate = new DateTime(day: 16, month: 8, year: 2022),
+                    CreatedDate = DateTime.Now
                 },
                 new VisitedCounty()
                 {
                     Id = 7,
                     VisitorId = 3,
                     CountyId = 1,
-                    VisitDate = new DateTime(day: 1, month: 7, year: 2010)
+                    VisitDate = new DateTime(day: 1, month: 7, year: 2010),
+                    CreatedDate = DateTime.Now
                 },
                 new VisitedCounty()
                 {
                     Id = 8,
                     VisitorId = 3,
                     CountyId = 9,
-                    VisitDate = new DateTime(day: 23, month: 10, year: 2002)
+                    VisitDate = new DateTime(day: 23, month: 10, year: 2002),
+                    CreatedDate = DateTime.Now
                 },
                 new VisitedCounty()
                 {
                     Id = 9,
                     VisitorId = 3,
                     CountyId = 9,
-                    VisitDate = new DateTime(day: 15, month: 2, year: 2011)
+                    VisitDate = new DateTime(day: 15, month: 2, year: 2011),
+                    CreatedDate = DateTime.Now
                 },
                 new VisitedCounty()
                 {
                     Id = 10,
                     VisitorId = 3,
                     CountyId = 8,
-                    VisitDate = new DateTime(day: 16, month: 5, year: 2020)
+                    VisitDate = new DateTime(day: 16, month: 5, year: 2020),
+                    CreatedDate = DateTime.Now
                 }
             );
 

@@ -1,11 +1,4 @@
-﻿using GeoTimeZone;
-using System;
-using System.Collections.Generic;
-using System.Device.Location;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TimeZoneConverter;
+﻿using System.Device.Location;
 
 namespace VisitorBook.Core.Utilities
 {

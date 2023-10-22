@@ -7,7 +7,6 @@ using VisitorBook.Core.Models;
 using VisitorBook.Core.Utilities;
 using VisitorBook.UI.Languages;
 using VisitorBook.UI.ViewModels;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace VisitorBook.UI.Controllers
 {

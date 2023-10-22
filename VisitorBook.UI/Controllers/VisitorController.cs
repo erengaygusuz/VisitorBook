@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
-using System.Drawing.Printing;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Models;
 using VisitorBook.Core.Utilities;
@@ -16,18 +15,20 @@ namespace VisitorBook.UI.Controllers
         private readonly IService<County> _countyService;
         private readonly IService<City> _cityService;
         private readonly IService<Visitor> _visitorService;
+        private readonly IService<VisitorAddress> _visitorAddressService;
         private readonly IStringLocalizer<Language> _localization;
 
         [BindProperty]
         public VisitorViewModel VisitorViewModel { get; set; }
 
         public VisitorController(IService<County> countyService, IService<City> cityService,
-            IService<Visitor> visitorService, IStringLocalizer<Language> localization)
+            IService<Visitor> visitorService, IStringLocalizer<Language> localization, IService<VisitorAddress> visitorAddressService)
         {
             _countyService = countyService;
             _cityService = cityService;
             _visitorService = visitorService;
             _localization = localization;
+            _visitorAddressService = visitorAddressService;
         }
 
         public IActionResult Index()
@@ -190,13 +191,18 @@ namespace VisitorBook.UI.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
-            var visitor = await _visitorService.GetAsync(u => u.Id == id);
+            var visitor = await _visitorService.GetAsync(u => u.Id == id, include: u => u.Include(a => a.VisitorAddress));
 
             var visitorName = visitor.Name + " " + visitor.Surname;
 
             if (visitor != null)
             {
                 await _visitorService.RemoveAsync(visitor);
+
+                if (visitor.VisitorAddress != null)
+                {
+                    await _visitorAddressService.RemoveAsync(visitor.VisitorAddress);
+                }
             }
 
             return Json(new { message = _localization["Visitors.Notification.Delete.Text"].Value });

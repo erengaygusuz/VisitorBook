@@ -132,9 +132,9 @@ namespace VisitorBook.DAL.Migrations
                 columns: new[] { "Id", "Code", "CreatedDate", "Name", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, "06", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ankara", null },
-                    { 2, "35", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "İzmir", null },
-                    { 3, "34", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "İstanbul", null }
+                    { 1, "06", new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4560), "Ankara", null },
+                    { 2, "35", new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4573), "İzmir", null },
+                    { 3, "34", new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4574), "İstanbul", null }
                 });
 
             migrationBuilder.InsertData(
@@ -142,8 +142,8 @@ namespace VisitorBook.DAL.Migrations
                 columns: new[] { "Id", "BirthDate", "CreatedDate", "Gender", "Name", "Surname", "UpdatedDate", "VisitorAddressId" },
                 values: new object[,]
                 {
-                    { 2, new DateTime(1995, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "Eren", "Özcan", null, null },
-                    { 4, new DateTime(1990, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Tuğçe", "Güzel", null, null }
+                    { 2, new DateTime(1995, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4778), 0, "Eren", "Özcan", null, null },
+                    { 4, new DateTime(1990, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4781), 1, "Tuğçe", "Güzel", null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -151,15 +151,15 @@ namespace VisitorBook.DAL.Migrations
                 columns: new[] { "Id", "CityId", "CreatedDate", "Latitude", "Longitude", "Name", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 39.796688099999997, 32.223354700000002, "Çankaya", null },
-                    { 2, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 39.905137199999999, 32.692093999999997, "Mamak", null },
-                    { 3, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 40.086525000000002, 32.820312000000001, "Keçiören", null },
-                    { 4, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 38.422052700000002, 26.964354, "Konak", null },
-                    { 5, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 38.478544100000001, 27.075009600000001, "Bayraklı", null },
-                    { 6, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 38.5013997, 26.96218, "Karşıyaka", null },
-                    { 7, 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 40.9812333, 28.980652599999999, "Kadıköy", null },
-                    { 8, 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 40.984420299999996, 28.974454399999999, "Ataşehir", null },
-                    { 9, 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 41.024865200000001, 28.637796699999999, "Avcılar", null }
+                    { 1, 1, new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4720), 39.796688099999997, 32.223354700000002, "Çankaya", null },
+                    { 2, 1, new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4721), 39.905137199999999, 32.692093999999997, "Mamak", null },
+                    { 3, 1, new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4723), 40.086525000000002, 32.820312000000001, "Keçiören", null },
+                    { 4, 2, new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4724), 38.422052700000002, 26.964354, "Konak", null },
+                    { 5, 2, new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4726), 38.478544100000001, 27.075009600000001, "Bayraklı", null },
+                    { 6, 2, new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4727), 38.5013997, 26.96218, "Karşıyaka", null },
+                    { 7, 3, new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4728), 40.9812333, 28.980652599999999, "Kadıköy", null },
+                    { 8, 3, new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4730), 40.984420299999996, 28.974454399999999, "Ataşehir", null },
+                    { 9, 3, new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4731), 41.024865200000001, 28.637796699999999, "Avcılar", null }
                 });
 
             migrationBuilder.InsertData(
@@ -167,8 +167,8 @@ namespace VisitorBook.DAL.Migrations
                 columns: new[] { "Id", "CountyId", "CreatedDate", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 2, 7, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null }
+                    { 1, 1, new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4755), null },
+                    { 2, 7, new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4756), null }
                 });
 
             migrationBuilder.InsertData(
@@ -176,8 +176,8 @@ namespace VisitorBook.DAL.Migrations
                 columns: new[] { "Id", "BirthDate", "CreatedDate", "Gender", "Name", "Surname", "UpdatedDate", "VisitorAddressId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(1992, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "Eren", "Gaygusuz", null, 1 },
-                    { 3, new DateTime(1996, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Ceyda", "Meyda", null, 2 }
+                    { 1, new DateTime(1992, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4775), 0, "Eren", "Gaygusuz", null, 1 },
+                    { 3, new DateTime(1996, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4779), 1, "Ceyda", "Meyda", null, 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -185,14 +185,14 @@ namespace VisitorBook.DAL.Migrations
                 columns: new[] { "Id", "CountyId", "CreatedDate", "UpdatedDate", "VisitDate", "VisitorId" },
                 values: new object[,]
                 {
-                    { 1, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2015, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
-                    { 2, 5, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2015, 10, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
-                    { 3, 7, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2017, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
-                    { 4, 8, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2022, 8, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
-                    { 7, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2010, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 },
-                    { 8, 9, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2002, 10, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 },
-                    { 9, 9, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2011, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 },
-                    { 10, 8, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2020, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 }
+                    { 1, 2, new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4839), null, new DateTime(2015, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 2, 5, new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4840), null, new DateTime(2015, 10, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 3, 7, new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4842), null, new DateTime(2017, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 4, 8, new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4843), null, new DateTime(2022, 8, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 7, 1, new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4845), null, new DateTime(2010, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 },
+                    { 8, 9, new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4846), null, new DateTime(2002, 10, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 },
+                    { 9, 9, new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4847), null, new DateTime(2011, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 },
+                    { 10, 8, new DateTime(2023, 10, 22, 18, 9, 8, 946, DateTimeKind.Local).AddTicks(4848), null, new DateTime(2020, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 }
                 });
 
             migrationBuilder.CreateIndex(
