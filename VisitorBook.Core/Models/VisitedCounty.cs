@@ -12,11 +12,11 @@ namespace VisitorBook.Core.Models
 {
     public class VisitedCounty : BaseModel
     {
-        public int VisitorId { get; set; }
+        public int VisitorAddressId { get; set; }
 
         [ValidateNever]
-        [ForeignKey("VisitorId")]
-        public Visitor Visitor { get; set; }
+        [ForeignKey("VisitorAddressId")]
+        public VisitorAddress VisitorAddress { get; set; }
 
         public int CountyId { get; set; }
 
@@ -24,6 +24,6 @@ namespace VisitorBook.Core.Models
         [ForeignKey("CountyId")]
         public County County { get; set; }
 
-        public DateTime VisitDate { get; set; }        
+        public DateTime VisitDate { get; set; }
     }
 }

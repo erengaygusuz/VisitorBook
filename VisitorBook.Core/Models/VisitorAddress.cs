@@ -11,6 +11,12 @@ namespace VisitorBook.Core.Models
 {
     public class VisitorAddress : BaseModel
     {
+        public int VisitorId { get; set; }
+
+        [ValidateNever]
+        [ForeignKey("VisitorId")]
+        public Visitor Visitor { get; set; }
+
         public int CountyId { get; set; }
 
         [ValidateNever]
