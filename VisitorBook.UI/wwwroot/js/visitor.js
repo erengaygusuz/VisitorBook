@@ -95,7 +95,14 @@ function loadDataTable(
 
             $('#ExportBtn').prependTo($('#outside'))
         },
-        ajax: { url: '/visitor/getall' },
+        processing: true,
+        serverSide: true,
+        filter: true,
+        ajax: {
+            url: '/visitor/getall',
+            type: "POST",
+            datatype: "json"
+        },
         columns: [
             { data: 'name', width: '30%' },
             { data: 'surname', width: '30%' },

@@ -31,14 +31,51 @@ namespace VisitorBook.UI.Controllers
             return View();
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> GetAll()
         {
-            var counties = await _countyService.GetAllAsync(include: u => u.Include(a => a.City));
+            var draw = Request.Form["draw"].FirstOrDefault();
+            var start = Request.Form["start"].FirstOrDefault();
+            var length = Request.Form["length"].FirstOrDefault();
+            var sortColumnIndex = Request.Form["order[0][column]"].FirstOrDefault();
+            var sortColumnDirection = Request.Form["order[0][dir]"].FirstOrDefault();
+            var searchValue = Request.Form["search[value]"].FirstOrDefault();
+            int pageSize = length != null ? Convert.ToInt32(length) : 0;
+            int skip = start != null ? Convert.ToInt32(start) : 0;
+            int page = (skip / pageSize) + 1;
+
+            var counties = await _countyService.GetAllAsync(
+                    page: page, pageSize: pageSize,
+                    expression: (!string.IsNullOrEmpty(searchValue)) ? vc => vc.Name.Contains(searchValue) : null,
+                    include: u => u.Include(a => a.City),
+                    orderBy: (sortColumnDirection == "asc") ?
+                        (o =>
+                        o switch
+                        {
+                            _ when sortColumnIndex == "0" => o.OrderBy(s => s.Name),
+                            _ when sortColumnIndex == "1" => o.OrderBy(s => s.City.Name),
+                            _ when sortColumnIndex == "2" => o.OrderBy(s => s.Latitude),
+                            _ when sortColumnIndex == "3" => o.OrderBy(s => s.Longitude),
+                            _ => o.OrderBy(s => s.Name)
+                        })
+                         :
+                        (o =>
+                        o switch
+                        {
+                            _ when sortColumnIndex == "0" => o.OrderByDescending(s => s.Name),
+                            _ when sortColumnIndex == "1" => o.OrderByDescending(s => s.City.Name),
+                            _ when sortColumnIndex == "2" => o.OrderByDescending(s => s.Latitude),
+                            _ when sortColumnIndex == "3" => o.OrderByDescending(s => s.Longitude),
+                            _ => o.OrderByDescending(s => s.Name)
+                        })
+                );
 
             return Json(new
             {
-                data = counties
+                draw = draw,
+                recordsFiltered = counties.Item2,
+                recordsTotal = counties.Item1,
+                data = counties.Item3
             });
         }
 

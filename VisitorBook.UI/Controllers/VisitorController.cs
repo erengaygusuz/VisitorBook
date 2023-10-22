@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
+using System.Drawing.Printing;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Models;
 using VisitorBook.Core.Utilities;
@@ -34,22 +35,57 @@ namespace VisitorBook.UI.Controllers
             return View();
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> GetAll()
         {
-            var visitors = _visitorService.GetAllAsync().GetAwaiter().GetResult().ToList()
-                .Select(u => new
+            var draw = Request.Form["draw"].FirstOrDefault();
+            var start = Request.Form["start"].FirstOrDefault();
+            var length = Request.Form["length"].FirstOrDefault();
+            var sortColumnIndex = Request.Form["order[0][column]"].FirstOrDefault();
+            var sortColumnDirection = Request.Form["order[0][dir]"].FirstOrDefault();
+            var searchValue = Request.Form["search[value]"].FirstOrDefault();
+            int pageSize = length != null ? Convert.ToInt32(length) : 0;
+            int skip = start != null ? Convert.ToInt32(start) : 0;
+            int page = (skip / pageSize) + 1;
+
+            var visitors = await _visitorService.GetAllAsync(
+                    page: page, pageSize: pageSize,
+                    expression: (!string.IsNullOrEmpty(searchValue)) ? vc => vc.Name.Contains(searchValue) : null,
+                    orderBy: (sortColumnDirection == "asc") ?
+                        (o =>
+                        o switch
+                        {
+                            _ when sortColumnIndex == "0" => o.OrderBy(s => s.Name),
+                            _ when sortColumnIndex == "1" => o.OrderBy(s => s.Surname),
+                            _ when sortColumnIndex == "2" => o.OrderBy(s => s.BirthDate),
+                            _ when sortColumnIndex == "3" => o.OrderBy(s => s.Gender),
+                            _ => o.OrderBy(s => s.Name)
+                        })
+                         :
+                        (o =>
+                        o switch
+                        {
+                            _ when sortColumnIndex == "0" => o.OrderByDescending(s => s.Name),
+                            _ when sortColumnIndex == "1" => o.OrderByDescending(s => s.Surname),
+                            _ when sortColumnIndex == "2" => o.OrderByDescending(s => s.BirthDate),
+                            _ when sortColumnIndex == "3" => o.OrderByDescending(s => s.Gender),
+                            _ => o.OrderByDescending(s => s.Name)
+                        })
+                );
+
+            return Json(new
+            {
+                draw = draw,
+                recordsFiltered = visitors.Item2,
+                recordsTotal = visitors.Item1,
+                data = visitors.Item3.Select(u => new
                 {
                     Id = u.Id,
                     Name = u.Name,
                     Surname = u.Surname,
                     Gender = u.Gender.ToString(),
                     BirthDate = u.BirthDate
-                });
-
-            return Json(new
-            {
-                data = visitors
+                })
             });
         }
 

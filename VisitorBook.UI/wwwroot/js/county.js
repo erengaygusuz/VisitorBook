@@ -93,7 +93,14 @@ function loadDataTable(
 
             $('#ExportBtn').prependTo($('#outside'))
         },
-        ajax: { url: '/county/getall' },
+        processing: true,
+        serverSide: true,
+        filter: true,
+        ajax: {
+            url: '/county/getall',
+            type: "POST",
+            datatype: "json"
+        },
         columns: [
             { data: 'name', width: '25%' },
             { data: 'city.name', width: '25%' },
