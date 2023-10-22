@@ -7,6 +7,7 @@ using VisitorBook.Core.Models;
 using VisitorBook.Core.Utilities;
 using VisitorBook.UI.Languages;
 using VisitorBook.UI.ViewModels;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace VisitorBook.UI.Controllers
 {
@@ -51,27 +52,27 @@ namespace VisitorBook.UI.Controllers
 
             var visitedCounties = await _visitedCountyService.GetAllAsync(
                     page: page, pageSize: pageSize,
-                    expression: (!string.IsNullOrEmpty(searchValue)) ? vc => vc.VisitorAddress.Visitor.Name.Contains(searchValue) : null,
-                    include: u => u.Include(a => a.VisitorAddress).ThenInclude(a => a.Visitor).Include(a => a.County).ThenInclude(b => b.City),
+                    expression: (!string.IsNullOrEmpty(searchValue)) ? vc => vc.Visitor.Name.Contains(searchValue) : null,
+                    include: u => u.Include(a => a.Visitor).Include(a => a.County).ThenInclude(b => b.City),
                     orderBy: (sortColumnDirection == "asc") ?
                         (o =>
                         o switch
                         {
-                            _ when sortColumnIndex == "0" => o.OrderBy(s => s.VisitorAddress.Visitor.Name + " " + s.VisitorAddress.Visitor.Surname),
+                            _ when sortColumnIndex == "0" => o.OrderBy(s => s.Visitor.Name + " " + s.Visitor.Surname),
                             _ when sortColumnIndex == "1" => o.OrderBy(s => s.County.Name),
                             _ when sortColumnIndex == "2" => o.OrderBy(s => s.County.City.Name),
                             _ when sortColumnIndex == "3" => o.OrderBy(s => s.VisitDate),
-                            _ => o.OrderBy(s => s.VisitorAddress.Visitor.Name + " " + s.VisitorAddress.Visitor.Surname)
+                            _ => o.OrderBy(s => s.Visitor.Name + " " + s.Visitor.Surname)
                         })
                          :
                         (o =>
                         o switch
                         {
-                            _ when sortColumnIndex == "0" => o.OrderByDescending(s => s.VisitorAddress.Visitor.Name + " " + s.VisitorAddress.Visitor.Surname),
+                            _ when sortColumnIndex == "0" => o.OrderByDescending(s => s.Visitor.Name + " " + s.Visitor.Surname),
                             _ when sortColumnIndex == "1" => o.OrderByDescending(s => s.County.Name),
                             _ when sortColumnIndex == "2" => o.OrderByDescending(s => s.County.City.Name),
                             _ when sortColumnIndex == "3" => o.OrderByDescending(s => s.VisitDate),
-                            _ => o.OrderByDescending(s => s.VisitorAddress.Visitor.Name + " " + s.VisitorAddress.Visitor.Surname)
+                            _ => o.OrderByDescending(s => s.Visitor.Name + " " + s.Visitor.Surname)
                         })
                 );
 
@@ -96,7 +97,7 @@ namespace VisitorBook.UI.Controllers
                        Text = u.Name,
                        Value = u.Id.ToString()
                    }),
-                VisitorList = (await _visitorService.GetAllAsync(v => v.VisitorAddress != null, include: u => u.Include(a => a.VisitorAddress)))
+                VisitorList = (await _visitorService.GetAllAsync(v => v.VisitorAddress != null))
                    .Select(u => new SelectListItem
                    {
                        Text = u.Name + " " + u.Surname,
@@ -145,7 +146,7 @@ namespace VisitorBook.UI.Controllers
                     var visitedCounty = await _visitedCountyService.GetAsync(u => u.Id == id);
 
                     visitedCounty.VisitDate = VisitedCountyViewModel.VisitedCounty.VisitDate;
-                    visitedCounty.VisitorAddress = VisitedCountyViewModel.VisitedCounty.VisitorAddress;
+                    visitedCounty.VisitorId = VisitedCountyViewModel.VisitedCounty.VisitorId;
 
                     var newCountyWithCity = await _countyService.GetAsync(u => u.Id == VisitedCountyViewModel.VisitedCounty.CountyId, include: u => u.Include(a => a.City));
 
@@ -165,7 +166,7 @@ namespace VisitorBook.UI.Controllers
         {
             var visitedCounty = await _visitedCountyService.GetAsync(u => u.Id == id);
 
-            var visitor = await _visitorService.GetAsync(u => u.Id == visitedCounty.VisitorAddress.Visitor.Id);
+            var visitor = await _visitorService.GetAsync(u => u.Id == visitedCounty.VisitorId);
             var county = await _countyService.GetAsync(u => u.Id == visitedCounty.CountyId, include: u => u.Include(a => a.City));
 
             var visitedCountyInfo = "Visited County Record for " + visitor.Name + " " + visitor.Surname + " at " + county.Name + "/" + county.City.Name;

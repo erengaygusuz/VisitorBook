@@ -35,13 +35,12 @@
             </div>
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="VisitedCounty.VisitorAddress.Visitor.Id"
+                    <label asp-for="VisitedCounty.VisitorId"
                         class="control-label">@localization["VisitedCounties.Table.Column1.Text"]</label>
-                    <select asp-for="VisitedCounty.VisitorAddress.Visitor.Id" asp-items="@Model.VisitorList"
-                        class="form-select">
+                    <select asp-for="VisitedCounty.VisitorId" asp-items="@Model.VisitorList" class="form-select">
                         <option disabled selected>@localization["AddOrEditModal.VisitorSelection.Text"]</option>
                     </select>
-                    <span asp-validation-for="VisitedCounty.VisitorAddress.Visitor.Id" class=" text-danger"></span>
+                    <span asp-validation-for="VisitedCounty.VisitorId" class=" text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4">

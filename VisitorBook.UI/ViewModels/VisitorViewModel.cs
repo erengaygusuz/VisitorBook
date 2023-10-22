@@ -6,6 +6,7 @@ namespace VisitorBook.UI.ViewModels
 {
     public class VisitorViewModel
     {
+        public Visitor Visitor { get; set; }
         [ValidateNever]
         public VisitorAddress VisitorAddress { get; set; }
         [ValidateNever]
