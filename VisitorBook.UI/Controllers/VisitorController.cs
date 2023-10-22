@@ -82,7 +82,7 @@ namespace VisitorBook.UI.Controllers
             else
             {
                 // update
-                VisitorViewModel.Visitor = await _visitorService.GetAsync(u => u.Id == id, include: u => u.Include(a => a.VisitorAddress));
+                VisitorViewModel.Visitor = await _visitorService.GetAsync(u => u.Id == id, include: u => u.Include(a => a.VisitorAddress).ThenInclude(b => b.County));
 
                 if (VisitorViewModel.Visitor.VisitorAddress != null)
                 {
