@@ -89,11 +89,11 @@ namespace VisitorBook.UI.Controllers
             });
         }
 
-        public IActionResult AddOrEdit(int id)
+        public async Task<IActionResult> AddOrEdit(int id)
         {
             CountyViewModel = new CountyViewModel()
             {
-                CityList = _cityService.GetAllAsync().GetAwaiter().GetResult().ToList()
+                CityList = (await _cityService.GetAllAsync())
                    .Select(u => new SelectListItem
                    {
                        Text = u.Name,
@@ -111,7 +111,7 @@ namespace VisitorBook.UI.Controllers
             else
             {
                 // update
-                CountyViewModel.County = _countyService.GetAsync(u => u.Id == id).GetAwaiter().GetResult();
+                CountyViewModel.County = await _countyService.GetAsync(u => u.Id == id);
 
                 return View(CountyViewModel);
             }
@@ -128,14 +128,14 @@ namespace VisitorBook.UI.Controllers
                 {
                     await _countyService.AddAsync(CountyViewModel.County);
 
-                    return Json(new { isValid = true, message = _localization["Countys.Notification.Add.Text"].Value });
+                    return Json(new { isValid = true, message = _localization["Counties.Notification.Add.Text"].Value });
                 }
 
                 else
                 {
                     await _countyService.UpdateAsync(CountyViewModel.County);
 
-                    return Json(new { isValid = true, message = _localization["Countys.Notification.Edit.Text"].Value });
+                    return Json(new { isValid = true, message = _localization["Counties.Notification.Edit.Text"].Value });
                 }
             }
 
@@ -154,7 +154,7 @@ namespace VisitorBook.UI.Controllers
                 await _countyService.RemoveAsync(county);
             }
 
-            return Json(new { message = _localization["Countys.Notification.Delete.Text"].Value });
+            return Json(new { message = _localization["Counties.Notification.Delete.Text"].Value });
         }
     }
 }

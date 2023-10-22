@@ -138,7 +138,7 @@ namespace VisitorBook.UI.Controllers
                 {
                     await _visitedCountyService.AddAsync(VisitedCountyViewModel.VisitedCounty);
 
-                    return Json(new { isValid = true, message = _localization["VisitedCountys.Notification.Add.Text"].Value });
+                    return Json(new { isValid = true, message = _localization["VisitedCounties.Notification.Add.Text"].Value });
                 }
 
                 else
@@ -154,7 +154,7 @@ namespace VisitorBook.UI.Controllers
 
                     await _visitedCountyService.UpdateAsync(visitedCounty);
 
-                    return Json(new { isValid = true, message = _localization["VisitedCountys.Notification.Edit.Text"].Value });
+                    return Json(new { isValid = true, message = _localization["VisitedCounties.Notification.Edit.Text"].Value });
                 }
             }
 

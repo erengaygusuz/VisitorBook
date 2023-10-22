@@ -100,7 +100,7 @@ namespace VisitorBook.UI.Controllers
                         Text = u.ToString(),
                         Value = u.ToString()
                     }),
-                CityList = _cityService.GetAllAsync().GetAwaiter().GetResult().ToList()
+                CityList = (await _cityService.GetAllAsync())
                    .Select(u => new SelectListItem
                    {
                        Text = u.Name,
@@ -122,7 +122,7 @@ namespace VisitorBook.UI.Controllers
 
                 if (VisitorViewModel.Visitor.VisitorAddress != null)
                 {
-                    VisitorViewModel.CountyList = _countyService.GetAllAsync(u => u.CityId == VisitorViewModel.Visitor.VisitorAddress.County.CityId).GetAwaiter().GetResult().ToList()
+                    VisitorViewModel.CountyList = (await _countyService.GetAllAsync(u => u.CityId == VisitorViewModel.Visitor.VisitorAddress.County.CityId))
                    .Select(u => new SelectListItem
                    {
                        Text = u.Name,

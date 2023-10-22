@@ -5,6 +5,7 @@ using System.Globalization;
 using VisitorBook.BL.Concrete;
 using VisitorBook.BL.Services;
 using VisitorBook.Core.Abstract;
+using VisitorBook.Core.Utilities;
 using VisitorBook.DAL.Concrete;
 using VisitorBook.DAL.Data;
 
@@ -41,6 +42,7 @@ builder.Services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(VisitorStatisticService));
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
+builder.Services.AddAutoMapper(typeof(MapProfile));
 
 var app = builder.Build();
 
