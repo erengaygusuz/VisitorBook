@@ -16,9 +16,11 @@ namespace VisitorBook.BL.Services
     public class VisitorStatisticService
     {
         private readonly IRepository<VisitedCounty> _visitedCountyRepository;
+        private readonly LocationHelper _locationHelper;
 
-        public VisitorStatisticService(IRepository<VisitedCounty> visitedCountyRepository)
+        public VisitorStatisticService(IRepository<VisitedCounty> visitedCountyRepository, LocationHelper locationHelper)
         {
+            _locationHelper = locationHelper;
             _visitedCountyRepository = visitedCountyRepository;
         }
 
@@ -61,7 +63,7 @@ namespace VisitorBook.BL.Services
         public async Task<Tuple<string, double>> GetLongestDistanceByVisitorOneTimeAsync()
         {
             var visitedCountyWithVisitorAndVisitorAddress = _visitedCountyRepository
-                .GetAll(v => v.Visitor.VisitorAddress != null, include: u => u.Include(a => a.County).Include(a => a.Visitor).ThenInclude(a => a.VisitorAddress));
+                .GetAll(v => v.Visitor.VisitorAddress != null, include: u => u.Include(a => a.County).Include(a => a.Visitor).ThenInclude(a => a.VisitorAddress).ThenInclude(i => i.County));
 
             var groupedVisitedList = visitedCountyWithVisitorAndVisitorAddress.GroupBy(a => a.VisitorId);
 
@@ -79,7 +81,7 @@ namespace VisitorBook.BL.Services
         public async Task<Tuple<string, double>> GetLongestDistanceByVisitorAllTimeAsync()
         {
             var visitedCountyWithVisitorAndVisitorAddress = _visitedCountyRepository
-                .GetAll(v => v.Visitor.VisitorAddress != null, include: u => u.Include(a => a.County).Include(a => a.Visitor).ThenInclude(a => a.VisitorAddress));
+                .GetAll(v => v.Visitor.VisitorAddress != null, include: u => u.Include(a => a.County).Include(a => a.Visitor).ThenInclude(a => a.VisitorAddress).ThenInclude(i => i.County));
 
             var groupedVisitedList = visitedCountyWithVisitorAndVisitorAddress.GroupBy(a => a.VisitorId);
 
@@ -96,7 +98,7 @@ namespace VisitorBook.BL.Services
 
         private double CalculateDistance(VisitedCounty visitedCounty)
         {
-            return Math.Round(LocationHelper.GetDistance(
+            return Math.Round(_locationHelper.GetDistance(
                    new Location()
                    {
                        Latitude = visitedCounty.Visitor.VisitorAddress.County.Latitude,

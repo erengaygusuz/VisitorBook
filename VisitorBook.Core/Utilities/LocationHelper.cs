@@ -17,7 +17,7 @@ namespace VisitorBook.Core.Utilities
 
     public class LocationHelper
     {
-        public static double GetDistance(Location from, Location to)
+        public double GetDistance(Location from, Location to)
         {
             var fromCoordinate = new GeoCoordinate(from.Latitude, from.Longitude);
             var toCoordinate = new GeoCoordinate(to.Latitude, to.Longitude);

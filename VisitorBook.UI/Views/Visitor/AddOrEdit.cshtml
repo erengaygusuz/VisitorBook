@@ -49,24 +49,24 @@
             </div>
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="Visitor.VisitorAddress.County.CityId"
+                    <label asp-for="Visitor.VisitorAddress"
                         class="control-label">@localization["Visitors.Table.Column6.Text"]</label>
-                    <select id="citylist" onchange="cityChange()" asp-for="Visitor.VisitorAddress.County.CityId"
+                    <select id="citylist" onchange="cityChange()" asp-for="Visitor.VisitorAddress"
                         asp-items="@Model.CityList" class="form-select">
                         <option disabled selected value="0">@localization["AddOrEditModal.CitySelection.Text"]</option>
                     </select>
-                    <span asp-validation-for="Visitor.VisitorAddress.County.CityId" class="text-danger"></span>
+                    <span asp-validation-for="Visitor.VisitorAddress" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4" id="countylist">
                 <div class="form-group">
-                    <label asp-for="Visitor.VisitorAddress.CountyId"
+                    <label asp-for="VisitorAddress.CountyId"
                         class="control-label">@localization["Visitors.Table.Column7.Text"]</label>
-                    <select asp-for="Visitor.VisitorAddress.CountyId" asp-items="@Model.CountyList" class="form-select">
+                    <select asp-for="VisitorAddress.CountyId" asp-items="@Model.CountyList" class="form-select">
                         <option disabled selected value="0">@localization["AddOrEditModal.CountySelection.Text"]
                         </option>
                     </select>
-                    <span asp-validation-for="Visitor.VisitorAddress.CountyId" class="text-danger"></span>
+                    <span asp-validation-for="VisitorAddress.CountyId" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4">

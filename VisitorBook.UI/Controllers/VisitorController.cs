@@ -94,6 +94,7 @@ namespace VisitorBook.UI.Controllers
             VisitorViewModel = new VisitorViewModel()
             {
                 Visitor = new Visitor(),
+                VisitorAddress = new VisitorAddress(),
                 GenderList = new List<Gender> { Gender.Man, Gender.Woman }
                     .Select(u => new SelectListItem
                     {
@@ -143,6 +144,8 @@ namespace VisitorBook.UI.Controllers
             {
                 if (id == 0)
                 {
+                    VisitorViewModel.Visitor.VisitorAddress = VisitorViewModel.VisitorAddress;
+
                     await _visitorService.AddAsync(VisitorViewModel.Visitor);
 
                     return Json(new { isValid = true, message = _localization["Visitors.Notification.Add.Text"].Value });

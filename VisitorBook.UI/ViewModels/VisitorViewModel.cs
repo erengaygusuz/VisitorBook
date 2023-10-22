@@ -7,7 +7,8 @@ namespace VisitorBook.UI.ViewModels
     public class VisitorViewModel
     {
         public Visitor Visitor { get; set; }
-
+        [ValidateNever]
+        public VisitorAddress VisitorAddress { get; set; }
         [ValidateNever]
         public IEnumerable<SelectListItem> GenderList { get; set; }
         [ValidateNever]

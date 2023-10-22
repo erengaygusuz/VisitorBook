@@ -7,30 +7,36 @@
 
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="AddOrEdit" asp-route-id="@Model.VisitedCounty.Id" onsubmit="return AddRecord(this);" autocomplete="off">
+        <form asp-action="AddOrEdit" asp-route-id="@Model.VisitedCounty.Id" onsubmit="return AddRecord(this);"
+            autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="VisitedCounty.Id" />
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="VisitedCounty.County.CityId" class="control-label">@localization["VisitedCounties.Table.Column3.Text"]</label>
-                    <select id="citylist" onchange="cityChange()" asp-for="VisitedCounty.County.CityId" asp-items="@Model.CityList" class="form-select">
+                    <label asp-for="VisitedCounty"
+                        class="control-label">@localization["VisitedCounties.Table.Column3.Text"]</label>
+                    <select id="citylist" onchange="cityChange()" asp-for="VisitedCounty" asp-items="@Model.CityList"
+                        class="form-select">
                         <option disabled selected value="0">@localization["AddOrEditModal.CitySelection.Text"]</option>
                     </select>
-                    <span asp-validation-for="VisitedCounty.CountyId" class="text-danger"></span>
+                    <span asp-validation-for="VisitedCounty" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4" id="countylist">
                 <div class="form-group">
-                    <label asp-for="VisitedCounty.CountyId" class="control-label">@localization["VisitedCounties.Table.Column2.Text"]</label>
+                    <label asp-for="VisitedCounty.CountyId"
+                        class="control-label">@localization["VisitedCounties.Table.Column2.Text"]</label>
                     <select asp-for="VisitedCounty.CountyId" asp-items="@Model.CountyList" class="form-select">
-                        <option disabled selected value="0">@localization["AddOrEditModal.CountySelection.Text"]</option>
+                        <option disabled selected value="0">@localization["AddOrEditModal.CountySelection.Text"]
+                        </option>
                     </select>
                     <span asp-validation-for="VisitedCounty.CountyId" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="VisitedCounty.VisitorId" class="control-label">@localization["VisitedCounties.Table.Column1.Text"]</label>
+                    <label asp-for="VisitedCounty.VisitorId"
+                        class="control-label">@localization["VisitedCounties.Table.Column1.Text"]</label>
                     <select asp-for="VisitedCounty.VisitorId" asp-items="@Model.VisitorList" class="form-select">
                         <option disabled selected>@localization["AddOrEditModal.VisitorSelection.Text"]</option>
                     </select>
@@ -39,7 +45,8 @@
             </div>
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="VisitedCounty.VisitDate" class="control-label">@localization["VisitedCounties.Table.Column4.Text"]</label>
+                    <label asp-for="VisitedCounty.VisitDate"
+                        class="control-label">@localization["VisitedCounties.Table.Column4.Text"]</label>
                     <input asp-for="VisitedCounty.VisitDate" class="form-control" />
                     <span asp-validation-for="VisitedCounty.VisitDate" class="text-danger"></span>
                 </div>
@@ -47,7 +54,8 @@
             <div class="row mt-4">
                 <div class="col-md-12">
                     <div class="form-group mt-4">
-                        <input type="submit" value="@localization["AddOrEditModal.SubmitBtn.Text"]" class="btn btn-primary w-100" />
+                        <input type="submit" value="@localization["AddOrEditModal.SubmitBtn.Text"]"
+                            class="btn btn-primary w-100" />
                     </div>
                 </div>
             </div>
