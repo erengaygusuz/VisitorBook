@@ -15,8 +15,11 @@
           class="form-horizontal nav-link text-dark">
         <select name="culture" class="form-select"
                 onchange="this.form.submit();"
-                asp-for="@requestCulture.RequestCulture.UICulture.Name"
-                asp-items="cultureItems">
+                asp-for="@requestCulture.RequestCulture.UICulture.Name">
+            @foreach (var item in cultureItems)
+            {
+                <option value="@item.Value" data-icon="icons/flags/@string.Concat(item.Text, ".svg#", item.Text)">@item.Text</option>
+            }
         </select>
     </form>
 </div>
