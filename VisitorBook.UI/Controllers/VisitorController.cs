@@ -51,7 +51,12 @@ namespace VisitorBook.UI.Controllers
 
             var visitors = await _visitorService.GetAllAsync(
                     page: page, pageSize: pageSize,
-                    expression: (!string.IsNullOrEmpty(searchValue)) ? vc => vc.Name.Contains(searchValue) : null,
+                    expression: (!string.IsNullOrEmpty(searchValue)) ?
+                        (v =>
+                            v.Name.ToLower().Contains(searchValue.ToLower()) ||
+                            v.Surname.ToLower().Contains(searchValue.ToLower()) ||
+                            v.BirthDate.ToString().ToLower().Contains(searchValue.ToLower()))
+                        : null,
                     orderBy: (sortColumnDirection == "asc") ?
                         (o =>
                         o switch

@@ -51,7 +51,12 @@ namespace VisitorBook.UI.Controllers
 
             var visitedCounties = await _visitedCountyService.GetAllAsync(
                     page: page, pageSize: pageSize,
-                    expression: (!string.IsNullOrEmpty(searchValue)) ? vc => vc.Visitor.Name.Contains(searchValue) : null,
+                    expression: (!string.IsNullOrEmpty(searchValue)) ?
+                        (vc =>
+                            (vc.Visitor.Name + " " + vc.Visitor.Surname).ToLower().Contains(searchValue.ToLower()) ||
+                            vc.County.Name.ToLower().Contains(searchValue.ToLower()) ||
+                            vc.County.City.Name.ToLower().Contains(searchValue.ToLower()))
+                        : null,
                     include: u => u.Include(a => a.Visitor).Include(a => a.County).ThenInclude(b => b.City),
                     orderBy: (sortColumnDirection == "asc") ?
                         (o =>

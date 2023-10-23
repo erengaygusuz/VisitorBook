@@ -46,7 +46,13 @@ namespace VisitorBook.UI.Controllers
 
             var counties = await _countyService.GetAllAsync(
                     page: page, pageSize: pageSize,
-                    expression: (!string.IsNullOrEmpty(searchValue)) ? vc => vc.Name.Contains(searchValue) : null,
+                    expression: (!string.IsNullOrEmpty(searchValue)) ?
+                        (c =>
+                            c.Name.ToLower().Contains(searchValue.ToLower()) ||
+                            c.City.Name.ToLower().Contains(searchValue.ToLower()) ||
+                            c.Latitude.ToString().ToLower().Contains(searchValue.ToLower()) ||
+                            c.Longitude.ToString().ToLower().Contains(searchValue.ToLower()))
+                        : null,
                     include: u => u.Include(a => a.City),
                     orderBy: (sortColumnDirection == "asc") ?
                         (o =>

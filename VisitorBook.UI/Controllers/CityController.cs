@@ -43,7 +43,11 @@ namespace VisitorBook.UI.Controllers
 
             var cities = await _cityService.GetAllAsync(
                     page: page, pageSize: pageSize,
-                    expression: (!string.IsNullOrEmpty(searchValue)) ? vc => vc.Name.Contains(searchValue) : null,
+                    expression: (!string.IsNullOrEmpty(searchValue)) ?
+                        (c => 
+                            c.Name.ToLower().Contains(searchValue.ToLower()) ||
+                            c.Code.ToLower().Contains(searchValue.ToLower()))
+                        : null,
                     orderBy: (sortColumnDirection == "asc") ?
                         (o =>
                         o switch
