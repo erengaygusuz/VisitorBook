@@ -321,4 +321,10 @@
   <data name="DeleteRequestPopup.CancelBtn.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="Enum.Gender.Female.Text" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="Enum.Gender.Male.Text" xml:space="preserve">
+    <value>Male</value>
+  </data>
 </root>

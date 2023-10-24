@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VisitorBook.Core.Models;
+﻿
+using VisitorBook.Core.Enums;
 
 namespace VisitorBook.Core.Dtos
 {

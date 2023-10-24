@@ -1,14 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using VisitorBook.Core.Enums;
 
 namespace VisitorBook.Core.Models
 {
-    public enum Gender
-    {
-        Man,
-        Woman
-    }
-
     public class Visitor : BaseModel
     {
         public string Name { get; set; }

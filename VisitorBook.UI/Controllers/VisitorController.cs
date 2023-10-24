@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using VisitorBook.Core.Abstract;
+using VisitorBook.Core.Enums;
 using VisitorBook.Core.Models;
 using VisitorBook.Core.Utilities;
 using VisitorBook.UI.Languages;
@@ -89,7 +90,7 @@ namespace VisitorBook.UI.Controllers
                     Id = u.Id,
                     Name = u.Name,
                     Surname = u.Surname,
-                    Gender = u.Gender.ToString(),
+                    Gender = _localization["Enum.Gender." + u.Gender.ToString() + ".Text"].Value,
                     BirthDate = u.BirthDate
                 })
             });
@@ -101,10 +102,10 @@ namespace VisitorBook.UI.Controllers
             {
                 Visitor = new Visitor(),
                 VisitorAddress = new VisitorAddress(),
-                GenderList = new List<Gender> { Gender.Man, Gender.Woman }
+                GenderList = new List<Gender> { Gender.Male, Gender.Female }
                     .Select(u => new SelectListItem
                     {
-                        Text = u.ToString(),
+                        Text = _localization["Enum.Gender." + u.ToString() + ".Text"].Value,
                         Value = u.ToString()
                     }),
                 CityList = (await _cityService.GetAllAsync())

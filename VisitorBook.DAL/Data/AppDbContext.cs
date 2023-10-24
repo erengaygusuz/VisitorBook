@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using VisitorBook.Core.Enums;
 using VisitorBook.Core.Models;
 
 namespace VisitorBook.DAL.Data
@@ -152,7 +153,7 @@ namespace VisitorBook.DAL.Data
                     Name = "Eren",
                     Surname = "Gaygusuz",
                     BirthDate = new DateTime(day: 14, month: 12, year: 1992),
-                    Gender = Gender.Man,
+                    Gender = Gender.Male,
                     VisitorAddressId = 1,
                     CreatedDate = DateTime.Now
                 },
@@ -162,7 +163,7 @@ namespace VisitorBook.DAL.Data
                     Name = "Eren",
                     Surname = "Özcan",
                     BirthDate = new DateTime(day: 05, month: 11, year: 1995),
-                    Gender = Gender.Man,
+                    Gender = Gender.Male,
                     VisitorAddressId = null,
                     CreatedDate = DateTime.Now
                 },
@@ -172,7 +173,7 @@ namespace VisitorBook.DAL.Data
                     Name = "Ceyda",
                     Surname = "Meyda",
                     BirthDate = new DateTime(day: 22, month: 3, year: 1996),
-                    Gender = Gender.Woman,
+                    Gender = Gender.Female,
                     VisitorAddressId = 2,
                     CreatedDate = DateTime.Now
                 },
@@ -182,7 +183,7 @@ namespace VisitorBook.DAL.Data
                     Name = "Tuğçe",
                     Surname = "Güzel",
                     BirthDate = new DateTime(day: 11, month: 5, year: 1990),
-                    Gender = Gender.Woman,
+                    Gender = Gender.Female,
                     VisitorAddressId = null,
                     CreatedDate = DateTime.Now
                 }
