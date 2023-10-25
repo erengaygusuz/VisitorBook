@@ -8,6 +8,7 @@ using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Utilities;
 using VisitorBook.DAL.Concrete;
 using VisitorBook.DAL.Data;
+using VisitorBook.UI.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,6 +47,8 @@ builder.Services.AddAutoMapper(typeof(MapProfile));
 builder.Services.AddScoped(typeof(LocationHelper));
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
