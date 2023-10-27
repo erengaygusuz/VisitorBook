@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitorBook.UI", "VisitorBook.UI\VisitorBook.UI.csproj", "{13A3E723-C3B5-47CB-BE26-A1B07FE50CEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisitorBook.UI", "VisitorBook.UI\VisitorBook.UI.csproj", "{13A3E723-C3B5-47CB-BE26-A1B07FE50CEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitorBook.DAL", "VisitorBook.DAL\VisitorBook.DAL.csproj", "{EA02EB7C-51C5-4FA1-8D7E-EA5F5E6CC87A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisitorBook.DAL", "VisitorBook.DAL\VisitorBook.DAL.csproj", "{EA02EB7C-51C5-4FA1-8D7E-EA5F5E6CC87A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitorBook.BL", "VisitorBook.BL\VisitorBook.BL.csproj", "{2F811522-F1DE-4F87-8271-C76C8A0D3F4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisitorBook.BL", "VisitorBook.BL\VisitorBook.BL.csproj", "{2F811522-F1DE-4F87-8271-C76C8A0D3F4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitorBook.Core", "VisitorBook.Core\VisitorBook.Core.csproj", "{12338633-B102-4CDD-A381-6A18ABCD0922}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisitorBook.Core", "VisitorBook.Core\VisitorBook.Core.csproj", "{12338633-B102-4CDD-A381-6A18ABCD0922}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitorBook.PL", "VisitorBook.PL\VisitorBook.PL.csproj", "{B7A7AD3F-2CD5-4555-A949-B602A6F97BCD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{12338633-B102-4CDD-A381-6A18ABCD0922}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12338633-B102-4CDD-A381-6A18ABCD0922}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12338633-B102-4CDD-A381-6A18ABCD0922}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7A7AD3F-2CD5-4555-A949-B602A6F97BCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7A7AD3F-2CD5-4555-A949-B602A6F97BCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7A7AD3F-2CD5-4555-A949-B602A6F97BCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7A7AD3F-2CD5-4555-A949-B602A6F97BCD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
