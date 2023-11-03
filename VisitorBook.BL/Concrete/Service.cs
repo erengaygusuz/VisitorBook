@@ -73,5 +73,11 @@ namespace VisitorBook.BL.Concrete
             await _repository.AddAsync(entity);
             await _unitOfWork.SaveAsync();
         }
+
+        public async Task AddRangeAsync(IEnumerable<T> entities)
+        {
+            await _repository.AddRangeAsync(entities);
+            await _unitOfWork.SaveAsync();
+        }
     }
 }

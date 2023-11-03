@@ -28,6 +28,8 @@ namespace VisitorBook.Core.Abstract
 
         Task AddAsync(T entity);
 
+        Task AddRangeAsync(IEnumerable<T> entities);
+
         void Update(T entity);
     }
 }

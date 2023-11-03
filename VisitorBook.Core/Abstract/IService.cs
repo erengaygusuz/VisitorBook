@@ -29,5 +29,7 @@ namespace VisitorBook.Core.Abstract
         Task RemoveAsync(T entity);
 
         Task AddAsync(T entity);
+
+        Task AddRangeAsync(IEnumerable<T> entities);
     }
 }
