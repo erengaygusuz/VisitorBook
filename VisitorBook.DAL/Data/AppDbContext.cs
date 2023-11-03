@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using VisitorBook.Core.Enums;
 using VisitorBook.Core.Models;
 
 namespace VisitorBook.DAL.Data
@@ -12,251 +11,38 @@ namespace VisitorBook.DAL.Data
         public DbSet<VisitedCounty> VisitedCounties { get; set; }
         public DbSet<VisitorAddress> VisitorAddress { get; set; }
 
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base (options)
+        private readonly FakeDataGenerator _fakeDataGenerator;
+
+        public AppDbContext(DbContextOptions<AppDbContext> options, FakeDataGenerator fakeDataGenerator) : base (options)
         {
-            
+            _fakeDataGenerator = fakeDataGenerator;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            #region Data Seeding 
+            _fakeDataGenerator.GenerateData();
 
             modelBuilder.Entity<City>().HasData(
-                new City()
-                {
-                    Id = 1,
-                    Name = "Ankara",
-                    Code = "06",
-                    CreatedDate = DateTime.Now
-                },
-                new City()
-                {
-                    Id = 2,
-                    Name = "İzmir",
-                    Code = "35",
-                    CreatedDate = DateTime.Now
-                },
-                new City()
-                {
-                    Id = 3,
-                    Name = "İstanbul",
-                    Code = "34",
-                    CreatedDate = DateTime.Now
-                }
+                _fakeDataGenerator.Cities
             );
 
             modelBuilder.Entity<County>().HasData(
-                new County()
-                {
-                    Id = 1,
-                    Name = "Çankaya",
-                    Latitude = 39.7966881,
-                    Longitude = 32.2233547,
-                    CityId = 1,
-                    CreatedDate = DateTime.Now
-                },
-                new County()
-                {
-                    Id = 2,
-                    Name = "Mamak",
-                    Latitude = 39.9051372,
-                    Longitude = 32.692094,
-                    CityId = 1,
-                    CreatedDate = DateTime.Now
-                },
-                new County()
-                {
-                    Id = 3,
-                    Name = "Keçiören",
-                    Latitude = 40.086525,
-                    Longitude = 32.820312,
-                    CityId = 1,
-                    CreatedDate = DateTime.Now
-                },
-                new County()
-                {
-                    Id = 4,
-                    Name = "Konak",
-                    Latitude = 38.4220527,
-                    Longitude = 26.964354,
-                    CityId = 2,
-                    CreatedDate = DateTime.Now
-                },
-                new County()
-                {
-                    Id = 5,
-                    Name = "Bayraklı",
-                    Latitude = 38.4785441,
-                    Longitude = 27.0750096,
-                    CityId = 2,
-                    CreatedDate = DateTime.Now
-                },
-                new County()
-                {
-                    Id = 6,
-                    Name = "Karşıyaka",
-                    Latitude = 38.5013997,
-                    Longitude = 26.96218,
-                    CityId = 2,
-                    CreatedDate = DateTime.Now
-                },
-                new County()
-                {
-                    Id = 7,
-                    Name = "Kadıköy",
-                    Latitude = 40.9812333,
-                    Longitude = 28.9806526,
-                    CityId = 3,
-                    CreatedDate = DateTime.Now
-                },
-                new County()
-                {
-                    Id = 8,
-                    Name = "Ataşehir",
-                    Latitude = 40.9844203,
-                    Longitude = 28.9744544,
-                    CityId = 3,
-                    CreatedDate = DateTime.Now
-                },
-                new County()
-                {
-                    Id = 9,
-                    Name = "Avcılar",
-                    Latitude = 41.0248652,
-                    Longitude = 28.6377967,
-                    CityId = 3,
-                    CreatedDate = DateTime.Now
-                }
-            );
-
-            modelBuilder.Entity<VisitorAddress>().HasData(
-                new VisitorAddress()
-                {
-                    Id = 1,
-                    CountyId = 1,
-                    CreatedDate = DateTime.Now
-                },
-                new VisitorAddress()
-                {
-                    Id = 2,
-                    CountyId = 7,
-                    CreatedDate = DateTime.Now
-                }
+                _fakeDataGenerator.Counties
             );
 
             modelBuilder.Entity<Visitor>().HasData(
-                new Visitor()
-                {
-                    Id = 1,
-                    Name = "Eren",
-                    Surname = "Gaygusuz",
-                    BirthDate = new DateTime(day: 14, month: 12, year: 1992),
-                    Gender = Gender.Male,
-                    VisitorAddressId = 1,
-                    CreatedDate = DateTime.Now
-                },
-                new Visitor()
-                {
-                    Id = 2,
-                    Name = "Eren",
-                    Surname = "Özcan",
-                    BirthDate = new DateTime(day: 05, month: 11, year: 1995),
-                    Gender = Gender.Male,
-                    VisitorAddressId = null,
-                    CreatedDate = DateTime.Now
-                },
-                new Visitor()
-                {
-                    Id = 3,
-                    Name = "Ceyda",
-                    Surname = "Meyda",
-                    BirthDate = new DateTime(day: 22, month: 3, year: 1996),
-                    Gender = Gender.Female,
-                    VisitorAddressId = 2,
-                    CreatedDate = DateTime.Now
-                },
-                new Visitor()
-                {
-                    Id = 4,
-                    Name = "Tuğçe",
-                    Surname = "Güzel",
-                    BirthDate = new DateTime(day: 11, month: 5, year: 1990),
-                    Gender = Gender.Female,
-                    VisitorAddressId = null,
-                    CreatedDate = DateTime.Now
-                }
+                _fakeDataGenerator.Visitors
             );
 
             modelBuilder.Entity<VisitedCounty>().HasData(
-                new VisitedCounty()
-                {
-                    Id = 1,
-                    VisitorId = 1,
-                    CountyId = 2,
-                    VisitDate = new DateTime(day: 2, month: 11, year: 2015),
-                    CreatedDate = DateTime.Now
-                },
-                new VisitedCounty()
-                {
-                    Id = 2,
-                    VisitorId = 1,
-                    CountyId = 5,
-                    VisitDate = new DateTime(day: 4, month: 10, year: 2015),
-                    CreatedDate = DateTime.Now
-                },
-                new VisitedCounty()
-                {
-                    Id = 3,
-                    VisitorId = 1,
-                    CountyId = 7,
-                    VisitDate = new DateTime(day: 24, month: 1, year: 2017),
-                    CreatedDate = DateTime.Now
-                },
-                new VisitedCounty()
-                {
-                    Id = 4,
-                    VisitorId = 1,
-                    CountyId = 8,
-                    VisitDate = new DateTime(day: 16, month: 8, year: 2022),
-                    CreatedDate = DateTime.Now
-                },
-                new VisitedCounty()
-                {
-                    Id = 7,
-                    VisitorId = 3,
-                    CountyId = 1,
-                    VisitDate = new DateTime(day: 1, month: 7, year: 2010),
-                    CreatedDate = DateTime.Now
-                },
-                new VisitedCounty()
-                {
-                    Id = 8,
-                    VisitorId = 3,
-                    CountyId = 9,
-                    VisitDate = new DateTime(day: 23, month: 10, year: 2002),
-                    CreatedDate = DateTime.Now
-                },
-                new VisitedCounty()
-                {
-                    Id = 9,
-                    VisitorId = 3,
-                    CountyId = 9,
-                    VisitDate = new DateTime(day: 15, month: 2, year: 2011),
-                    CreatedDate = DateTime.Now
-                },
-                new VisitedCounty()
-                {
-                    Id = 10,
-                    VisitorId = 3,
-                    CountyId = 8,
-                    VisitDate = new DateTime(day: 16, month: 5, year: 2020),
-                    CreatedDate = DateTime.Now
-                }
+                _fakeDataGenerator.VisitedCounties
             );
 
-            #endregion
+            modelBuilder.Entity<VisitorAddress>().HasData(
+                _fakeDataGenerator.VisitorAddresses
+            );
         }
 
         public override int SaveChanges()

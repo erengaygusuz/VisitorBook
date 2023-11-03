@@ -89,7 +89,7 @@ namespace VisitorBook.UI.Controllers
             });
         }
 
-        public async Task<IActionResult> AddOrEdit(int id)
+        public async Task<IActionResult> AddOrEdit(Guid? id)
         {
             VisitedCountyViewModel = new VisitedCountyViewModel()
             {
@@ -109,7 +109,7 @@ namespace VisitorBook.UI.Controllers
                    })
             };
 
-            if (id == 0)
+            if (id == null)
             {
                 // create
                 return View(VisitedCountyViewModel);
@@ -134,11 +134,11 @@ namespace VisitorBook.UI.Controllers
         [ActionName("AddOrEdit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEditPost(int id)
+        public async Task<IActionResult> AddOrEditPost(Guid? id)
         {
             if (ModelState.IsValid)
             {
-                if (id == 0)
+                if (id == null)
                 {
                     await _visitedCountyService.AddAsync(VisitedCountyViewModel.VisitedCounty);
 
@@ -166,7 +166,7 @@ namespace VisitorBook.UI.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             var visitedCounty = await _visitedCountyService.GetAsync(u => u.Id == id);
 

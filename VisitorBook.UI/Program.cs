@@ -8,7 +8,6 @@ using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Utilities;
 using VisitorBook.DAL.Concrete;
 using VisitorBook.DAL.Data;
-using VisitorBook.UI.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +44,7 @@ builder.Services.AddScoped(typeof(VisitorStatisticService));
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 builder.Services.AddAutoMapper(typeof(MapProfile));
 builder.Services.AddScoped(typeof(LocationHelper));
+builder.Services.AddScoped(typeof(FakeDataGenerator));
 
 var app = builder.Build();
 
@@ -66,18 +66,18 @@ app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocal
 app.UseRouting();
 
 app.UseAuthorization();
-SeedDatabase();
+//SeedDatabase();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
 
-void SeedDatabase()
-{
-    using (var scope = app.Services.CreateScope())
-    {
-        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
-        dbInitializer.Initialize();
-    }
-}
+//void SeedDatabase()
+//{
+//    using (var scope = app.Services.CreateScope())
+//    {
+//        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+//        dbInitializer.Initialize();
+//    }
+//}

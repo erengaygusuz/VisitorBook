@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.WebUtilities;
-using System.Text;
-using System.Text.Json;
 using VisitorBook.BL.Services;
 using VisitorBook.UI.ViewModels;
 
@@ -19,9 +16,7 @@ namespace VisitorBook.UI.Controllers
         }
 
         public async Task<IActionResult> Index()
-        { 
-            throw new NotImplementedException();
-
+        {
             VisitorStatisticViewModel visitorStatisticViewModel = new VisitorStatisticViewModel()
             {
                 GetHighestCountOfVisitedCityByVisitor = await _visitorStatisticService.GetHighestCountOfVisitedCityByVisitorAsync(),

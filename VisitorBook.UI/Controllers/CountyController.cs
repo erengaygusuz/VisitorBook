@@ -85,7 +85,7 @@ namespace VisitorBook.UI.Controllers
             });
         }
 
-        public async Task<IActionResult> GetAllByCity(int cityId)
+        public async Task<IActionResult> GetAllByCity(Guid cityId)
         {
             var counties = await _countyService.GetAllAsync(u => u.CityId == cityId);
 
@@ -95,7 +95,7 @@ namespace VisitorBook.UI.Controllers
             });
         }
 
-        public async Task<IActionResult> AddOrEdit(int id)
+        public async Task<IActionResult> AddOrEdit(Guid? id)
         {
             CountyViewModel = new CountyViewModel()
             {
@@ -108,7 +108,7 @@ namespace VisitorBook.UI.Controllers
                 County = new County()
             };
 
-            if (id == 0)
+            if (id == null)
             {
                 // create
                 return View(CountyViewModel);
@@ -149,7 +149,7 @@ namespace VisitorBook.UI.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             var county = await _countyService.GetAsync(u => u.Id == id);
 

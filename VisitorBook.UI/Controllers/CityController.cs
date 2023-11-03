@@ -77,11 +77,11 @@ namespace VisitorBook.UI.Controllers
         }
 
         [NoDirectAccess]
-        public async Task<IActionResult> AddOrEdit(int id = 0)
+        public async Task<IActionResult> AddOrEdit(Guid? id)
         {
             City = new City();
 
-            if (id == 0)
+            if (id == null)
             {
                 return View(City);
             }
@@ -125,7 +125,7 @@ namespace VisitorBook.UI.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             var city = await _cityService.GetAsync(u => u.Id == id);
 

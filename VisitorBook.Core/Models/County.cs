@@ -11,7 +11,7 @@ namespace VisitorBook.Core.Models
 
         public double Latitude { get; set; }
 
-        public int CityId { get; set; }
+        public Guid CityId { get; set; }
 
         [ValidateNever]
         [ForeignKey("CityId")]

@@ -14,7 +14,7 @@ namespace VisitorBook.Core.Models
 
         public Gender Gender { get; set; }
 
-        public int? VisitorAddressId { get; set; }
+        public Guid? VisitorAddressId { get; set; }
 
         [ValidateNever]
         [ForeignKey("VisitorAddressId")]

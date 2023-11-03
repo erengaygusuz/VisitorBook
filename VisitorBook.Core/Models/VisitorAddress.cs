@@ -5,7 +5,7 @@ namespace VisitorBook.Core.Models
 {
     public class VisitorAddress : BaseModel
     {
-        public int CountyId { get; set; }
+        public Guid CountyId { get; set; }
 
         [ValidateNever]
         [ForeignKey("CountyId")]
