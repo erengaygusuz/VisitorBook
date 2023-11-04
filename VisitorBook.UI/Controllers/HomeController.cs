@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Localization;
+﻿using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using VisitorBook.BL.Services;
 using VisitorBook.UI.ViewModels;
@@ -39,27 +38,5 @@ namespace VisitorBook.UI.Controllers
 
             return LocalRedirect(returnUrl);
         }
-
-        [Route("Error/{statusCode}")]
-        public IActionResult Error(int statusCode)
-        {
-            var feature = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
-
-            return View(new ErrorViewModel { StatusCode = statusCode, OriginalPath = feature?.OriginalPath });
-        }
-
-        //public IActionResult Error(string messages = "")
-        //{
-        //    string messagesJson = Encoding.ASCII.GetString(Base64UrlTextEncoder.Decode(messages));
-
-        //    if (!string.IsNullOrEmpty(messagesJson))
-        //    {
-        //        var errorMessages = JsonSerializer.Deserialize<ErrorViewModel>(messagesJson);
-
-        //        return View(errorMessages);
-        //    }
-
-        //    return RedirectToAction(nameof(Index));
-        //}
     }
 }

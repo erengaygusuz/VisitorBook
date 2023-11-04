@@ -1,0 +1,17 @@
+﻿@model ErrorViewModel
+
+<h3>@Model.ExceptionTitle</h3>
+<p>Status Code: @Model.StatusCode</p>
+
+@if (!string.IsNullOrEmpty(Model.ExceptionType))
+{
+    <p>Exception Type: @Model.ExceptionType</p>
+}
+
+@if (!string.IsNullOrEmpty(Model.ExceptionMessage))
+{
+    <p>Exception Message: @Model.ExceptionMessage</p>
+}
+
+<p>Request Method: @Model.RequestMethod</p>
+<p>Request Path: @Model.RequestPath</p>
