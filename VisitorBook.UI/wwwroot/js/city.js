@@ -93,6 +93,9 @@ function loadDataTable(
 
             $('#ExportBtn').prependTo($('#outside'))
         },
+        scrollY: 480,
+        deferRender: true,
+        scroller: true,
         processing: true,
         serverSide: true,
         filter: true,

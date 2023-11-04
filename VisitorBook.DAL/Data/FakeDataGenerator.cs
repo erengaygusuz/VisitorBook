@@ -13,21 +13,21 @@ namespace VisitorBook.DAL.Data
         public List<City> Cities = new();
         public List<County> Counties = new();
 
-        public void GenerateData()
+        public void GenerateData(int populateConstant = 1)
         {
             if (!Cities.Any())
             {
-                Cities.AddRange(GetCityGenerator().Generate(30));
+                Cities.AddRange(GetCityGenerator().Generate(30 * populateConstant));
             }
 
             if (!Counties.Any())
             {
-                Counties.AddRange(GetCountyGenerator().Generate(20));
+                Counties.AddRange(GetCountyGenerator().Generate(900 * populateConstant));
             }
 
             if (!VisitedCounties.Any())
             {
-                Visitors.AddRange(GetVisitorGenerator().Generate(100));
+                Visitors.AddRange(GetVisitorGenerator().Generate(100 * populateConstant));
 
                 Random random = new Random();
 
@@ -36,7 +36,7 @@ namespace VisitorBook.DAL.Data
 
             if (!VisitedCounties.Any())
             {
-                var visitedCounties = GetVisitedCountyGenerator().Generate(200);
+                var visitedCounties = GetVisitedCountyGenerator().Generate(200 * populateConstant);
 
                 VisitedCounties.AddRange(visitedCounties);
             }
