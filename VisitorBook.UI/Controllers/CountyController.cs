@@ -15,15 +15,17 @@ namespace VisitorBook.UI.Controllers
         private readonly IService<County> _countyService;
         private readonly IService<City> _cityService;
         private readonly IStringLocalizer<Language> _localization;
+        private readonly RazorViewConverter _razorViewConverter;
 
         [BindProperty]
         public CountyViewModel CountyViewModel { get; set; }
 
-        public CountyController(IService<County> countyService, IService<City> cityService, IStringLocalizer<Language> localization)
+        public CountyController(IService<County> countyService, IService<City> cityService, IStringLocalizer<Language> localization, RazorViewConverter razorViewConverter)
         {
             _countyService = countyService;
             _cityService = cityService;
             _localization = localization;
+            _razorViewConverter = razorViewConverter;
         }
 
         public IActionResult Index()
@@ -126,11 +128,11 @@ namespace VisitorBook.UI.Controllers
         [ActionName("AddOrEdit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEditPost(int id)
+        public async Task<IActionResult> AddOrEditPost(Guid? id)
         {
             if (ModelState.IsValid)
             {
-                if (id == 0)
+                if (id == null)
                 {
                     await _countyService.AddAsync(CountyViewModel.County);
 
@@ -145,7 +147,14 @@ namespace VisitorBook.UI.Controllers
                 }
             }
 
-            return Json(new { isValid = false, html = RazorViewConverter.GetStringFromRazorView(this, "AddOrEdit", CountyViewModel.County) });
+            CountyViewModel.CityList = (await _cityService.GetAllAsync())
+                   .Select(u => new SelectListItem
+                   {
+                       Text = u.Name,
+                       Value = u.Id.ToString()
+                   });
+
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "AddOrEdit", CountyViewModel) });
         }
 
         [HttpDelete]

@@ -12,14 +12,16 @@ namespace VisitorBook.UI.Controllers
     {
         private readonly IService<City> _cityService;
         private readonly IStringLocalizer<Language> _localization;
+        private readonly RazorViewConverter _razorViewConverter;
 
         [BindProperty]
         public City City { get; set; }
 
-        public CityController(IService<City> cityService, IStringLocalizer<Language> localization)
+        public CityController(IService<City> cityService, IStringLocalizer<Language> localization, RazorViewConverter razorViewConverter)
         {
             _cityService = cityService;
             _localization = localization;
+            _razorViewConverter = razorViewConverter;
         }
 
         public async Task<IActionResult> Index()
@@ -102,11 +104,11 @@ namespace VisitorBook.UI.Controllers
         [ActionName("AddOrEdit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEditPost(int id)
+        public async Task<IActionResult> AddOrEditPost(Guid? id)
         {
             if (ModelState.IsValid)
             {
-                if (id == 0)
+                if (id == null)
                 {
                     await _cityService.AddAsync(City);
 
@@ -121,7 +123,9 @@ namespace VisitorBook.UI.Controllers
                 }
             }
 
-            return Json(new { isValid = false, html = RazorViewConverter.GetStringFromRazorView(this, "AddOrEdit", City) });
+            var val = await _razorViewConverter.GetStringFromRazorView(this, "AddOrEdit", City);
+
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "AddOrEdit", City) });
         }
 
         [HttpDelete]

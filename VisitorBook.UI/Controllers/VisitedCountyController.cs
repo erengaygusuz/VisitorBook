@@ -17,18 +17,20 @@ namespace VisitorBook.UI.Controllers
         private readonly IService<VisitedCounty> _visitedCountyService;
         private readonly IService<City> _cityService;
         private readonly IStringLocalizer<Language> _localization;
+        private readonly RazorViewConverter _razorViewConverter;
 
         [BindProperty]
         public VisitedCountyViewModel VisitedCountyViewModel { get; set; }
 
         public VisitedCountyController(IService<County> countyService, IService<Visitor> visitorService,
-                                       IService<VisitedCounty> visitedCountyService, IService<City> cityService, IStringLocalizer<Language> localization)
+                                       IService<VisitedCounty> visitedCountyService, IService<City> cityService, IStringLocalizer<Language> localization, RazorViewConverter razorViewConverter)
         {
             _countyService = countyService;
             _visitorService = visitorService;
             _visitedCountyService = visitedCountyService;
             _cityService = cityService;
             _localization = localization;
+            _razorViewConverter = razorViewConverter;
         }
 
         public IActionResult Index()
@@ -162,7 +164,21 @@ namespace VisitorBook.UI.Controllers
                 }
             }
 
-            return Json(new { isValid = false, html = RazorViewConverter.GetStringFromRazorView(this, "AddOrEdit", VisitedCountyViewModel.VisitedCounty) });
+            VisitedCountyViewModel.VisitorList = (await _visitorService.GetAllAsync(v => v.VisitorAddress != null))
+                   .Select(u => new SelectListItem
+                   {
+                       Text = u.Name + " " + u.Surname,
+                       Value = u.Id.ToString()
+                   });
+
+            VisitedCountyViewModel.CityList = (await _cityService.GetAllAsync())
+                   .Select(u => new SelectListItem
+                   {
+                       Text = u.Name,
+                       Value = u.Id.ToString()
+                   });
+
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "AddOrEdit", VisitedCountyViewModel) });
         }
 
         [HttpDelete]

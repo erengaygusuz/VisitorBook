@@ -42,9 +42,9 @@ builder.Services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(VisitorStatisticService));
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
-builder.Services.AddAutoMapper(typeof(MapProfile));
 builder.Services.AddScoped(typeof(LocationHelper));
 builder.Services.AddScoped(typeof(FakeDataGenerator));
+builder.Services.AddScoped(typeof(RazorViewConverter));
 
 var app = builder.Build();
 

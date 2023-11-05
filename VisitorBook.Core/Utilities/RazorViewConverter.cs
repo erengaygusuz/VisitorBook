@@ -7,12 +7,14 @@ namespace VisitorBook.Core.Utilities
 {
     public class RazorViewConverter
     {
-        public static string GetStringFromRazorView(Controller controller, string viewName, object model = null)
+        public async Task<string> GetStringFromRazorView(Controller controller, string viewName, object model = null)
         {
             controller.ViewData.Model = model;
+
             using (var sw = new StringWriter())
             {
                 IViewEngine viewEngine = controller.HttpContext.RequestServices.GetService(typeof(ICompositeViewEngine)) as ICompositeViewEngine;
+
                 ViewEngineResult viewResult = viewEngine.FindView(controller.ControllerContext, viewName, false);
 
                 ViewContext viewContext = new ViewContext(
@@ -23,7 +25,9 @@ namespace VisitorBook.Core.Utilities
                     sw,
                     new HtmlHelperOptions()
                 );
-                viewResult.View.RenderAsync(viewContext);
+
+                await viewResult.View.RenderAsync(viewContext);
+
                 return sw.GetStringBuilder().ToString();
             }
         }

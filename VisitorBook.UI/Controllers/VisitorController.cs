@@ -18,18 +18,20 @@ namespace VisitorBook.UI.Controllers
         private readonly IService<Visitor> _visitorService;
         private readonly IService<VisitorAddress> _visitorAddressService;
         private readonly IStringLocalizer<Language> _localization;
+        private readonly RazorViewConverter _razorViewConverter;
 
         [BindProperty]
         public VisitorViewModel VisitorViewModel { get; set; }
 
         public VisitorController(IService<County> countyService, IService<City> cityService,
-            IService<Visitor> visitorService, IStringLocalizer<Language> localization, IService<VisitorAddress> visitorAddressService)
+            IService<Visitor> visitorService, IStringLocalizer<Language> localization, IService<VisitorAddress> visitorAddressService, RazorViewConverter razorViewConverter)
         {
             _countyService = countyService;
             _cityService = cityService;
             _visitorService = visitorService;
             _localization = localization;
             _visitorAddressService = visitorAddressService;
+            _razorViewConverter = razorViewConverter;
         }
 
         public IActionResult Index()
@@ -191,7 +193,21 @@ namespace VisitorBook.UI.Controllers
                 }
             }
 
-            return Json(new { isValid = false, html = RazorViewConverter.GetStringFromRazorView(this, "AddOrEdit", VisitorViewModel.Visitor) });
+            VisitorViewModel.CityList = (await _cityService.GetAllAsync())
+                   .Select(u => new SelectListItem
+                   {
+                       Text = u.Name,
+                       Value = u.Id.ToString()
+                   });
+
+            VisitorViewModel.GenderList = new List<Gender> { Gender.Male, Gender.Female }
+                    .Select(u => new SelectListItem
+                    {
+                        Text = _localization["Enum.Gender." + u.ToString() + ".Text"].Value,
+                        Value = u.ToString()
+                    });
+
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "AddOrEdit", VisitorViewModel) });
         }
 
         [HttpDelete]
