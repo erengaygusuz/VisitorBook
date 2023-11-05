@@ -18,9 +18,11 @@ namespace VisitorBook.Core.Models
         public string Surname { get; set; }
 
         [Required]
+        [DataType(DataType.DateTime)]
         public DateTime BirthDate { get; set; }
 
         [Required]
+        [EnumDataType(typeof(Gender))]
         public Gender Gender { get; set; }
 
         public Guid? VisitorAddressId { get; set; }
