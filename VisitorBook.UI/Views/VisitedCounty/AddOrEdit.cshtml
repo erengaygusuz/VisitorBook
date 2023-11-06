@@ -13,13 +13,13 @@
             <input type="hidden" asp-for="VisitedCounty.Id" />
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="VisitedCounty"
+                    <label asp-for="VisitedCounty.County.CityId"
                         class="control-label">@localization["VisitedCounties.Table.Column3.Text"]</label>
-                    <select id="citylist" onchange="cityChange()" asp-for="VisitedCounty" asp-items="@Model.CityList"
+                    <select id="citylist" onchange="cityChange()" asp-for="VisitedCounty.County.CityId" asp-items="@Model.CityList"
                         class="form-select">
                         <option disabled selected value="0">@localization["AddOrEditModal.CitySelection.Text"]</option>
                     </select>
-                    <span asp-validation-for="VisitedCounty" class="text-danger"></span>
+                    <span asp-validation-for="VisitedCounty.County.CityId" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4" id="countylist">
