@@ -2,12 +2,14 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Globalization;
+using System.Reflection;
 using VisitorBook.BL.Concrete;
 using VisitorBook.BL.Services;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Utilities;
 using VisitorBook.DAL.Concrete;
 using VisitorBook.DAL.Data;
+using VisitorBook.UI.Languages;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +18,15 @@ builder.Services.AddLocalization(options =>
     options.ResourcesPath = "Resources";
 });
 
-builder.Services.AddControllersWithViews().AddViewLocalization();
+builder.Services.AddControllersWithViews().AddViewLocalization().AddDataAnnotationsLocalization(opts =>
+{
+    opts.DataAnnotationLocalizerProvider = (type, factory) =>
+    {
+        var assemblyName = new AssemblyName(typeof(Language).GetTypeInfo().Assembly.FullName!);
+
+        return factory.Create(nameof(Language), assemblyName.Name!);
+    };
+});
 
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {

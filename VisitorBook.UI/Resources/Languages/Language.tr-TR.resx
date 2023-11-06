@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddOrEditModal.CitySelection.Text" xml:space="preserve">
-    <value>--Şehir Seç--</value>
+    <value>--İl Seç--</value>
   </data>
   <data name="AddOrEditModal.GenderSelection.Text" xml:space="preserve">
     <value>--Cinsiyet Seç--</value>
@@ -220,7 +220,7 @@
     <value>İlçe Adı</value>
   </data>
   <data name="VisitedCounties.Table.Column3.Text" xml:space="preserve">
-    <value>Şehir Adı</value>
+    <value>İl Adı</value>
   </data>
   <data name="VisitedCounties.Table.Column4.Text" xml:space="preserve">
     <value>Ziyaret Tarihi</value>

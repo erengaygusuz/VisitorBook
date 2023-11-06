@@ -138,6 +138,8 @@ namespace VisitorBook.UI.Controllers
                        Text = u.Name,
                        Value = u.Id.ToString()
                    });
+
+                    VisitorViewModel.VisitorAddress = VisitorViewModel.Visitor.VisitorAddress;
                 }
 
                 return View(VisitorViewModel);
@@ -169,20 +171,20 @@ namespace VisitorBook.UI.Controllers
                     visitor.BirthDate = VisitorViewModel.Visitor.BirthDate;
                     visitor.Gender = VisitorViewModel.Visitor.Gender;
 
-                    if (VisitorViewModel.Visitor.VisitorAddress != null)
+                    if (VisitorViewModel.VisitorAddress != null)
                     {
-                        var newCountyWithCity = await _countyService.GetAsync(u => u.Id == VisitorViewModel.Visitor.VisitorAddress.CountyId, include: u => u.Include(a => a.City));
+                        var newCounty = await _countyService.GetAsync(u => u.Id == VisitorViewModel.VisitorAddress.CountyId);
 
                         if (visitor.VisitorAddress != null)
                         {
-                            visitor.VisitorAddress.CountyId = newCountyWithCity.Id;
+                            visitor.VisitorAddress.CountyId = newCounty.Id;
                         }
 
                         else
                         {
                             visitor.VisitorAddress = new VisitorAddress
                             {
-                                CountyId = newCountyWithCity.Id
+                                CountyId = newCounty.Id
                             };
                         }
                     }
