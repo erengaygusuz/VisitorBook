@@ -98,7 +98,7 @@ namespace VisitorBook.UI.Controllers
             });
         }
 
-        public async Task<IActionResult> AddOrEdit(Guid? id)
+        public async Task<IActionResult> Add()
         {
             VisitorViewModel = new VisitorViewModel()
             {
@@ -119,80 +119,113 @@ namespace VisitorBook.UI.Controllers
                 CountyList = new List<SelectListItem>()
             };
 
-            if (id == null)
+            return View(VisitorViewModel);
+        }
+
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            VisitorViewModel = new VisitorViewModel()
             {
-                // create
-                return View(VisitorViewModel);
+                Visitor = new Visitor(),
+                VisitorAddress = new VisitorAddress(),
+                GenderList = new List<Gender> { Gender.Male, Gender.Female }
+                    .Select(u => new SelectListItem
+                    {
+                        Text = _localization["Enum.Gender." + u.ToString() + ".Text"].Value,
+                        Value = u.ToString()
+                    }),
+                CityList = (await _cityService.GetAllAsync())
+                   .Select(u => new SelectListItem
+                   {
+                       Text = u.Name,
+                       Value = u.Id.ToString()
+                   }),
+                CountyList = new List<SelectListItem>()
+            };
+
+            VisitorViewModel.Visitor = await _visitorService.GetAsync(u => u.Id == id, include: u => u.Include(a => a.VisitorAddress).ThenInclude(b => b.County));
+
+            if (VisitorViewModel.Visitor.VisitorAddress != null)
+            {
+                VisitorViewModel.CountyList = (await _countyService.GetAllAsync(u => u.CityId == VisitorViewModel.Visitor.VisitorAddress.County.CityId))
+               .Select(u => new SelectListItem
+               {
+                   Text = u.Name,
+                   Value = u.Id.ToString()
+               });
+
+                VisitorViewModel.VisitorAddress = VisitorViewModel.Visitor.VisitorAddress;
             }
 
-            else
-            {
-                // update
-                VisitorViewModel.Visitor = await _visitorService.GetAsync(u => u.Id == id, include: u => u.Include(a => a.VisitorAddress).ThenInclude(b => b.County));
+            return View(VisitorViewModel);
+        }
 
-                if (VisitorViewModel.Visitor.VisitorAddress != null)
-                {
-                    VisitorViewModel.CountyList = (await _countyService.GetAllAsync(u => u.CityId == VisitorViewModel.Visitor.VisitorAddress.County.CityId))
+        [ActionName("Add")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddPost()
+        {
+            if (ModelState.IsValid)
+            {
+                VisitorViewModel.Visitor.VisitorAddress = VisitorViewModel.VisitorAddress;
+
+                await _visitorService.AddAsync(VisitorViewModel.Visitor);
+
+                return Json(new { isValid = true, message = _localization["Visitors.Notification.Add.Text"].Value });
+            }
+
+            VisitorViewModel.CityList = (await _cityService.GetAllAsync())
                    .Select(u => new SelectListItem
                    {
                        Text = u.Name,
                        Value = u.Id.ToString()
                    });
 
-                    VisitorViewModel.VisitorAddress = VisitorViewModel.Visitor.VisitorAddress;
-                }
+            VisitorViewModel.GenderList = new List<Gender> { Gender.Male, Gender.Female }
+                    .Select(u => new SelectListItem
+                    {
+                        Text = _localization["Enum.Gender." + u.ToString() + ".Text"].Value,
+                        Value = u.ToString()
+                    });
 
-                return View(VisitorViewModel);
-            }
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "AddOrEdit", VisitorViewModel) });
         }
 
-        [ActionName("AddOrEdit")]
+        [ActionName("Edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEditPost(Guid? id)
+        public async Task<IActionResult> EditPost()
         {
             if (ModelState.IsValid)
             {
-                if (id == Guid.Empty)
+                var visitor = await _visitorService.GetAsync(u => u.Id == VisitorViewModel.Visitor.Id, include: u => u.Include(a => a.VisitorAddress));
+
+                visitor.Name = VisitorViewModel.Visitor.Name;
+                visitor.Surname = VisitorViewModel.Visitor.Surname;
+                visitor.BirthDate = VisitorViewModel.Visitor.BirthDate;
+                visitor.Gender = VisitorViewModel.Visitor.Gender;
+
+                if (VisitorViewModel.VisitorAddress != null)
                 {
-                    VisitorViewModel.Visitor.VisitorAddress = VisitorViewModel.VisitorAddress;
+                    var newCounty = await _countyService.GetAsync(u => u.Id == VisitorViewModel.VisitorAddress.CountyId);
 
-                    await _visitorService.AddAsync(VisitorViewModel.Visitor);
-
-                    return Json(new { isValid = true, message = _localization["Visitors.Notification.Add.Text"].Value });
-                }
-
-                else
-                {
-                    var visitor = await _visitorService.GetAsync(u => u.Id == id, include: u => u.Include(a => a.VisitorAddress));
-
-                    visitor.Name = VisitorViewModel.Visitor.Name;
-                    visitor.Surname = VisitorViewModel.Visitor.Surname;
-                    visitor.BirthDate = VisitorViewModel.Visitor.BirthDate;
-                    visitor.Gender = VisitorViewModel.Visitor.Gender;
-
-                    if (VisitorViewModel.VisitorAddress != null)
+                    if (visitor.VisitorAddress != null)
                     {
-                        var newCounty = await _countyService.GetAsync(u => u.Id == VisitorViewModel.VisitorAddress.CountyId);
-
-                        if (visitor.VisitorAddress != null)
-                        {
-                            visitor.VisitorAddress.CountyId = newCounty.Id;
-                        }
-
-                        else
-                        {
-                            visitor.VisitorAddress = new VisitorAddress
-                            {
-                                CountyId = newCounty.Id
-                            };
-                        }
+                        visitor.VisitorAddress.CountyId = newCounty.Id;
                     }
 
-                    await _visitorService.UpdateAsync(visitor);
-
-                    return Json(new { isValid = true, message = _localization["Visitors.Notification.Edit.Text"].Value });
+                    else
+                    {
+                        visitor.VisitorAddress = new VisitorAddress
+                        {
+                            CountyId = newCounty.Id
+                        };
+                    }
                 }
+
+                await _visitorService.UpdateAsync(visitor);
+
+                return Json(new { isValid = true, message = _localization["Visitors.Notification.Edit.Text"].Value });
             }
 
             VisitorViewModel.CityList = (await _cityService.GetAllAsync())

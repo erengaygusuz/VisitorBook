@@ -91,12 +91,43 @@ namespace VisitorBook.UI.Controllers
             });
         }
 
-        public async Task<IActionResult> AddOrEdit(Guid? id)
+        public async Task<IActionResult> Add()
         {
             VisitedCountyViewModel = new VisitedCountyViewModel()
             {
                 VisitedCounty = new VisitedCounty(),
                 CountyList = new List<SelectListItem>(),
+                CityList = (await _cityService.GetAllAsync())
+                   .Select(u => new SelectListItem
+                   {
+                       Text = u.Name,
+                       Value = u.Id.ToString()
+                   }),
+                VisitorList = (await _visitorService.GetAllAsync(v => v.VisitorAddressId != null))
+                   .Select(u => new SelectListItem
+                   {
+                       Text = u.Name + " " + u.Surname,
+                       Value = u.Id.ToString()
+                   })
+            };
+
+            return View(VisitedCountyViewModel);
+        }
+
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            var visitedCounty = await _visitedCountyService.GetAsync(u => u.Id == id, include: a => a.Include(b => b.County));
+            var countyList = await _countyService.GetAllAsync(u => u.CityId == visitedCounty.County.CityId);
+
+            VisitedCountyViewModel = new VisitedCountyViewModel()
+            {
+                VisitedCounty = visitedCounty,
+                CountyList = countyList
+                   .Select(u => new SelectListItem
+                   {
+                       Text = u.Name,
+                       Value = u.Id.ToString()
+                   }),
                 CityList = (await _cityService.GetAllAsync())
                    .Select(u => new SelectListItem
                    {
@@ -111,57 +142,57 @@ namespace VisitorBook.UI.Controllers
                    })
             };
 
-            if (id == null)
-            {
-                // create
-                return View(VisitedCountyViewModel);
-            }
-
-            else
-            {
-                // update
-                VisitedCountyViewModel.VisitedCounty = await _visitedCountyService.GetAsync(u => u.Id == id, include: a => a.Include(b => b.County));
-
-                VisitedCountyViewModel.CountyList = (await _countyService.GetAllAsync(u => u.CityId == VisitedCountyViewModel.VisitedCounty.County.CityId))
-                  .Select(u => new SelectListItem
-                  {
-                      Text = u.Name,
-                      Value = u.Id.ToString()
-                  });
-
-                return View(VisitedCountyViewModel);
-            }
+            return View(VisitedCountyViewModel);
         }
 
-        [ActionName("AddOrEdit")]
+        [ActionName("Add")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEditPost(Guid? id)
+        public async Task<IActionResult> AddPost()
         {
             if (ModelState.IsValid)
             {
-                if (id == Guid.Empty)
-                {
-                    await _visitedCountyService.AddAsync(VisitedCountyViewModel.VisitedCounty);
+                await _visitedCountyService.AddAsync(VisitedCountyViewModel.VisitedCounty);
 
-                    return Json(new { isValid = true, message = _localization["VisitedCounties.Notification.Add.Text"].Value });
-                }
+                return Json(new { isValid = true, message = _localization["VisitedCounties.Notification.Add.Text"].Value });
+            }
 
-                else
-                {
-                    var visitedCounty = await _visitedCountyService.GetAsync(u => u.Id == id);
+            VisitedCountyViewModel.VisitorList = (await _visitorService.GetAllAsync(v => v.VisitorAddressId != null))
+                   .Select(u => new SelectListItem
+                   {
+                       Text = u.Name + " " + u.Surname,
+                       Value = u.Id.ToString()
+                   });
 
-                    visitedCounty.VisitDate = VisitedCountyViewModel.VisitedCounty.VisitDate;
-                    visitedCounty.VisitorId = VisitedCountyViewModel.VisitedCounty.VisitorId;
+            VisitedCountyViewModel.CityList = (await _cityService.GetAllAsync())
+                   .Select(u => new SelectListItem
+                   {
+                       Text = u.Name,
+                       Value = u.Id.ToString()
+                   });
 
-                    var newCountyWithCity = await _countyService.GetAsync(u => u.Id == VisitedCountyViewModel.VisitedCounty.CountyId, include: u => u.Include(a => a.City));
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", VisitedCountyViewModel) });
+        }
 
-                    visitedCounty.CountyId = newCountyWithCity.Id;
+        [ActionName("Edit")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditPost()
+        {
+            if (ModelState.IsValid)
+            {
+                var visitedCounty = await _visitedCountyService.GetAsync(u => u.Id == VisitedCountyViewModel.VisitedCounty.Id);
 
-                    await _visitedCountyService.UpdateAsync(visitedCounty);
+                visitedCounty.VisitDate = VisitedCountyViewModel.VisitedCounty.VisitDate;
+                visitedCounty.VisitorId = VisitedCountyViewModel.VisitedCounty.VisitorId;
 
-                    return Json(new { isValid = true, message = _localization["VisitedCounties.Notification.Edit.Text"].Value });
-                }
+                var newCounty = await _countyService.GetAsync(u => u.Id == VisitedCountyViewModel.VisitedCounty.CountyId);
+
+                visitedCounty.CountyId = newCounty.Id;
+
+                await _visitedCountyService.UpdateAsync(visitedCounty);
+
+                return Json(new { isValid = true, message = _localization["VisitedCounties.Notification.Edit.Text"].Value });
             }
 
             VisitedCountyViewModel.VisitorList = (await _visitorService.GetAllAsync(v => v.VisitorAddress != null))
