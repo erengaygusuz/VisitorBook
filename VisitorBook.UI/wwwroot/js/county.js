@@ -114,7 +114,7 @@ function loadDataTable(
                 render: function (data) {
                     return `
                             <div class="d-flex justify-content-around align-items-center">
-                               <a onclick="showInPopup('/county/addoredit/${data}', 
+                               <a onclick="showInPopup('/county/edit/${data}', 
                                '${editModalTitleText}')" class="btn btn-warning"> ${editBtnText}</a>
                                <a onclick=deleteRecord('/county/delete/${data}') class="btn btn-danger">
                                  ${deleteBtnText}
@@ -147,6 +147,37 @@ showInPopup = (url, title) => {
 }
 
 AddRecord = (form) => {
+    try {
+        $.ajax({
+            type: 'POST',
+            url: form.action,
+            data: new FormData(form),
+            contentType: false,
+            processData: false,
+            success: function (res) {
+                if (res.isValid) {
+                    $('#form-modal .modal-body').html('')
+                    $('#form-modal .modal-title').html('')
+                    $('#form-modal').modal('hide')
+
+                    dataTable.ajax.reload()
+                    toastr.success(res.message)
+                } else {
+                    $('#form-modal .modal-body').html(res.html)
+                }
+            },
+            error: function (err) {
+                console.log(err)
+            },
+        })
+    } catch (e) {
+        console.log(e)
+    }
+
+    return false
+}
+
+EditRecord = (form) => {
     try {
         $.ajax({
             type: 'POST',

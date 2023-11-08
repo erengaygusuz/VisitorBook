@@ -97,7 +97,7 @@ namespace VisitorBook.UI.Controllers
             });
         }
 
-        public async Task<IActionResult> AddOrEdit(Guid? id)
+        public async Task<IActionResult> Add()
         {
             CountyViewModel = new CountyViewModel()
             {
@@ -110,41 +110,35 @@ namespace VisitorBook.UI.Controllers
                 County = new County()
             };
 
-            if (id == null)
-            {
-                // create
-                return View(CountyViewModel);
-            }
-
-            else
-            {
-                // update
-                CountyViewModel.County = await _countyService.GetAsync(u => u.Id == id);
-
-                return View(CountyViewModel);
-            }
+            return View(CountyViewModel);
         }
 
-        [ActionName("AddOrEdit")]
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            CountyViewModel = new CountyViewModel()
+            {
+                CityList = (await _cityService.GetAllAsync())
+                   .Select(u => new SelectListItem
+                   {
+                       Text = u.Name,
+                       Value = u.Id.ToString()
+                   }),
+                County = await _countyService.GetAsync(u => u.Id == id)
+            };
+
+            return View(CountyViewModel);
+        }
+
+        [ActionName("Add")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEditPost(Guid? id)
+        public async Task<IActionResult> AddPost()
         {
             if (ModelState.IsValid)
             {
-                if (id == null)
-                {
-                    await _countyService.AddAsync(CountyViewModel.County);
+                await _countyService.AddAsync(CountyViewModel.County);
 
-                    return Json(new { isValid = true, message = _localization["Counties.Notification.Add.Text"].Value });
-                }
-
-                else
-                {
-                    await _countyService.UpdateAsync(CountyViewModel.County);
-
-                    return Json(new { isValid = true, message = _localization["Counties.Notification.Edit.Text"].Value });
-                }
+                return Json(new { isValid = true, message = _localization["Counties.Notification.Add.Text"].Value });
             }
 
             CountyViewModel.CityList = (await _cityService.GetAllAsync())
@@ -154,7 +148,29 @@ namespace VisitorBook.UI.Controllers
                        Value = u.Id.ToString()
                    });
 
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "AddOrEdit", CountyViewModel) });
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", CountyViewModel) });
+        }
+
+        [ActionName("Edit")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditPost()
+        {
+            if (ModelState.IsValid)
+            {
+                await _countyService.UpdateAsync(CountyViewModel.County);
+
+                return Json(new { isValid = true, message = _localization["Counties.Notification.Edit.Text"].Value });
+            }
+
+            CountyViewModel.CityList = (await _cityService.GetAllAsync())
+                   .Select(u => new SelectListItem
+                   {
+                       Text = u.Name,
+                       Value = u.Id.ToString()
+                   });
+
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", CountyViewModel) });
         }
 
         [HttpDelete]

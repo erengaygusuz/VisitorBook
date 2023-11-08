@@ -1,13 +1,13 @@
 ﻿@model CountyViewModel
 
 @{
-    ViewData["Title"] = "Add or Edit";
+    ViewData["Title"] = "Add";
     Layout = null;
 }
 
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="AddOrEdit" asp-route-id="@Model.County.Id" onsubmit="return AddRecord(this);" autocomplete="off">
+        <form asp-action="Add" asp-route-id="@Model.County.Id" onsubmit="return AddRecord(this);" autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="County.Id" />
             <div class="row mt-4">

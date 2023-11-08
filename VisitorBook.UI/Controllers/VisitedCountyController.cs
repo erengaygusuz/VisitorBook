@@ -140,7 +140,7 @@ namespace VisitorBook.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (id == null)
+                if (id == Guid.Empty)
                 {
                     await _visitedCountyService.AddAsync(VisitedCountyViewModel.VisitedCounty);
 

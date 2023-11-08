@@ -79,53 +79,54 @@ namespace VisitorBook.UI.Controllers
         }
 
         [NoDirectAccess]
-        public async Task<IActionResult> AddOrEdit(Guid? id)
+        public IActionResult Add()
         {
             City = new City();
 
-            if (id == null)
-            {
-                return View(City);
-            }
-
-            else
-            {
-                City = await _cityService.GetAsync(u => u.Id == id);
-
-                if (City == null)
-                {
-                    return NotFound();
-                }
-
-                return View(City);
-            }
+            return View(City);
         }
 
-        [ActionName("AddOrEdit")]
+        [NoDirectAccess]
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            City = await _cityService.GetAsync(u => u.Id == id);
+
+            if (City == null)
+            {
+                return NotFound();
+            }
+
+            return View(City);
+        }
+
+        [ActionName("Add")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEditPost(Guid? id)
+        public async Task<IActionResult> AddPost()
         {
             if (ModelState.IsValid)
             {
-                if (id == null)
-                {
-                    await _cityService.AddAsync(City);
+                await _cityService.AddAsync(City);
 
-                    return Json(new { isValid = true, message = _localization["Cities.Notification.Add.Text"].Value });
-                }
-
-                else
-                {
-                    await _cityService.UpdateAsync(City);
-
-                    return Json(new { isValid = true, message = _localization["Cities.Notification.Edit.Text"].Value });
-                }
+                return Json(new { isValid = true, message = _localization["Cities.Notification.Add.Text"].Value });
             }
 
-            var val = await _razorViewConverter.GetStringFromRazorView(this, "AddOrEdit", City);
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", City) });
+        }
 
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "AddOrEdit", City) });
+        [ActionName("Edit")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditPost()
+        {
+            if (ModelState.IsValid)
+            {
+                await _cityService.UpdateAsync(City);
+
+                return Json(new { isValid = true, message = _localization["Cities.Notification.Edit.Text"].Value });
+            }
+
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", City) });
         }
 
         [HttpDelete]

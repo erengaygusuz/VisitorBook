@@ -153,7 +153,7 @@ namespace VisitorBook.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (id == null)
+                if (id == Guid.Empty)
                 {
                     VisitorViewModel.Visitor.VisitorAddress = VisitorViewModel.VisitorAddress;
 
