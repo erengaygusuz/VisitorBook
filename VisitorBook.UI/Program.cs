@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using System.Globalization;
 using System.Reflection;
 using VisitorBook.BL.Concrete;
+using VisitorBook.BL.Mapping;
 using VisitorBook.BL.Services;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Utilities;
@@ -27,6 +28,8 @@ builder.Services.AddControllersWithViews().AddViewLocalization().AddDataAnnotati
         return factory.Create(nameof(Language), assemblyName.Name!);
     };
 });
+
+builder.Services.AddAutoMapper(typeof(MapProfile));
 
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {

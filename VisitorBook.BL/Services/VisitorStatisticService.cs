@@ -19,7 +19,7 @@ namespace VisitorBook.BL.Services
         public async Task<Tuple<string, string>> GetHighestCountOfVisitedCountyByVisitorAsync()
         {
             var visitedCountyWithVisitorAndVisitorAddress = _visitedCountyRepository
-                .GetAll(v => v.Visitor.VisitorAddress != null, include: u => u.Include(a => a.County).Include(a => a.Visitor));
+                .GetAll(v => v.Visitor.VisitorAddressId != null, include: u => u.Include(a => a.County).Include(a => a.Visitor));
 
             var groupedVisitedList = visitedCountyWithVisitorAndVisitorAddress.GroupBy(a => a.VisitorId);
 
@@ -37,7 +37,7 @@ namespace VisitorBook.BL.Services
         public async Task<Tuple<string, string>> GetHighestCountOfVisitedCityByVisitorAsync()
         {
             var visitedCountyWithVisitorAndVisitorAddress = _visitedCountyRepository
-                .GetAll(v => v.Visitor.VisitorAddress != null, include: u => u.Include(a => a.County).Include(a => a.Visitor));
+                .GetAll(v => v.Visitor.VisitorAddressId != null, include: u => u.Include(a => a.County).Include(a => a.Visitor));
 
             var groupedVisitedList = visitedCountyWithVisitorAndVisitorAddress.GroupBy(a => a.VisitorId);
 
@@ -55,7 +55,8 @@ namespace VisitorBook.BL.Services
         public async Task<Tuple<string, string>> GetLongestDistanceByVisitorOneTimeAsync()
         {
             var visitedCountyWithVisitorAndVisitorAddress = _visitedCountyRepository
-                .GetAll(v => v.Visitor.VisitorAddress != null, include: u => u.Include(a => a.County).Include(a => a.Visitor).ThenInclude(a => a.VisitorAddress).ThenInclude(i => i.County));
+                .GetAll(v => v.Visitor.VisitorAddressId != null, include: u => u.Include(a => a.County).Include(a => a.Visitor)
+                .ThenInclude(a => a.VisitorAddress).ThenInclude(i => i.County));
 
             var groupedVisitedList = visitedCountyWithVisitorAndVisitorAddress.GroupBy(a => a.VisitorId);
 
@@ -73,7 +74,8 @@ namespace VisitorBook.BL.Services
         public async Task<Tuple<string, string>> GetLongestDistanceByVisitorAllTimeAsync()
         {
             var visitedCountyWithVisitorAndVisitorAddress = _visitedCountyRepository
-                .GetAll(v => v.Visitor.VisitorAddress != null, include: u => u.Include(a => a.County).Include(a => a.Visitor).ThenInclude(a => a.VisitorAddress).ThenInclude(i => i.County));
+                .GetAll(v => v.Visitor.VisitorAddressId != null, include: u => u.Include(a => a.County).Include(a => a.Visitor)
+                .ThenInclude(a => a.VisitorAddress).ThenInclude(i => i.County));
 
             var groupedVisitedList = visitedCountyWithVisitorAndVisitorAddress.GroupBy(a => a.VisitorId);
 

@@ -1,4 +1,4 @@
-﻿@model City
+﻿@model CityAddRequestDto
 
 @{
     ViewData["Title"] = "Add";
@@ -7,9 +7,8 @@
 
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="Add" asp-route-id="@Model.Id" onsubmit="return AddRecord(this);" autocomplete="off">
+        <form asp-action="Add" onsubmit="return AddRecord(this);" autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
             <div class="row mt-4">
                 <div class="form-group">
                     <label asp-for="Name" class="control-label">@localization["Cities.Table.Column1.Text"]</label>

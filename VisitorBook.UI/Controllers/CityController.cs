@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Attributes;
+using VisitorBook.Core.Dtos.CityDtos;
 using VisitorBook.Core.Models;
 using VisitorBook.Core.Utilities;
 using VisitorBook.UI.Languages;
@@ -13,15 +15,14 @@ namespace VisitorBook.UI.Controllers
         private readonly IService<City> _cityService;
         private readonly IStringLocalizer<Language> _localization;
         private readonly RazorViewConverter _razorViewConverter;
+        private readonly IMapper _mapper;
 
-        [BindProperty]
-        public City City { get; set; }
-
-        public CityController(IService<City> cityService, IStringLocalizer<Language> localization, RazorViewConverter razorViewConverter)
+        public CityController(IService<City> cityService, IStringLocalizer<Language> localization, RazorViewConverter razorViewConverter, IMapper mapper)
         {
             _cityService = cityService;
             _localization = localization;
             _razorViewConverter = razorViewConverter;
+            _mapper = mapper;
         }
 
         public async Task<IActionResult> Index()
@@ -81,52 +82,56 @@ namespace VisitorBook.UI.Controllers
         [NoDirectAccess]
         public IActionResult Add()
         {
-            City = new City();
-
-            return View(City);
+            return View();
         }
 
         [NoDirectAccess]
         public async Task<IActionResult> Edit(Guid id)
         {
-            City = await _cityService.GetAsync(u => u.Id == id);
+            var city = await _cityService.GetAsync(u => u.Id == id);
 
-            if (City == null)
+            var cityGetResponseDto = _mapper.Map<CityGetResponseDto>(city);
+
+            if (cityGetResponseDto == null)
             {
                 return NotFound();
             }
 
-            return View(City);
+            return View(cityGetResponseDto);
         }
 
         [ActionName("Add")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddPost()
+        public async Task<IActionResult> AddPost(CityAddRequestDto cityAddRequestDto)
         {
             if (ModelState.IsValid)
             {
-                await _cityService.AddAsync(City);
+                var city = _mapper.Map<City>(cityAddRequestDto);
+
+                await _cityService.AddAsync(city);
 
                 return Json(new { isValid = true, message = _localization["Cities.Notification.Add.Text"].Value });
             }
 
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", City) });
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", cityAddRequestDto) });
         }
 
         [ActionName("Edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost()
+        public async Task<IActionResult> EditPost(CityUpdateRequestDto cityUpdateRequestDto)
         {
             if (ModelState.IsValid)
             {
-                await _cityService.UpdateAsync(City);
+                var city = _mapper.Map<City>(cityUpdateRequestDto);
+
+                await _cityService.UpdateAsync(city);
 
                 return Json(new { isValid = true, message = _localization["Cities.Notification.Edit.Text"].Value });
             }
 
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", City) });
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", cityUpdateRequestDto) });
         }
 
         [HttpDelete]
