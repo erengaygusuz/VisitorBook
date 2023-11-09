@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using VisitorBook.Core.Abstract;
+using VisitorBook.Core.Dtos.CityDtos;
+using VisitorBook.Core.Dtos.CountyDtos;
 using VisitorBook.Core.Models;
 using VisitorBook.Core.Utilities;
 using VisitorBook.UI.Languages;
@@ -16,16 +19,16 @@ namespace VisitorBook.UI.Controllers
         private readonly IService<City> _cityService;
         private readonly IStringLocalizer<Language> _localization;
         private readonly RazorViewConverter _razorViewConverter;
+        private readonly IMapper _mapper;
 
-        [BindProperty]
-        public CountyViewModel CountyViewModel { get; set; }
-
-        public CountyController(IService<County> countyService, IService<City> cityService, IStringLocalizer<Language> localization, RazorViewConverter razorViewConverter)
+        public CountyController(IService<County> countyService, IService<City> cityService, IStringLocalizer<Language> localization, 
+            RazorViewConverter razorViewConverter, IMapper mapper)
         {
             _countyService = countyService;
             _cityService = cityService;
             _localization = localization;
             _razorViewConverter = razorViewConverter;
+            _mapper = mapper;
         }
 
         public IActionResult Index()
@@ -99,78 +102,103 @@ namespace VisitorBook.UI.Controllers
 
         public async Task<IActionResult> Add()
         {
-            CountyViewModel = new CountyViewModel()
+            var cities = await _cityService.GetAllAsync();
+            var cityGetResponseDtos = _mapper.Map<List<CityGetResponseDto>>(cities);
+
+            var countyAddViewModel = new CountyAddViewModel()
             {
-                CityList = (await _cityService.GetAllAsync())
+                CityList = (cityGetResponseDtos)
                    .Select(u => new SelectListItem
                    {
                        Text = u.Name,
                        Value = u.Id.ToString()
                    }),
-                County = new County()
+                CountyAddRequestDto = new CountyAddRequestDto()
             };
 
-            return View(CountyViewModel);
+            return View(countyAddViewModel);
         }
 
         public async Task<IActionResult> Edit(Guid id)
         {
-            CountyViewModel = new CountyViewModel()
+            var county = await _countyService.GetAsync(u => u.Id == id);
+            var countyUpdateRequestDto = _mapper.Map<CountyUpdateRequestDto>(county);
+
+            var cities = await _cityService.GetAllAsync();
+            var cityGetResponseDtos = _mapper.Map<List<CityGetResponseDto>>(cities);
+
+            var countyUpdateViewModel = new CountyUpdateViewModel()
             {
-                CityList = (await _cityService.GetAllAsync())
+                CityList = (cityGetResponseDtos)
                    .Select(u => new SelectListItem
                    {
                        Text = u.Name,
                        Value = u.Id.ToString()
                    }),
-                County = await _countyService.GetAsync(u => u.Id == id)
+                CountyUpdateRequestDto = countyUpdateRequestDto
             };
 
-            return View(CountyViewModel);
+            return View(countyUpdateViewModel);
         }
 
         [ActionName("Add")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddPost()
+        public async Task<IActionResult> AddPost(CountyAddRequestDto countyAddRequestDto)
         {
             if (ModelState.IsValid)
             {
-                await _countyService.AddAsync(CountyViewModel.County);
+                var county = _mapper.Map<County>(countyAddRequestDto);
+
+                await _countyService.AddAsync(county);
 
                 return Json(new { isValid = true, message = _localization["Counties.Notification.Add.Text"].Value });
             }
 
-            CountyViewModel.CityList = (await _cityService.GetAllAsync())
+            var cities = await _cityService.GetAllAsync();
+            var cityGetResponseDtos = _mapper.Map<List<CityGetResponseDto>>(cities);
+
+            var countyAddViewModel = new CountyAddViewModel()
+            {
+                CityList = (cityGetResponseDtos)
                    .Select(u => new SelectListItem
                    {
                        Text = u.Name,
                        Value = u.Id.ToString()
-                   });
+                   })
+            };
 
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", CountyViewModel) });
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", countyAddViewModel) });
         }
 
         [ActionName("Edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost()
+        public async Task<IActionResult> EditPost(CountyUpdateRequestDto countyUpdateRequestDto)
         {
             if (ModelState.IsValid)
             {
-                await _countyService.UpdateAsync(CountyViewModel.County);
+                var county = _mapper.Map<County>(countyUpdateRequestDto);
+
+                await _countyService.UpdateAsync(county);
 
                 return Json(new { isValid = true, message = _localization["Counties.Notification.Edit.Text"].Value });
             }
 
-            CountyViewModel.CityList = (await _cityService.GetAllAsync())
+            var cities = await _cityService.GetAllAsync();
+            var cityGetResponseDtos = _mapper.Map<List<CityGetResponseDto>>(cities);
+
+            var countyUpdateViewModel = new CountyUpdateViewModel()
+            {
+                CityList = (cityGetResponseDtos)
                    .Select(u => new SelectListItem
                    {
                        Text = u.Name,
                        Value = u.Id.ToString()
-                   });
+                   })
+            };
 
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", CountyViewModel) });
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", countyUpdateViewModel) });
         }
 
         [HttpDelete]

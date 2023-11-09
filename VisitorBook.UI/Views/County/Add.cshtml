@@ -1,4 +1,4 @@
-﻿@model CountyViewModel
+﻿@model CountyAddViewModel
 
 @{
     ViewData["Title"] = "Add";
@@ -7,39 +7,38 @@
 
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="Add" asp-route-id="@Model.County.Id" onsubmit="return AddRecord(this);" autocomplete="off">
+        <form asp-action="Add" onsubmit="return AddRecord(this);" autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="County.Id" />
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="County.Name" class="control-label">@localization["Counties.Table.Column1.Text"]</label>
-                    <input asp-for="County.Name" class="form-control" />
-                    <span asp-validation-for="County.Name" class="text-danger"></span>
+                    <label asp-for="CountyAddRequestDto.Name" class="control-label">@localization["Counties.Table.Column1.Text"]</label>
+                    <input asp-for="CountyAddRequestDto.Name" class="form-control" />
+                    <span asp-validation-for="CountyAddRequestDto.Name" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="County.Latitude" class="control-label">@localization["Counties.Table.Column4.Text"]</label>
-                        <input asp-for="County.Latitude" class="form-control" />
-                        <span asp-validation-for="County.Latitude" class="text-danger"></span>
+                        <label asp-for="CountyAddRequestDto.Latitude" class="control-label">@localization["Counties.Table.Column4.Text"]</label>
+                        <input asp-for="CountyAddRequestDto.Latitude" class="form-control" />
+                        <span asp-validation-for="CountyAddRequestDto.Latitude" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="County.Longitude" class="control-label">@localization["Counties.Table.Column3.Text"]</label>
-                        <input asp-for="County.Longitude" class="form-control" />
-                        <span asp-validation-for="County.Longitude" class="text-danger"></span>
+                        <label asp-for="CountyAddRequestDto.Longitude" class="control-label">@localization["Counties.Table.Column3.Text"]</label>
+                        <input asp-for="CountyAddRequestDto.Longitude" class="form-control" />
+                        <span asp-validation-for="CountyAddRequestDto.Longitude" class="text-danger"></span>
                     </div>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="County.CityId" class="control-label">@localization["Counties.Table.Column2.Text"]</label>
-                    <select asp-for="County.CityId" asp-items="@Model.CityList" class="form-select">
+                    <label asp-for="CountyAddRequestDto.CityId" class="control-label">@localization["Counties.Table.Column2.Text"]</label>
+                    <select asp-for="CountyAddRequestDto.CityId" asp-items="@Model.CityList" class="form-select">
                         <option disabled selected>@localization["AddOrEditModal.CitySelection.Text"]</option>
                     </select>
-                    <span asp-validation-for="County.CityId" class="text-danger"></span>
+                    <span asp-validation-for="CountyAddRequestDto.CityId" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4">
