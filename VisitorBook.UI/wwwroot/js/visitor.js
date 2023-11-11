@@ -163,27 +163,29 @@ showInPopup = (url, title) => {
 }
 
 function fillCountyList(cityId, selectedIndex) {
+
     $.ajax({
         type: 'GET',
         url: '/county/getallbycity?cityId=' + cityId,
         success: function (res) {
-            $('#VisitorAddress_CountyId').empty()
+
+            $('#county-id').empty()
 
             var countySelectionText = document.getElementById(
                 'AddOrEditModalCountySelectionText'
             ).value
 
-            $('#VisitorAddress_CountyId').append(
+            $('#county-id').append(
                 $('<option disabled value="0">' + countySelectionText + '</option>')
             )
 
             $.each(res.data, function (index, value) {
-                $('#VisitorAddress_CountyId').append(
+                $('#county-id').append(
                     $('<option value="' + value.id + '">' + value.name + '</option>')
                 )
             })
 
-            $('#VisitorAddress_CountyId option:eq(' + selectedIndex + ')').prop(
+            $('#county-id option:eq(' + selectedIndex + ')').prop(
                 'selected',
                 true
             )

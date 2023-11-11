@@ -93,16 +93,17 @@ namespace VisitorBook.UI.Controllers
         public async Task<IActionResult> GetAllByCity(Guid cityId)
         {
             var counties = await _countyService.GetAllAsync(u => u.CityId == cityId);
+            var countyGetResponseDtos = _mapper.Map<List<CountyGetResponseDto>>(counties);
 
             return Json(new
             {
-                data = counties
+                data = countyGetResponseDtos
             });
         }
 
         public async Task<IActionResult> Add()
         {
-            var cities = await _cityService.GetAllAsync();
+            var cities = await _cityService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Name));
             var cityGetResponseDtos = _mapper.Map<List<CityGetResponseDto>>(cities);
 
             var countyAddViewModel = new CountyAddViewModel()
@@ -124,7 +125,7 @@ namespace VisitorBook.UI.Controllers
             var county = await _countyService.GetAsync(u => u.Id == id);
             var countyUpdateRequestDto = _mapper.Map<CountyUpdateRequestDto>(county);
 
-            var cities = await _cityService.GetAllAsync();
+            var cities = await _cityService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Name));
             var cityGetResponseDtos = _mapper.Map<List<CityGetResponseDto>>(cities);
 
             var countyUpdateViewModel = new CountyUpdateViewModel()
@@ -155,7 +156,7 @@ namespace VisitorBook.UI.Controllers
                 return Json(new { isValid = true, message = _localization["Counties.Notification.Add.Text"].Value });
             }
 
-            var cities = await _cityService.GetAllAsync();
+            var cities = await _cityService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Name));
             var cityGetResponseDtos = _mapper.Map<List<CityGetResponseDto>>(cities);
 
             var countyAddViewModel = new CountyAddViewModel()
@@ -185,7 +186,7 @@ namespace VisitorBook.UI.Controllers
                 return Json(new { isValid = true, message = _localization["Counties.Notification.Edit.Text"].Value });
             }
 
-            var cities = await _cityService.GetAllAsync();
+            var cities = await _cityService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Name));
             var cityGetResponseDtos = _mapper.Map<List<CityGetResponseDto>>(cities);
 
             var countyUpdateViewModel = new CountyUpdateViewModel()

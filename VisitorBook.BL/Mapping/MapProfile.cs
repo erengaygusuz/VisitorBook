@@ -13,24 +13,42 @@ namespace VisitorBook.BL.Mapping
         public MapProfile()
         {
             CreateMap<CityAddRequestDto, City>();
+
             CreateMap<CityUpdateRequestDto, City>();
+
             CreateMap<City, CityGetResponseDto>();
 
             CreateMap<CountyAddRequestDto, County>();
+
             CreateMap<CountyUpdateRequestDto, County>().ReverseMap();
+
             CreateMap<County, CountyGetResponseDto>();
 
             CreateMap<VisitedCountyAddRequestDto, VisitedCounty>();
+
             CreateMap<VisitedCountyUpdateRequestDto, VisitedCounty>();
+
             CreateMap<VisitedCounty, VisitedCountyGetResponseDto>();
 
             CreateMap<VisitorAddressAddRequestDto, VisitorAddress>();
+
             CreateMap<VisitorAddressUpdateRequestDto, VisitorAddress>();
+
             CreateMap<VisitorAddress, VisitorAddressGetResponseDto>();
 
-            CreateMap<VisitorAddRequestDto, Visitor>();
-            CreateMap<VisitorUpdateRequestDto, Visitor>();
+            CreateMap<VisitorAddRequestDto, Visitor>()
+                .ForPath(dest => dest.VisitorAddress.CountyId, src => src.MapFrom(e => e.CountyId));
+
+            CreateMap<Visitor, VisitorUpdateRequestDto>()
+                .ForPath(e => e.CountyId, opts => opts.MapFrom(e => e.VisitorAddress.CountyId))
+                .ForPath(e => e.CityId, opts => opts.MapFrom(e => e.VisitorAddress.County.CityId))
+                .ForPath(e => e.VisitorAddressId, opts => opts.MapFrom(e => e.VisitorAddress.Id));
+
+            CreateMap<VisitorUpdateRequestDto, Visitor>()
+                .ForPath(e => e.VisitorAddress.CountyId, opts => opts.MapFrom(e => e.CountyId));
+
             CreateMap<Visitor, VisitorGetResponseDto>();
+                //.ForMember(e => e.CountyId, opts => opts.MapFrom(e => e.VisitorAddress.CountyId));
         }
     }
 }

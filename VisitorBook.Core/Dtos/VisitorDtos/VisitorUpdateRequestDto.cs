@@ -9,6 +9,8 @@ namespace VisitorBook.Core.Dtos.VisitorDtos
         public string Surname { get; set; }
         public DateTime BirthDate { get; set; }
         public Gender Gender { get; set; }
+        public Guid CityId { get; set; }
+        public Guid CountyId { get; set; }
         public Guid? VisitorAddressId { get; set; }
     }
 }

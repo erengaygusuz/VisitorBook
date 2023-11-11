@@ -209,7 +209,7 @@ namespace VisitorBook.UI.Controllers
                        Value = u.Id.ToString()
                    });
 
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "AddOrEdit", VisitedCountyViewModel) });
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", VisitedCountyViewModel) });
         }
 
         [HttpDelete]

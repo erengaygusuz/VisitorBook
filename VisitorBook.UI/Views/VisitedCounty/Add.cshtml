@@ -26,7 +26,7 @@
                 <div class="form-group">
                     <label asp-for="VisitedCounty.CountyId"
                         class="control-label">@localization["VisitedCounties.Table.Column2.Text"]</label>
-                    <select asp-for="VisitedCounty.CountyId" asp-items="@Model.CountyList" class="form-select">
+                    <select id="county-id" asp-for="VisitedCounty.CountyId" asp-items="@Model.CountyList" class="form-select">
                         <option disabled selected value="0">@localization["AddOrEditModal.CountySelection.Text"]
                         </option>
                     </select>

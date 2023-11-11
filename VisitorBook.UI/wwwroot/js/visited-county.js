@@ -171,19 +171,19 @@ function fillcountyList(cityId, selectedIndex) {
         type: 'GET',
         url: '/county/getallbycity?cityId=' + cityId,
         success: function (res) {
-            $('#VisitedCounty_CountyId').empty()
+            $('#county-id').empty()
 
             var countySelectionText = document.getElementById('AddOrEditModalCountySelectionText').value
 
-            $('#VisitedCounty_CountyId').append($('<option disabled value="0">-' + countySelectionText + '</option>'))
+            $('#county-id').append($('<option disabled value="0">-' + countySelectionText + '</option>'))
 
             $.each(res.data, function (index, value) {
-                $('#VisitedCounty_CountyId').append(
+                $('#county-id').append(
                     $('<option value="' + value.id + '">' + value.name + '</option>')
                 )
             })
 
-            $('#VisitedCounty_CountyId option:eq(' + selectedIndex + ')').prop(
+            $('#county-id option:eq(' + selectedIndex + ')').prop(
                 'selected',
                 true
             )
