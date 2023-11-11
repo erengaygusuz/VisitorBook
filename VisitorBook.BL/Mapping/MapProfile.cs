@@ -13,27 +13,25 @@ namespace VisitorBook.BL.Mapping
         public MapProfile()
         {
             CreateMap<CityAddRequestDto, City>();
-
             CreateMap<CityUpdateRequestDto, City>();
-
             CreateMap<City, CityGetResponseDto>();
 
             CreateMap<CountyAddRequestDto, County>();
-
             CreateMap<CountyUpdateRequestDto, County>().ReverseMap();
-
             CreateMap<County, CountyGetResponseDto>();
 
             CreateMap<VisitedCountyAddRequestDto, VisitedCounty>();
 
+            CreateMap<VisitedCounty, VisitedCountyUpdateRequestDto>()
+                .ForPath(e => e.CityId, opts => opts.MapFrom(e => e.County.CityId));
+
             CreateMap<VisitedCountyUpdateRequestDto, VisitedCounty>();
 
-            CreateMap<VisitedCounty, VisitedCountyGetResponseDto>();
+            CreateMap<VisitedCounty, VisitedCountyGetResponseDto>()
+                .ForPath(e => e.CityId, opts => opts.MapFrom(e => e.County.CityId));
 
             CreateMap<VisitorAddressAddRequestDto, VisitorAddress>();
-
             CreateMap<VisitorAddressUpdateRequestDto, VisitorAddress>();
-
             CreateMap<VisitorAddress, VisitorAddressGetResponseDto>();
 
             CreateMap<VisitorAddRequestDto, Visitor>()
@@ -48,7 +46,6 @@ namespace VisitorBook.BL.Mapping
                 .ForPath(e => e.VisitorAddress.CountyId, opts => opts.MapFrom(e => e.CountyId));
 
             CreateMap<Visitor, VisitorGetResponseDto>();
-                //.ForMember(e => e.CountyId, opts => opts.MapFrom(e => e.VisitorAddress.CountyId));
         }
     }
 }

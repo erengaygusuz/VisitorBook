@@ -1,5 +1,4 @@
-﻿using VisitorBook.Core.Dtos.VisitorAddressDtos;
-using VisitorBook.Core.Enums;
+﻿using VisitorBook.Core.Enums;
 
 namespace VisitorBook.Core.Dtos.VisitorDtos
 {
