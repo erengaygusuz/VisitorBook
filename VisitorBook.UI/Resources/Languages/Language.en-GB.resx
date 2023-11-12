@@ -255,7 +255,7 @@
   <data name="Cities.Notification.Edit.Text" xml:space="preserve">
     <value>City edited successfully</value>
   </data>
-  <data name="Cities.Notification.Delete.Text" xml:space="preserve">
+  <data name="Cities.Notification.SuccessfullDelete.Text" xml:space="preserve">
     <value>City deleted successfully</value>
   </data>
   <data name="VisitedCounties.Notification.Add.Text" xml:space="preserve">
@@ -273,7 +273,7 @@
   <data name="Counties.Notification.Edit.Text" xml:space="preserve">
     <value>County edited successfully</value>
   </data>
-  <data name="Counties.Notification.Delete.Text" xml:space="preserve">
+  <data name="Counties.Notification.SuccessfullDelete.Text" xml:space="preserve">
     <value>County deleted successfully</value>
   </data>
   <data name="Visitors.Notification.Add.Text" xml:space="preserve">
@@ -326,5 +326,11 @@
   </data>
   <data name="Enum.Gender.Male.Text" xml:space="preserve">
     <value>Male</value>
+  </data>
+  <data name="Counties.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
+    <value>County did not deleted due to usage of it. Please first delete the record which uses this county after that try to delete it again</value>
+  </data>
+  <data name="Cities.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
+    <value>City did not deleted due to usage of it. Please first delete the record which uses this city after that try to delete it again</value>
   </data>
 </root>

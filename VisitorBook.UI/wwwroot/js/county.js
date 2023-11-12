@@ -232,9 +232,11 @@ function deleteRecord(url) {
                     dataTable.ajax.reload()
                     toastr.success(res.message)
                 },
-                error: function (err) {
-                    toastr.error('An Error Occurred While Deleting')
-                },
+                error: function (xhr, err) {
+                    var err = eval("(" + xhr.responseText + ")");
+
+                    toastr.error(err.message)
+                }
             })
         }
     })

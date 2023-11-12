@@ -92,9 +92,14 @@ namespace VisitorBook.UI.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete(Guid id)
         {
-            await _cityApiService.RemoveAsync(id);
+            var result = await _cityApiService.RemoveAsync(id);
 
-            return Json(new { message = _localization["Cities.Notification.Delete.Text"].Value });
+            if (result)
+            {
+                return Json(new { message = _localization["Cities.Notification.SuccessfullDelete.Text"].Value });
+            }
+
+            return BadRequest(new { message = _localization["Cities.Notification.UnSuccessfullDelete.Text"].Value });
         }
     }
 }

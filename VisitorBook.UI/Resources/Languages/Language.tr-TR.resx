@@ -255,7 +255,7 @@
   <data name="Cities.Notification.Edit.Text" xml:space="preserve">
     <value>İl başarılı bir şekilde düzenlendi</value>
   </data>
-  <data name="Cities.Notification.Delete.Text" xml:space="preserve">
+  <data name="Cities.Notification.SuccessfullDelete.Text" xml:space="preserve">
     <value>İl başarılı bir şekilde silindi</value>
   </data>
   <data name="VisitedCounties.Notification.Add.Text" xml:space="preserve">
@@ -273,7 +273,7 @@
   <data name="Counties.Notification.Edit.Text" xml:space="preserve">
     <value>İlçe başarılı bir şekilde düzenlendi</value>
   </data>
-  <data name="Counties.Notification.Delete.Text" xml:space="preserve">
+  <data name="Counties.Notification.SuccessfullDelete.Text" xml:space="preserve">
     <value>İlçe başarılı bir şekilde silindi</value>
   </data>
   <data name="Visitors.Notification.Add.Text" xml:space="preserve">
@@ -326,5 +326,11 @@
   </data>
   <data name="Enum.Gender.Male.Text" xml:space="preserve">
     <value>Erkek</value>
+  </data>
+  <data name="Counties.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
+    <value>İlçe kullanıldığı için silinemedi. Öncelikle ilçeyi kullanan kaydı silin sonra ilçeyi silmeyi deneyin</value>
+  </data>
+  <data name="Cities.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
+    <value>İl kullanıldığı için silinemedi. Öncelikle ilçeyi kullanan kaydı silin sonra ili silmeyi deneyin</value>
   </data>
 </root>

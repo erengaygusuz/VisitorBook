@@ -156,9 +156,14 @@ namespace VisitorBook.UI.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete(Guid id)
         {
-            await _countyApiService.RemoveAsync(id);
+            var result = await _countyApiService.RemoveAsync(id);
 
-            return Json(new { message = _localization["Counties.Notification.Delete.Text"].Value });
+            if (result)
+            {
+                return Json(new { message = _localization["Counties.Notification.SuccessfullDelete.Text"].Value });
+            }
+
+            return BadRequest(new { message = _localization["Counties.Notification.UnSuccessfullDelete.Text"].Value });
         }
     }
 }
