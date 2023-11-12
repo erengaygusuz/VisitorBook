@@ -1,4 +1,5 @@
 ﻿using VisitorBook.Core.Dtos.CityDtos;
+using VisitorBook.Core.Dtos.CountyDtos;
 using VisitorBook.Core.Utilities.DataTablesServerSideHelpers;
 
 namespace VisitorBook.UI.Services
@@ -12,7 +13,7 @@ namespace VisitorBook.UI.Services
             _httpClient = httpClient;
         }
 
-        public async Task<CityListResponseDto> GetAllAsync(DataTablesOptions model)
+        public async Task<CityListResponseDto> GetTableData(DataTablesOptions model)
         {
             var response = await _httpClient.PostAsJsonAsync("cities/gettabledata", model);
 
@@ -21,9 +22,16 @@ namespace VisitorBook.UI.Services
             return result;
         }
 
-        public async Task<CityGetResponseDto> GetByIdAsync(Guid id)
+        public async Task<List<CityGetResponseDto>> GetAllAsync()
         {
-            var response = await _httpClient.GetFromJsonAsync<CityGetResponseDto>($"cities/{id}");
+            var response = await _httpClient.GetFromJsonAsync<List<CityGetResponseDto>>($"cities");
+
+            return response;
+        }
+
+        public async Task<T> GetByIdAsync<T>(Guid id)
+        {
+            var response = await _httpClient.GetFromJsonAsync<T>($"cities/{id}");
 
             return response;
         }

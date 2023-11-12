@@ -35,7 +35,7 @@ namespace VisitorBook.UI.Controllers
         {
             _cityDataTableOptions.SetDataTableOptions(Request);
 
-            var result = await _cityApiService.GetAllAsync(_cityDataTableOptions.GetDataTablesOptions());
+            var result = await _cityApiService.GetTableData(_cityDataTableOptions.GetDataTablesOptions());
 
             return Json(new
             {
@@ -54,7 +54,7 @@ namespace VisitorBook.UI.Controllers
         [NoDirectAccess]
         public async Task<IActionResult> Edit(Guid id)
         {
-            var city = await _cityApiService.GetByIdAsync(id);
+            var city = await _cityApiService.GetByIdAsync<CityGetResponseDto>(id);
 
             return View(city);
         }

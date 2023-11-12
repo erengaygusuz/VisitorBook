@@ -17,7 +17,9 @@ namespace VisitorBook.BL.Mapping
 
             CreateMap<CountyAddRequestDto, County>();
             CreateMap<CountyUpdateRequestDto, County>().ReverseMap();
-            CreateMap<County, CountyGetResponseDto>();
+
+            CreateMap<County, CountyGetResponseDto>()
+                .ForMember(e => e.CityName, opts => opts.MapFrom(e => e.City.Name));
 
             CreateMap<VisitedCountyAddRequestDto, VisitedCounty>();
 

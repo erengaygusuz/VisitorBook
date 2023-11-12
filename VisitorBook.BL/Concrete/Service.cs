@@ -27,11 +27,11 @@ namespace VisitorBook.BL.Concrete
             _propertyMappingService = propertyMappingService;
         }
 
-        public PagedList<TResult> GetAll<TResult>(DataTablesOptions model)
+        public PagedList<TResult> GetAll<TResult>(DataTablesOptions model, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null)
         {
             var propertyMappings = _propertyMappingService.GetMappings<T, TResult>();
 
-            var result = _repository.GetAll()
+            var result = _repository.GetAll(include: include)
                 .ApplySearch(model, propertyMappings)
                 .ApplySort(model, propertyMappings)
                 .ProjectTo<TResult>(_mapper.ConfigurationProvider)

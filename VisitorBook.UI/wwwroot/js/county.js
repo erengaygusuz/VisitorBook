@@ -106,7 +106,7 @@ function loadDataTable(
         },
         columns: [
             { data: 'name', width: '25%' },
-            { data: 'city.name', width: '25%' },
+            { data: 'cityName', width: '25%' },
             { data: 'latitude', width: '15%' },
             { data: 'longitude', width: '15%' },
             {

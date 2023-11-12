@@ -1,34 +1,32 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
-using VisitorBook.Core.Abstract;
-using VisitorBook.Core.Dtos.CityDtos;
+using VisitorBook.Core.Attributes;
 using VisitorBook.Core.Dtos.CountyDtos;
-using VisitorBook.Core.Models;
 using VisitorBook.Core.Utilities;
+using VisitorBook.UI.Configurations;
 using VisitorBook.UI.Languages;
+using VisitorBook.UI.Services;
 using VisitorBook.UI.ViewModels;
 
 namespace VisitorBook.UI.Controllers
 {
     public class CountyController : Controller
     {
-        private readonly IService<County> _countyService;
-        private readonly IService<City> _cityService;
         private readonly IStringLocalizer<Language> _localization;
         private readonly RazorViewConverter _razorViewConverter;
-        private readonly IMapper _mapper;
+        private readonly CountyApiService _countyApiService;
+        private readonly CityApiService _cityApiService;
+        private readonly CountyDataTableOptions _countyDataTableOptions;
 
-        public CountyController(IService<County> countyService, IService<City> cityService, IStringLocalizer<Language> localization, 
-            RazorViewConverter razorViewConverter, IMapper mapper)
+        public CountyController(CountyApiService countyApiService, CityApiService cityApiService, IStringLocalizer<Language> localization, 
+            RazorViewConverter razorViewConverter, CountyDataTableOptions countyDataTableOptions)
         {
-            _countyService = countyService;
-            _cityService = cityService;
+            _countyApiService = countyApiService;
+            _cityApiService = cityApiService;
             _localization = localization;
             _razorViewConverter = razorViewConverter;
-            _mapper = mapper;
+            _countyDataTableOptions = countyDataTableOptions;
         }
 
         public IActionResult Index()
@@ -39,76 +37,36 @@ namespace VisitorBook.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> GetAll()
         {
-            var draw = Request.Form["draw"].FirstOrDefault();
-            var start = Request.Form["start"].FirstOrDefault();
-            var length = Request.Form["length"].FirstOrDefault();
-            var sortColumnIndex = Request.Form["order[0][column]"].FirstOrDefault();
-            var sortColumnDirection = Request.Form["order[0][dir]"].FirstOrDefault();
-            var searchValue = Request.Form["search[value]"].FirstOrDefault();
-            int pageSize = length != null ? Convert.ToInt32(length) : 0;
-            int skip = start != null ? Convert.ToInt32(start) : 0;
-            int page = (skip / pageSize) + 1;
+            _countyDataTableOptions.SetDataTableOptions(Request);
 
-            var counties = await _countyService.GetAllAsync(
-                    page: page, pageSize: pageSize,
-                    expression: (!string.IsNullOrEmpty(searchValue)) ?
-                        (c =>
-                            c.Name.ToLower().Contains(searchValue.ToLower()) ||
-                            c.City.Name.ToLower().Contains(searchValue.ToLower()) ||
-                            c.Latitude.ToString().ToLower().Contains(searchValue.ToLower()) ||
-                            c.Longitude.ToString().ToLower().Contains(searchValue.ToLower()))
-                        : null,
-                    include: u => u.Include(a => a.City),
-                    orderBy: (sortColumnDirection == "asc") ?
-                        (o =>
-                        o switch
-                        {
-                            _ when sortColumnIndex == "0" => o.OrderBy(s => s.Name),
-                            _ when sortColumnIndex == "1" => o.OrderBy(s => s.City.Name),
-                            _ when sortColumnIndex == "2" => o.OrderBy(s => s.Latitude),
-                            _ when sortColumnIndex == "3" => o.OrderBy(s => s.Longitude),
-                            _ => o.OrderBy(s => s.Name)
-                        })
-                         :
-                        (o =>
-                        o switch
-                        {
-                            _ when sortColumnIndex == "0" => o.OrderByDescending(s => s.Name),
-                            _ when sortColumnIndex == "1" => o.OrderByDescending(s => s.City.Name),
-                            _ when sortColumnIndex == "2" => o.OrderByDescending(s => s.Latitude),
-                            _ when sortColumnIndex == "3" => o.OrderByDescending(s => s.Longitude),
-                            _ => o.OrderByDescending(s => s.Name)
-                        })
-                );
+            var result = await _countyApiService.GetTableData(_countyDataTableOptions.GetDataTablesOptions());
 
             return Json(new
             {
-                draw = draw,
-                recordsFiltered = counties.Item2,
-                recordsTotal = counties.Item1,
-                data = counties.Item3
+                recordsFiltered = result.RecordsFiltered,
+                recordsTotal = result.RecordsTotal,
+                data = result.Data
             });
         }
 
         public async Task<IActionResult> GetAllByCity(Guid cityId)
         {
-            var counties = await _countyService.GetAllAsync(u => u.CityId == cityId);
-            var countyGetResponseDtos = _mapper.Map<List<CountyGetResponseDto>>(counties);
+            var counties = await _countyApiService.GetAllByCityAsync(cityId);
 
             return Json(new
             {
-                data = countyGetResponseDtos
+                data = counties
             });
         }
 
+        [NoDirectAccess]
         public async Task<IActionResult> Add()
         {
-            var cities = await _cityService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Name));
-            var cityGetResponseDtos = _mapper.Map<List<CityGetResponseDto>>(cities);
+            var cities = await _cityApiService.GetAllAsync();
 
             var countyAddViewModel = new CountyAddViewModel()
             {
-                CityList = (cityGetResponseDtos)
+                CityList = (cities)
                    .Select(u => new SelectListItem
                    {
                        Text = u.Name,
@@ -120,23 +78,22 @@ namespace VisitorBook.UI.Controllers
             return View(countyAddViewModel);
         }
 
+        [NoDirectAccess]
         public async Task<IActionResult> Edit(Guid id)
         {
-            var county = await _countyService.GetAsync(u => u.Id == id);
-            var countyUpdateRequestDto = _mapper.Map<CountyUpdateRequestDto>(county);
+            var county = await _countyApiService.GetByIdAsync<CountyUpdateRequestDto>(id);
 
-            var cities = await _cityService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Name));
-            var cityGetResponseDtos = _mapper.Map<List<CityGetResponseDto>>(cities);
+            var cities = await _cityApiService.GetAllAsync();
 
             var countyUpdateViewModel = new CountyUpdateViewModel()
             {
-                CityList = (cityGetResponseDtos)
+                CityList = (cities)
                    .Select(u => new SelectListItem
                    {
                        Text = u.Name,
                        Value = u.Id.ToString()
                    }),
-                CountyUpdateRequestDto = countyUpdateRequestDto
+                CountyUpdateRequestDto = county
             };
 
             return View(countyUpdateViewModel);
@@ -149,19 +106,16 @@ namespace VisitorBook.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var county = _mapper.Map<County>(countyAddRequestDto);
-
-                await _countyService.AddAsync(county);
+                await _countyApiService.AddAsync(countyAddRequestDto);
 
                 return Json(new { isValid = true, message = _localization["Counties.Notification.Add.Text"].Value });
             }
 
-            var cities = await _cityService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Name));
-            var cityGetResponseDtos = _mapper.Map<List<CityGetResponseDto>>(cities);
+            var cities = await _cityApiService.GetAllAsync();
 
             var countyAddViewModel = new CountyAddViewModel()
             {
-                CityList = (cityGetResponseDtos)
+                CityList = (cities)
                    .Select(u => new SelectListItem
                    {
                        Text = u.Name,
@@ -179,19 +133,16 @@ namespace VisitorBook.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var county = _mapper.Map<County>(countyUpdateRequestDto);
-
-                await _countyService.UpdateAsync(county);
+                await _countyApiService.UpdateAsync(countyUpdateRequestDto);
 
                 return Json(new { isValid = true, message = _localization["Counties.Notification.Edit.Text"].Value });
             }
 
-            var cities = await _cityService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Name));
-            var cityGetResponseDtos = _mapper.Map<List<CityGetResponseDto>>(cities);
+            var cities = await _cityApiService.GetAllAsync();
 
             var countyUpdateViewModel = new CountyUpdateViewModel()
             {
-                CityList = (cityGetResponseDtos)
+                CityList = (cities)
                    .Select(u => new SelectListItem
                    {
                        Text = u.Name,
@@ -205,14 +156,7 @@ namespace VisitorBook.UI.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var county = await _countyService.GetAsync(u => u.Id == id);
-
-            var countyName = county.Name;
-
-            if (county != null)
-            {
-                await _countyService.RemoveAsync(county);
-            }
+            await _countyApiService.RemoveAsync(id);
 
             return Json(new { message = _localization["Counties.Notification.Delete.Text"].Value });
         }

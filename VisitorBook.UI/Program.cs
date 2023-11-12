@@ -49,8 +49,14 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 builder.Services.AddScoped(typeof(LocationHelper));
 builder.Services.AddScoped(typeof(RazorViewConverter));
 builder.Services.AddScoped(typeof(CityDataTableOptions));
+builder.Services.AddScoped(typeof(CountyDataTableOptions));
 
 builder.Services.AddHttpClient<CityApiService>(opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+
+builder.Services.AddHttpClient<CountyApiService>(opt =>
 {
     opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
 });

@@ -7,7 +7,7 @@ namespace VisitorBook.Core.Abstract
 {
     public interface IService<T> where T : BaseModel
     {
-        PagedList<TResult> GetAll<TResult>(DataTablesOptions model);
+        PagedList<TResult> GetAll<TResult>(DataTablesOptions model, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null);
 
         Task<IEnumerable<T>> GetAllAsync(
             Expression<Func<T, bool>>? expression = null,

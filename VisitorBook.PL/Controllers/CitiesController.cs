@@ -26,6 +26,21 @@ namespace VisitorBook.PL.Controllers
             return DataTablesResult(_cityService.GetAll<CityGetResponseDto>(model));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllOrderedCities()
+        {
+            var cities = await _cityService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Name));
+
+            if (cities == null)
+            {
+                return NotFound();
+            }
+
+            var cityGetResponseDtos = _mapper.Map<List<CityGetResponseDto>>(cities);
+
+            return Ok(cityGetResponseDtos);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCity(Guid id)
         {
