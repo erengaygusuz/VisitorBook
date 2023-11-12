@@ -1,8 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
+using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
+using VisitorBook.BL.Services;
 using VisitorBook.Core.Abstract;
+using VisitorBook.Core.Extensions;
 using VisitorBook.Core.Models;
+using VisitorBook.Core.Utilities.DataTablesServerSideHelpers;
 
 namespace VisitorBook.BL.Concrete
 {
@@ -10,11 +16,28 @@ namespace VisitorBook.BL.Concrete
     {
         private readonly IUnitOfWork<T> _unitOfWork;
         private readonly IRepository<T> _repository;
+        private readonly IPropertyMappingService _propertyMappingService;
+        private readonly IMapper _mapper;
 
-        public Service(IUnitOfWork<T> unitOfWork, IRepository<T> repository)
+        public Service(IUnitOfWork<T> unitOfWork, IRepository<T> repository, IPropertyMappingService propertyMappingService, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _repository = repository;
+            _mapper = mapper;
+            _propertyMappingService = propertyMappingService;
+        }
+
+        public PagedList<TResult> GetAll<TResult>(DataTablesOptions model)
+        {
+            var propertyMappings = _propertyMappingService.GetMappings<T, TResult>();
+
+            var result = _repository.GetAll()
+                .ApplySearch(model, propertyMappings)
+                .ApplySort(model, propertyMappings)
+                .ProjectTo<TResult>(_mapper.ConfigurationProvider)
+                .ToPagedList(model);
+
+            return result;
         }
 
         public async Task<IEnumerable<T>> GetAllAsync(

@@ -1,11 +1,14 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore.Query;
 using VisitorBook.Core.Models;
+using VisitorBook.Core.Utilities.DataTablesServerSideHelpers;
 
 namespace VisitorBook.Core.Abstract
 {
     public interface IService<T> where T : BaseModel
     {
+        PagedList<TResult> GetAll<TResult>(DataTablesOptions model);
+
         Task<IEnumerable<T>> GetAllAsync(
             Expression<Func<T, bool>>? expression = null,
             bool trackChanges = false,

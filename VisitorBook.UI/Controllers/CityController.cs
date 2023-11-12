@@ -1,81 +1,47 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
-using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Attributes;
 using VisitorBook.Core.Dtos.CityDtos;
-using VisitorBook.Core.Models;
 using VisitorBook.Core.Utilities;
+using VisitorBook.UI.Configurations;
 using VisitorBook.UI.Languages;
+using VisitorBook.UI.Services;
 
 namespace VisitorBook.UI.Controllers
 {
     public class CityController : Controller
     {
-        private readonly IService<City> _cityService;
         private readonly IStringLocalizer<Language> _localization;
         private readonly RazorViewConverter _razorViewConverter;
-        private readonly IMapper _mapper;
+        private readonly CityApiService _cityApiService;
+        private readonly CityDataTableOptions _cityDataTableOptions;
 
-        public CityController(IService<City> cityService, IStringLocalizer<Language> localization, RazorViewConverter razorViewConverter, IMapper mapper)
+        public CityController(RazorViewConverter razorViewConverter, 
+            IStringLocalizer<Language> localization, CityApiService cityApiService, CityDataTableOptions cityDataTableOptions)
         {
-            _cityService = cityService;
+            _cityApiService = cityApiService;
             _localization = localization;
             _razorViewConverter = razorViewConverter;
-            _mapper = mapper;
+            _cityDataTableOptions = cityDataTableOptions;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var cities = await _cityService.GetAllAsync();
-
-            return View(cities);
+            return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> GetAll()
         {
-            var draw = Request.Form["draw"].FirstOrDefault();
-            var start = Request.Form["start"].FirstOrDefault();
-            var length = Request.Form["length"].FirstOrDefault();
-            var sortColumnIndex = Request.Form["order[0][column]"].FirstOrDefault();
-            var sortColumnDirection = Request.Form["order[0][dir]"].FirstOrDefault();
-            var searchValue = Request.Form["search[value]"].FirstOrDefault();
-            int pageSize = length != null ? Convert.ToInt32(length) : 0;
-            int skip = start != null ? Convert.ToInt32(start) : 0;
-            int page = (skip / pageSize) + 1;
+            _cityDataTableOptions.SetDataTableOptions(Request);
 
-            var cities = await _cityService.GetAllAsync(
-                    page: page, pageSize: pageSize,
-                    expression: (!string.IsNullOrEmpty(searchValue)) ?
-                        (c => 
-                            c.Name.ToLower().Contains(searchValue.ToLower()) ||
-                            c.Code.ToLower().Contains(searchValue.ToLower()))
-                        : null,
-                    orderBy: (sortColumnDirection == "asc") ?
-                        (o =>
-                        o switch
-                        {
-                            _ when sortColumnIndex == "0" => o.OrderBy(s => s.Name),
-                            _ when sortColumnIndex == "1" => o.OrderBy(s => s.Code),
-                            _ => o.OrderBy(s => s.Name)
-                        })
-                         :
-                        (o =>
-                        o switch
-                        {
-                            _ when sortColumnIndex == "0" => o.OrderByDescending(s => s.Name),
-                            _ when sortColumnIndex == "1" => o.OrderByDescending(s => s.Code),
-                            _ => o.OrderByDescending(s => s.Name)
-                        })
-                );
+            var result = await _cityApiService.GetAllAsync(_cityDataTableOptions.GetDataTablesOptions());
 
             return Json(new
             {
-                draw = draw,
-                recordsFiltered = cities.Item2,
-                recordsTotal = cities.Item1,
-                data = cities.Item3
+                recordsFiltered = result.RecordsFiltered,
+                recordsTotal = result.RecordsTotal,
+                data = result.Data
             });
         }
 
@@ -88,16 +54,9 @@ namespace VisitorBook.UI.Controllers
         [NoDirectAccess]
         public async Task<IActionResult> Edit(Guid id)
         {
-            var city = await _cityService.GetAsync(u => u.Id == id);
+            var city = await _cityApiService.GetByIdAsync(id);
 
-            var cityGetResponseDto = _mapper.Map<CityGetResponseDto>(city);
-
-            if (cityGetResponseDto == null)
-            {
-                return NotFound();
-            }
-
-            return View(cityGetResponseDto);
+            return View(city);
         }
 
         [ActionName("Add")]
@@ -107,9 +66,7 @@ namespace VisitorBook.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var city = _mapper.Map<City>(cityAddRequestDto);
-
-                await _cityService.AddAsync(city);
+                await _cityApiService.AddAsync(cityAddRequestDto);
 
                 return Json(new { isValid = true, message = _localization["Cities.Notification.Add.Text"].Value });
             }
@@ -124,9 +81,7 @@ namespace VisitorBook.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var city = _mapper.Map<City>(cityUpdateRequestDto);
-
-                await _cityService.UpdateAsync(city);
+                await _cityApiService.UpdateAsync(cityUpdateRequestDto);
 
                 return Json(new { isValid = true, message = _localization["Cities.Notification.Edit.Text"].Value });
             }
@@ -137,14 +92,7 @@ namespace VisitorBook.UI.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var city = await _cityService.GetAsync(u => u.Id == id);
-
-            var cityName = city.Name;
-
-            if (city != null)
-            {
-                await _cityService.RemoveAsync(city);
-            }
+            await _cityApiService.RemoveAsync(id);
 
             return Json(new { message = _localization["Cities.Notification.Delete.Text"].Value });
         }

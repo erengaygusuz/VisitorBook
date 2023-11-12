@@ -2,7 +2,6 @@
 using VisitorBook.Core.Dtos.CityDtos;
 using VisitorBook.Core.Dtos.CountyDtos;
 using VisitorBook.Core.Dtos.VisitedCountyDtos;
-using VisitorBook.Core.Dtos.VisitorAddressDtos;
 using VisitorBook.Core.Dtos.VisitorDtos;
 using VisitorBook.Core.Models;
 
@@ -29,10 +28,6 @@ namespace VisitorBook.BL.Mapping
 
             CreateMap<VisitedCounty, VisitedCountyGetResponseDto>()
                 .ForPath(e => e.CityId, opts => opts.MapFrom(e => e.County.CityId));
-
-            CreateMap<VisitorAddressAddRequestDto, VisitorAddress>();
-            CreateMap<VisitorAddressUpdateRequestDto, VisitorAddress>();
-            CreateMap<VisitorAddress, VisitorAddressGetResponseDto>();
 
             CreateMap<VisitorAddRequestDto, Visitor>()
                 .ForPath(dest => dest.VisitorAddress.CountyId, src => src.MapFrom(e => e.CountyId));

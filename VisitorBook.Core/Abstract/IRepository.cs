@@ -11,6 +11,8 @@ namespace VisitorBook.Core.Abstract
            bool trackChanges = false,
            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null);
 
+        IQueryable<T> GetAll();
+
         IQueryable<T> GetAll(
             Expression<Func<T, bool>>? expression = null,
             bool trackChanges = false,

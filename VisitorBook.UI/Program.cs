@@ -1,16 +1,15 @@
 using Microsoft.AspNetCore.Localization;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Globalization;
 using System.Reflection;
-using VisitorBook.BL.Concrete;
 using VisitorBook.BL.Mapping;
 using VisitorBook.BL.Services;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Utilities;
 using VisitorBook.DAL.Concrete;
-using VisitorBook.DAL.Data;
+using VisitorBook.UI.Configurations;
 using VisitorBook.UI.Languages;
+using VisitorBook.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,19 +44,16 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.SupportedUICultures = supportedCultures;
 });
 
-builder.Services.AddDbContext<AppDbContext>(opt =>
-{
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("SQLServerConnection"));
-});
-
-builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
-builder.Services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
-builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-builder.Services.AddScoped(typeof(VisitorStatisticService));
-builder.Services.AddScoped<IDbInitializer, DbInitializer>();
+//builder.Services.AddScoped(typeof(VisitorStatisticService));
+//builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 builder.Services.AddScoped(typeof(LocationHelper));
-builder.Services.AddScoped(typeof(FakeDataGenerator));
 builder.Services.AddScoped(typeof(RazorViewConverter));
+builder.Services.AddScoped(typeof(CityDataTableOptions));
+
+builder.Services.AddHttpClient<CityApiService>(opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
 
 var app = builder.Build();
 
@@ -77,18 +73,18 @@ app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocal
 app.UseRouting();
 
 app.UseAuthorization();
-SeedDatabase();
+//SeedDatabase();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
 
-void SeedDatabase()
-{
-    using (var scope = app.Services.CreateScope())
-    {
-        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
-        dbInitializer.Initialize();
-    }
-}
+//void SeedDatabase()
+//{
+//    using (var scope = app.Services.CreateScope())
+//    {
+//        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+//        dbInitializer.Initialize();
+//    }
+//}

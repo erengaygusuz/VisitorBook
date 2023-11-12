@@ -28,6 +28,13 @@ namespace VisitorBook.DAL.Concrete
             _dbSet.Remove(entity);
         }
 
+        public IQueryable<T> GetAll()
+        {
+            IQueryable<T> query = _appDbContext.Set<T>();
+
+            return query;
+        }
+
         public IQueryable<T> GetAll(
             Expression<Func<T, bool>>? expression = null,
             bool trackChanges = false,
