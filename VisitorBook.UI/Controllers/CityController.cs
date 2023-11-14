@@ -14,10 +14,10 @@ namespace VisitorBook.UI.Controllers
         private readonly IStringLocalizer<Language> _localization;
         private readonly RazorViewConverter _razorViewConverter;
         private readonly CityApiService _cityApiService;
-        private readonly CityDataTableOptions _cityDataTableOptions;
+        private readonly CityDataTablesOptions _cityDataTableOptions;
 
         public CityController(RazorViewConverter razorViewConverter, 
-            IStringLocalizer<Language> localization, CityApiService cityApiService, CityDataTableOptions cityDataTableOptions)
+            IStringLocalizer<Language> localization, CityApiService cityApiService, CityDataTablesOptions cityDataTableOptions)
         {
             _cityApiService = cityApiService;
             _localization = localization;

@@ -264,7 +264,7 @@
   <data name="VisitedCounties.Notification.Edit.Text" xml:space="preserve">
     <value>Ziyaret edilen ilçe bilgisi başarılı bir şekilde düzenlendi</value>
   </data>
-  <data name="VisitedCounties.Notification.Delete.Text" xml:space="preserve">
+  <data name="VisitedCounties.Notification.SuccessfullDelete.Text" xml:space="preserve">
     <value>Ziyaret edilen ilçe bilgisi başarılı bir şekilde silindi</value>
   </data>
   <data name="Counties.Notification.Add.Text" xml:space="preserve">
@@ -332,5 +332,8 @@
   </data>
   <data name="Cities.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
     <value>İl kullanıldığı için silinemedi. Öncelikle ilçeyi kullanan kaydı silin sonra ili silmeyi deneyin</value>
+  </data>
+  <data name="VisitedCounties.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
+    <value>Ziyaret edilen ilçe kullanıldığı için silinemedi. Öncelikle ziyaret edilen ilçeyi kullanan kaydı silin sonra ilçeyi silmeyi deneyin</value>
   </data>
 </root>

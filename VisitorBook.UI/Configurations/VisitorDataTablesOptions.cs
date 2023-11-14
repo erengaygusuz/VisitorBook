@@ -2,7 +2,7 @@
 
 namespace VisitorBook.UI.Configurations
 {
-    public class CountyDataTableOptions
+    public class VisitorDataTablesOptions
     {
         private DataTablesOptions dataTablesOptions;
 
@@ -34,8 +34,8 @@ namespace VisitorBook.UI.Configurations
                     },
                     new Column
                     {
-                        Data = "City.Name",
-                        Name = "City.Name",
+                        Data = "Surname",
+                        Name = "Surname",
                         Searchable = true,
                         Orderable = true,
                         Search = new Search
@@ -46,8 +46,8 @@ namespace VisitorBook.UI.Configurations
                     },
                     new Column
                     {
-                        Data = "Latitude",
-                        Name = "Latitude",
+                        Data = "BirthDate",
+                        Name = "BirthDate",
                         Searchable = true,
                         Orderable = true,
                         Search = new Search
@@ -58,8 +58,8 @@ namespace VisitorBook.UI.Configurations
                     },
                     new Column
                     {
-                        Data = "Longitude",
-                        Name = "Longitude",
+                        Data = "Gender",
+                        Name = "Gender",
                         Searchable = true,
                         Orderable = true,
                         Search = new Search

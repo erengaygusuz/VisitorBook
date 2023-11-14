@@ -2,7 +2,7 @@
 
 namespace VisitorBook.UI.Configurations
 {
-    public class CityDataTableOptions
+    public class VisitedCountyDataTablesOptions
     {
         private DataTablesOptions dataTablesOptions;
 
@@ -22,8 +22,8 @@ namespace VisitorBook.UI.Configurations
                 {
                     new Column
                     {
-                        Data = "Name",
-                        Name = "Name",
+                        Data = "Visitor.Name",
+                        Name = "Visitor.Name",
                         Searchable = true,
                         Orderable = true,
                         Search = new Search
@@ -34,8 +34,32 @@ namespace VisitorBook.UI.Configurations
                     },
                     new Column
                     {
-                        Data = "Code",
-                        Name = "Code",
+                        Data = "County.Name",
+                        Name = "County.Name",
+                        Searchable = true,
+                        Orderable = true,
+                        Search = new Search
+                        {
+                            Value = httpRequest.Form["search[value]"].FirstOrDefault(),
+                            Regex = ""
+                        }
+                    },
+                    new Column
+                    {
+                        Data = "County.City.Name",
+                        Name = "County.City.Name",
+                        Searchable = true,
+                        Orderable = true,
+                        Search = new Search
+                        {
+                            Value = httpRequest.Form["search[value]"].FirstOrDefault(),
+                            Regex = ""
+                        }
+                    },
+                    new Column
+                    {
+                        Data = "VisitDate",
+                        Name = "VisitDate",
                         Searchable = true,
                         Orderable = true,
                         Search = new Search
@@ -52,6 +76,16 @@ namespace VisitorBook.UI.Configurations
                 },
                 Order = new List<Order>
                 {
+                    new Order
+                    {
+                        Column = Convert.ToInt32(httpRequest.Form["order[0][column]"].FirstOrDefault()),
+                        Dir = httpRequest.Form["order[0][dir]"].FirstOrDefault()
+                    },
+                    new Order
+                    {
+                        Column = Convert.ToInt32(httpRequest.Form["order[0][column]"].FirstOrDefault()),
+                        Dir = httpRequest.Form["order[0][dir]"].FirstOrDefault()
+                    },
                     new Order
                     {
                         Column = Convert.ToInt32(httpRequest.Form["order[0][column]"].FirstOrDefault()),

@@ -48,8 +48,10 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 //builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 builder.Services.AddScoped(typeof(LocationHelper));
 builder.Services.AddScoped(typeof(RazorViewConverter));
-builder.Services.AddScoped(typeof(CityDataTableOptions));
-builder.Services.AddScoped(typeof(CountyDataTableOptions));
+builder.Services.AddScoped(typeof(CityDataTablesOptions));
+builder.Services.AddScoped(typeof(CountyDataTablesOptions));
+builder.Services.AddScoped(typeof(VisitedCountyDataTablesOptions));
+builder.Services.AddScoped(typeof(VisitorDataTablesOptions));
 
 builder.Services.AddHttpClient<CityApiService>(opt =>
 {
@@ -57,6 +59,21 @@ builder.Services.AddHttpClient<CityApiService>(opt =>
 });
 
 builder.Services.AddHttpClient<CountyApiService>(opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+
+builder.Services.AddHttpClient<VisitorApiService>(opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+
+builder.Services.AddHttpClient<VisitedCountyApiService>(opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+
+builder.Services.AddHttpClient<VisitorAddressApiService>(opt =>
 {
     opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
 });

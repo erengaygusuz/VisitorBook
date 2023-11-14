@@ -2,6 +2,7 @@
 using VisitorBook.Core.Dtos.CityDtos;
 using VisitorBook.Core.Dtos.CountyDtos;
 using VisitorBook.Core.Dtos.VisitedCountyDtos;
+using VisitorBook.Core.Dtos.VisitorAddressDtos;
 using VisitorBook.Core.Dtos.VisitorDtos;
 using VisitorBook.Core.Models;
 
@@ -24,12 +25,15 @@ namespace VisitorBook.BL.Mapping
             CreateMap<VisitedCountyAddRequestDto, VisitedCounty>();
 
             CreateMap<VisitedCounty, VisitedCountyUpdateRequestDto>()
-                .ForPath(e => e.CityId, opts => opts.MapFrom(e => e.County.CityId));
+                .ForMember(e => e.CityId, opts => opts.MapFrom(e => e.County.CityId));
 
             CreateMap<VisitedCountyUpdateRequestDto, VisitedCounty>();
 
             CreateMap<VisitedCounty, VisitedCountyGetResponseDto>()
-                .ForPath(e => e.CityId, opts => opts.MapFrom(e => e.County.CityId));
+                .ForMember(e => e.CityId, opts => opts.MapFrom(e => e.County.CityId))
+                .ForMember(e => e.CityName, opts => opts.MapFrom(e => e.County.City.Name))
+                .ForMember(e => e.CountyName, opts => opts.MapFrom(e => e.County.Name))
+                .ForMember(e => e.VisitorName, opts => opts.MapFrom(e => e.Visitor.Name + " " + e.Visitor.Surname));
 
             CreateMap<VisitorAddRequestDto, Visitor>()
                 .ForPath(dest => dest.VisitorAddress.CountyId, src => src.MapFrom(e => e.CountyId));
@@ -43,6 +47,10 @@ namespace VisitorBook.BL.Mapping
                 .ForPath(e => e.VisitorAddress.CountyId, opts => opts.MapFrom(e => e.CountyId));
 
             CreateMap<Visitor, VisitorGetResponseDto>();
+
+            CreateMap<VisitorAddress, VisitorAddressUpdateRequestDto>();
+
+            CreateMap<VisitorAddressAddRequestDto, VisitorAddress>();
         }
     }
 }

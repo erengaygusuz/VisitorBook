@@ -17,10 +17,10 @@ namespace VisitorBook.UI.Controllers
         private readonly RazorViewConverter _razorViewConverter;
         private readonly CountyApiService _countyApiService;
         private readonly CityApiService _cityApiService;
-        private readonly CountyDataTableOptions _countyDataTableOptions;
+        private readonly CountyDataTablesOptions _countyDataTableOptions;
 
         public CountyController(CountyApiService countyApiService, CityApiService cityApiService, IStringLocalizer<Language> localization, 
-            RazorViewConverter razorViewConverter, CountyDataTableOptions countyDataTableOptions)
+            RazorViewConverter razorViewConverter, CountyDataTablesOptions countyDataTableOptions)
         {
             _countyApiService = countyApiService;
             _cityApiService = cityApiService;

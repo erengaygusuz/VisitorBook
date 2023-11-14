@@ -5,6 +5,8 @@ using VisitorBook.BL.Services;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Dtos.CityDtos;
 using VisitorBook.Core.Dtos.CountyDtos;
+using VisitorBook.Core.Dtos.VisitedCountyDtos;
+using VisitorBook.Core.Dtos.VisitorDtos;
 using VisitorBook.Core.Models;
 using VisitorBook.DAL.Concrete;
 using VisitorBook.DAL.Data;
@@ -20,6 +22,8 @@ builder.Services.AddScoped(typeof(IPropertyMappingService), typeof(PropertyMappi
 builder.Services.AddScoped(typeof(FakeDataGenerator));
 builder.Services.AddScoped<IPropertyMappingCollection, CityToCityGetResponseDtoMappingCollection<City, CityGetResponseDto>>();
 builder.Services.AddScoped<IPropertyMappingCollection, CountyToCountyGetResponseDtoMappingCollection<County, CountyGetResponseDto>>();
+builder.Services.AddScoped<IPropertyMappingCollection, VisitedCountyToVisitedCountyGetResponseDtoMappingCollection<VisitedCounty, VisitedCountyGetResponseDto>>();
+builder.Services.AddScoped<IPropertyMappingCollection, VisitorToVisitorGetResponseDtoMappingCollection<Visitor, VisitorGetResponseDto>>();
 
 builder.Services.AddDbContext<AppDbContext>(opt =>
 {

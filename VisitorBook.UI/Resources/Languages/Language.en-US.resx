@@ -264,7 +264,7 @@
   <data name="VisitedCounties.Notification.Edit.Text" xml:space="preserve">
     <value>Visited County edited successfully</value>
   </data>
-  <data name="VisitedCounties.Notification.Delete.Text" xml:space="preserve">
+  <data name="VisitedCounties.Notification.SuccessfullDelete.Text" xml:space="preserve">
     <value>Visited County deleted successfully</value>
   </data>
   <data name="Counties.Notification.Add.Text" xml:space="preserve">
@@ -332,5 +332,8 @@
   </data>
   <data name="Cities.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
     <value>City did not deleted due to usage of it. Please first delete the record which uses this city after that try to delete it again</value>
+  </data>
+  <data name="VisitedCounties.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
+    <value>Visited County did not deleted due to usage of it. Please first delete the record which uses this visited county after that try to delete it again</value>
   </data>
 </root>

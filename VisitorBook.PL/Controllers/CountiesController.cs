@@ -61,7 +61,7 @@ namespace VisitorBook.PL.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCounty(Guid id)
         {
-            var county = await _countyService.GetAsync(u => u.Id == id);
+            var county = await _countyService.GetAsync(u => u.Id == id, include: u => u.Include(a => a.City));
 
             if (county == null)
             {
