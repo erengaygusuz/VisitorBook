@@ -1,5 +1,4 @@
-﻿
-namespace VisitorBook.Core.Utilities.DataTablesServerSideHelpers
+﻿namespace VisitorBook.Core.Utilities.DataTablesServerSideHelpers
 {
     public class DataTablesOptions
     {

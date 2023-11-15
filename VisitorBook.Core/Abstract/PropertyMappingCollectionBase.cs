@@ -1,5 +1,4 @@
-﻿
-namespace VisitorBook.Core.Abstract
+﻿namespace VisitorBook.Core.Abstract
 {
     public abstract class PropertyMappingCollectionBase<TSource, TDestination> : IPropertyMappingCollection
     {

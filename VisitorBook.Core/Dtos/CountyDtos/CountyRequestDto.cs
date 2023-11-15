@@ -1,6 +1,6 @@
 ﻿namespace VisitorBook.Core.Dtos.CountyDtos
 {
-    public class CountyAddRequestDto
+    public class CountyRequestDto
     {
         public string Name { get; set; }
         public double Longitude { get; set; }

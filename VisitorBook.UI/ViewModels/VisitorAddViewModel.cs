@@ -6,7 +6,7 @@ namespace VisitorBook.UI.ViewModels
 {
     public class VisitorAddViewModel
     {
-        public VisitorAddRequestDto VisitorAddRequestDto { get; set; }
+        public VisitorRequestDto VisitorRequestDto { get; set; }
 
         [ValidateNever]
         public IEnumerable<SelectListItem> GenderList { get; set; }

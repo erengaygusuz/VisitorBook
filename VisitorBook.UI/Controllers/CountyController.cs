@@ -72,7 +72,7 @@ namespace VisitorBook.UI.Controllers
                        Text = u.Name,
                        Value = u.Id.ToString()
                    }),
-                CountyAddRequestDto = new CountyAddRequestDto()
+                CountyRequestDto = new CountyRequestDto()
             };
 
             return View(countyAddViewModel);
@@ -81,11 +81,11 @@ namespace VisitorBook.UI.Controllers
         [NoDirectAccess]
         public async Task<IActionResult> Edit(Guid id)
         {
-            var county = await _countyApiService.GetByIdAsync<CountyUpdateRequestDto>(id);
+            var county = await _countyApiService.GetByIdAsync<CountyResponseDto>(id);
 
             var cities = await _cityApiService.GetAllAsync();
 
-            var countyUpdateViewModel = new CountyUpdateViewModel()
+            var countyEditViewModel = new CountyEditViewModel()
             {
                 CityList = (cities)
                    .Select(u => new SelectListItem
@@ -93,20 +93,20 @@ namespace VisitorBook.UI.Controllers
                        Text = u.Name,
                        Value = u.Id.ToString()
                    }),
-                CountyUpdateRequestDto = county
+                CountyResponseDto = county
             };
 
-            return View(countyUpdateViewModel);
+            return View(countyEditViewModel);
         }
 
         [ActionName("Add")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddPost(CountyAddRequestDto countyAddRequestDto)
+        public async Task<IActionResult> AddPost(CountyRequestDto countyRequestDto)
         {
             if (ModelState.IsValid)
             {
-                await _countyApiService.AddAsync(countyAddRequestDto);
+                await _countyApiService.AddAsync(countyRequestDto);
 
                 return Json(new { isValid = true, message = _localization["Counties.Notification.Add.Text"].Value });
             }
@@ -129,18 +129,18 @@ namespace VisitorBook.UI.Controllers
         [ActionName("Edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost(CountyUpdateRequestDto countyUpdateRequestDto)
+        public async Task<IActionResult> EditPost(Guid id, CountyRequestDto countyRequestDto)
         {
             if (ModelState.IsValid)
             {
-                await _countyApiService.UpdateAsync(countyUpdateRequestDto);
+                await _countyApiService.UpdateAsync(id, countyRequestDto);
 
                 return Json(new { isValid = true, message = _localization["Counties.Notification.Edit.Text"].Value });
             }
 
             var cities = await _cityApiService.GetAllAsync();
 
-            var countyUpdateViewModel = new CountyUpdateViewModel()
+            var countyEditViewModel = new CountyEditViewModel()
             {
                 CityList = (cities)
                    .Select(u => new SelectListItem
@@ -150,7 +150,7 @@ namespace VisitorBook.UI.Controllers
                    })
             };
 
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", countyUpdateViewModel) });
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", countyEditViewModel) });
         }
 
         [HttpDelete]

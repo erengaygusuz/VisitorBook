@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Localization;
 using VisitorBook.Core.Dtos.VisitedCountyDtos;
@@ -62,7 +61,7 @@ namespace VisitorBook.UI.Controllers
 
             var visitedCountyAddViewModel = new VisitedCountyAddViewModel()
             {
-                VisitedCountyAddRequestDto = new VisitedCountyAddRequestDto(),
+                VisitedCountyRequestDto = new VisitedCountyRequestDto(),
                 CountyList = new List<SelectListItem>(),
                 CityList = (cities)
                    .Select(u => new SelectListItem
@@ -83,7 +82,7 @@ namespace VisitorBook.UI.Controllers
 
         public async Task<IActionResult> Edit(Guid id)
         {
-            var visitedCounty = await _visitedCountyApiService.GetByIdAsync<VisitedCountyUpdateRequestDto>(id);
+            var visitedCounty = await _visitedCountyApiService.GetByIdAsync<VisitedCountyResponseDto>(id);
 
             var counties = await _countyApiService.GetAllByCityAsync(visitedCounty.CityId);
 
@@ -91,9 +90,9 @@ namespace VisitorBook.UI.Controllers
 
             var visitorsWithVisitorAddress = await _visitorApiService.GetAllAsync();
 
-            var visitedUpdateCountyViewModel = new VisitedCountyUpdateViewModel()
+            var visitedCountyEditViewModel = new VisitedCountyEditViewModel()
             {
-                VisitedCountyUpdateRequestDto = visitedCounty,
+                VisitedCountyResponseDto = visitedCounty,
                 CountyList = (counties)
                    .Select(u => new SelectListItem
                    {
@@ -114,13 +113,13 @@ namespace VisitorBook.UI.Controllers
                    })
             };
 
-            return View(visitedUpdateCountyViewModel);
+            return View(visitedCountyEditViewModel);
         }
 
         [ActionName("Add")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddPost(VisitedCountyAddRequestDto visitedCountyAddRequestDto)
+        public async Task<IActionResult> AddPost(VisitedCountyRequestDto visitedCountyAddRequestDto)
         {
             if (ModelState.IsValid)
             {
@@ -133,7 +132,7 @@ namespace VisitorBook.UI.Controllers
 
             var visitorsWithVisitorAddress = await _visitorApiService.GetAllAsync();
 
-            var visitedCountyAddViewModel = new VisitedCountyAddViewModel()
+            var visitedCountyAddViewModel = new VisitedCountyEditViewModel()
             {
                 CityList = (cities)
                    .Select(u => new SelectListItem
@@ -155,17 +154,11 @@ namespace VisitorBook.UI.Controllers
         [ActionName("Edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost(VisitedCountyUpdateRequestDto visitedCountyUpdateRequestDto)
+        public async Task<IActionResult> EditPost(Guid id, VisitedCountyRequestDto visitedCountyRequestDto)
         {
             if (ModelState.IsValid)
             {
-                var visitedCounty = await _visitedCountyApiService.GetByIdAsync<VisitedCountyUpdateRequestDto>(visitedCountyUpdateRequestDto.Id);
-
-                visitedCounty.VisitDate = visitedCountyUpdateRequestDto.VisitDate;
-                visitedCounty.VisitorId = visitedCountyUpdateRequestDto.VisitorId;
-                visitedCounty.CountyId = visitedCountyUpdateRequestDto.CountyId;
-
-                await _visitedCountyApiService.UpdateAsync(visitedCounty);
+                await _visitedCountyApiService.UpdateAsync(id, visitedCountyRequestDto);
 
                 return Json(new { isValid = true, message = _localization["VisitedCounties.Notification.Edit.Text"].Value });
             }
@@ -174,7 +167,7 @@ namespace VisitorBook.UI.Controllers
 
             var visitorsWithVisitorAddress = await _visitorApiService.GetAllAsync();
 
-            var visitedCountyUpdateViewModel = new VisitedCountyUpdateViewModel()
+            var visitedCountyEditViewModel = new VisitedCountyEditViewModel()
             {
                 CityList = (cities)
                    .Select(u => new SelectListItem
@@ -190,7 +183,7 @@ namespace VisitorBook.UI.Controllers
                    })
             };
 
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", visitedCountyUpdateViewModel) });
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", visitedCountyEditViewModel) });
         }
 
         [HttpDelete]

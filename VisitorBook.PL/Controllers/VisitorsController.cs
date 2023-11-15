@@ -1,5 +1,4 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VisitorBook.Core.Abstract;
@@ -25,7 +24,7 @@ namespace VisitorBook.PL.Controllers
         [Route("GetTableData")]
         public IActionResult GetAllVisitors([FromBody] DataTablesOptions model)
         {
-            return DataTablesResult(_visitorService.GetAll<VisitorGetResponseDto>(model));
+            return DataTablesResult(_visitorService.GetAll<VisitorResponseDto>(model));
         }
 
         [HttpGet]
@@ -39,12 +38,12 @@ namespace VisitorBook.PL.Controllers
                 return NotFound();
             }
 
-            var visitorGetResponseDtos = _mapper.Map<List<VisitorGetResponseDto>>(visitors);
+            var visitorResponseDtos = _mapper.Map<List<VisitorResponseDto>>(visitors);
 
-            return Ok(visitorGetResponseDtos);
+            return Ok(visitorResponseDtos);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetVisitor")]
         public async Task<IActionResult> GetVisitor(Guid id)
         {
             var visitor = await _visitorService.GetAsync(u => u.Id == id, 
@@ -55,9 +54,9 @@ namespace VisitorBook.PL.Controllers
                 return NotFound();
             }
 
-            var visitorGetResponseDto = _mapper.Map<VisitorGetResponseDto>(visitor);
+            var visitorResponseDto = _mapper.Map<VisitorResponseDto>(visitor);
 
-            return Ok(visitorGetResponseDto);
+            return Ok(visitorResponseDto);
         }
 
         [HttpDelete("{id}")]
@@ -76,9 +75,9 @@ namespace VisitorBook.PL.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateVisitor([FromBody] VisitorAddRequestDto visitorAddRequestDto)
+        public async Task<IActionResult> CreateVisitor([FromBody] VisitorRequestDto visitorRequestDto)
         {
-            if (visitorAddRequestDto == null)
+            if (visitorRequestDto == null)
             {
                 return BadRequest();
             }
@@ -88,17 +87,24 @@ namespace VisitorBook.PL.Controllers
                 return UnprocessableEntity(ModelState.GetValidationErrors());
             }
 
-            var visitorToAdd = _mapper.Map<Visitor>(visitorAddRequestDto);
+            var visitorToAdd = _mapper.Map<Visitor>(visitorRequestDto);
 
             await _visitorService.AddAsync(visitorToAdd);
 
             return CreatedAtRoute("GetVisitedCounty", visitorToAdd, new { id = visitorToAdd.Id });
         }
 
-        [HttpPut]
-        public async Task<IActionResult> UpdateVisitor([FromBody] VisitorUpdateRequestDto visitorUpdateRequestDto)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateVisitor(Guid id, [FromBody] VisitorRequestDto visitorRequestDto)
         {
-            if (visitorUpdateRequestDto == null)
+            var visitorToUpdate = await _visitorService.GetAsync(c => c.Id == id);
+
+            if (visitorToUpdate == null)
+            {
+                return NotFound();
+            }
+
+            if (visitorRequestDto == null)
             {
                 return BadRequest();
             }
@@ -108,12 +114,7 @@ namespace VisitorBook.PL.Controllers
                 return UnprocessableEntity(ModelState.GetValidationErrors());
             }
 
-            var visitorToUpdate = _mapper.Map<Visitor>(visitorUpdateRequestDto);
-
-            if (visitorToUpdate == null)
-            {
-                return NotFound();
-            }
+            _mapper.Map(visitorRequestDto, visitorToUpdate);
 
             await _visitorService.UpdateAsync(visitorToUpdate);
 

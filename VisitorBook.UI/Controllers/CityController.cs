@@ -54,7 +54,7 @@ namespace VisitorBook.UI.Controllers
         [NoDirectAccess]
         public async Task<IActionResult> Edit(Guid id)
         {
-            var city = await _cityApiService.GetByIdAsync<CityGetResponseDto>(id);
+            var city = await _cityApiService.GetByIdAsync<CityResponseDto>(id);
 
             return View(city);
         }
@@ -62,31 +62,31 @@ namespace VisitorBook.UI.Controllers
         [ActionName("Add")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddPost(CityAddRequestDto cityAddRequestDto)
+        public async Task<IActionResult> AddPost(CityRequestDto cityDto)
         {
             if (ModelState.IsValid)
             {
-                await _cityApiService.AddAsync(cityAddRequestDto);
+                await _cityApiService.AddAsync(cityDto);
 
                 return Json(new { isValid = true, message = _localization["Cities.Notification.Add.Text"].Value });
             }
 
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", cityAddRequestDto) });
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", cityDto) });
         }
 
         [ActionName("Edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost(CityUpdateRequestDto cityUpdateRequestDto)
+        public async Task<IActionResult> EditPost(Guid id, CityRequestDto cityRequestDto)
         {
             if (ModelState.IsValid)
             {
-                await _cityApiService.UpdateAsync(cityUpdateRequestDto);
+                await _cityApiService.UpdateAsync(id, cityRequestDto);
 
                 return Json(new { isValid = true, message = _localization["Cities.Notification.Edit.Text"].Value });
             }
 
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", cityUpdateRequestDto) });
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", cityRequestDto) });
         }
 
         [HttpDelete]

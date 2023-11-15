@@ -18,10 +18,10 @@ namespace VisitorBook.UI.Controllers
         {
             VisitorStatisticViewModel visitorStatisticViewModel = new VisitorStatisticViewModel()
             {
-                GetHighestCountOfVisitedCityByVisitor = new Tuple<string, string>("", ""), //await _visitorStatisticService.GetHighestCountOfVisitedCityByVisitorAsync(),
-                GetHighestCountOfVisitedCountyByVisitor = new Tuple<string, string>("", ""),//await _visitorStatisticService.GetHighestCountOfVisitedCountyByVisitorAsync(),
-                GetLongestDistanceByVisitorOneTime = new Tuple<string, string>("", ""),//await _visitorStatisticService.GetLongestDistanceByVisitorOneTimeAsync(),
-                GetLongestDistanceByVisitorAllTime = new Tuple<string, string>("", "")//await _visitorStatisticService.GetLongestDistanceByVisitorAllTimeAsync()
+                GetHighestCountOfVisitedCityByVisitor = new Tuple<string, string>("", ""),/*await _visitorStatisticService.GetHighestCountOfVisitedCityByVisitorAsync(),*/
+                GetHighestCountOfVisitedCountyByVisitor = new Tuple<string, string>("", ""),/*await _visitorStatisticService.GetHighestCountOfVisitedCountyByVisitorAsync(),*/
+                GetLongestDistanceByVisitorOneTime = new Tuple<string, string>("", ""),/*await _visitorStatisticService.GetLongestDistanceByVisitorOneTimeAsync(),*/
+                GetLongestDistanceByVisitorAllTime = new Tuple<string, string>("", "")/*await _visitorStatisticService.GetLongestDistanceByVisitorAllTimeAsync()*/
             };            
 
             return View(visitorStatisticViewModel);

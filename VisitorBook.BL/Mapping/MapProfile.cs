@@ -12,45 +12,33 @@ namespace VisitorBook.BL.Mapping
     {
         public MapProfile()
         {
-            CreateMap<CityAddRequestDto, City>();
-            CreateMap<CityUpdateRequestDto, City>();
-            CreateMap<City, CityGetResponseDto>();
+            CreateMap<CityRequestDto, City>();
+            CreateMap<City, CityResponseDto>();
 
-            CreateMap<CountyAddRequestDto, County>();
-            CreateMap<CountyUpdateRequestDto, County>().ReverseMap();
-
-            CreateMap<County, CountyGetResponseDto>()
+            CreateMap<CountyRequestDto, County>();
+            CreateMap<County, CountyResponseDto>()
                 .ForMember(e => e.CityName, opts => opts.MapFrom(e => e.City.Name));
 
-            CreateMap<VisitedCountyAddRequestDto, VisitedCounty>();
-
-            CreateMap<VisitedCounty, VisitedCountyUpdateRequestDto>()
+            CreateMap<VisitedCountyRequestDto, VisitedCounty>();
+            CreateMap<VisitedCounty, VisitedCountyResponseDto>()
                 .ForMember(e => e.CityId, opts => opts.MapFrom(e => e.County.CityId));
 
-            CreateMap<VisitedCountyUpdateRequestDto, VisitedCounty>();
-
-            CreateMap<VisitedCounty, VisitedCountyGetResponseDto>()
+            CreateMap<VisitedCountyRequestDto, VisitedCounty>();
+            CreateMap<VisitedCounty, VisitedCountyResponseDto>()
                 .ForMember(e => e.CityId, opts => opts.MapFrom(e => e.County.CityId))
                 .ForMember(e => e.CityName, opts => opts.MapFrom(e => e.County.City.Name))
                 .ForMember(e => e.CountyName, opts => opts.MapFrom(e => e.County.Name))
                 .ForMember(e => e.VisitorName, opts => opts.MapFrom(e => e.Visitor.Name + " " + e.Visitor.Surname));
 
-            CreateMap<VisitorAddRequestDto, Visitor>()
+            CreateMap<VisitorRequestDto, Visitor>()
                 .ForPath(dest => dest.VisitorAddress.CountyId, src => src.MapFrom(e => e.CountyId));
-
-            CreateMap<Visitor, VisitorUpdateRequestDto>()
+            CreateMap<Visitor, VisitorResponseDto>()
                 .ForPath(e => e.CountyId, opts => opts.MapFrom(e => e.VisitorAddress.CountyId))
                 .ForPath(e => e.CityId, opts => opts.MapFrom(e => e.VisitorAddress.County.CityId))
                 .ForPath(e => e.VisitorAddressId, opts => opts.MapFrom(e => e.VisitorAddress.Id));
 
-            CreateMap<VisitorUpdateRequestDto, Visitor>()
-                .ForPath(e => e.VisitorAddress.CountyId, opts => opts.MapFrom(e => e.CountyId));
-
-            CreateMap<Visitor, VisitorGetResponseDto>();
-
-            CreateMap<VisitorAddress, VisitorAddressUpdateRequestDto>();
-
-            CreateMap<VisitorAddressAddRequestDto, VisitorAddress>();
+            CreateMap<VisitorAddressRequestDto, VisitorAddress>();
+            CreateMap<VisitorAddress, VisitorAddressResponseDto>();
         }
     }
 }

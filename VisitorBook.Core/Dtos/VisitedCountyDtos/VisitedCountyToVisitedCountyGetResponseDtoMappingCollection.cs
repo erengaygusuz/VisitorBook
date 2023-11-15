@@ -1,5 +1,4 @@
-﻿
-using VisitorBook.Core.Abstract;
+﻿using VisitorBook.Core.Abstract;
 
 namespace VisitorBook.Core.Dtos.VisitedCountyDtos
 {

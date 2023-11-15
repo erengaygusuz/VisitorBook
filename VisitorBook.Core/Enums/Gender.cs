@@ -1,5 +1,4 @@
-﻿
-namespace VisitorBook.Core.Enums
+﻿namespace VisitorBook.Core.Enums
 {
     public enum Gender
     {

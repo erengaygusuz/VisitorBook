@@ -4,9 +4,9 @@ using VisitorBook.Core.Dtos.VisitedCountyDtos;
 
 namespace VisitorBook.UI.ViewModels
 {
-    public class VisitedCountyUpdateViewModel
+    public class VisitedCountyEditViewModel
     {
-        public VisitedCountyUpdateRequestDto VisitedCountyUpdateRequestDto { get; set; }
+        public VisitedCountyResponseDto VisitedCountyResponseDto { get; set; }
 
         [ValidateNever]
         public IEnumerable<SelectListItem> VisitorList { get; set; }

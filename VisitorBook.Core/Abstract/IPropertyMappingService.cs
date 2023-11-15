@@ -1,5 +1,4 @@
-﻿
-namespace VisitorBook.Core.Abstract
+﻿namespace VisitorBook.Core.Abstract
 {
     public interface IPropertyMappingService
     {

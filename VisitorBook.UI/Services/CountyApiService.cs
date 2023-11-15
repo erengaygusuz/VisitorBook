@@ -1,4 +1,5 @@
-﻿using VisitorBook.Core.Dtos.CountyDtos;
+﻿using VisitorBook.Core.Dtos;
+using VisitorBook.Core.Dtos.CountyDtos;
 using VisitorBook.Core.Utilities.DataTablesServerSideHelpers;
 
 namespace VisitorBook.UI.Services
@@ -12,25 +13,25 @@ namespace VisitorBook.UI.Services
             _httpClient = httpClient;
         }
 
-        public async Task<CountyListResponseDto> GetTableData(DataTablesOptions model)
+        public async Task<PagedListDto<CountyResponseDto>> GetTableData(DataTablesOptions model)
         {
             var response = await _httpClient.PostAsJsonAsync("counties/gettabledata", model);
 
-            var result = await response.Content.ReadFromJsonAsync<CountyListResponseDto>();
+            var result = await response.Content.ReadFromJsonAsync<PagedListDto<CountyResponseDto>>();
 
             return result;
         }
 
-        public async Task<List<CountyGetResponseDto>> GetAllAsync()
+        public async Task<List<CountyResponseDto>> GetAllAsync()
         {
-            var response = await _httpClient.GetFromJsonAsync<List<CountyGetResponseDto>>($"counties");
+            var response = await _httpClient.GetFromJsonAsync<List<CountyResponseDto>>($"counties");
 
             return response;
         }
 
-        public async Task<List<CountyGetResponseDto>> GetAllByCityAsync(Guid countyId)
+        public async Task<List<CountyResponseDto>> GetAllByCityAsync(Guid countyId)
         {
-            var response = await _httpClient.GetFromJsonAsync<List<CountyGetResponseDto>>($"counties/getallcountiesbycity/{countyId}");
+            var response = await _httpClient.GetFromJsonAsync<List<CountyResponseDto>>($"counties/getallcountiesbycity/{countyId}");
 
             return response;
         }
@@ -42,16 +43,16 @@ namespace VisitorBook.UI.Services
             return response;
         }
 
-        public async Task<bool> AddAsync(CountyAddRequestDto countyAddRequestDto)
+        public async Task<bool> AddAsync(CountyRequestDto countyRequestDto)
         {
-            var response = await _httpClient.PostAsJsonAsync("counties", countyAddRequestDto);
+            var response = await _httpClient.PostAsJsonAsync("counties", countyRequestDto);
 
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> UpdateAsync(CountyUpdateRequestDto countyUpdateRequestDto)
+        public async Task<bool> UpdateAsync(Guid id, CountyRequestDto countyRequestDto)
         {
-            var response = await _httpClient.PutAsJsonAsync("counties", countyUpdateRequestDto);
+            var response = await _httpClient.PutAsJsonAsync($"counties/{id}", countyRequestDto);
 
             return response.IsSuccessStatusCode;
         }

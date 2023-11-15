@@ -1,8 +1,7 @@
 ﻿namespace VisitorBook.Core.Dtos.VisitedCountyDtos
 {
-    public class VisitedCountyUpdateRequestDto
+    public class VisitedCountyRequestDto
     {
-        public Guid Id { get; set; }
         public Guid VisitorId { get; set; }
         public Guid CityId { get; set; }
         public Guid CountyId { get; set; }

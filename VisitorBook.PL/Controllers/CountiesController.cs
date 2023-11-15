@@ -24,7 +24,7 @@ namespace VisitorBook.PL.Controllers
         [Route("GetTableData")]
         public IActionResult GetAllCounties([FromBody] DataTablesOptions model)
         {
-            return DataTablesResult(_countyService.GetAll<CountyGetResponseDto>(model, include: x => x.Include(c => c.City)));
+            return DataTablesResult(_countyService.GetAll<CountyResponseDto>(model, include: x => x.Include(c => c.City)));
         }
 
         [HttpGet]
@@ -37,9 +37,9 @@ namespace VisitorBook.PL.Controllers
                 return NotFound();
             }
 
-            var countyGetResponseDtos = _mapper.Map<List<CountyGetResponseDto>>(counties);
+            var countyResponseDtos = _mapper.Map<List<CountyResponseDto>>(counties);
 
-            return Ok(countyGetResponseDtos);
+            return Ok(countyResponseDtos);
         }
 
         [HttpGet]
@@ -53,12 +53,12 @@ namespace VisitorBook.PL.Controllers
                 return NotFound();
             }
 
-            var countyGetResponseDtos = _mapper.Map<List<CountyGetResponseDto>>(counties);
+            var countyResponseDtos = _mapper.Map<List<CountyResponseDto>>(counties);
 
-            return Ok(countyGetResponseDtos);
+            return Ok(countyResponseDtos);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetCounty")]
         public async Task<IActionResult> GetCounty(Guid id)
         {
             var county = await _countyService.GetAsync(u => u.Id == id, include: u => u.Include(a => a.City));
@@ -68,9 +68,9 @@ namespace VisitorBook.PL.Controllers
                 return NotFound();
             }
 
-            var countyGetResponseDto = _mapper.Map<CountyGetResponseDto>(county);
+            var countyResponseDto = _mapper.Map<CountyResponseDto>(county);
 
-            return Ok(countyGetResponseDto);
+            return Ok(countyResponseDto);
         }
 
         [HttpDelete("{id}")]
@@ -89,9 +89,9 @@ namespace VisitorBook.PL.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCounty([FromBody] CountyAddRequestDto countyAddRequestDto)
+        public async Task<IActionResult> CreateCounty([FromBody] CountyRequestDto countyRequestDto)
         {
-            if (countyAddRequestDto == null)
+            if (countyRequestDto == null)
             {
                 return BadRequest();
             }
@@ -101,17 +101,24 @@ namespace VisitorBook.PL.Controllers
                 return UnprocessableEntity(ModelState.GetValidationErrors());
             }
 
-            var countyToAdd = _mapper.Map<County>(countyAddRequestDto);
+            var countyToAdd = _mapper.Map<County>(countyRequestDto);
 
             await _countyService.AddAsync(countyToAdd);
 
             return CreatedAtRoute("GetCounty", countyToAdd, new { id = countyToAdd.Id });
         }
 
-        [HttpPut]
-        public async Task<IActionResult> UpdateCounty([FromBody] CountyUpdateRequestDto countyUpdateRequestDto)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateCounty(Guid id, [FromBody] CountyRequestDto countyRequestDto)
         {
-            if (countyUpdateRequestDto == null)
+            var countyToUpdate = await _countyService.GetAsync(c => c.Id == id);
+
+            if (countyToUpdate == null)
+            {
+                return NotFound();
+            }
+
+            if (countyRequestDto == null)
             {
                 return BadRequest();
             }
@@ -121,12 +128,7 @@ namespace VisitorBook.PL.Controllers
                 return UnprocessableEntity(ModelState.GetValidationErrors());
             }
 
-            var countyToUpdate = _mapper.Map<County>(countyUpdateRequestDto);
-
-            if (countyToUpdate == null)
-            {
-                return NotFound();
-            }
+            _mapper.Map(countyRequestDto, countyToUpdate);
 
             await _countyService.UpdateAsync(countyToUpdate);
 

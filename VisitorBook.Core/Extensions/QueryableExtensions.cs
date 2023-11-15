@@ -1,5 +1,4 @@
-﻿
-using System.Linq.Dynamic.Core;
+﻿using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Utilities.DataTablesServerSideHelpers;

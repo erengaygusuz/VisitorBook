@@ -11,34 +11,34 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="CountyAddRequestDto.Name" class="control-label">@localization["Counties.Table.Column1.Text"]</label>
-                    <input asp-for="CountyAddRequestDto.Name" class="form-control" />
-                    <span asp-validation-for="CountyAddRequestDto.Name" class="text-danger"></span>
+                    <label asp-for="CountyRequestDto.Name" class="control-label">@localization["Counties.Table.Column1.Text"]</label>
+                    <input asp-for="CountyRequestDto.Name" class="form-control" />
+                    <span asp-validation-for="CountyRequestDto.Name" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="CountyAddRequestDto.Latitude" class="control-label">@localization["Counties.Table.Column4.Text"]</label>
-                        <input asp-for="CountyAddRequestDto.Latitude" class="form-control" />
-                        <span asp-validation-for="CountyAddRequestDto.Latitude" class="text-danger"></span>
+                        <label asp-for="CountyRequestDto.Latitude" class="control-label">@localization["Counties.Table.Column4.Text"]</label>
+                        <input asp-for="CountyRequestDto.Latitude" class="form-control" />
+                        <span asp-validation-for="CountyRequestDto.Latitude" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="CountyAddRequestDto.Longitude" class="control-label">@localization["Counties.Table.Column3.Text"]</label>
-                        <input asp-for="CountyAddRequestDto.Longitude" class="form-control" />
-                        <span asp-validation-for="CountyAddRequestDto.Longitude" class="text-danger"></span>
+                        <label asp-for="CountyRequestDto.Longitude" class="control-label">@localization["Counties.Table.Column3.Text"]</label>
+                        <input asp-for="CountyRequestDto.Longitude" class="form-control" />
+                        <span asp-validation-for="CountyRequestDto.Longitude" class="text-danger"></span>
                     </div>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="CountyAddRequestDto.CityId" class="control-label">@localization["Counties.Table.Column2.Text"]</label>
-                    <select asp-for="CountyAddRequestDto.CityId" asp-items="@Model.CityList" class="form-select">
+                    <label asp-for="CountyRequestDto.CityId" class="control-label">@localization["Counties.Table.Column2.Text"]</label>
+                    <select asp-for="CountyRequestDto.CityId" asp-items="@Model.CityList" class="form-select">
                         <option disabled selected>@localization["AddOrEditModal.CitySelection.Text"]</option>
                     </select>
-                    <span asp-validation-for="CountyAddRequestDto.CityId" class="text-danger"></span>
+                    <span asp-validation-for="CountyRequestDto.CityId" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4">

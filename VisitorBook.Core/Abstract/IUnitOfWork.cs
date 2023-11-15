@@ -1,5 +1,4 @@
-﻿
-using VisitorBook.Core.Models;
+﻿using VisitorBook.Core.Models;
 
 namespace VisitorBook.Core.Abstract
 {

@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Localization;
 using VisitorBook.Core.Dtos.CountyDtos;
@@ -63,7 +62,7 @@ namespace VisitorBook.UI.Controllers
 
             var visitorAddViewModel = new VisitorAddViewModel()
             {
-                VisitorAddRequestDto = new VisitorAddRequestDto(),
+                VisitorRequestDto = new VisitorRequestDto(),
                 GenderList = new List<Gender> { Gender.Male, Gender.Female }
                     .Select(u => new SelectListItem
                     {
@@ -84,9 +83,9 @@ namespace VisitorBook.UI.Controllers
 
         public async Task<IActionResult> Edit(Guid id)
         {
-            var visitor = await _visitorApiService.GetByIdAsync<VisitorUpdateRequestDto>(id);
+            var visitor = await _visitorApiService.GetByIdAsync<VisitorResponseDto>(id);
 
-            List<CountyGetResponseDto> counties;
+            List<CountyResponseDto> counties;
 
             if (visitor.VisitorAddressId != null)
             {
@@ -95,14 +94,14 @@ namespace VisitorBook.UI.Controllers
 
             else
             {
-                counties = new List<CountyGetResponseDto>();
+                counties = new List<CountyResponseDto>();
             }
 
             var cities = await _cityApiService.GetAllAsync();
 
-            var visitorUpdateViewModel = new VisitorUpdateViewModel()
+            var visitorEditViewModel = new VisitorEditViewModel()
             {
-                VisitorUpdateRequestDto = visitor,
+                VisitorResponseDto = visitor,
                 GenderList = new List<Gender> { Gender.Male, Gender.Female }
                     .Select(u => new SelectListItem
                     {
@@ -123,24 +122,24 @@ namespace VisitorBook.UI.Controllers
                    })
             };
 
-            return View(visitorUpdateViewModel);
+            return View(visitorEditViewModel);
         }
 
         [ActionName("Add")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddPost(VisitorAddRequestDto visitorAddRequestDto)
+        public async Task<IActionResult> AddPost(VisitorRequestDto visitorRequestDto)
         {
             if (ModelState.IsValid)
             {
-                await _visitorApiService.AddAsync(visitorAddRequestDto);
+                await _visitorApiService.AddAsync(visitorRequestDto);
 
                 return Json(new { isValid = true, message = _localization["Visitors.Notification.Add.Text"].Value });
             }
 
             var cities = await _cityApiService.GetAllAsync();
 
-            var visitorViewModel = new VisitorAddViewModel()
+            var visitorAddViewModel = new VisitorAddViewModel()
             {
                 CityList = (cities)
                    .Select(u => new SelectListItem
@@ -156,49 +155,50 @@ namespace VisitorBook.UI.Controllers
                    })
             };
 
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", visitorViewModel) });
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", visitorAddViewModel) });
         }
 
         [ActionName("Edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost(VisitorUpdateRequestDto visitorUpdateRequestDto)
+        public async Task<IActionResult> EditPost(Guid id, VisitorRequestDto visitorRequestDto)
         {
             if (ModelState.IsValid)
             {
-                var visitor = await _visitorApiService.GetByIdAsync<VisitorUpdateRequestDto>(visitorUpdateRequestDto.Id);
+                var visitor = await _visitorApiService.GetByIdAsync<VisitorResponseDto>(id);
 
                 if (visitor.VisitorAddressId != null)
                 {
-                    var visitorAddress = await _visitorAddressApiService.GetByIdAsync<VisitorAddressUpdateRequestDto>(visitor.VisitorAddressId.Value);
+                    var visitorAddress = await _visitorAddressApiService.GetByIdAsync<VisitorAddressResponseDto>(visitor.VisitorAddressId.Value);
 
                     if (visitorAddress != null)
                     {
-                        visitorAddress.CountyId = visitorUpdateRequestDto.CountyId.Value;
-
-                        await _visitorAddressApiService.UpdateAsync(visitorAddress);
+                        await _visitorAddressApiService.UpdateAsync(id, new VisitorAddressRequestDto
+                        {
+                            CountyId = visitorRequestDto.CountyId
+                        });
                     }
                 }
 
                 else
                 {
-                    if (visitorUpdateRequestDto.CountyId != null)
+                    if (visitorRequestDto.CountyId != null)
                     {
-                        await _visitorAddressApiService.AddAsync(new VisitorAddressAddRequestDto
+                        await _visitorAddressApiService.AddAsync(new VisitorAddressRequestDto
                         {
-                            CountyId = visitorUpdateRequestDto.CountyId.Value
+                            CountyId = visitorRequestDto.CountyId
                         });
                     }
                 }
 
-                await _visitorApiService.UpdateAsync(visitor);
+                await _visitorApiService.UpdateAsync(id, visitorRequestDto);
 
                 return Json(new { isValid = true, message = _localization["Visitors.Notification.Edit.Text"].Value });
             }
 
             var cities = await _cityApiService.GetAllAsync();
 
-            var visitorUpdateViewModel = new VisitorUpdateViewModel
+            var visitorEditViewModel = new VisitorEditViewModel
             {
                 CityList = (cities)
                    .Select(u => new SelectListItem
@@ -214,7 +214,7 @@ namespace VisitorBook.UI.Controllers
                    })
             };
 
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", visitorUpdateViewModel) });
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", visitorEditViewModel) });
         }
 
         [HttpDelete]

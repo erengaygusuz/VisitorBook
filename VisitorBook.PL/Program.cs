@@ -20,10 +20,10 @@ builder.Services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(IPropertyMappingService), typeof(PropertyMappingService));
 builder.Services.AddScoped(typeof(FakeDataGenerator));
-builder.Services.AddScoped<IPropertyMappingCollection, CityToCityGetResponseDtoMappingCollection<City, CityGetResponseDto>>();
-builder.Services.AddScoped<IPropertyMappingCollection, CountyToCountyGetResponseDtoMappingCollection<County, CountyGetResponseDto>>();
-builder.Services.AddScoped<IPropertyMappingCollection, VisitedCountyToVisitedCountyGetResponseDtoMappingCollection<VisitedCounty, VisitedCountyGetResponseDto>>();
-builder.Services.AddScoped<IPropertyMappingCollection, VisitorToVisitorGetResponseDtoMappingCollection<Visitor, VisitorGetResponseDto>>();
+builder.Services.AddScoped<IPropertyMappingCollection, CityToCityGetResponseDtoMappingCollection<City, CityResponseDto>>();
+builder.Services.AddScoped<IPropertyMappingCollection, CountyToCountyGetResponseDtoMappingCollection<County, CountyResponseDto>>();
+builder.Services.AddScoped<IPropertyMappingCollection, VisitedCountyToVisitedCountyGetResponseDtoMappingCollection<VisitedCounty, VisitedCountyResponseDto>>();
+builder.Services.AddScoped<IPropertyMappingCollection, VisitorToVisitorGetResponseDtoMappingCollection<Visitor, VisitorResponseDto>>();
 
 builder.Services.AddDbContext<AppDbContext>(opt =>
 {

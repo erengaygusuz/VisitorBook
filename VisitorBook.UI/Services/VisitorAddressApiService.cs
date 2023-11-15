@@ -1,5 +1,4 @@
-﻿
-using VisitorBook.Core.Dtos.VisitorAddressDtos;
+﻿using VisitorBook.Core.Dtos.VisitorAddressDtos;
 
 namespace VisitorBook.UI.Services
 {
@@ -12,9 +11,9 @@ namespace VisitorBook.UI.Services
             _httpClient = httpClient;
         }
 
-        public async Task<List<VisitorAddressGetResponseDto>> GetAllAsync()
+        public async Task<List<VisitorAddressResponseDto>> GetAllAsync()
         {
-            var response = await _httpClient.GetFromJsonAsync<List<VisitorAddressGetResponseDto>>($"visitoraddress");
+            var response = await _httpClient.GetFromJsonAsync<List<VisitorAddressResponseDto>>($"visitoraddress");
 
             return response;
         }
@@ -26,16 +25,16 @@ namespace VisitorBook.UI.Services
             return response;
         }
 
-        public async Task<bool> AddAsync(VisitorAddressAddRequestDto visitorAddressAddRequestDto)
+        public async Task<bool> AddAsync(VisitorAddressRequestDto visitorAddressAddRequestDto)
         {
             var response = await _httpClient.PostAsJsonAsync("visitoraddress", visitorAddressAddRequestDto);
 
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> UpdateAsync(VisitorAddressUpdateRequestDto visitorAddressUpdateRequestDto)
+        public async Task<bool> UpdateAsync(Guid id, VisitorAddressRequestDto visitorAddressRequestDto)
         {
-            var response = await _httpClient.PutAsJsonAsync("visitoraddress", visitorAddressUpdateRequestDto);
+            var response = await _httpClient.PutAsJsonAsync($"visitoraddress/{id}", visitorAddressRequestDto);
 
             return response.IsSuccessStatusCode;
         }

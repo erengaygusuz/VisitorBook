@@ -6,7 +6,7 @@ namespace VisitorBook.UI.ViewModels
 {
     public class CountyAddViewModel
     {
-        public CountyAddRequestDto CountyAddRequestDto { get; set; }
+        public CountyRequestDto CountyRequestDto { get; set; }
 
         [ValidateNever]
         public IEnumerable<SelectListItem> CityList { get; set; }

@@ -23,7 +23,7 @@ namespace VisitorBook.PL.Controllers
         [Route("GetTableData")]
         public IActionResult GetAllCities([FromBody] DataTablesOptions model)
         {
-            return DataTablesResult(_cityService.GetAll<CityGetResponseDto>(model));
+            return DataTablesResult(_cityService.GetAll<CityResponseDto>(model));
         }
 
         [HttpGet]
@@ -36,12 +36,12 @@ namespace VisitorBook.PL.Controllers
                 return NotFound();
             }
 
-            var cityGetResponseDtos = _mapper.Map<List<CityGetResponseDto>>(cities);
+            var cityResponseDtos = _mapper.Map<List<CityResponseDto>>(cities);
 
-            return Ok(cityGetResponseDtos);
+            return Ok(cityResponseDtos);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetCity")]
         public async Task<IActionResult> GetCity(Guid id)
         {
             var city = await _cityService.GetAsync(u => u.Id == id);
@@ -51,9 +51,9 @@ namespace VisitorBook.PL.Controllers
                 return NotFound();
             }
 
-            var cityGetResponseDto = _mapper.Map<CityGetResponseDto>(city);
+            var cityResponseDto = _mapper.Map<CityResponseDto>(city);
 
-            return Ok(cityGetResponseDto);
+            return Ok(cityResponseDto);
         }
 
         [HttpDelete("{id}")]
@@ -72,9 +72,9 @@ namespace VisitorBook.PL.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCity([FromBody] CityAddRequestDto cityAddRequestDto)
+        public async Task<IActionResult> CreateCity([FromBody] CityRequestDto cityRequestDto)
         {
-            if (cityAddRequestDto == null)
+            if (cityRequestDto == null)
             {
                 return BadRequest();
             }
@@ -84,17 +84,24 @@ namespace VisitorBook.PL.Controllers
                 return UnprocessableEntity(ModelState.GetValidationErrors());
             }
 
-            var cityToAdd = _mapper.Map<City>(cityAddRequestDto);
+            var cityToAdd = _mapper.Map<City>(cityRequestDto);
 
             await _cityService.AddAsync(cityToAdd);
 
             return CreatedAtRoute("GetCity", cityToAdd, new { id = cityToAdd.Id });
         }
 
-        [HttpPut]
-        public async Task<IActionResult> UpdateCity([FromBody] CityUpdateRequestDto cityUpdateRequestDto)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateCity(Guid id, [FromBody] CityRequestDto cityRequestDto)
         {
-            if (cityUpdateRequestDto == null)
+            var cityToUpdate = await _cityService.GetAsync(c => c.Id == id);
+
+            if (cityToUpdate == null)
+            {
+                return NotFound();
+            }
+
+            if (cityRequestDto == null)
             {
                 return BadRequest();
             }
@@ -104,12 +111,7 @@ namespace VisitorBook.PL.Controllers
                 return UnprocessableEntity(ModelState.GetValidationErrors());
             }
 
-            var cityToUpdate = _mapper.Map<City>(cityUpdateRequestDto);
-
-            if (cityToUpdate == null)
-            {
-                return NotFound();
-            }
+            _mapper.Map(cityRequestDto, cityToUpdate);
 
             await _cityService.UpdateAsync(cityToUpdate);
 

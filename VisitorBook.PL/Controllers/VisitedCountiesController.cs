@@ -1,5 +1,4 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VisitorBook.Core.Abstract;
@@ -25,7 +24,7 @@ namespace VisitorBook.PL.Controllers
         [Route("GetTableData")]
         public IActionResult GetAllVisitedCounties([FromBody] DataTablesOptions model)
         {
-            return DataTablesResult(_visitedCountyService.GetAll<VisitedCountyGetResponseDto>(model, 
+            return DataTablesResult(_visitedCountyService.GetAll<VisitedCountyResponseDto>(model, 
                 include: x => x.Include(c => c.Visitor).Include(c => c.County).ThenInclude(c => c.City)));
         }
 
@@ -40,12 +39,12 @@ namespace VisitorBook.PL.Controllers
                 return NotFound();
             }
 
-            var visitedCountyGetResponseDtos = _mapper.Map<List<VisitedCountyGetResponseDto>>(visitedCounties);
+            var visitedCountyResponseDtos = _mapper.Map<List<VisitedCountyResponseDto>>(visitedCounties);
 
-            return Ok(visitedCountyGetResponseDtos);
+            return Ok(visitedCountyResponseDtos);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetVisitedCounty")]
         public async Task<IActionResult> GetVisitedCounty(Guid id)
         {
             var visitedCounty = await _visitedCountyService.GetAsync(u => u.Id == id, include: x => x.Include(c => c.County));
@@ -55,9 +54,9 @@ namespace VisitorBook.PL.Controllers
                 return NotFound();
             }
 
-            var visitedCountyGetResponseDto = _mapper.Map<VisitedCountyGetResponseDto>(visitedCounty);
+            var visitedCountyResponseDto = _mapper.Map<VisitedCountyResponseDto>(visitedCounty);
 
-            return Ok(visitedCountyGetResponseDto);
+            return Ok(visitedCountyResponseDto);
         }
 
         [HttpDelete("{id}")]
@@ -76,9 +75,9 @@ namespace VisitorBook.PL.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateVisitedCounty([FromBody] VisitedCountyAddRequestDto visitedCountyAddRequestDto)
+        public async Task<IActionResult> CreateVisitedCounty([FromBody] VisitedCountyRequestDto visitedCountyRequestDto)
         {
-            if (visitedCountyAddRequestDto == null)
+            if (visitedCountyRequestDto == null)
             {
                 return BadRequest();
             }
@@ -88,17 +87,24 @@ namespace VisitorBook.PL.Controllers
                 return UnprocessableEntity(ModelState.GetValidationErrors());
             }
 
-            var visitedCountyToAdd = _mapper.Map<VisitedCounty>(visitedCountyAddRequestDto);
+            var visitedCountyToAdd = _mapper.Map<VisitedCounty>(visitedCountyRequestDto);
 
             await _visitedCountyService.AddAsync(visitedCountyToAdd);
 
             return CreatedAtRoute("GetVisitedCounty", visitedCountyToAdd, new { id = visitedCountyToAdd.Id });
         }
 
-        [HttpPut]
-        public async Task<IActionResult> UpdateVisitedCounty([FromBody] VisitedCountyUpdateRequestDto visitedCountyUpdateRequestDto)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateVisitedCounty(Guid id, [FromBody] VisitedCountyRequestDto visitedCountyRequestDto)
         {
-            if (visitedCountyUpdateRequestDto == null)
+            var visitedCountyToUpdate = await _visitedCountyService.GetAsync(c => c.Id == id);
+
+            if (visitedCountyToUpdate == null)
+            {
+                return NotFound();
+            }
+
+            if (visitedCountyRequestDto == null)
             {
                 return BadRequest();
             }
@@ -108,12 +114,7 @@ namespace VisitorBook.PL.Controllers
                 return UnprocessableEntity(ModelState.GetValidationErrors());
             }
 
-            var visitedCountyToUpdate = _mapper.Map<VisitedCounty>(visitedCountyUpdateRequestDto);
-
-            if (visitedCountyToUpdate == null)
-            {
-                return NotFound();
-            }
+            _mapper.Map(visitedCountyRequestDto, visitedCountyToUpdate);
 
             await _visitedCountyService.UpdateAsync(visitedCountyToUpdate);
 

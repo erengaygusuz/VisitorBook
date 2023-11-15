@@ -1,4 +1,4 @@
-﻿
+﻿using VisitorBook.Core.Dtos;
 using VisitorBook.Core.Dtos.VisitorDtos;
 using VisitorBook.Core.Utilities.DataTablesServerSideHelpers;
 
@@ -13,18 +13,18 @@ namespace VisitorBook.UI.Services
             _httpClient = httpClient;
         }
 
-        public async Task<VisitorListGetResponseDto> GetTableData(DataTablesOptions model)
+        public async Task<PagedListDto<VisitorResponseDto>> GetTableData(DataTablesOptions model)
         {
             var response = await _httpClient.PostAsJsonAsync("visitors/gettabledata", model);
 
-            var result = await response.Content.ReadFromJsonAsync<VisitorListGetResponseDto>();
+            var result = await response.Content.ReadFromJsonAsync<PagedListDto<VisitorResponseDto>>();
 
             return result;
         }
 
-        public async Task<List<VisitorGetResponseDto>> GetAllAsync()
+        public async Task<List<VisitorResponseDto>> GetAllAsync()
         {
-            var response = await _httpClient.GetFromJsonAsync<List<VisitorGetResponseDto>>($"visitors");
+            var response = await _httpClient.GetFromJsonAsync<List<VisitorResponseDto>>($"visitors");
 
             return response;
         }
@@ -36,16 +36,16 @@ namespace VisitorBook.UI.Services
             return response;
         }
 
-        public async Task<bool> AddAsync(VisitorAddRequestDto visitorAddRequestDto)
+        public async Task<bool> AddAsync(VisitorRequestDto visitorRequestDto)
         {
-            var response = await _httpClient.PostAsJsonAsync("visitors", visitorAddRequestDto);
+            var response = await _httpClient.PostAsJsonAsync("visitors", visitorRequestDto);
 
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> UpdateAsync(VisitorUpdateRequestDto visitorUpdateRequestDto)
+        public async Task<bool> UpdateAsync(Guid id, VisitorRequestDto visitorRequestDto)
         {
-            var response = await _httpClient.PutAsJsonAsync("visitors", visitorUpdateRequestDto);
+            var response = await _httpClient.PutAsJsonAsync($"visitors/{id}", visitorRequestDto);
 
             return response.IsSuccessStatusCode;
         }

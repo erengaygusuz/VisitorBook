@@ -4,9 +4,9 @@ using VisitorBook.Core.Dtos.VisitorDtos;
 
 namespace VisitorBook.UI.ViewModels
 {
-    public class VisitorUpdateViewModel
+    public class VisitorEditViewModel
     {
-        public VisitorUpdateRequestDto VisitorUpdateRequestDto { get; set; }
+        public VisitorResponseDto VisitorResponseDto { get; set; }
 
         [ValidateNever]
         public IEnumerable<SelectListItem> GenderList { get; set; }

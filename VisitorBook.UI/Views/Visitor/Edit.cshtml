@@ -1,4 +1,4 @@
-﻿@model VisitorUpdateViewModel
+﻿@model VisitorEditViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -7,67 +7,67 @@
 
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="Edit" asp-route-id="@Model.VisitorUpdateRequestDto.Id" onsubmit="return EditRecord(this);"
+        <form asp-action="Edit" asp-route-id="@Model.VisitorResponseDto.Id" onsubmit="return EditRecord(this);"
             autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="VisitorUpdateRequestDto.Id" />
-            <input type="hidden" asp-for="VisitorUpdateRequestDto.VisitorAddressId" />
+            <input type="hidden" asp-for="VisitorResponseDto.Id" />
+            <input type="hidden" asp-for="VisitorResponseDto.VisitorAddressId" />
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="VisitorUpdateRequestDto.Name"
+                    <label asp-for="VisitorResponseDto.Name"
                         class="control-label">@localization["Visitors.Table.Column1.Text"]</label>
-                    <input asp-for="VisitorUpdateRequestDto.Name" class="form-control" />
-                    <span asp-validation-for="VisitorUpdateRequestDto.Name" class="text-danger"></span>
+                    <input asp-for="VisitorResponseDto.Name" class="form-control" />
+                    <span asp-validation-for="VisitorResponseDto.Name" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="VisitorUpdateRequestDto.Surname"
+                    <label asp-for="VisitorResponseDto.Surname"
                         class="control-label">@localization["Visitors.Table.Column2.Text"]</label>
-                    <input asp-for="VisitorUpdateRequestDto.Surname" class="form-control" />
-                    <span asp-validation-for="VisitorUpdateRequestDto.Surname" class="text-danger"></span>
+                    <input asp-for="VisitorResponseDto.Surname" class="form-control" />
+                    <span asp-validation-for="VisitorResponseDto.Surname" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="VisitorUpdateRequestDto.BirthDate"
+                        <label asp-for="VisitorResponseDto.BirthDate"
                             class="control-label">@localization["Visitors.Table.Column3.Text"]</label>
-                        <input asp-for="VisitorUpdateRequestDto.BirthDate" class="form-control" />
-                        <span asp-validation-for="VisitorUpdateRequestDto.BirthDate" class="text-danger"></span>
+                        <input asp-for="VisitorResponseDto.BirthDate" class="form-control" />
+                        <span asp-validation-for="VisitorResponseDto.BirthDate" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="VisitorUpdateRequestDto.Gender"
+                        <label asp-for="VisitorResponseDto.Gender"
                             class="control-label">@localization["Visitors.Table.Column4.Text"]</label>
-                        <select asp-for="VisitorUpdateRequestDto.Gender" asp-items="@Model.GenderList" class="form-select">
+                        <select asp-for="VisitorResponseDto.Gender" asp-items="@Model.GenderList" class="form-select">
                             <option disabled selected>@localization["AddOrEditModal.GenderSelection.Text"]</option>
                         </select>
-                        <span asp-validation-for="VisitorUpdateRequestDto.Gender" class="text-danger"></span>
+                        <span asp-validation-for="VisitorResponseDto.Gender" class="text-danger"></span>
                     </div>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="VisitorUpdateRequestDto.CityId"
+                    <label asp-for="VisitorResponseDto.CityId"
                         class="control-label">@localization["Visitors.Table.Column6.Text"]</label>
-                    <select id="citylist" onchange="cityChange()" asp-for="VisitorUpdateRequestDto.CityId"
+                    <select id="citylist" onchange="cityChange()" asp-for="VisitorResponseDto.CityId"
                         asp-items="@Model.CityList" class="form-select">
                         <option disabled selected value="0">@localization["AddOrEditModal.CitySelection.Text"]</option>
                     </select>
-                    <span asp-validation-for="VisitorUpdateRequestDto.CityId" class="text-danger"></span>
+                    <span asp-validation-for="VisitorResponseDto.CityId" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4" id="countylist">
                 <div class="form-group">
-                    <label asp-for="VisitorUpdateRequestDto.CountyId"
+                    <label asp-for="VisitorResponseDto.CountyId"
                         class="control-label">@localization["Visitors.Table.Column7.Text"]</label>
-                    <select id="county-id" asp-for="VisitorUpdateRequestDto.CountyId" asp-items="@Model.CountyList" class="form-select">
+                    <select id="county-id" asp-for="VisitorResponseDto.CountyId" asp-items="@Model.CountyList" class="form-select">
                         <option disabled selected value="0">@localization["AddOrEditModal.CountySelection.Text"]
                         </option>
                     </select>
-                    <span asp-validation-for="VisitorUpdateRequestDto.CountyId" class="text-danger"></span>
+                    <span asp-validation-for="VisitorResponseDto.CountyId" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4">

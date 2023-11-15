@@ -1,5 +1,4 @@
-﻿
-namespace VisitorBook.Core.Models
+﻿namespace VisitorBook.Core.Models
 {
     public abstract class BaseModel
     {

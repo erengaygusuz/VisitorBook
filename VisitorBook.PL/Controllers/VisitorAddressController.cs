@@ -1,5 +1,4 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VisitorBook.Core.Abstract;
@@ -31,12 +30,12 @@ namespace VisitorBook.PL.Controllers
                 return NotFound();
             }
 
-            var visitorAddressGetResponseDtos = _mapper.Map<List<VisitorAddressGetResponseDto>>(visitorAddresses);
+            var visitorAddressResponseDtos = _mapper.Map<List<VisitorAddressResponseDto>>(visitorAddresses);
 
-            return Ok(visitorAddressGetResponseDtos);
+            return Ok(visitorAddressResponseDtos);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetVisitorAddress")]
         public async Task<IActionResult> GetVisitorAddress(Guid id)
         {
             var visitorAddress = await _visitorAddressService.GetAsync(u => u.Id == id);
@@ -46,9 +45,9 @@ namespace VisitorBook.PL.Controllers
                 return NotFound();
             }
 
-            var visitorAddressGetResponseDto = _mapper.Map<VisitorAddressGetResponseDto>(visitorAddress);
+            var visitorAddressResponseDto = _mapper.Map<VisitorAddressResponseDto>(visitorAddress);
 
-            return Ok(visitorAddressGetResponseDto);
+            return Ok(visitorAddressResponseDto);
         }
 
         [HttpDelete("{id}")]
@@ -67,9 +66,9 @@ namespace VisitorBook.PL.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateVisitorAddress([FromBody] VisitorAddressAddRequestDto visitorAddressAddRequestDto)
+        public async Task<IActionResult> CreateVisitorAddress([FromBody] VisitorAddressRequestDto visitorAddressRequestDto)
         {
-            if (visitorAddressAddRequestDto == null)
+            if (visitorAddressRequestDto == null)
             {
                 return BadRequest();
             }
@@ -79,17 +78,24 @@ namespace VisitorBook.PL.Controllers
                 return UnprocessableEntity(ModelState.GetValidationErrors());
             }
 
-            var visitorAddressToAdd = _mapper.Map<VisitorAddress>(visitorAddressAddRequestDto);
+            var visitorAddressToAdd = _mapper.Map<VisitorAddress>(visitorAddressRequestDto);
 
             await _visitorAddressService.AddAsync(visitorAddressToAdd);
 
             return CreatedAtRoute("GetCity", visitorAddressToAdd, new { id = visitorAddressToAdd.Id });
         }
 
-        [HttpPut]
-        public async Task<IActionResult> UpdateVisitorAddress([FromBody] VisitorAddressUpdateRequestDto visitorAddressUpdateRequestDto)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateVisitorAddress(Guid id, [FromBody] VisitorAddressRequestDto visitorAddressRequestDto)
         {
-            if (visitorAddressUpdateRequestDto == null)
+            var visitorAddressToUpdate = await _visitorAddressService.GetAsync(c => c.Id == id);
+
+            if (visitorAddressToUpdate == null)
+            {
+                return NotFound();
+            }
+
+            if (visitorAddressRequestDto == null)
             {
                 return BadRequest();
             }
@@ -99,12 +105,7 @@ namespace VisitorBook.PL.Controllers
                 return UnprocessableEntity(ModelState.GetValidationErrors());
             }
 
-            var visitorAddressToUpdate = _mapper.Map<VisitorAddress>(visitorAddressUpdateRequestDto);
-
-            if (visitorAddressToUpdate == null)
-            {
-                return NotFound();
-            }
+            _mapper.Map(visitorAddressRequestDto, visitorAddressToUpdate);
 
             await _visitorAddressService.UpdateAsync(visitorAddressToUpdate);
 

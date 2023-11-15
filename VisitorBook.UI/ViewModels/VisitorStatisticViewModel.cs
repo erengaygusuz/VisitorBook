@@ -1,5 +1,4 @@
-﻿
-namespace VisitorBook.UI.ViewModels
+﻿namespace VisitorBook.UI.ViewModels
 {
     public class VisitorStatisticViewModel
     {

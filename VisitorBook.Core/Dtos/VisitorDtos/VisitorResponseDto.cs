@@ -2,7 +2,7 @@
 
 namespace VisitorBook.Core.Dtos.VisitorDtos
 {
-    public class VisitorGetResponseDto
+    public class VisitorResponseDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
