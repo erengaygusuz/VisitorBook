@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Dtos.CityDtos;
-using VisitorBook.Core.Models;
+using VisitorBook.Core.Entities;
 using VisitorBook.Core.Utilities.DataTablesServerSideHelpers;
 using VisitorBook.Core.Extensions;
 
@@ -21,9 +21,14 @@ namespace VisitorBook.PL.Controllers
 
         [HttpPost]
         [Route("GetTableData")]
-        public IActionResult GetAllCities([FromBody] DataTablesOptions model)
+        public IActionResult GetAllCities([FromBody] DataTablesOptions dataTablesOptions)
         {
-            return DataTablesResult(_cityService.GetAll<CityResponseDto>(model));
+            if (!ModelState.IsValid)
+            {
+                return UnprocessableEntity(ModelState.GetValidationErrors());
+            }
+
+            return DataTablesResult(_cityService.GetAll<CityResponseDto>(dataTablesOptions));
         }
 
         [HttpGet]

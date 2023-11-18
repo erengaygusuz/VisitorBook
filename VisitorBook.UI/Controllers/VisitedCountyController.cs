@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Localization;
+using VisitorBook.UI.Attributes;
 using VisitorBook.Core.Dtos.VisitedCountyDtos;
 using VisitorBook.Core.Utilities;
 using VisitorBook.UI.Configurations;
 using VisitorBook.UI.Languages;
 using VisitorBook.UI.Services;
 using VisitorBook.UI.ViewModels;
+using VisitorBook.UI.Models;
 
 namespace VisitorBook.UI.Controllers
 {
@@ -53,15 +55,16 @@ namespace VisitorBook.UI.Controllers
             });
         }
 
+        [NoDirectAccess]
         public async Task<IActionResult> Add()
         {
             var cities = await _cityApiService.GetAllAsync();
 
             var visitorsWithVisitorAddress = await _visitorApiService.GetAllAsync();
 
-            var visitedCountyAddViewModel = new VisitedCountyAddViewModel()
+            var visitedCountyViewModel = new VisitedCountyViewModel()
             {
-                VisitedCountyRequestDto = new VisitedCountyRequestDto(),
+                VisitedCounty = new VisitedCounty(),
                 CountyList = new List<SelectListItem>(),
                 CityList = (cities)
                    .Select(u => new SelectListItem
@@ -77,9 +80,10 @@ namespace VisitorBook.UI.Controllers
                    })
             };
 
-            return View(visitedCountyAddViewModel);
+            return View(visitedCountyViewModel);
         }
 
+        [NoDirectAccess]
         public async Task<IActionResult> Edit(Guid id)
         {
             var visitedCounty = await _visitedCountyApiService.GetByIdAsync<VisitedCountyResponseDto>(id);
@@ -90,9 +94,9 @@ namespace VisitorBook.UI.Controllers
 
             var visitorsWithVisitorAddress = await _visitorApiService.GetAllAsync();
 
-            var visitedCountyEditViewModel = new VisitedCountyEditViewModel()
+            var visitedCountyViewModel = new VisitedCountyViewModel()
             {
-                VisitedCountyResponseDto = visitedCounty,
+                VisitedCounty = visitedCounty,
                 CountyList = (counties)
                    .Select(u => new SelectListItem
                    {
@@ -113,7 +117,7 @@ namespace VisitorBook.UI.Controllers
                    })
             };
 
-            return View(visitedCountyEditViewModel);
+            return View(visitedCountyViewModel);
         }
 
         [ActionName("Add")]
@@ -132,7 +136,7 @@ namespace VisitorBook.UI.Controllers
 
             var visitorsWithVisitorAddress = await _visitorApiService.GetAllAsync();
 
-            var visitedCountyAddViewModel = new VisitedCountyEditViewModel()
+            var visitedCountyViewModel = new VisitedCountyViewModel()
             {
                 CityList = (cities)
                    .Select(u => new SelectListItem
@@ -148,7 +152,7 @@ namespace VisitorBook.UI.Controllers
                    })
             };
 
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", visitedCountyAddViewModel) });
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", visitedCountyViewModel) });
         }
 
         [ActionName("Edit")]
@@ -167,7 +171,7 @@ namespace VisitorBook.UI.Controllers
 
             var visitorsWithVisitorAddress = await _visitorApiService.GetAllAsync();
 
-            var visitedCountyEditViewModel = new VisitedCountyEditViewModel()
+            var visitedCountyViewModel = new VisitedCountyViewModel()
             {
                 CityList = (cities)
                    .Select(u => new SelectListItem
@@ -183,7 +187,7 @@ namespace VisitorBook.UI.Controllers
                    })
             };
 
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", visitedCountyEditViewModel) });
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", visitedCountyViewModel) });
         }
 
         [HttpDelete]

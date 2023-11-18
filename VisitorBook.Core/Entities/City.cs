@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace VisitorBook.Core.Models
+namespace VisitorBook.Core.Entities
 {
-    public class City : BaseModel
+    public class City : BaseEntity
     {
         [Required]
         [MaxLength(100)]

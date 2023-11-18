@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
-using VisitorBook.Core.Attributes;
+using VisitorBook.UI.Attributes;
 using VisitorBook.Core.Dtos.CityDtos;
 using VisitorBook.Core.Utilities;
 using VisitorBook.UI.Configurations;

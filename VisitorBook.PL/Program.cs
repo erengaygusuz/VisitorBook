@@ -7,7 +7,7 @@ using VisitorBook.Core.Dtos.CityDtos;
 using VisitorBook.Core.Dtos.CountyDtos;
 using VisitorBook.Core.Dtos.VisitedCountyDtos;
 using VisitorBook.Core.Dtos.VisitorDtos;
-using VisitorBook.Core.Models;
+using VisitorBook.Core.Entities;
 using VisitorBook.DAL.Concrete;
 using VisitorBook.DAL.Data;
 

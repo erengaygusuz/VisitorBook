@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VisitorBook.Core.Abstract;
-using VisitorBook.Core.Models;
+using VisitorBook.Core.Entities;
 using VisitorBook.Core.Utilities.DataTablesServerSideHelpers;
 using VisitorBook.Core.Extensions;
 using VisitorBook.Core.Dtos.VisitorDtos;
@@ -22,16 +22,23 @@ namespace VisitorBook.PL.Controllers
 
         [HttpPost]
         [Route("GetTableData")]
-        public IActionResult GetAllVisitors([FromBody] DataTablesOptions model)
+        public IActionResult GetAllVisitors([FromBody] DataTablesOptions dataTablesOptions)
         {
-            return DataTablesResult(_visitorService.GetAll<VisitorResponseDto>(model));
+            if (!ModelState.IsValid)
+            {
+                return UnprocessableEntity(ModelState.GetValidationErrors());
+            }
+
+            return DataTablesResult(_visitorService.GetAll<VisitorResponseDto>(dataTablesOptions));
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllOrderedVisitors()
+        public async Task<IActionResult> GetAllVisitors()
         {
-            var visitors = await _visitorService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Name),
-                include: x => x.Include(c => c.VisitorAddress).ThenInclude(c => c.County), expression: v => v.VisitorAddressId != null);
+            var visitors = await _visitorService.GetAllAsync(
+                orderBy: o => o.OrderBy(x => x.Name),
+                include: x => x.Include(c => c.VisitorAddress).ThenInclude(c => c.County)
+                );
 
             if (visitors == null)
             {

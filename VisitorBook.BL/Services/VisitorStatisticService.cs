@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VisitorBook.Core.Abstract;
-using VisitorBook.Core.Models;
+using VisitorBook.Core.Entities;
 using VisitorBook.Core.Utilities;
 
 namespace VisitorBook.BL.Services

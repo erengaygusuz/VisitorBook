@@ -1,10 +1,10 @@
 ﻿using VisitorBook.Core.Abstract;
-using VisitorBook.Core.Models;
+using VisitorBook.Core.Entities;
 using VisitorBook.DAL.Data;
 
 namespace VisitorBook.DAL.Concrete
 {
-    public class UnitOfWork<T> : IUnitOfWork<T> where T : BaseModel
+    public class UnitOfWork<TEntity> : IUnitOfWork<TEntity> where TEntity : BaseEntity
     {
         private readonly AppDbContext _appDbContext;
 

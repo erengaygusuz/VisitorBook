@@ -3,18 +3,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Dtos.VisitorAddressDtos;
-using VisitorBook.Core.Models;
+using VisitorBook.Core.Entities;
 using VisitorBook.Core.Extensions;
 
 namespace VisitorBook.PL.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VisitorAddressController : BaseController
+    public class VisitorAddressesController : BaseController
     {
         private readonly IService<VisitorAddress> _visitorAddressService;
 
-        public VisitorAddressController(IService<VisitorAddress> visitorAddressService, IMapper mapper) : base(mapper)
+        public VisitorAddressesController(IService<VisitorAddress> visitorAddressService, IMapper mapper) : base(mapper)
         {
             _visitorAddressService = visitorAddressService;
         }
@@ -38,7 +38,7 @@ namespace VisitorBook.PL.Controllers
         [HttpGet("{id}", Name = "GetVisitorAddress")]
         public async Task<IActionResult> GetVisitorAddress(Guid id)
         {
-            var visitorAddress = await _visitorAddressService.GetAsync(u => u.Id == id);
+            var visitorAddress = await _visitorAddressService.GetAsync(u => u.Id == id, include: x => x.Include(a => a.County));
 
             if (visitorAddress == null)
             {

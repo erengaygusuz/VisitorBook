@@ -17,9 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VisitorBook.BL\VisitorBook.BL.csproj" />
-    <ProjectReference Include="..\VisitorBook.Core\VisitorBook.Core.csproj" />
-    <ProjectReference Include="..\VisitorBook.DAL\VisitorBook.DAL.csproj" />
+    <ProjectReference Include="..\VisitorBook.PL\VisitorBook.PL.csproj" />
   </ItemGroup>
 
 </Project>

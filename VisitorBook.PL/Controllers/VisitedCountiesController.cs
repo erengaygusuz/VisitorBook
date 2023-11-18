@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Dtos.VisitedCountyDtos;
-using VisitorBook.Core.Models;
+using VisitorBook.Core.Entities;
 using VisitorBook.Core.Utilities.DataTablesServerSideHelpers;
 using VisitorBook.Core.Extensions;
 
@@ -22,17 +22,22 @@ namespace VisitorBook.PL.Controllers
 
         [HttpPost]
         [Route("GetTableData")]
-        public IActionResult GetAllVisitedCounties([FromBody] DataTablesOptions model)
+        public IActionResult GetAllVisitedCounties([FromBody] DataTablesOptions dataTablesOptions)
         {
-            return DataTablesResult(_visitedCountyService.GetAll<VisitedCountyResponseDto>(model, 
+            if (!ModelState.IsValid)
+            {
+                return UnprocessableEntity(ModelState.GetValidationErrors());
+            }
+
+            return DataTablesResult(_visitedCountyService.GetAll<VisitedCountyResponseDto>(dataTablesOptions, 
                 include: x => x.Include(c => c.Visitor).Include(c => c.County).ThenInclude(c => c.City)));
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllOrderedVisitedCounties()
+        public async Task<IActionResult> GetAllVisitedCounties()
         {
-            var visitedCounties = await _visitedCountyService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Visitor.Name), 
-                include: x => x.Include(c => c.Visitor));
+            var visitedCounties = await _visitedCountyService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Visitor.Name),
+                include: x => x.Include(c => c.Visitor).Include(c => c.County).ThenInclude(c => c.City));
 
             if (visitedCounties == null)
             {
@@ -47,7 +52,8 @@ namespace VisitorBook.PL.Controllers
         [HttpGet("{id}", Name = "GetVisitedCounty")]
         public async Task<IActionResult> GetVisitedCounty(Guid id)
         {
-            var visitedCounty = await _visitedCountyService.GetAsync(u => u.Id == id, include: x => x.Include(c => c.County));
+            var visitedCounty = await _visitedCountyService.GetAsync(u => u.Id == id,
+                include: x => x.Include(c => c.Visitor).Include(c => c.County).ThenInclude(c => c.City));
 
             if (visitedCounty == null)
             {

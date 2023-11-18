@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Localization;
+using VisitorBook.UI.Attributes;
 using VisitorBook.Core.Dtos.CountyDtos;
 using VisitorBook.Core.Dtos.VisitorAddressDtos;
 using VisitorBook.Core.Dtos.VisitorDtos;
@@ -10,6 +11,7 @@ using VisitorBook.UI.Configurations;
 using VisitorBook.UI.Languages;
 using VisitorBook.UI.Services;
 using VisitorBook.UI.ViewModels;
+using VisitorBook.UI.Models;
 
 namespace VisitorBook.UI.Controllers
 {
@@ -56,13 +58,14 @@ namespace VisitorBook.UI.Controllers
             });
         }
 
+        [NoDirectAccess]
         public async Task<IActionResult> Add()
         {
             var cities = await _cityApiService.GetAllAsync();
 
-            var visitorAddViewModel = new VisitorAddViewModel()
+            var visitorViewModel = new VisitorViewModel()
             {
-                VisitorRequestDto = new VisitorRequestDto(),
+                Visitor = new Visitor(),
                 GenderList = new List<Gender> { Gender.Male, Gender.Female }
                     .Select(u => new SelectListItem
                     {
@@ -78,9 +81,10 @@ namespace VisitorBook.UI.Controllers
                 CountyList = new List<SelectListItem>()
             };
 
-            return View(visitorAddViewModel);
+            return View(visitorViewModel);
         }
 
+        [NoDirectAccess]
         public async Task<IActionResult> Edit(Guid id)
         {
             var visitor = await _visitorApiService.GetByIdAsync<VisitorResponseDto>(id);
@@ -99,9 +103,9 @@ namespace VisitorBook.UI.Controllers
 
             var cities = await _cityApiService.GetAllAsync();
 
-            var visitorEditViewModel = new VisitorEditViewModel()
+            var visitorViewModel = new VisitorViewModel()
             {
-                VisitorResponseDto = visitor,
+                Visitor = visitor,
                 GenderList = new List<Gender> { Gender.Male, Gender.Female }
                     .Select(u => new SelectListItem
                     {
@@ -122,7 +126,7 @@ namespace VisitorBook.UI.Controllers
                    })
             };
 
-            return View(visitorEditViewModel);
+            return View(visitorViewModel);
         }
 
         [ActionName("Add")]
@@ -139,7 +143,7 @@ namespace VisitorBook.UI.Controllers
 
             var cities = await _cityApiService.GetAllAsync();
 
-            var visitorAddViewModel = new VisitorAddViewModel()
+            var visitorViewModel = new VisitorViewModel()
             {
                 CityList = (cities)
                    .Select(u => new SelectListItem
@@ -155,7 +159,7 @@ namespace VisitorBook.UI.Controllers
                    })
             };
 
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", visitorAddViewModel) });
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", visitorViewModel) });
         }
 
         [ActionName("Edit")]
@@ -198,7 +202,7 @@ namespace VisitorBook.UI.Controllers
 
             var cities = await _cityApiService.GetAllAsync();
 
-            var visitorEditViewModel = new VisitorEditViewModel
+            var visitorViewModel = new VisitorViewModel
             {
                 CityList = (cities)
                    .Select(u => new SelectListItem
@@ -214,7 +218,7 @@ namespace VisitorBook.UI.Controllers
                    })
             };
 
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", visitorEditViewModel) });
+            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", visitorViewModel) });
         }
 
         [HttpDelete]

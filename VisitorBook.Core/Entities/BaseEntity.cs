@@ -1,6 +1,6 @@
-﻿namespace VisitorBook.Core.Models
+﻿namespace VisitorBook.Core.Entities
 {
-    public abstract class BaseModel
+    public abstract class BaseEntity
     {
         public Guid Id { get; set; }
         public DateTime CreatedDate { get; set; }

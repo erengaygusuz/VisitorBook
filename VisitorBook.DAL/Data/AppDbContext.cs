@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using VisitorBook.Core.Models;
+using VisitorBook.Core.Entities;
 
 namespace VisitorBook.DAL.Data
 {
@@ -63,7 +63,7 @@ namespace VisitorBook.DAL.Data
         {
             foreach (var item in ChangeTracker.Entries())
             {
-                if (item.Entity is BaseModel entityReference)
+                if (item.Entity is BaseEntity entityReference)
                 {
                     switch (item.State)
                     {

@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using Bogus.Extensions;
 using VisitorBook.Core.Enums;
-using VisitorBook.Core.Models;
+using VisitorBook.Core.Entities;
 
 namespace VisitorBook.DAL.Data
 {

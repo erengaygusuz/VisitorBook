@@ -3,45 +3,45 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using VisitorBook.DAL.Data;
 using VisitorBook.Core.Abstract;
-using VisitorBook.Core.Models;
+using VisitorBook.Core.Entities;
 
 namespace VisitorBook.DAL.Concrete
 {
-    public class Repository<T> : IRepository<T> where T : BaseModel
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
     {
         private readonly AppDbContext _appDbContext;
-        private readonly DbSet<T> _dbSet;
+        private readonly DbSet<TEntity> _dbSet;
 
         public Repository(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
-            _dbSet = _appDbContext.Set<T>();
+            _dbSet = _appDbContext.Set<TEntity>();
         }
 
-        public async Task AddAsync(T entity)
+        public async Task AddAsync(TEntity entity)
         {
             await _dbSet.AddAsync(entity);
         }
 
-        public void Remove(T entity)
+        public void Remove(TEntity entity)
         {
             _dbSet.Remove(entity);
         }
 
-        public IQueryable<T> GetAll()
+        public IQueryable<TEntity> GetAll()
         {
-            IQueryable<T> query = _appDbContext.Set<T>();
+            IQueryable<TEntity> query = _appDbContext.Set<TEntity>();
 
             return query;
         }
 
-        public IQueryable<T> GetAll(
-            Expression<Func<T, bool>>? expression = null,
+        public IQueryable<TEntity> GetAll(
+            Expression<Func<TEntity, bool>>? expression = null,
             bool trackChanges = false,
-            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null)
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null)
         {
-            IQueryable<T> query = _appDbContext.Set<T>();
+            IQueryable<TEntity> query = _appDbContext.Set<TEntity>();
 
             if (include != null)
             {
@@ -66,14 +66,14 @@ namespace VisitorBook.DAL.Concrete
             return query;
         }
 
-        public Tuple<int, int, IQueryable<T>> GetAll(
+        public Tuple<int, int, IQueryable<TEntity>> GetAll(
             int page, int pageSize,
-            Expression<Func<T, bool>>? expression = null,
+            Expression<Func<TEntity, bool>>? expression = null,
             bool trackChanges = false,
-            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null)
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null)
         {
-            IQueryable<T> query = _appDbContext.Set<T>();
+            IQueryable<TEntity> query = _appDbContext.Set<TEntity>();
 
             if (include != null)
             {
@@ -101,15 +101,15 @@ namespace VisitorBook.DAL.Concrete
                 query.AsNoTracking();
             }
 
-            return new Tuple<int, int, IQueryable<T>>(totalCount, filteredCount, query);
+            return new Tuple<int, int, IQueryable<TEntity>>(totalCount, filteredCount, query);
         }
 
-        public async Task<T> GetAsync(
-            Expression<Func<T, bool>>? expression = null,
+        public async Task<TEntity> GetAsync(
+            Expression<Func<TEntity, bool>>? expression = null,
             bool trackChanges = false,
-            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null)
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null)
         {
-            IQueryable<T> query = _appDbContext.Set<T>();
+            IQueryable<TEntity> query = _appDbContext.Set<TEntity>();
 
             if (expression != null)
             {
@@ -129,12 +129,12 @@ namespace VisitorBook.DAL.Concrete
             return await query.FirstOrDefaultAsync();
         }
 
-        public void Update(T entity)
+        public void Update(TEntity entity)
         {
             _dbSet.Update(entity);
         }
 
-        public async Task AddRangeAsync(IEnumerable<T> entities)
+        public async Task AddRangeAsync(IEnumerable<TEntity> entities)
         {
             await _dbSet.AddRangeAsync(entities);
         }

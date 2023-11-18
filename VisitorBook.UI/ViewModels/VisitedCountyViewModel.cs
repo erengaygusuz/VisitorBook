@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using VisitorBook.Core.Dtos.VisitedCountyDtos;
+using VisitorBook.UI.Models;
 
 namespace VisitorBook.UI.ViewModels
 {
-    public class VisitedCountyAddViewModel
+    public class VisitedCountyViewModel
     {
-        public VisitedCountyRequestDto VisitedCountyRequestDto { get; set; }
+        public VisitedCounty VisitedCounty { get; set; }
 
         [ValidateNever]
         public IEnumerable<SelectListItem> VisitorList { get; set; }

@@ -1,37 +1,37 @@
 ﻿using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
-using VisitorBook.Core.Models;
+using VisitorBook.Core.Entities;
 
 namespace VisitorBook.Core.Abstract
 {
-    public interface IRepository<T> where T : BaseModel
+    public interface IRepository<TEntity> where TEntity : BaseEntity
     {
-        Task<T> GetAsync(
-           Expression<Func<T, bool>>? expression = null,
+        Task<TEntity> GetAsync(
+           Expression<Func<TEntity, bool>>? expression = null,
            bool trackChanges = false,
-           Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null);
+           Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null);
 
-        IQueryable<T> GetAll();
+        IQueryable<TEntity> GetAll();
 
-        IQueryable<T> GetAll(
-            Expression<Func<T, bool>>? expression = null,
+        IQueryable<TEntity> GetAll(
+            Expression<Func<TEntity, bool>>? expression = null,
             bool trackChanges = false,
-            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null);
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null);
 
-        Tuple<int, int, IQueryable<T>> GetAll(
+        Tuple<int, int, IQueryable<TEntity>> GetAll(
             int page, int pageSize,
-            Expression<Func<T, bool>>? expression = null,
+            Expression<Func<TEntity, bool>>? expression = null,
             bool trackChanges = false,
-            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null);
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null);
 
-        void Remove(T entity);
+        void Remove(TEntity entity);
 
-        Task AddAsync(T entity);
+        Task AddAsync(TEntity entity);
 
-        Task AddRangeAsync(IEnumerable<T> entities);
+        Task AddRangeAsync(IEnumerable<TEntity> entities);
 
-        void Update(T entity);
+        void Update(TEntity entity);
     }
 }

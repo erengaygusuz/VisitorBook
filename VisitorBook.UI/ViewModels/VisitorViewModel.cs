@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using VisitorBook.Core.Dtos.VisitorDtos;
+using VisitorBook.UI.Models;
 
 namespace VisitorBook.UI.ViewModels
 {
-    public class VisitorEditViewModel
+    public class VisitorViewModel
     {
-        public VisitorResponseDto VisitorResponseDto { get; set; }
+        public Visitor Visitor { get; set; }
 
         [ValidateNever]
         public IEnumerable<SelectListItem> GenderList { get; set; }

@@ -6,18 +6,24 @@ namespace VisitorBook.Core.Attributes
     public class NotEmptyGuidAttribute : ValidationAttribute
     {
         public const string ErrorMessage = "The {0} field must not be empty";
-        public NotEmptyGuidAttribute() : base(ErrorMessage) { }
+
+        public NotEmptyGuidAttribute() : base(ErrorMessage) 
+        { 
+        
+        }
+
         public override bool IsValid(object value)
         {
             if (value is null)
             {
-                return true; // Allows to return a null value
+                return true;
             }
                 
             switch (value)
             {
                 case Guid guid:
-                    return guid != Guid.Empty; //Checks whether the GUID is empty or not and returns false if GUID is empty
+                    return guid != Guid.Empty;
+
                 default:
                     return true;
             }

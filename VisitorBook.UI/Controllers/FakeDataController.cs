@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using VisitorBook.Core.Abstract;
-using VisitorBook.Core.Models;
+using VisitorBook.Core.Entities;
 using VisitorBook.DAL.Data;
 
 namespace VisitorBook.UI.Controllers

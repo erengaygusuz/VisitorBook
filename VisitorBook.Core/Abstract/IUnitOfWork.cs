@@ -1,8 +1,8 @@
-﻿using VisitorBook.Core.Models;
+﻿using VisitorBook.Core.Entities;
 
 namespace VisitorBook.Core.Abstract
 {
-    public interface IUnitOfWork<T> where T : BaseModel
+    public interface IUnitOfWork<TEntity> where TEntity : BaseEntity
     {
         Task SaveAsync();
     }

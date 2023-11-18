@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using VisitorBook.Core.Abstract;
-using VisitorBook.Core.Models;
+using VisitorBook.Core.Entities;
 using VisitorBook.Core.Utilities.DataTablesServerSideHelpers;
 using VisitorBook.Core.Extensions;
 using VisitorBook.Core.Dtos.CountyDtos;
@@ -22,15 +22,20 @@ namespace VisitorBook.PL.Controllers
 
         [HttpPost]
         [Route("GetTableData")]
-        public IActionResult GetAllCounties([FromBody] DataTablesOptions model)
+        public IActionResult GetAllCounties([FromBody] DataTablesOptions dataTablesOptions)
         {
-            return DataTablesResult(_countyService.GetAll<CountyResponseDto>(model, include: x => x.Include(c => c.City)));
+            if (!ModelState.IsValid)
+            {
+                return UnprocessableEntity(ModelState.GetValidationErrors());
+            }
+
+            return DataTablesResult(_countyService.GetAll<CountyResponseDto>(dataTablesOptions, include: x => x.Include(c => c.City)));
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllOrderedCounties()
+        public async Task<IActionResult> GetAllCounties()
         {
-            var counties = await _countyService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Name));
+            var counties = await _countyService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Name), include: x => x.Include(c => c.City));
 
             if (counties == null)
             {
@@ -46,7 +51,10 @@ namespace VisitorBook.PL.Controllers
         [Route("GetAllCountiesByCity/{cityId}")]
         public async Task<IActionResult> GetAllCountiesByCity(Guid cityId)
         {
-            var counties = await _countyService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Name), expression: u => u.CityId == cityId);
+            var counties = await _countyService.GetAllAsync(
+                orderBy: o => o.OrderBy(x => x.Name), 
+                expression: u => u.CityId == cityId,
+                include: x => x.Include(c => c.City));
 
             if (counties == null)
             {

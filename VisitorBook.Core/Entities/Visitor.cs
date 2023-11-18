@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using VisitorBook.Core.Enums;
 
-namespace VisitorBook.Core.Models
+namespace VisitorBook.Core.Entities
 {
-    public class Visitor : BaseModel
+    public class Visitor : BaseEntity
     {
         [Required]
         [MaxLength(100)]

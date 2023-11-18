@@ -1,4 +1,4 @@
-﻿@model VisitorAddViewModel
+﻿@model VisitorViewModel
 
 @{
     ViewData["Title"] = "Add";
@@ -12,60 +12,60 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="VisitorRequestDto.Name"
+                    <label asp-for="VisitorResponseDto.Name"
                         class="control-label">@localization["Visitors.Table.Column1.Text"]</label>
-                    <input asp-for="VisitorRequestDto.Name" class="form-control" />
-                    <span asp-validation-for="VisitorRequestDto.Name" class="text-danger"></span>
+                    <input asp-for="VisitorResponseDto.Name" class="form-control" />
+                    <span asp-validation-for="VisitorResponseDto.Name" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="VisitorRequestDto.Surname"
+                    <label asp-for="VisitorResponseDto.Surname"
                         class="control-label">@localization["Visitors.Table.Column2.Text"]</label>
-                    <input asp-for="VisitorRequestDto.Surname" class="form-control" />
-                    <span asp-validation-for="VisitorRequestDto.Surname" class="text-danger"></span>
+                    <input asp-for="VisitorResponseDto.Surname" class="form-control" />
+                    <span asp-validation-for="VisitorResponseDto.Surname" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="VisitorRequestDto.BirthDate"
+                        <label asp-for="VisitorResponseDto.BirthDate"
                             class="control-label">@localization["Visitors.Table.Column3.Text"]</label>
-                        <input asp-for="VisitorRequestDto.BirthDate" class="form-control" />
-                        <span asp-validation-for="VisitorRequestDto.BirthDate" class="text-danger"></span>
+                        <input asp-for="VisitorResponseDto.BirthDate" class="form-control" />
+                        <span asp-validation-for="VisitorResponseDto.BirthDate" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="VisitorRequestDto.Gender"
+                        <label asp-for="VisitorResponseDto.Gender"
                             class="control-label">@localization["Visitors.Table.Column4.Text"]</label>
-                        <select asp-for="VisitorRequestDto.Gender" asp-items="@Model.GenderList" class="form-select">
+                        <select asp-for="VisitorResponseDto.Gender" asp-items="@Model.GenderList" class="form-select">
                             <option disabled selected>@localization["AddOrEditModal.GenderSelection.Text"]</option>
                         </select>
-                        <span asp-validation-for="VisitorRequestDto.Gender" class="text-danger"></span>
+                        <span asp-validation-for="VisitorResponseDto.Gender" class="text-danger"></span>
                     </div>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="VisitorRequestDto.CityId"
+                    <label asp-for="VisitorResponseDto.CityId"
                         class="control-label">@localization["Visitors.Table.Column6.Text"]</label>
-                    <select id="citylist" onchange="cityChange()" asp-for="VisitorRequestDto.CityId"
+                    <select id="citylist" onchange="cityChange()" asp-for="VisitorResponseDto.CityId"
                         asp-items="@Model.CityList" class="form-select">
                         <option disabled selected value="0">@localization["AddOrEditModal.CitySelection.Text"]</option>
                     </select>
-                    <span asp-validation-for="VisitorRequestDto.CityId" class="text-danger"></span>
+                    <span asp-validation-for="VisitorResponseDto.CityId" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4" id="countylist">
                 <div class="form-group">
-                    <label asp-for="VisitorRequestDto.CountyId"
+                    <label asp-for="VisitorResponseDto.CountyId"
                         class="control-label">@localization["Visitors.Table.Column7.Text"]</label>
-                    <select id="county-id" asp-for="VisitorRequestDto.CountyId" asp-items="@Model.CountyList" class="form-select">
+                    <select id="county-id" asp-for="VisitorResponseDto.CountyId" asp-items="@Model.CountyList" class="form-select">
                         <option disabled selected value="0">@localization["AddOrEditModal.CountySelection.Text"]
                         </option>
                     </select>
-                    <span asp-validation-for="VisitorRequestDto.CountyId" class="text-danger"></span>
+                    <span asp-validation-for="VisitorResponseDto.CountyId" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4">

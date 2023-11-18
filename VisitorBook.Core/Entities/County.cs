@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using VisitorBook.Core.Attributes;
 
-namespace VisitorBook.Core.Models
+namespace VisitorBook.Core.Entities
 {
-    public class County : BaseModel
+    public class County : BaseEntity
     {
         [Required]
         [MaxLength(100)]
