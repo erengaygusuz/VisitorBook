@@ -1,6 +1,6 @@
-﻿namespace VisitorBook.UI.Models
+﻿namespace VisitorBook.UI.Models.Outputs
 {
-    public class City
+    public class CityOutput
     {
         public Guid Id { get; set; }
 

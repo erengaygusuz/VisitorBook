@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using VisitorBook.UI.Models;
+using VisitorBook.UI.Models.Inputs;
 
 namespace VisitorBook.UI.ViewModels
 {
     public class VisitedCountyViewModel
     {
-        public VisitedCounty VisitedCounty { get; set; }
+        public VisitedCountyInput VisitedCounty { get; set; }
 
         [ValidateNever]
         public IEnumerable<SelectListItem> VisitorList { get; set; }

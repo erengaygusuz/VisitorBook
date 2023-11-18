@@ -8,6 +8,7 @@ using VisitorBook.Core.Dtos.CountyDtos;
 using VisitorBook.Core.Dtos.VisitedCountyDtos;
 using VisitorBook.Core.Dtos.VisitorDtos;
 using VisitorBook.Core.Entities;
+using VisitorBook.Core.Utilities;
 using VisitorBook.DAL.Concrete;
 using VisitorBook.DAL.Data;
 
@@ -24,6 +25,9 @@ builder.Services.AddScoped<IPropertyMappingCollection, CityToCityGetResponseDtoM
 builder.Services.AddScoped<IPropertyMappingCollection, CountyToCountyGetResponseDtoMappingCollection<County, CountyResponseDto>>();
 builder.Services.AddScoped<IPropertyMappingCollection, VisitedCountyToVisitedCountyGetResponseDtoMappingCollection<VisitedCounty, VisitedCountyResponseDto>>();
 builder.Services.AddScoped<IPropertyMappingCollection, VisitorToVisitorGetResponseDtoMappingCollection<Visitor, VisitorResponseDto>>();
+builder.Services.AddScoped(typeof(VisitorStatisticService));
+builder.Services.AddScoped(typeof(LocationHelper));
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 
 builder.Services.AddDbContext<AppDbContext>(opt =>
 {
@@ -47,6 +51,17 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+SeedDatabase();
+
 app.MapControllers();
 
 app.Run();
+
+void SeedDatabase()
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+        dbInitializer.Initialize();
+    }
+}

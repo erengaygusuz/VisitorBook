@@ -1,6 +1,7 @@
-﻿using VisitorBook.Core.Dtos;
-using VisitorBook.Core.Dtos.VisitedCountyDtos;
-using VisitorBook.Core.Utilities.DataTablesServerSideHelpers;
+﻿using VisitorBook.UI.Models;
+using VisitorBook.UI.Models.Inputs;
+using VisitorBook.UI.Models.Outputs;
+using VisitorBook.UI.Utilities.DataTablesServerSideHelpers;
 
 namespace VisitorBook.UI.Services
 {
@@ -13,39 +14,39 @@ namespace VisitorBook.UI.Services
             _httpClient = httpClient;
         }
 
-        public async Task<PagedListDto<VisitedCountyResponseDto>> GetTableData(DataTablesOptions model)
+        public async Task<PagedTableList<VisitedCountyOutput>> GetTableData(DataTablesOptions dataTablesOptions)
         {
-            var response = await _httpClient.PostAsJsonAsync("visitedcounties/gettabledata", model);
+            var response = await _httpClient.PostAsJsonAsync("visitedcounties/gettabledata", dataTablesOptions);
 
-            var result = await response.Content.ReadFromJsonAsync<PagedListDto<VisitedCountyResponseDto>>();
+            var result = await response.Content.ReadFromJsonAsync<PagedTableList<VisitedCountyOutput>>();
 
             return result;
         }
 
-        public async Task<List<VisitedCountyResponseDto>> GetAllAsync()
+        public async Task<List<VisitedCountyOutput>> GetAllAsync()
         {
-            var response = await _httpClient.GetFromJsonAsync<List<VisitedCountyResponseDto>>($"visitedcounties");
+            var response = await _httpClient.GetFromJsonAsync<List<VisitedCountyOutput>>($"visitedcounties");
 
             return response;
         }
 
-        public async Task<T> GetByIdAsync<T>(Guid id)
+        public async Task<VisitedCountyOutput> GetByIdAsync(Guid id)
         {
-            var response = await _httpClient.GetFromJsonAsync<T>($"visitedcounties/{id}");
+            var response = await _httpClient.GetFromJsonAsync<VisitedCountyOutput>($"visitedcounties/{id}");
 
             return response;
         }
 
-        public async Task<bool> AddAsync(VisitedCountyRequestDto visitedCountyRequestDto)
+        public async Task<bool> AddAsync(VisitedCountyInput visitedCountyAddInput)
         {
-            var response = await _httpClient.PostAsJsonAsync("visitedcounties", visitedCountyRequestDto);
+            var response = await _httpClient.PostAsJsonAsync("visitedcounties", visitedCountyAddInput);
 
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> UpdateAsync(Guid id, VisitedCountyRequestDto visitedCountyRequestDto)
+        public async Task<bool> UpdateAsync(Guid id, VisitedCountyInput visitedCountyAddInput)
         {
-            var response = await _httpClient.PutAsJsonAsync($"visitedcounties/{id}", visitedCountyRequestDto);
+            var response = await _httpClient.PutAsJsonAsync($"visitedcounties/{id}", visitedCountyAddInput);
 
             return response.IsSuccessStatusCode;
         }

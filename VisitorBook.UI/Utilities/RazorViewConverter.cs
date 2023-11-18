@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Mvc;
 
-namespace VisitorBook.Core.Utilities
+namespace VisitorBook.UI.Utilities
 {
     public class RazorViewConverter
     {

@@ -1,4 +1,4 @@
-﻿@model CityResponseDto
+﻿@model CityInput
 
 @{
     ViewData["Title"] = "Edit";
@@ -7,9 +7,9 @@
 
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="Edit" asp-route-id="@Model.Id" onsubmit="return EditRecord(this);" autocomplete="off">
+        <form asp-action="Edit" asp-route-id="@ViewData["Id"]" onsubmit="return EditRecord(this);" autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="@ViewData["Id"]" />
             <div class="row mt-4">
                 <div class="form-group">
                     <label asp-for="Name" class="control-label">@localization["Cities.Table.Column1.Text"]</label>

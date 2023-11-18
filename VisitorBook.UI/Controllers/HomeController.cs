@@ -1,27 +1,27 @@
 ﻿using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
-using VisitorBook.BL.Services;
+using VisitorBook.UI.Services;
 using VisitorBook.UI.ViewModels;
 
 namespace VisitorBook.UI.Controllers
 {
     public class HomeController : Controller
     {
-        //private readonly VisitorStatisticService _visitorStatisticService;
+        private readonly VisitorStatisticApiService _visitorStatisticApiService;
 
-        public HomeController(/*VisitorStatisticService visitorStatisticService*/) 
+        public HomeController(VisitorStatisticApiService visitorStatisticApiService) 
         { 
-            //_visitorStatisticService = visitorStatisticService;
+            _visitorStatisticApiService = visitorStatisticApiService;
         }
 
         public async Task<IActionResult> Index()
         {
             VisitorStatisticViewModel visitorStatisticViewModel = new VisitorStatisticViewModel()
             {
-                GetHighestCountOfVisitedCityByVisitor = new Tuple<string, string>("", ""),/*await _visitorStatisticService.GetHighestCountOfVisitedCityByVisitorAsync(),*/
-                GetHighestCountOfVisitedCountyByVisitor = new Tuple<string, string>("", ""),/*await _visitorStatisticService.GetHighestCountOfVisitedCountyByVisitorAsync(),*/
-                GetLongestDistanceByVisitorOneTime = new Tuple<string, string>("", ""),/*await _visitorStatisticService.GetLongestDistanceByVisitorOneTimeAsync(),*/
-                GetLongestDistanceByVisitorAllTime = new Tuple<string, string>("", "")/*await _visitorStatisticService.GetLongestDistanceByVisitorAllTimeAsync()*/
+                GetHighestCountOfVisitedCityByVisitor = await _visitorStatisticApiService.GetHighestCountOfVisitedCityByVisitorAsync(),
+                GetHighestCountOfVisitedCountyByVisitor = await _visitorStatisticApiService.GetHighestCountOfVisitedCountyByVisitorAsync(),
+                GetLongestDistanceByVisitorOneTime = await _visitorStatisticApiService.GetLongestDistanceByVisitorOneTimeAsync(),
+                GetLongestDistanceByVisitorAllTime = await _visitorStatisticApiService.GetLongestDistanceByVisitorAllTimeAsync()
             };            
 
             return View(visitorStatisticViewModel);

@@ -1,6 +1,6 @@
-﻿namespace VisitorBook.UI.Models
+﻿namespace VisitorBook.UI.Models.Outputs
 {
-    public class County
+    public class CountyOutput
     {
         public Guid Id { get; set; }
 
@@ -10,6 +10,6 @@
 
         public double Latitude { get; set; }
 
-        public string CityName { get; set; }
+        public CityOutput City { get; set; }
     }
 }

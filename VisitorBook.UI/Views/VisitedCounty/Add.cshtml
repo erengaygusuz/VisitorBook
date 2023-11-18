@@ -12,42 +12,42 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="@Model.VisitedCountyResponseDto.CityId"
+                    <label asp-for="@Model.VisitedCounty.CityId"
                         class="control-label">@localization["VisitedCounties.Table.Column3.Text"]</label>
-                    <select id="citylist" onchange="cityChange()" asp-for="@Model.VisitedCountyResponseDto.CityId" asp-items="@Model.CityList"
+                    <select id="citylist" onchange="cityChange()" asp-for="@Model.VisitedCounty.CityId" asp-items="@Model.CityList"
                         class="form-select">
                         <option disabled selected value="0">@localization["AddOrEditModal.CitySelection.Text"]</option>
                     </select>
-                    <span asp-validation-for="@Model.VisitedCountyResponseDto.CityId" class="text-danger"></span>
+                    <span asp-validation-for="@Model.VisitedCounty.CityId" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4" id="countylist">
                 <div class="form-group">
-                    <label asp-for="@Model.VisitedCountyResponseDto.CountyId"
+                    <label asp-for="@Model.VisitedCounty.CountyId"
                         class="control-label">@localization["VisitedCounties.Table.Column2.Text"]</label>
-                    <select id="county-id" asp-for="@Model.VisitedCountyResponseDto.CountyId" asp-items="@Model.CountyList" class="form-select">
+                    <select id="county-id" asp-for="@Model.VisitedCounty.CountyId" asp-items="@Model.CountyList" class="form-select">
                         <option disabled selected value="0">@localization["AddOrEditModal.CountySelection.Text"]
                         </option>
                     </select>
-                    <span asp-validation-for="@Model.VisitedCountyResponseDto.CountyId" class="text-danger"></span>
+                    <span asp-validation-for="@Model.VisitedCounty.CountyId" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="VisitedCountyResponseDto.VisitorId"
+                    <label asp-for="VisitedCounty.VisitorId"
                         class="control-label">@localization["VisitedCounties.Table.Column1.Text"]</label>
-                    <select asp-for="VisitedCountyResponseDto.VisitorId" asp-items="@Model.VisitorList" class="form-select">
+                    <select asp-for="VisitedCounty.VisitorId" asp-items="@Model.VisitorList" class="form-select">
                         <option disabled selected>@localization["AddOrEditModal.VisitorSelection.Text"]</option>
                     </select>
-                    <span asp-validation-for="VisitedCountyResponseDto.VisitorId" class=" text-danger"></span>
+                    <span asp-validation-for="VisitedCounty.VisitorId" class=" text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="form-group">
-                    <label asp-for="VisitedCountyResponseDto.VisitDate"
+                    <label asp-for="VisitedCounty.VisitDate"
                         class="control-label">@localization["VisitedCounties.Table.Column4.Text"]</label>
-                    <input asp-for="VisitedCountyResponseDto.VisitDate" class="form-control" />
-                    <span asp-validation-for="VisitedCountyResponseDto.VisitDate" class="text-danger"></span>
+                    <input asp-for="VisitedCounty.VisitDate" class="form-control" />
+                    <span asp-validation-for="VisitedCounty.VisitDate" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4">

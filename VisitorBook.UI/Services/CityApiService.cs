@@ -1,6 +1,7 @@
-﻿using VisitorBook.Core.Dtos;
-using VisitorBook.Core.Dtos.CityDtos;
-using VisitorBook.Core.Utilities.DataTablesServerSideHelpers;
+﻿using VisitorBook.UI.Models;
+using VisitorBook.UI.Models.Inputs;
+using VisitorBook.UI.Models.Outputs;
+using VisitorBook.UI.Utilities.DataTablesServerSideHelpers;
 
 namespace VisitorBook.UI.Services
 {
@@ -13,39 +14,39 @@ namespace VisitorBook.UI.Services
             _httpClient = httpClient;
         }
 
-        public async Task<PagedListDto<CityResponseDto>> GetTableData(DataTablesOptions model)
+        public async Task<PagedTableList<CityOutput>> GetTableData(DataTablesOptions dataTablesOptions)
         {
-            var response = await _httpClient.PostAsJsonAsync("cities/gettabledata", model);
+            var response = await _httpClient.PostAsJsonAsync("cities/gettabledata", dataTablesOptions);
 
-            var result = await response.Content.ReadFromJsonAsync<PagedListDto<CityResponseDto>>();
+            var result = await response.Content.ReadFromJsonAsync<PagedTableList<CityOutput>>();
 
             return result;
         }
 
-        public async Task<List<CityResponseDto>> GetAllAsync()
+        public async Task<List<CityOutput>> GetAllAsync()
         {
-            var response = await _httpClient.GetFromJsonAsync<List<CityResponseDto>>($"cities");
+            var response = await _httpClient.GetFromJsonAsync<List<CityOutput>>($"cities");
 
             return response;
         }
 
-        public async Task<T> GetByIdAsync<T>(Guid id)
+        public async Task<CityOutput> GetByIdAsync(Guid id)
         {
-            var response = await _httpClient.GetFromJsonAsync<T>($"cities/{id}");
+            var response = await _httpClient.GetFromJsonAsync<CityOutput>($"cities/{id}");
 
             return response;
         }
 
-        public async Task<bool> AddAsync(CityRequestDto cityDto)
+        public async Task<bool> AddAsync(CityInput cityAddInput)
         {
-            var response = await _httpClient.PostAsJsonAsync("cities", cityDto);
+            var response = await _httpClient.PostAsJsonAsync("cities", cityAddInput);
 
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> UpdateAsync(Guid id, CityRequestDto cityRequestDto)
+        public async Task<bool> UpdateAsync(Guid id, CityInput cityAddInput)
         {
-            var response = await _httpClient.PutAsJsonAsync($"cities/{id}", cityRequestDto);
+            var response = await _httpClient.PutAsJsonAsync($"cities/{id}", cityAddInput);
 
             return response.IsSuccessStatusCode;
         }

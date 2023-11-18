@@ -1,9 +1,7 @@
-﻿namespace VisitorBook.UI.Models
+﻿namespace VisitorBook.UI.Models.Inputs
 {
-    public class Visitor
+    public class VisitorInput
     {
-        public Guid Id { get; set; }
-
         public string Name { get; set; }
 
         public string Surname { get; set; }
@@ -12,6 +10,6 @@
 
         public string Gender { get; set; }
 
-        public VisitorAddress VisitorAddress { get; set; }
+        public VisitorAddressInput? VisitorAddress { get; set; }
     }
 }

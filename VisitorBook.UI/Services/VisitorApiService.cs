@@ -1,6 +1,7 @@
-﻿using VisitorBook.Core.Dtos;
-using VisitorBook.Core.Dtos.VisitorDtos;
-using VisitorBook.Core.Utilities.DataTablesServerSideHelpers;
+﻿using VisitorBook.UI.Models;
+using VisitorBook.UI.Models.Inputs;
+using VisitorBook.UI.Models.Outputs;
+using VisitorBook.UI.Utilities.DataTablesServerSideHelpers;
 
 namespace VisitorBook.UI.Services
 {
@@ -13,39 +14,39 @@ namespace VisitorBook.UI.Services
             _httpClient = httpClient;
         }
 
-        public async Task<PagedListDto<VisitorResponseDto>> GetTableData(DataTablesOptions model)
+        public async Task<PagedTableList<VisitorOutput>> GetTableData(DataTablesOptions dataTablesOptions)
         {
-            var response = await _httpClient.PostAsJsonAsync("visitors/gettabledata", model);
+            var response = await _httpClient.PostAsJsonAsync("visitors/gettabledata", dataTablesOptions);
 
-            var result = await response.Content.ReadFromJsonAsync<PagedListDto<VisitorResponseDto>>();
+            var result = await response.Content.ReadFromJsonAsync<PagedTableList<VisitorOutput>>();
 
             return result;
         }
 
-        public async Task<List<VisitorResponseDto>> GetAllAsync()
+        public async Task<List<VisitorOutput>> GetAllAsync()
         {
-            var response = await _httpClient.GetFromJsonAsync<List<VisitorResponseDto>>($"visitors");
+            var response = await _httpClient.GetFromJsonAsync<List<VisitorOutput>>($"visitors");
 
             return response;
         }
 
-        public async Task<T> GetByIdAsync<T>(Guid id)
+        public async Task<VisitorOutput> GetByIdAsync(Guid id)
         {
-            var response = await _httpClient.GetFromJsonAsync<T>($"visitors/{id}");
+            var response = await _httpClient.GetFromJsonAsync<VisitorOutput>($"visitors/{id}");
 
             return response;
         }
 
-        public async Task<bool> AddAsync(VisitorRequestDto visitorRequestDto)
+        public async Task<bool> AddAsync(VisitorInput visitorInput)
         {
-            var response = await _httpClient.PostAsJsonAsync("visitors", visitorRequestDto);
+            var response = await _httpClient.PostAsJsonAsync("visitors", visitorInput);
 
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> UpdateAsync(Guid id, VisitorRequestDto visitorRequestDto)
+        public async Task<bool> UpdateAsync(Guid id, VisitorInput visitorInput)
         {
-            var response = await _httpClient.PutAsJsonAsync($"visitors/{id}", visitorRequestDto);
+            var response = await _httpClient.PutAsJsonAsync($"visitors/{id}", visitorInput);
 
             return response.IsSuccessStatusCode;
         }

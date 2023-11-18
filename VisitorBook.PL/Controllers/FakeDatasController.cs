@@ -3,9 +3,11 @@ using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Entities;
 using VisitorBook.DAL.Data;
 
-namespace VisitorBook.UI.Controllers
+namespace VisitorBook.PL.Controllers
 {
-    public class FakeDataController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class FakeDatasController : ControllerBase
     {
         private readonly FakeDataGenerator _fakeDataGenerator;
 
@@ -15,10 +17,10 @@ namespace VisitorBook.UI.Controllers
         private readonly IService<VisitorAddress> _visitorAddressService;
         private readonly IService<VisitedCounty> _visitedCountyService;
 
-        public FakeDataController(FakeDataGenerator fakeDataGenerator, 
+        public FakeDatasController(FakeDataGenerator fakeDataGenerator,
             IService<City> cityService, IService<County> countyService, IService<Visitor> visitorService,
-            IService<VisitorAddress> visitorAddressService, IService<VisitedCounty> visitedCountyService) 
-        { 
+            IService<VisitorAddress> visitorAddressService, IService<VisitedCounty> visitedCountyService)
+        {
             _fakeDataGenerator = fakeDataGenerator;
 
             _cityService = cityService;

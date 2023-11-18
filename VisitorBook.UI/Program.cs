@@ -2,14 +2,10 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
 using System.Globalization;
 using System.Reflection;
-using VisitorBook.BL.Mapping;
-using VisitorBook.BL.Services;
-using VisitorBook.Core.Abstract;
-using VisitorBook.Core.Utilities;
-using VisitorBook.DAL.Concrete;
 using VisitorBook.UI.Configurations;
 using VisitorBook.UI.Languages;
 using VisitorBook.UI.Services;
+using VisitorBook.UI.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,8 +24,6 @@ builder.Services.AddControllersWithViews().AddViewLocalization().AddDataAnnotati
     };
 });
 
-builder.Services.AddAutoMapper(typeof(MapProfile));
-
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
     var supportedCultures = new List<CultureInfo>
@@ -44,9 +38,6 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.SupportedUICultures = supportedCultures;
 });
 
-//builder.Services.AddScoped(typeof(VisitorStatisticService));
-//builder.Services.AddScoped<IDbInitializer, DbInitializer>();
-builder.Services.AddScoped(typeof(LocationHelper));
 builder.Services.AddScoped(typeof(RazorViewConverter));
 builder.Services.AddScoped(typeof(CityDataTablesOptions));
 builder.Services.AddScoped(typeof(CountyDataTablesOptions));
@@ -73,7 +64,7 @@ builder.Services.AddHttpClient<VisitedCountyApiService>(opt =>
     opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
 });
 
-builder.Services.AddHttpClient<VisitorAddressApiService>(opt =>
+builder.Services.AddHttpClient<VisitorStatisticApiService>(opt =>
 {
     opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
 });
@@ -96,18 +87,9 @@ app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocal
 app.UseRouting();
 
 app.UseAuthorization();
-//SeedDatabase();
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
-
-//void SeedDatabase()
-//{
-//    using (var scope = app.Services.CreateScope())
-//    {
-//        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
-//        dbInitializer.Initialize();
-//    }
-//}

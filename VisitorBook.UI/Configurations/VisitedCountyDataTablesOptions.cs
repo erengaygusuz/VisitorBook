@@ -1,4 +1,4 @@
-﻿using VisitorBook.Core.Utilities.DataTablesServerSideHelpers;
+﻿using VisitorBook.UI.Utilities.DataTablesServerSideHelpers;
 
 namespace VisitorBook.UI.Configurations
 {

@@ -1,6 +1,6 @@
-﻿namespace VisitorBook.Core.Dtos
+﻿namespace VisitorBook.UI.Models
 {
-    public class PagedListDto<T>
+    public class PagedTableList<T>
     {
         public int RecordsTotal { get; set; }
         public int RecordsFiltered { get; set; }

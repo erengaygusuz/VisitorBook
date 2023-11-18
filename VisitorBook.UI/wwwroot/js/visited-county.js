@@ -108,11 +108,14 @@ function loadDataTable(
         },
         columns: [
             {
-                data: 'visitorName',
+                data: 'visitor',
                 width: '30%',
+                render: function (data) {
+                    return data.name + ' ' + data.surname
+                }
             },
-            { data: 'countyName', width: '15%' },
-            { data: 'cityName', width: '15%' },
+            { data: 'county.name', width: '15%' },
+            { data: 'county.city.name', width: '15%' },
             {
                 data: 'visitDate',
                 width: '20%',
