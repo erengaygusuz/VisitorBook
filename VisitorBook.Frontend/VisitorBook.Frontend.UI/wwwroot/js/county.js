@@ -1,6 +1,7 @@
 var dataTable
 
 $(document).ready(function () {
+
     var exportBtnText = document.getElementById('TableExportBtnText').value
     var editBtnText = document.getElementById('TableEditBtnText').value
     var deleteBtnText = document.getElementById('TableDeleteBtnText').value

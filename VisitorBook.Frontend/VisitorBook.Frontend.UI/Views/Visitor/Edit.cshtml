@@ -5,6 +5,32 @@
     Layout = null;
 }
 
+<script type="text/javascript">
+    $('#citylist').select2({
+        dropdownParent: $('#form-modal'),
+        theme: "bootstrap-5",
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+        placeholder: $(this).data('placeholder'),
+        language: document.getElementById('ActiveLanguage').value.substring(0, 2)
+    });
+
+    $('#county-id').select2({
+        dropdownParent: $('#form-modal'),
+        theme: "bootstrap-5",
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+        placeholder: $(this).data('placeholder'),
+        language: document.getElementById('ActiveLanguage').value.substring(0, 2)
+    });
+
+    $('#gender-select-field').select2({
+        dropdownParent: $('#form-modal'),
+        theme: "bootstrap-5",
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+        placeholder: $(this).data('placeholder'),
+        language: document.getElementById('ActiveLanguage').value.substring(0, 2)
+    });
+</script>
+
 <div class="row">
     <div class="col-md-12">
         <form asp-action="Edit" asp-route-id="@ViewData["Id"]" onsubmit="return EditRecord(this);"
@@ -41,7 +67,7 @@
                     <div class="form-group">
                         <label asp-for="Visitor.Gender"
                             class="control-label">@localization["Visitors.Table.Column4.Text"]</label>
-                        <select asp-for="Visitor.Gender" asp-items="@Model.GenderList" class="form-select">
+                        <select asp-for="Visitor.Gender" asp-items="@Model.GenderList" class="form-select" id="gender-select-field">
                             <option disabled selected>@localization["AddOrEditModal.GenderSelection.Text"]</option>
                         </select>
                         <span asp-validation-for="Visitor.Gender" class="text-danger"></span>
@@ -53,7 +79,7 @@
                     <label asp-for="Visitor.VisitorAddress.CityId"
                         class="control-label">@localization["Visitors.Table.Column6.Text"]</label>
                     <select id="citylist" onchange="cityChange()" asp-for="Visitor.VisitorAddress.CityId"
-                        asp-items="@Model.CityList" class="form-select">
+                            asp-items="@Model.CityList" class="form-select" id="city-select-field">
                         <option disabled selected value="0">@localization["AddOrEditModal.CitySelection.Text"]</option>
                     </select>
                     <span asp-validation-for="Visitor.VisitorAddress.CityId" class="text-danger"></span>
@@ -63,7 +89,7 @@
                 <div class="form-group">
                     <label asp-for="Visitor.VisitorAddress.CountyId"
                         class="control-label">@localization["Visitors.Table.Column7.Text"]</label>
-                    <select id="county-id" asp-for="Visitor.VisitorAddress.CountyId" asp-items="@Model.CountyList" class="form-select">
+                    <select id="county-id" asp-for="Visitor.VisitorAddress.CountyId" asp-items="@Model.CountyList" class="form-select" id="county-select-field">
                         <option disabled selected value="0">@localization["AddOrEditModal.CountySelection.Text"]
                         </option>
                     </select>

@@ -5,6 +5,32 @@
     Layout = null;
 }
 
+<script type="text/javascript">
+    $('#citylist').select2({
+        dropdownParent: $('#form-modal'),
+        theme: "bootstrap-5",
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+        placeholder: $(this).data('placeholder'),
+        language: document.getElementById('ActiveLanguage').value.substring(0, 2)
+    });
+
+    $('#county-id').select2({
+        dropdownParent: $('#form-modal'),
+        theme: "bootstrap-5",
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+        placeholder: $(this).data('placeholder'),
+        language: document.getElementById('ActiveLanguage').value.substring(0, 2)
+    });
+
+    $('#visitor-select-field').select2({
+        dropdownParent: $('#form-modal'),
+        theme: "bootstrap-5",
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+        placeholder: $(this).data('placeholder'),
+        language: document.getElementById('ActiveLanguage').value.substring(0, 2)
+    });
+</script>
+
 <div class="row">
     <div class="col-md-12">
         <form asp-action="Edit" asp-route-id="@ViewData["Id"]" onsubmit="return EditRecord(this);"
@@ -37,7 +63,7 @@
                 <div class="form-group">
                     <label asp-for="VisitedCounty.VisitorId"
                         class="control-label">@localization["VisitedCounties.Table.Column1.Text"]</label>
-                    <select asp-for="VisitedCounty.VisitorId" asp-items="@Model.VisitorList" class="form-select">
+                    <select asp-for="VisitedCounty.VisitorId" asp-items="@Model.VisitorList" class="form-select" id="visitor-select-field">
                         <option disabled selected>@localization["AddOrEditModal.VisitorSelection.Text"]</option>
                     </select>
                     <span asp-validation-for="VisitedCounty.VisitorId" class=" text-danger"></span>

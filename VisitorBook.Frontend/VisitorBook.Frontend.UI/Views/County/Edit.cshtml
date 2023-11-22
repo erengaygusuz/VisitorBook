@@ -5,6 +5,16 @@
     Layout = null;
 }
 
+<script type="text/javascript">
+    $('#city-select-field').select2({
+        dropdownParent: $('#form-modal'),
+        theme: "bootstrap-5",
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+        placeholder: $(this).data('placeholder'),
+        language: document.getElementById('ActiveLanguage').value.substring(0, 2)
+    });
+</script>
+
 <div class="row">
     <div class="col-md-12">
         <form asp-action="Edit" asp-route-id="@ViewData["Id"]" onsubmit="return EditRecord(this);" autocomplete="off">
@@ -36,7 +46,7 @@
             <div class="row mt-4">
                 <div class="form-group">
                     <label asp-for="County.CityId" class="control-label">@localization["Counties.Table.Column2.Text"]</label>
-                    <select asp-for="County.CityId" asp-items="@Model.CityList" class="form-select">
+                    <select asp-for="County.CityId" asp-items="@Model.CityList" class="form-select" id="city-select-field">
                         <option disabled selected>@localization["AddOrEditModal.CitySelection.Text"]</option>
                     </select>
                     <span asp-validation-for="County.CityId" class="text-danger"></span>
