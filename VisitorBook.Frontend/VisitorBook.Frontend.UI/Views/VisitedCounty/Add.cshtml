@@ -29,6 +29,17 @@
         placeholder: $(this).data('placeholder'),
         language: document.getElementById('ActiveLanguage').value.substring(0, 2)
     });
+
+    $("#visited-date").flatpickr({
+        "locale": document.getElementById('ActiveLanguage').value.substring(0, 2),
+        "enableTime": true,
+        "maxDate": "today",
+        "minDate": "2000-01",
+        "defaultDate": "today",
+        "time_24hr": true,
+        "altInput": true,
+        "altFormat": "j F Y H:i"
+    });
 </script>
 
 <div class="row">
@@ -72,7 +83,7 @@
                 <div class="form-group">
                     <label asp-for="VisitedCounty.VisitDate"
                         class="control-label">@localization["VisitedCounties.Table.Column4.Text"]</label>
-                    <input asp-for="VisitedCounty.VisitDate" class="form-control" />
+                    <input asp-for="VisitedCounty.VisitDate" class="form-control" id="visited-date" />
                     <span asp-validation-for="VisitedCounty.VisitDate" class="text-danger"></span>
                 </div>
             </div>

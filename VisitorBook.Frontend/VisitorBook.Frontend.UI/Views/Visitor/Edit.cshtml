@@ -29,6 +29,16 @@
         placeholder: $(this).data('placeholder'),
         language: document.getElementById('ActiveLanguage').value.substring(0, 2)
     });
+
+    $("#visitor-birthdate").flatpickr({
+        "locale": document.getElementById('ActiveLanguage').value.substring(0, 2),
+        "enableTime": true,
+        "maxDate": "2023-11",
+        "minDate": "1923-01",
+        "time_24hr": true,
+        "altInput": true,
+        "altFormat": "j F Y H:i"
+    });
 </script>
 
 <div class="row">
@@ -59,7 +69,7 @@
                     <div class="form-group">
                         <label asp-for="Visitor.BirthDate"
                             class="control-label">@localization["Visitors.Table.Column3.Text"]</label>
-                        <input asp-for="Visitor.BirthDate" class="form-control" />
+                        <input asp-for="Visitor.BirthDate" class="form-control" id="visitor-birthdate" />
                         <span asp-validation-for="Visitor.BirthDate" class="text-danger"></span>
                     </div>
                 </div>
