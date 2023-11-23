@@ -116,7 +116,7 @@ function loadDataTable(
                 width: '12%',
                 render: function (data) {
                     return moment(data).format('DD/MM/YYYY')
-                },
+                }
             },
             { data: 'gender', width: '8%' },
             {

@@ -45,6 +45,16 @@ namespace VisitorBook.Frontend.UI.Controllers
             _visitorDataTableOptions.SetDataTableOptions(Request);
             var result = await _visitorApiService.GetTableData(_visitorDataTableOptions.GetDataTablesOptions());
 
+            result.Data = result.Data.Select(v => new VisitorOutput
+            {
+                Id = v.Id,
+                Name = v.Name,
+                Surname = v.Surname,
+                BirthDate = v.BirthDate,
+                Gender = _localization["Enum.Gender." + v.Gender + ".Text"].Value,
+                VisitorAddress = v.VisitorAddress
+            }).ToList();
+
             return Json(new
             {
                 recordsFiltered = result.RecordsFiltered,
