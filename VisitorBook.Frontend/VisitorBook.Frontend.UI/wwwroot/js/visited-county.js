@@ -87,7 +87,7 @@ function loadDataTable(
         language: {
             url: activeLanguagePath,
         },
-        initComplete: function () {
+        preDrawCallback: function () {
             var btns = $('.dt-button, .buttons-pdf, .buttons-html5')
             btns.removeClass()
             btns.addClass('btn btn-success')
