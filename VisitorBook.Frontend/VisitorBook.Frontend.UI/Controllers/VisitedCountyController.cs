@@ -79,6 +79,8 @@ namespace VisitorBook.Frontend.UI.Controllers
                    })
             };
 
+            ViewBag.BirthDates = visitorsWithVisitorAddress.Select(x => x.BirthDate).ToList();
+
             return View(visitedCountyViewModel);
         }
 
@@ -122,6 +124,8 @@ namespace VisitorBook.Frontend.UI.Controllers
                    })
             };
 
+            ViewData["BirthDates"] = visitorsWithVisitorAddress.Select(x => x.BirthDate).ToList();
+
             ViewData["Id"] = id;
 
             return View(visitedCountyViewModel);
@@ -157,6 +161,8 @@ namespace VisitorBook.Frontend.UI.Controllers
                        Value = u.Id.ToString()
                    });
 
+            ViewData["BirthDates"] = visitorsWithVisitorAddress.Select(x => x.BirthDate).ToList();
+
             return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", visitedCountyViewModel) });
         }
 
@@ -189,6 +195,8 @@ namespace VisitorBook.Frontend.UI.Controllers
                        Text = u.Name + " " + u.Surname,
                        Value = u.Id.ToString()
                    });
+
+            ViewData["BirthDates"] = visitorsWithVisitorAddress.Select(x => x.BirthDate).ToList();
 
             return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", visitedCountyViewModel) });
         }

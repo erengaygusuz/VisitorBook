@@ -6,6 +6,9 @@
 }
 
 <script type="text/javascript">
+    var visitorBirthDates = @Html.Raw(Json.Serialize(ViewBag.BirthDates));
+    var visitorBirthDate = moment(visitorBirthDates[0]).format('YYYY-MM');
+
     $('#citylist').select2({
         dropdownParent: $('#form-modal'),
         theme: "bootstrap-5",
@@ -30,15 +33,23 @@
         language: document.getElementById('ActiveLanguage').value.substring(0, 2)
     });
 
-    $("#visited-date").flatpickr({
+    var visitedDate = $("#visited-date").flatpickr({
         "locale": document.getElementById('ActiveLanguage').value.substring(0, 2),
         "enableTime": true,
         "maxDate": "today",
         "minDate": "2000-01",
+        "defaultDate": "today",
         "time_24hr": true,
         "allowInput": true,
         "altInput": true,
-        "altFormat": "j F Y H:i"
+        "altFormat": "j F Y H:i",
+        "onOpen": function (selectedDates, dateStr, instance) {
+            visitedDate.set('minDate', visitorBirthDate);
+        },
+    });
+
+    $('#visitor-select-field').on('select2:selecting', function (e) {
+        visitorBirthDate = moment(visitorBirthDates[e.params.args.data.element.index]).format('YYYY-MM')
     });
 </script>
 
@@ -48,6 +59,16 @@
             autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="@ViewData["Id"]" />
+            <div class="row mt-4">
+                <div class="form-group">
+                    <label asp-for="VisitedCounty.VisitorId"
+                           class="control-label">@localization["VisitedCounties.Table.Column1.Text"]</label>
+                    <select asp-for="VisitedCounty.VisitorId" asp-items="@Model.VisitorList" class="form-select" id="visitor-select-field">
+                        <option disabled selected>@localization["AddOrEditModal.VisitorSelection.Text"]</option>
+                    </select>
+                    <span asp-validation-for="VisitedCounty.VisitorId" class=" text-danger"></span>
+                </div>
+            </div>
             <div class="row mt-4">
                 <div class="form-group">
                     <label asp-for="VisitedCounty.CityId"
@@ -68,16 +89,6 @@
                         </option>
                     </select>
                     <span asp-validation-for="VisitedCounty.CountyId" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="form-group">
-                    <label asp-for="VisitedCounty.VisitorId"
-                        class="control-label">@localization["VisitedCounties.Table.Column1.Text"]</label>
-                    <select asp-for="VisitedCounty.VisitorId" asp-items="@Model.VisitorList" class="form-select" id="visitor-select-field">
-                        <option disabled selected>@localization["AddOrEditModal.VisitorSelection.Text"]</option>
-                    </select>
-                    <span asp-validation-for="VisitedCounty.VisitorId" class=" text-danger"></span>
                 </div>
             </div>
             <div class="row mt-4">
