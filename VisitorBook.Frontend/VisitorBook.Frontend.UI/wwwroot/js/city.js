@@ -36,7 +36,7 @@ function loadDataTable(
     editModalTitleText
 ) {
     dataTable = $('#tblData').DataTable({
-        dom: 'lfrtBip',
+        dom: "B<'row'<'col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 'l><'col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12'f>>t<'row mt-3'<'col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12'i><'col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12'p>>",
         buttons: [
             {
                 extend: 'pdfHtml5',
@@ -93,14 +93,12 @@ function loadDataTable(
 
             $('#ExportBtn').prependTo($('#outside'))
         },
-        scrollY: 480,
-        deferRender: true,
-        scroller: true,
         processing: true,
         serverSide: true,
         filter: true,
+        responsive: true,
         ajax: {
-            url: '/city/getall',
+            url: '/admin/city/getall',
             type: "POST",
             datatype: "json"
         },
@@ -112,9 +110,9 @@ function loadDataTable(
                 render: function (data) {
                     return `
                             <div class="d-flex justify-content-around align-items-center">
-                                <a onclick="showInPopup('/city/edit/${data}', 
+                                <a onclick="showInPopup('/admin/city/edit/${data}', 
                                '${editModalTitleText}')" class="btn btn-warning">${editBtnText}</a>
-                               <a onclick=deleteRecord('/city/delete/${data}') class="btn btn-danger">
+                               <a onclick=deleteRecord('/admin/city/delete/${data}') class="btn btn-danger">
                                  ${deleteBtnText}
                                </a>
                             </div>

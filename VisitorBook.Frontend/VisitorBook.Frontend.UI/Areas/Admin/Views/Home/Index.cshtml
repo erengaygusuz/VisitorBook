@@ -1,0 +1,76 @@
+﻿@model VisitorStatisticViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-left">
+                    <li class="breadcrumb-item">Admin</li>
+                    <li class="breadcrumb-item active">@localization["Layout.Header.Navbar.Items1.Text"]</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row row-cols-xl-4 row-cols-lg-4 row-cols-md-2 row-cols-sm-2 row-cols-1">
+            <div class="col mb-4">
+                <div class="card border-success h-100">
+                    <div class="card-body text-success text-center">
+                        <h1>@Model.GetLongestDistanceByVisitorOneTime.LongestDistance</h1>
+                        <h4>@localization["HomePage.Card1.Body.Text"]</h4>
+                        <h5 class="mt-5">@Model.GetLongestDistanceByVisitorOneTime.VisitorInfo</h5>
+                    </div>
+                    <div class="card-footer bg-transparent border-success text-center">
+                        <h5>@localization["HomePage.Card1.Footer.Text"]</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card border-success h-100">
+                    <div class="card-body text-success text-center">
+                        <h1>@Model.GetLongestDistanceByVisitorAllTime.LongestDistance</h1>
+                        <h4>@localization["HomePage.Card2.Body.Text"]</h4>
+                        <h5 class="mt-5">@Model.GetLongestDistanceByVisitorAllTime.VisitorInfo</h5>
+                    </div>
+                    <div class="card-footer bg-transparent border-success text-center">
+                        <h5>@localization["HomePage.Card2.Footer.Text"]</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card border-success h-100">
+                    <div class="card-body text-success text-center">
+                        <h1>@Model.GetHighestCountOfVisitedCountyByVisitor.CountOfDistinctVisitedCounty</h1>
+                        <h4>@localization["HomePage.Card3.Body.Text"]</h4>
+                        <h5 class="mt-5">@Model.GetHighestCountOfVisitedCountyByVisitor.VisitorInfo</h5>
+                    </div>
+                    <div class="card-footer bg-transparent border-success text-center">
+                        <h5>@localization["HomePage.Card3.Footer.Text"]</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card border-success h-100">
+                    <div class="card-body text-success text-center">
+                        <h1>@Model.GetHighestCountOfVisitedCityByVisitor.CountOfDistinctVisitedCity</h1>
+                        <h4>@localization["HomePage.Card4.Body.Text"]</h4>
+                        <h5 class="mt-5">@Model.GetHighestCountOfVisitedCityByVisitor.VisitorInfo</h5>
+                    </div>
+                    <div class="card-footer bg-transparent border-success text-center">
+                        <h5>@localization["HomePage.Card4.Footer.Text"]</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
