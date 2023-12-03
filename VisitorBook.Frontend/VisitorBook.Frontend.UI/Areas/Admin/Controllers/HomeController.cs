@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using VisitorBook.Frontend.UI.Services;
 using VisitorBook.Frontend.UI.ViewModels;
 
-namespace VisitorBook.Frontend.UI.Area.Controllers
+namespace VisitorBook.Frontend.UI.Area.Admin.Controllers
 {
     [Area("Admin")]
     public class HomeController : Controller

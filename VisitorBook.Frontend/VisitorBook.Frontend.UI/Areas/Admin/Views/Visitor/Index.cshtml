@@ -2,8 +2,11 @@
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
-            <div class="col-sm-12">
-                <ol class="breadcrumb float-sm-left">
+            <div class="col-sm-6">
+                <h1 class="m-0">@localization["Visitors.Title.Text"]</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item">Admin</li>
                     <li class="breadcrumb-item active">@localization["Visitors.Title.Text"]</li>
                 </ol>
@@ -36,7 +39,6 @@
                             <div class="row d-flex justify-content-between">
                                 <div id="outside">
                                 </div>
-                                <h1 class="m-0">@localization["Visitors.Title.Text"]</h1>
                                 <div>
                                     <a onclick="showInPopup('@Url.Action("Add", "Visitor", new { Id = 0 }, Context.Request.Scheme)', '@localization["Visitors.AddModal.Title.Text"]')"
                                        class="btn btn-primary mb-3 float-end" role='button'>

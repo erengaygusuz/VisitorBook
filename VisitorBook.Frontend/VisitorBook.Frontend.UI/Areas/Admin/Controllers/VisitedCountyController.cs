@@ -9,7 +9,7 @@ using VisitorBook.Frontend.UI.Services;
 using VisitorBook.Frontend.UI.ViewModels;
 using VisitorBook.Frontend.UI.Models.Inputs;
 
-namespace VisitorBook.Frontend.UI.Area.Controllers
+namespace VisitorBook.Frontend.UI.Area.Admin.Controllers
 {
     [Area("Admin")]
     public class VisitedCountyController : Controller

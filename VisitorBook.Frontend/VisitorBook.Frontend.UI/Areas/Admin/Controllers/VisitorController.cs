@@ -10,7 +10,7 @@ using VisitorBook.Frontend.UI.ViewModels;
 using VisitorBook.Frontend.UI.Models.Inputs;
 using VisitorBook.Frontend.UI.Models.Outputs;
 
-namespace VisitorBook.Frontend.UI.Area.Controllers
+namespace VisitorBook.Frontend.UI.Area.Admin.Controllers
 {
     [Area("Admin")]
     public class VisitorController : Controller

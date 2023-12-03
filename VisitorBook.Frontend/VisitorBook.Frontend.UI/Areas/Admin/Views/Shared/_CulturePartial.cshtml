@@ -14,6 +14,7 @@
 <li class="nav-item dropdown">
     <a class="nav-link" data-toggle="dropdown" href="#">
         <i class="flag-icon @string.Concat("flag-icon-", @requestCulture.RequestCulture.UICulture.Name.Substring(3, 2).ToLower())"></i>
+        <span class="d-none d-md-inline">@requestCulture.RequestCulture.Culture.NativeName</span>
     </a>
     <div class="dropdown-menu dropdown-menu-right p-0">
         @foreach (var item in cultureItems)

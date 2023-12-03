@@ -1,30 +1,28 @@
 ﻿using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
-using VisitorBook.Frontend.UI.Services;
-using VisitorBook.Frontend.UI.ViewModels;
 
 namespace VisitorBook.Frontend.UI.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly VisitorStatisticApiService _visitorStatisticApiService;
-
-        public HomeController(VisitorStatisticApiService visitorStatisticApiService) 
-        { 
-            _visitorStatisticApiService = visitorStatisticApiService;
+        public async Task<IActionResult> Index()
+        {          
+            return View();
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> About()
         {
-            VisitorStatisticViewModel visitorStatisticViewModel = new VisitorStatisticViewModel()
-            {
-                GetHighestCountOfVisitedCityByVisitor = await _visitorStatisticApiService.GetHighestCountOfVisitedCityByVisitorAsync(),
-                GetHighestCountOfVisitedCountyByVisitor = await _visitorStatisticApiService.GetHighestCountOfVisitedCountyByVisitorAsync(),
-                GetLongestDistanceByVisitorOneTime = await _visitorStatisticApiService.GetLongestDistanceByVisitorOneTimeAsync(),
-                GetLongestDistanceByVisitorAllTime = await _visitorStatisticApiService.GetLongestDistanceByVisitorAllTimeAsync()
-            };            
+            return View();
+        }
 
-            return View(visitorStatisticViewModel);
+        public async Task<IActionResult> Contact()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Service()
+        {
+            return View();
         }
 
         [HttpPost]
