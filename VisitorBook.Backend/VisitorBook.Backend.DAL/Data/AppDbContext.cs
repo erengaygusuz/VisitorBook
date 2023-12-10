@@ -1,16 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using VisitorBook.Backend.Core.Entities;
 using VisitorBook.Backend.Core.Utilities;
 
 namespace VisitorBook.Backend.DAL.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<User, Role, int>
     {
         public DbSet<City> Cities { get; set; }
         public DbSet<County> Counties { get; set; }
         public DbSet<Visitor> Visitors { get; set; }
         public DbSet<VisitedCounty> VisitedCounties { get; set; }
         public DbSet<VisitorAddress> VisitorAddress { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Region> Regions { get; set; }
+        public DbSet<SubRegion> SubRegions { get; set; }
+        public DbSet<Country> Countries { get; set; }
 
         private readonly FakeDataGenerator _fakeDataGenerator;
 
@@ -23,27 +29,27 @@ namespace VisitorBook.Backend.DAL.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            _fakeDataGenerator.GenerateData();
+            //_fakeDataGenerator.GenerateData();
 
-            modelBuilder.Entity<City>().HasData(
-                _fakeDataGenerator.Cities
-            );
+            //modelBuilder.Entity<City>().HasData(
+            //    _fakeDataGenerator.Cities
+            //);
 
-            modelBuilder.Entity<County>().HasData(
-                _fakeDataGenerator.Counties
-            );
+            //modelBuilder.Entity<County>().HasData(
+            //    _fakeDataGenerator.Counties
+            //);
 
-            modelBuilder.Entity<Visitor>().HasData(
-                _fakeDataGenerator.Visitors
-            );
+            //modelBuilder.Entity<Visitor>().HasData(
+            //    _fakeDataGenerator.Visitors
+            //);
 
-            modelBuilder.Entity<VisitedCounty>().HasData(
-                _fakeDataGenerator.VisitedCounties
-            );
+            //modelBuilder.Entity<VisitedCounty>().HasData(
+            //    _fakeDataGenerator.VisitedCounties
+            //);
 
-            modelBuilder.Entity<VisitorAddress>().HasData(
-                _fakeDataGenerator.VisitorAddresses
-            );
+            //modelBuilder.Entity<VisitorAddress>().HasData(
+            //    _fakeDataGenerator.VisitorAddresses
+            //);
         }
 
         public override int SaveChanges()

@@ -49,7 +49,7 @@ namespace VisitorBook.Backend.PL.Controllers
 
         [HttpGet]
         [Route("GetAllCountiesByCity/{cityId}")]
-        public async Task<IActionResult> GetAllCountiesByCity(Guid cityId)
+        public async Task<IActionResult> GetAllCountiesByCity(int cityId)
         {
             var counties = await _countyService.GetAllAsync(
                 orderBy: o => o.OrderBy(x => x.Name), 
@@ -69,7 +69,7 @@ namespace VisitorBook.Backend.PL.Controllers
         [HttpGet("{id}", Name = "GetCounty")]
         public async Task<IActionResult> GetCounty(Guid id)
         {
-            var county = await _countyService.GetAsync(u => u.Id == id, include: u => u.Include(a => a.City));
+            var county = await _countyService.GetAsync(u => u.GId == id, include: u => u.Include(a => a.City));
 
             if (county == null)
             {
@@ -84,7 +84,7 @@ namespace VisitorBook.Backend.PL.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCounty(Guid id)
         {
-            var countyToDelete = await _countyService.GetAsync(u => u.Id == id);
+            var countyToDelete = await _countyService.GetAsync(u => u.GId == id);
 
             if (countyToDelete == null)
             {
@@ -119,7 +119,7 @@ namespace VisitorBook.Backend.PL.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCounty(Guid id, [FromBody] CountyRequestDto countyRequestDto)
         {
-            var countyToUpdate = await _countyService.GetAsync(c => c.Id == id);
+            var countyToUpdate = await _countyService.GetAsync(c => c.GId == id);
 
             if (countyToUpdate == null)
             {

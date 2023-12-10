@@ -36,7 +36,7 @@ namespace VisitorBook.Backend.PL.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllVisitedCounties()
         {
-            var visitedCounties = await _visitedCountyService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Visitor.Name),
+            var visitedCounties = await _visitedCountyService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Visitor.User.Name),
                 include: x => x.Include(c => c.Visitor).Include(c => c.County).ThenInclude(c => c.City));
 
             if (visitedCounties == null)
@@ -52,7 +52,7 @@ namespace VisitorBook.Backend.PL.Controllers
         [HttpGet("{id}", Name = "GetVisitedCounty")]
         public async Task<IActionResult> GetVisitedCounty(Guid id)
         {
-            var visitedCounty = await _visitedCountyService.GetAsync(u => u.Id == id,
+            var visitedCounty = await _visitedCountyService.GetAsync(u => u.GId == id,
                 include: x => x.Include(c => c.Visitor).Include(c => c.County).ThenInclude(c => c.City));
 
             if (visitedCounty == null)
@@ -68,7 +68,7 @@ namespace VisitorBook.Backend.PL.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVisitedCounty(Guid id)
         {
-            var visitedCountyToDelete = await _visitedCountyService.GetAsync(u => u.Id == id);
+            var visitedCountyToDelete = await _visitedCountyService.GetAsync(u => u.GId == id);
 
             if (visitedCountyToDelete == null)
             {
@@ -103,7 +103,7 @@ namespace VisitorBook.Backend.PL.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateVisitedCounty(Guid id, [FromBody] VisitedCountyRequestDto visitedCountyRequestDto)
         {
-            var visitedCountyToUpdate = await _visitedCountyService.GetAsync(c => c.Id == id);
+            var visitedCountyToUpdate = await _visitedCountyService.GetAsync(c => c.GId == id);
 
             if (visitedCountyToUpdate == null)
             {

@@ -1,11 +1,11 @@
-﻿using CsvHelper.Configuration.Attributes;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using CsvHelper.Configuration.Attributes;
 
 namespace VisitorBook.Backend.Core.Entities
 {
-    public class City : BaseEntity
+    public class Country : BaseEntity
     {
         [Required]
         [MaxLength(100)]
@@ -18,11 +18,11 @@ namespace VisitorBook.Backend.Core.Entities
         public string Code { get; set; }
 
         [Required]
-        public int CountryId { get; set; }
+        public int SubRegionId { get; set; }
 
         [Ignore]
         [ValidateNever]
-        [ForeignKey("CountryId")]
-        public Country Country { get; set; }
+        [ForeignKey("SubRegionId")]
+        public SubRegion SubRegion { get; set; }
     }
 }

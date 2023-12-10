@@ -36,7 +36,7 @@ namespace VisitorBook.Backend.PL.Controllers
         public async Task<IActionResult> GetAllVisitors()
         {
             var visitors = await _visitorService.GetAllAsync(
-                orderBy: o => o.OrderBy(x => x.Name),
+                orderBy: o => o.OrderBy(x => x.User.Name),
                 include: x => x.Include(c => c.VisitorAddress).ThenInclude(c => c.County)
                 );
 
@@ -53,7 +53,7 @@ namespace VisitorBook.Backend.PL.Controllers
         [HttpGet("{id}", Name = "GetVisitor")]
         public async Task<IActionResult> GetVisitor(Guid id)
         {
-            var visitor = await _visitorService.GetAsync(u => u.Id == id, 
+            var visitor = await _visitorService.GetAsync(u => u.GId == id, 
                 include: x => x.Include(c => c.VisitorAddress).ThenInclude(c => c.County));
 
             if (visitor == null)
@@ -69,7 +69,7 @@ namespace VisitorBook.Backend.PL.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVisitor(Guid id)
         {
-            var visitorToDelete = await _visitorService.GetAsync(u => u.Id == id);
+            var visitorToDelete = await _visitorService.GetAsync(u => u.GId == id);
 
             if (visitorToDelete == null)
             {
@@ -104,7 +104,7 @@ namespace VisitorBook.Backend.PL.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateVisitor(Guid id, [FromBody] VisitorRequestDto visitorRequestDto)
         {
-            var visitorToUpdate = await _visitorService.GetAsync(c => c.Id == id);
+            var visitorToUpdate = await _visitorService.GetAsync(c => c.GId == id);
 
             if (visitorToUpdate == null)
             {

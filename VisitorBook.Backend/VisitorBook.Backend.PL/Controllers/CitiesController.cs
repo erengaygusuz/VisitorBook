@@ -49,7 +49,7 @@ namespace VisitorBook.Backend.PL.Controllers
         [HttpGet("{id}", Name = "GetCity")]
         public async Task<IActionResult> GetCity(Guid id)
         {
-            var city = await _cityService.GetAsync(u => u.Id == id);
+            var city = await _cityService.GetAsync(u => u.GId == id);
 
             if (city == null)
             {
@@ -64,7 +64,7 @@ namespace VisitorBook.Backend.PL.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCity(Guid id)
         {
-            var cityToDelete = await _cityService.GetAsync(u => u.Id == id);
+            var cityToDelete = await _cityService.GetAsync(u => u.GId == id);
 
             if (cityToDelete == null)
             {
@@ -99,7 +99,7 @@ namespace VisitorBook.Backend.PL.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCity(Guid id, [FromBody] CityRequestDto cityRequestDto)
         {
-            var cityToUpdate = await _cityService.GetAsync(c => c.Id == id);
+            var cityToUpdate = await _cityService.GetAsync(c => c.GId == id);
 
             if (cityToUpdate == null)
             {

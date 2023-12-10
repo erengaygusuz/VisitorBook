@@ -36,10 +36,10 @@ namespace VisitorBook.Backend.BL.Mapping
                 .ForMember(e => e.CityId, opts => opts.MapFrom(e => e.County.CityId));
 
             CreateMap<VisitorRequestDto, Visitor>()
-                .ForMember(e => e.Gender, opts => opts.MapFrom(e => Enum.Parse(typeof(Gender), e.Gender)));
+                .ForPath(e => e.User.Gender, opts => opts.MapFrom(e => Enum.Parse(typeof(Gender), e.Gender)));
 
             CreateMap<Visitor, VisitorResponseDto>()
-                .ForMember(e => e.Gender, opts => opts.MapFrom(e => e.Gender.ToString()))
+                .ForMember(e => e.Gender, opts => opts.MapFrom(e => e.User.Gender.ToString()))
                 .ForMember(e => e.VisitorAddress, opts => { opts.Condition(e => e.VisitorAddress != null); opts.MapFrom(e => e.VisitorAddress); });
 
             CreateMap<Tuple<string, string>, HighestCountOfVisitedCountyByVisitorResponseDto>()

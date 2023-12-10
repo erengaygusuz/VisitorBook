@@ -1,23 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using VisitorBook.Backend.Core.Attributes;
 
 namespace VisitorBook.Backend.Core.Entities
 {
     public class VisitedCounty : BaseEntity
     {
         [Required]
-        [NotEmptyGuid]
-        public Guid VisitorId { get; set; }
+        public int VisitorId { get; set; }
 
         [ValidateNever]
         [ForeignKey("VisitorId")]
         public Visitor Visitor { get; set; }
 
         [Required]
-        [NotEmptyGuid]
-        public Guid CountyId { get; set; }
+        public int CountyId { get; set; }
 
         [ValidateNever]
         [ForeignKey("CountyId")]

@@ -2,8 +2,12 @@
 {
     public abstract class BaseEntity
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
+
+        public Guid GId { get; set; }
+
         public DateTime CreatedDate { get; set; }
+
         public DateTime? UpdatedDate { get; set; }
     }
 }

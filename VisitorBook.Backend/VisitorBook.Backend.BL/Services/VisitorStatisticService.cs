@@ -25,7 +25,7 @@ namespace VisitorBook.Backend.BL.Services
 
             var highestCountOfVisitedCountyByVisitor = await groupedVisitedList.Select(a => new
             {
-                VisitorInfo = a.First().Visitor.Name + " " + a.First().Visitor.Surname,
+                VisitorInfo = a.First().Visitor.User.Name + " " + a.First().Visitor.User.Surname,
                 CountOfDistinctVisitedCounty = a.Distinct().Count()
             }).OrderByDescending(a => a.CountOfDistinctVisitedCounty).ThenBy(b => b.VisitorInfo).FirstAsync();
 
@@ -43,7 +43,7 @@ namespace VisitorBook.Backend.BL.Services
 
             var highestCountOfVisitedCityByVisitor = await groupedVisitedList.Select(a => new
             {
-                VisitorInfo = a.First().Visitor.Name + " " + a.First().Visitor.Surname,
+                VisitorInfo = a.First().Visitor.User.Name + " " + a.First().Visitor.User.Surname,
                 CountOfDistinctVisitedCounty = a.GroupBy(c => c.County.City).Count()
             }).OrderByDescending(a => a.CountOfDistinctVisitedCounty).ThenBy(b => b.VisitorInfo).FirstAsync();
 
@@ -62,7 +62,7 @@ namespace VisitorBook.Backend.BL.Services
 
             var longestDistanceWithVisitorInfo = (await groupedVisitedList.ToListAsync()).Select(a => new
             {
-                VisitorInfo = a.First().Visitor.Name + " " + a.First().Visitor.Surname,
+                VisitorInfo = a.First().Visitor.User.Name + " " + a.First().Visitor.User.Surname,
                 LongestDistance = a.Max(visitedCounty => CalculateDistance(visitedCounty))
             }).OrderByDescending(a => a.LongestDistance).ThenBy(b => b.VisitorInfo).First();
 
@@ -81,7 +81,7 @@ namespace VisitorBook.Backend.BL.Services
 
             var longestDistanceWithVisitorInfo = (await groupedVisitedList.ToListAsync()).Select(a => new
             {
-                VisitorInfo = a.First().Visitor.Name + " " + a.First().Visitor.Surname,
+                VisitorInfo = a.First().Visitor.User.Name + " " + a.First().Visitor.User.Surname,
                 LongestDistance = a.Sum(visitedCounty => CalculateDistance(visitedCounty))
             }).OrderByDescending(a => a.LongestDistance).ThenBy(b => b.VisitorInfo).First();
 
