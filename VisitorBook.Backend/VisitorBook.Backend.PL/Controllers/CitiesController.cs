@@ -32,7 +32,7 @@ namespace VisitorBook.Backend.PL.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllOrderedCities()
+        public async Task<IActionResult> GetAllCities()
         {
             var cities = await _cityService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Name));
 

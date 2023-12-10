@@ -1,8 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using CsvHelper.Configuration.Attributes;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using VisitorBook.Backend.Core.Attributes;
 
 namespace VisitorBook.Backend.Core.Entities
 {
@@ -24,7 +22,6 @@ namespace VisitorBook.Backend.Core.Entities
         [Required]
         public int CityId { get; set; }
 
-        [Ignore]
         [ValidateNever]
         [ForeignKey("CityId")]
         public City City { get; set; }

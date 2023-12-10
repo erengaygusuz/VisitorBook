@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using VisitorBook.Backend.Core.Dtos.CityDtos;
 using VisitorBook.Backend.Core.Dtos.CountyDtos;
+using VisitorBook.Backend.Core.Dtos.RegionDtos;
 using VisitorBook.Backend.Core.Dtos.VisitedCountyDtos;
 using VisitorBook.Backend.Core.Dtos.VisitorAddressDtos;
 using VisitorBook.Backend.Core.Dtos.VisitorDtos;
@@ -14,6 +15,10 @@ namespace VisitorBook.Backend.BL.Mapping
     {
         public MapProfile()
         {
+            CreateMap<RegionRequestDto, Region>();
+
+            CreateMap<Region, RegionResponseDto>();
+
             CreateMap<CityRequestDto, City>();
 
             CreateMap<City, CityResponseDto>();

@@ -1,5 +1,4 @@
-﻿using CsvHelper.Configuration.Attributes;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,7 +19,6 @@ namespace VisitorBook.Backend.Core.Entities
         [Required]
         public int CountryId { get; set; }
 
-        [Ignore]
         [ValidateNever]
         [ForeignKey("CountryId")]
         public Country Country { get; set; }

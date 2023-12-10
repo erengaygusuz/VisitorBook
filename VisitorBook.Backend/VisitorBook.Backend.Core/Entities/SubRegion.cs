@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using CsvHelper.Configuration.Attributes;
 
 namespace VisitorBook.Backend.Core.Entities
 {
@@ -15,7 +14,6 @@ namespace VisitorBook.Backend.Core.Entities
         [Required]
         public int RegionId { get; set; }
 
-        [Ignore]
         [ValidateNever]
         [ForeignKey("RegionId")]
         public Region Region { get; set; }
