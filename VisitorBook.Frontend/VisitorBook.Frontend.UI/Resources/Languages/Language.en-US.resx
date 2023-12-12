@@ -172,16 +172,16 @@
     <value>Home</value>
   </data>
   <data name="Layout.Header.Navbar.Items2.Text" xml:space="preserve">
-    <value>Visitors</value>
+    <value>User Management</value>
   </data>
   <data name="Layout.Header.Navbar.Items3.Text" xml:space="preserve">
-    <value>Cities</value>
+    <value>User</value>
   </data>
   <data name="Layout.Header.Navbar.Items4.Text" xml:space="preserve">
-    <value>Counties</value>
+    <value>Roles</value>
   </data>
   <data name="Layout.Header.Navbar.Items5.Text" xml:space="preserve">
-    <value>Visited Counties</value>
+    <value>Place Management</value>
   </data>
   <data name="Layout.Header.Title.Text" xml:space="preserve">
     <value>Visitor Book</value>
@@ -335,5 +335,29 @@
   </data>
   <data name="VisitedCounties.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
     <value>Visited County did not deleted due to usage of it. Please first delete the record which uses this visited county after that try to delete it again</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items6.Text" xml:space="preserve">
+    <value>Regions</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items7.Text" xml:space="preserve">
+    <value>SubRegions</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items8.Text" xml:space="preserve">
+    <value>Countries</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items10.Text" xml:space="preserve">
+    <value>Counties</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items11.Text" xml:space="preserve">
+    <value>Visitor Management</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items12.Text" xml:space="preserve">
+    <value>Visitors</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items13.Text" xml:space="preserve">
+    <value>Visited Counties</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items9.Text" xml:space="preserve">
+    <value>Cities</value>
   </data>
 </root>

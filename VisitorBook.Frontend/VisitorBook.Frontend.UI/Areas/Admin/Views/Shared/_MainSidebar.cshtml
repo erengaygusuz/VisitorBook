@@ -12,9 +12,14 @@
         @{
             var makeHomeActive = "";
             var makeVisitorActive = "";
+            var makeRegionActive = "";
+            var makeSubRegionActive = "";
+            var makeCountryActive = "";
             var makeCityActive = "";
             var makeCountyActive = "";
             var makeVisitedCountyActive = "";
+            var makeUserActive = "";
+            var makeRoleActive = "";
 
             @if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "home")
             {
@@ -23,6 +28,18 @@
             else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "visitor")
             {
                 makeVisitorActive = "active";
+            }
+            else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "region")
+            {
+                makeRegionActive = "active";
+            }
+            else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "subregion")
+            {
+                makeSubRegionActive = "active";
+            }
+            else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "country")
+            {
+                makeCountryActive = "active";
             }
             else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "city")
             {
@@ -36,55 +53,138 @@
             {
                 makeVisitedCountyActive = "active";
             }
+            else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "user")
+            {
+                makeUserActive = "active";
+            }
+            else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "role")
+            {
+                makeRoleActive = "active";
+            }
         }
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-                     with font-awesome or any other icon font library -->
                 <li class="nav-item">
                     <a class="nav-link @makeHomeActive" asp-area="Admin" asp-controller="Home"
                        asp-action="Index">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-home"></i>
                         <p>
                             @localization["Layout.Header.Navbar.Items1.Text"]
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link @makeVisitorActive" asp-area="Admin" asp-controller="Visitor"
-                       asp-action="Index">
-                        <i class="nav-icon fas fa-walking"></i>
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-users-cog"></i>
                         <p>
                             @localization["Layout.Header.Navbar.Items2.Text"]
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
+                            <a class="nav-link pl-5 @makeRegionActive" asp-area="Admin" asp-controller="User"
+                               asp-action="Index">
+                                <i class="nav-icon fas fa-user-friends"></i>
+                                <p>
+                                    @localization["Layout.Header.Navbar.Items3.Text"]
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link pl-5 @makeRegionActive" asp-area="Admin" asp-controller="Role"
+                               asp-action="Index">
+                                <i class="nav-icon fas fa-user-tag"></i>
+                                <p>
+                                    @localization["Layout.Header.Navbar.Items4.Text"]
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link @makeCityActive" asp-area="Admin" asp-controller="City"
-                       asp-action="Index">
-                        <i class="nav-icon fas fa-city"></i>
-                        <p>
-                            @localization["Layout.Header.Navbar.Items3.Text"]
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link @makeCountyActive" asp-area="Admin" asp-controller="County"
-                       asp-action="Index">
-                        <i class="nav-icon fas fa-building"></i>
-                        <p>
-                            @localization["Layout.Header.Navbar.Items4.Text"]
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link @makeVisitedCountyActive" asp-area="Admin" asp-controller="VisitedCounty"
-                       asp-action="Index">
-                        <i class="nav-icon fas fa-car-side"></i>
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-landmark"></i>
                         <p>
                             @localization["Layout.Header.Navbar.Items5.Text"]
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
+                            <a class="nav-link pl-5 @makeRegionActive" asp-area="Admin" asp-controller="Region"
+                               asp-action="Index">
+                                <i class="nav-icon fas fa-globe-africa"></i>
+                                <p>
+                                    @localization["Layout.Header.Navbar.Items6.Text"]
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link pl-5 @makeSubRegionActive" asp-area="Admin" asp-controller="SubRegion"
+                               asp-action="Index">
+                                <i class="nav-icon fas fa-map"></i>
+                                <p>
+                                    @localization["Layout.Header.Navbar.Items7.Text"]
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link pl-5 @makeCountryActive" asp-area="Admin" asp-controller="Country"
+                               asp-action="Index">
+                                <i class="nav-icon fas fa-flag"></i>
+                                <p>
+                                    @localization["Layout.Header.Navbar.Items8.Text"]
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link pl-5 @makeCityActive" asp-area="Admin" asp-controller="City"
+                               asp-action="Index">
+                                <i class="nav-icon fas fa-city"></i>
+                                <p>
+                                    @localization["Layout.Header.Navbar.Items9.Text"]
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link pl-5 @makeCountyActive" asp-area="Admin" asp-controller="County"
+                               asp-action="Index">
+                                <i class="nav-icon fas fa-building"></i>
+                                <p>
+                                    @localization["Layout.Header.Navbar.Items10.Text"]
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-id-card-alt"></i>
+                        <p>
+                            @localization["Layout.Header.Navbar.Items11.Text"]
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
+                            <a class="nav-link pl-5 @makeVisitorActive" asp-area="Admin" asp-controller="Visitor" asp-action="Index">
+                                <i class="nav-icon fas fa-walking"></i>
+                                <p>
+                                    @localization["Layout.Header.Navbar.Items12.Text"]
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link pl-5 @makeVisitedCountyActive" asp-area="Admin" asp-controller="VisitedCounty"
+                               asp-action="Index">
+                                <i class="nav-icon fas fa-car-side"></i>
+                                <p>
+                                    @localization["Layout.Header.Navbar.Items13.Text"]
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </nav>

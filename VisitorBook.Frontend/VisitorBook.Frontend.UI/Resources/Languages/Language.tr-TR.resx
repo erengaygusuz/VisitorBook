@@ -172,16 +172,16 @@
     <value>Ana Sayfa</value>
   </data>
   <data name="Layout.Header.Navbar.Items2.Text" xml:space="preserve">
-    <value>Ziyaretçiler</value>
+    <value>Kullanıcı Yönetimi</value>
   </data>
   <data name="Layout.Header.Navbar.Items3.Text" xml:space="preserve">
-    <value>İller</value>
+    <value>Kullanıcılar</value>
   </data>
   <data name="Layout.Header.Navbar.Items4.Text" xml:space="preserve">
-    <value>İlçeler</value>
+    <value>Roller</value>
   </data>
   <data name="Layout.Header.Navbar.Items5.Text" xml:space="preserve">
-    <value>Ziyaret Edilen İlçeler</value>
+    <value>Yer Yönetimi</value>
   </data>
   <data name="Layout.Header.Title.Text" xml:space="preserve">
     <value>Ziyaretçi Defteri</value>
@@ -335,5 +335,29 @@
   </data>
   <data name="VisitedCounties.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
     <value>Ziyaret edilen ilçe kullanıldığı için silinemedi. Öncelikle ziyaret edilen ilçeyi kullanan kaydı silin sonra ilçeyi silmeyi deneyin</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items6.Text" xml:space="preserve">
+    <value>Bölgeler</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items7.Text" xml:space="preserve">
+    <value>Alt Bölgeler</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items8.Text" xml:space="preserve">
+    <value>Ülkeler</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items10.Text" xml:space="preserve">
+    <value>İlçeler</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items11.Text" xml:space="preserve">
+    <value>Ziyaretçi Yönetimi</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items12.Text" xml:space="preserve">
+    <value>Ziyaretçiler</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items13.Text" xml:space="preserve">
+    <value>Ziyaret Edilen İlçeler</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items9.Text" xml:space="preserve">
+    <value>İller</value>
   </data>
 </root>
