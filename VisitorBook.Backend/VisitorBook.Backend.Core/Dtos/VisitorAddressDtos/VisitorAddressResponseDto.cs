@@ -2,8 +2,8 @@
 {
     public class VisitorAddressResponseDto
     {
-        public Guid Id { get; set; }
-        public Guid CityId { get; set; }
-        public Guid CountyId { get; set; }
+        public Guid GId { get; set; }
+        public int CityId { get; set; }
+        public int CountyId { get; set; }
     }
 }

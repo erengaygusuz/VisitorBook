@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
 using VisitorBook.Backend.Core.Dtos.CityDtos;
+using VisitorBook.Backend.Core.Dtos.CountryDtos;
 using VisitorBook.Backend.Core.Dtos.CountyDtos;
 using VisitorBook.Backend.Core.Dtos.RegionDtos;
+using VisitorBook.Backend.Core.Dtos.SubRegionDtos;
+using VisitorBook.Backend.Core.Dtos.UserDtos;
 using VisitorBook.Backend.Core.Dtos.VisitedCountyDtos;
 using VisitorBook.Backend.Core.Dtos.VisitorAddressDtos;
 using VisitorBook.Backend.Core.Dtos.VisitorDtos;
@@ -19,9 +22,20 @@ namespace VisitorBook.Backend.BL.Mapping
 
             CreateMap<Region, RegionResponseDto>();
 
+            CreateMap<SubRegionRequestDto, SubRegion>();
+
+            CreateMap<SubRegion, SubRegionResponseDto>()
+                .ForMember(e => e.Region, opts => opts.MapFrom(e => e.Region));
+
+            CreateMap<CountryRequestDto, Country>();
+
+            CreateMap<Country, CountryResponseDto>()
+                .ForMember(e => e.SubRegion, opts => opts.MapFrom(e => e.SubRegion));
+
             CreateMap<CityRequestDto, City>();
 
-            CreateMap<City, CityResponseDto>();
+            CreateMap<City, CityResponseDto>()
+                .ForMember(e => e.Country, opts => opts.MapFrom(e => e.Country));
 
             CreateMap<CountyRequestDto, County>();
 
@@ -40,12 +54,16 @@ namespace VisitorBook.Backend.BL.Mapping
             CreateMap<VisitorAddress, VisitorAddressResponseDto>()
                 .ForMember(e => e.CityId, opts => opts.MapFrom(e => e.County.CityId));
 
-            CreateMap<VisitorRequestDto, Visitor>()
-                .ForPath(e => e.User.Gender, opts => opts.MapFrom(e => Enum.Parse(typeof(Gender), e.Gender)));
+            CreateMap<VisitorRequestDto, Visitor>();
 
             CreateMap<Visitor, VisitorResponseDto>()
-                .ForMember(e => e.Gender, opts => opts.MapFrom(e => e.User.Gender.ToString()))
                 .ForMember(e => e.VisitorAddress, opts => { opts.Condition(e => e.VisitorAddress != null); opts.MapFrom(e => e.VisitorAddress); });
+
+            CreateMap<UserRequestDto, User>()
+                .ForPath(e => e.Gender, opts => opts.MapFrom(e => Enum.Parse(typeof(Gender), e.Gender)));
+
+            CreateMap<User, UserResponseDto>()
+                .ForMember(e => e.Gender, opts => opts.MapFrom(e => e.Gender.ToString()));
 
             CreateMap<Tuple<string, string>, HighestCountOfVisitedCountyByVisitorResponseDto>()
                 .ForMember(e => e.VisitorInfo, opts => opts.MapFrom(e => e.Item1))

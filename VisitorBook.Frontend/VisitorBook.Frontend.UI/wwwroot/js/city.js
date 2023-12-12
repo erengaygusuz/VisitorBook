@@ -105,6 +105,7 @@ function loadDataTable(
         columns: [
             { data: 'name', width: '40%' },
             { data: 'code', width: '40%' },
+            { data: 'country.name', width: '40%' },
             {
                 data: 'id',
                 render: function (data) {

@@ -6,7 +6,6 @@ namespace VisitorBook.Backend.Core.Dtos.RegionDtos
     {
         protected override IList<IPropertyMapping> _mappings => new List<IPropertyMapping>
         {
-            new PropertyMapping("Id", "Id"),
             new PropertyMapping("Name", "Name")
         };
 

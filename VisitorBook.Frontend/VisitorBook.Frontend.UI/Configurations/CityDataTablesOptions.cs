@@ -43,6 +43,18 @@ namespace VisitorBook.Frontend.UI.Configurations
                             Value = httpRequest.Form["search[value]"].FirstOrDefault(),
                             Regex = ""
                         }
+                    },
+                    new Column
+                    {
+                        Data = "Country.Name",
+                        Name = "Country.Name",
+                        Searchable = true,
+                        Orderable = true,
+                        Search = new Search
+                        {
+                            Value = httpRequest.Form["search[value]"].FirstOrDefault(),
+                            Regex = ""
+                        }
                     }
                 },
                 Search = new Search
@@ -52,6 +64,11 @@ namespace VisitorBook.Frontend.UI.Configurations
                 },
                 Order = new List<Order>
                 {
+                    new Order
+                    {
+                        Column = Convert.ToInt32(httpRequest.Form["order[0][column]"].FirstOrDefault()),
+                        Dir = httpRequest.Form["order[0][dir]"].FirstOrDefault()
+                    },
                     new Order
                     {
                         Column = Convert.ToInt32(httpRequest.Form["order[0][column]"].FirstOrDefault()),

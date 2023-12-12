@@ -2,8 +2,7 @@
 {
     public class RegionResponseDto
     {
-        public Guid Id { get; set; }
+        public Guid GId { get; set; }
         public string Name { get; set; }
-        public string Code { get; set; }
     }
 }

@@ -1,14 +1,13 @@
 ﻿using VisitorBook.Backend.Core.Abstract;
 
-namespace VisitorBook.Backend.Core.Dtos.CityDtos
+namespace VisitorBook.Backend.Core.Dtos.RoleDtos
 {
-    public class CityToCityGetResponseDtoMappingCollection<TSource, TDestination> : PropertyMappingCollectionBase<TSource, TDestination>
+    public class RoleToRoleGetResponseDtoMappingCollection<TSource, TDestination> : PropertyMappingCollectionBase<TSource, TDestination>
     {
         protected override IList<IPropertyMapping> _mappings => new List<IPropertyMapping>
         {
             new PropertyMapping("Name", "Name"),
-            new PropertyMapping("Code", "Code"),
-            new PropertyMapping("Country.Name", "Country.Name")
+            new PropertyMapping("Region.Name", "Region.Name")
         };
 
         public override IList<IPropertyMapping> GetAssociatedMappings()
