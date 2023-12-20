@@ -88,7 +88,7 @@ function loadDataTable(
         preDrawCallback: function () {
             var btns = $('.dt-button, .buttons-pdf, .buttons-html5')
             btns.removeClass()
-            btns.addClass('btn btn-success')
+            btns.addClass('btn btn-success ml-2')
             btns.attr('id', 'ExportBtn')
 
             $('#ExportBtn').prependTo($('#outside'))
