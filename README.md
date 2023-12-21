@@ -7,7 +7,7 @@
 ## Projede Kullanılan Teknolojiler
 
 * C#,
-* Katmanlı Mimari (UI ve Backend iki ayrı proje ve Backend kendi içinde katmanlı olacak şekilde),
+* Katmanlı Mimari (Frontend ve Backend iki ayrı proje ve Backend kendi içinde katmanlı olacak şekilde),
 * ASP.Net Core MVC,
 * ASP.Net Core WEB API,
 * Entity Framework Core
