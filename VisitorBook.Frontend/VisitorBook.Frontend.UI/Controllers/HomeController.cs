@@ -10,11 +10,6 @@ namespace VisitorBook.Frontend.UI.Controllers
             return View();
         }
 
-        public async Task<IActionResult> About()
-        {
-            return View();
-        }
-
         public async Task<IActionResult> Contact()
         {
             return View();

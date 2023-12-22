@@ -56,11 +56,28 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
+            @{
+                var makeHomeActive = "";
+                var makeServiceActive = "";
+                var makeContactActive = "";
+
+                @if (this.ViewContext.RouteData.Values["action"].ToString().ToLower() == "index")
+                {
+                    makeHomeActive = "active";
+                }
+                else if (this.ViewContext.RouteData.Values["action"].ToString().ToLower() == "service")
+                {
+                    makeServiceActive = "active";
+                }
+                else if (this.ViewContext.RouteData.Values["action"].ToString().ToLower() == "contact")
+                {
+                    makeContactActive = "active";
+                }
+            }
             <div class="navbar-nav mx-auto bg-light rounded pe-4 py-3 py-lg-0">
-                <a asp-controller="Home" asp-action="Index" class="nav-item nav-link active">Ana Sayfa</a>
-                <a asp-controller="Home" asp-action="Service" class="nav-item nav-link">Servislerimiz</a>
-                <a asp-controller="Home" asp-action="About" class="nav-item nav-link">Hakkımızda</a>
-                <a asp-controller="Home" asp-action="Contact" class="nav-item nav-link">İletişim</a>
+                <a asp-controller="Home" asp-action="Index" class="nav-item nav-link @makeHomeActive">Ana Sayfa</a>
+                <a asp-controller="Home" asp-action="Service" class="nav-item nav-link @makeServiceActive">Servislerimiz</a>
+                <a asp-controller="Home" asp-action="Contact" class="nav-item nav-link @makeContactActive">İletişim</a>
             </div>
             <a asp-controller="Auth" asp-action="SignIn" class="btn btn-primary me-2">Giriş Yap</a>
             <a asp-controller="Auth" asp-action="SignUp" class="btn btn-primary ">Üye Ol</a>
@@ -98,10 +115,8 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h5 class="text-light mb-4">Hızlı Erişim</h5>
-                    <a class="btn btn-link" href="">Hakkımızda</a>
-                    <a class="btn btn-link" href="">Servislerimiz</a>
-                    <a class="btn btn-link" href="">SSS</a>
-                    <a class="btn btn-link" href="">İletişim</a>
+                    <a class="btn btn-link" asp-controller="Home" asp-action="Service">Servislerimiz</a>
+                    <a class="btn btn-link" asp-controller="Home" asp-action="Contact">İletişim</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h5 class="text-light mb-4">Haber Bülteni</h5>
