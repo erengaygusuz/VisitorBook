@@ -469,3 +469,17 @@
 .footer .copyright a:hover {
     color: #FFFFFF;
 }
+
+.outline-dark {
+    text-shadow: 1px 0 0 black, /*right */
+    0 1px 0 black, /*top */
+    -1px 0 0 black, /*left */
+    0 -1px 0 black; /*bottom */
+}
+
+.outline-light {
+    text-shadow: 1px 0 0 white, /*right */
+    0 1px 0 white, /*top */
+    -1px 0 0 white, /*left */
+    0 -1px 0 white; /*bottom */
+}
