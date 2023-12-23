@@ -8,10 +8,6 @@ namespace VisitorBook.Backend.Core.Entities
     public class User : IdentityUser<int>
     {
         [Required]
-        [NotEmptyGuid]
-        public Guid GId { get; set; }
-
-        [Required]
         [MaxLength(100)]
         [MinLength(3)]
         public string Name { get; set; }

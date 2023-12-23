@@ -6130,21 +6130,21 @@ var PickerHandler = function () {
       var vertical = this.options.horizontal !== true,
           slider = vertical ? this.options.sliders : this.options.slidersHorz;
 
-      var saturationGuide = this.picker.find('.colorpicker-saturation .colorpicker-guide'),
-          hueGuide = this.picker.find('.colorpicker-hue .colorpicker-guide'),
-          alphaGuide = this.picker.find('.colorpicker-alpha .colorpicker-guide');
+      var saturationinte = this.picker.find('.colorpicker-saturation .colorpicker-guide'),
+          hueinte = this.picker.find('.colorpicker-hue .colorpicker-guide'),
+          alphainte = this.picker.find('.colorpicker-alpha .colorpicker-guide');
 
       var hsva = this.color.toHsvaRatio();
 
       // Set guides position
-      if (hueGuide.length) {
-        hueGuide.css(vertical ? 'top' : 'left', (vertical ? slider.hue.maxTop : slider.hue.maxLeft) * (1 - hsva.h));
+      if (hueinte.length) {
+        hueinte.css(vertical ? 'top' : 'left', (vertical ? slider.hue.maxTop : slider.hue.maxLeft) * (1 - hsva.h));
       }
-      if (alphaGuide.length) {
-        alphaGuide.css(vertical ? 'top' : 'left', (vertical ? slider.alpha.maxTop : slider.alpha.maxLeft) * (1 - hsva.a));
+      if (alphainte.length) {
+        alphainte.css(vertical ? 'top' : 'left', (vertical ? slider.alpha.maxTop : slider.alpha.maxLeft) * (1 - hsva.a));
       }
-      if (saturationGuide.length) {
-        saturationGuide.css({
+      if (saturationinte.length) {
+        saturationinte.css({
           'top': slider.saturation.maxTop - hsva.v * slider.saturation.maxTop,
           'left': hsva.s * slider.saturation.maxLeft
         });

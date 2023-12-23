@@ -47,9 +47,9 @@ namespace VisitorBook.Backend.PL.Controllers
         }
 
         [HttpGet("{id}", Name = "GetCountry")]
-        public async Task<IActionResult> GetCountry(Guid id)
+        public async Task<IActionResult> GetCountry(int id)
         {
-            var country = await _countryService.GetAsync(u => u.GId == id);
+            var country = await _countryService.GetAsync(u => u.Id == id);
 
             if (country == null)
             {
@@ -62,9 +62,9 @@ namespace VisitorBook.Backend.PL.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCountry(Guid id)
+        public async Task<IActionResult> DeleteCountry(int id)
         {
-            var countryToDelete = await _countryService.GetAsync(u => u.GId == id);
+            var countryToDelete = await _countryService.GetAsync(u => u.Id == id);
 
             if (countryToDelete == null)
             {
@@ -97,9 +97,9 @@ namespace VisitorBook.Backend.PL.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCountry(Guid id, [FromBody] CountryRequestDto countryRequestDto)
+        public async Task<IActionResult> UpdateCountry(int id, [FromBody] CountryRequestDto countryRequestDto)
         {
-            var countryToUpdate = await _countryService.GetAsync(c => c.GId == id);
+            var countryToUpdate = await _countryService.GetAsync(c => c.Id == id);
 
             if (countryToUpdate == null)
             {

@@ -30,7 +30,14 @@ namespace VisitorBook.Frontend.UI.Services
             return response;
         }
 
-        public async Task<CityOutput> GetByIdAsync(Guid id)
+        public async Task<List<CountryOutput>> GetAllByCountryAsync(int countryId)
+        {
+            var response = await _httpClient.GetFromJsonAsync<List<CountryOutput>>($"counties/getallcountriesbycountry/{countryId}");
+
+            return response;
+        }
+
+        public async Task<CityOutput> GetByIdAsync(int id)
         {
             var response = await _httpClient.GetFromJsonAsync<CityOutput>($"cities/{id}");
 
@@ -44,14 +51,14 @@ namespace VisitorBook.Frontend.UI.Services
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> UpdateAsync(Guid id, CityInput cityAddInput)
+        public async Task<bool> UpdateAsync(int id, CityInput cityAddInput)
         {
             var response = await _httpClient.PutAsJsonAsync($"cities/{id}", cityAddInput);
 
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> RemoveAsync(Guid id)
+        public async Task<bool> RemoveAsync(int id)
         {
             var response = await _httpClient.DeleteAsync($"cities/{id}");
 

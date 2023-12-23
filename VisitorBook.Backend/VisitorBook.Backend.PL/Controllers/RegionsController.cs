@@ -47,9 +47,9 @@ namespace VisitorBook.Backend.PL.Controllers
         }
 
         [HttpGet("{id}", Name = "GetRegion")]
-        public async Task<IActionResult> GetRegion(Guid id)
+        public async Task<IActionResult> GetRegion(int id)
         {
-            var region = await _regionService.GetAsync(u => u.GId == id);
+            var region = await _regionService.GetAsync(u => u.Id == id);
 
             if (region == null)
             {
@@ -62,9 +62,9 @@ namespace VisitorBook.Backend.PL.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRegion(Guid id)
+        public async Task<IActionResult> DeleteRegion(int id)
         {
-            var regionToDelete = await _regionService.GetAsync(u => u.GId == id);
+            var regionToDelete = await _regionService.GetAsync(u => u.Id == id);
 
             if (regionToDelete == null)
             {
@@ -97,9 +97,9 @@ namespace VisitorBook.Backend.PL.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateRegion(Guid id, [FromBody] RegionRequestDto regionRequestDto)
+        public async Task<IActionResult> UpdateRegion(int id, [FromBody] RegionRequestDto regionRequestDto)
         {
-            var regionToUpdate = await _regionService.GetAsync(c => c.GId == id);
+            var regionToUpdate = await _regionService.GetAsync(c => c.Id == id);
 
             if (regionToUpdate == null)
             {

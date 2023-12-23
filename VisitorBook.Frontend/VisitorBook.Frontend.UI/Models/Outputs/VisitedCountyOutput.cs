@@ -2,7 +2,7 @@
 {
     public class VisitedCountyOutput
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public VisitorOutput Visitor { get; set; }
 

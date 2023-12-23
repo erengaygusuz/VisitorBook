@@ -47,9 +47,9 @@ namespace VisitorBook.Backend.PL.Controllers
         }
 
         [HttpGet("{id}", Name = "GetSubRegion")]
-        public async Task<IActionResult> GetSubRegion(Guid id)
+        public async Task<IActionResult> GetSubRegion(int id)
         {
-            var subRegion = await _subRegionService.GetAsync(u => u.GId == id);
+            var subRegion = await _subRegionService.GetAsync(u => u.Id == id);
 
             if (subRegion == null)
             {
@@ -62,9 +62,9 @@ namespace VisitorBook.Backend.PL.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteSubRegion(Guid id)
+        public async Task<IActionResult> DeleteSubRegion(int id)
         {
-            var subRegionToDelete = await _subRegionService.GetAsync(u => u.GId == id);
+            var subRegionToDelete = await _subRegionService.GetAsync(u => u.Id == id);
 
             if (subRegionToDelete == null)
             {
@@ -97,9 +97,9 @@ namespace VisitorBook.Backend.PL.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateSubRegion(Guid id, [FromBody] SubRegionRequestDto subRegionRequestDto)
+        public async Task<IActionResult> UpdateSubRegion(int id, [FromBody] SubRegionRequestDto subRegionRequestDto)
         {
-            var subRegionToUpdate = await _subRegionService.GetAsync(c => c.GId == id);
+            var subRegionToUpdate = await _subRegionService.GetAsync(c => c.Id == id);
 
             if (subRegionToUpdate == null)
             {

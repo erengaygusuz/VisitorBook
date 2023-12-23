@@ -8,6 +8,6 @@
 
         public double Latitude { get; set; }
 
-        public Guid CityId { get; set; }
+        public int CityId { get; set; }
     }
 }

@@ -50,9 +50,9 @@ namespace VisitorBook.Backend.PL.Controllers
         }
 
         [HttpGet("{id}", Name = "GetVisitedCounty")]
-        public async Task<IActionResult> GetVisitedCounty(Guid id)
+        public async Task<IActionResult> GetVisitedCounty(int id)
         {
-            var visitedCounty = await _visitedCountyService.GetAsync(u => u.GId == id,
+            var visitedCounty = await _visitedCountyService.GetAsync(u => u.Id == id,
                 include: x => x.Include(c => c.Visitor).Include(c => c.County).ThenInclude(c => c.City));
 
             if (visitedCounty == null)
@@ -66,9 +66,9 @@ namespace VisitorBook.Backend.PL.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteVisitedCounty(Guid id)
+        public async Task<IActionResult> DeleteVisitedCounty(int id)
         {
-            var visitedCountyToDelete = await _visitedCountyService.GetAsync(u => u.GId == id);
+            var visitedCountyToDelete = await _visitedCountyService.GetAsync(u => u.Id == id);
 
             if (visitedCountyToDelete == null)
             {
@@ -101,9 +101,9 @@ namespace VisitorBook.Backend.PL.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateVisitedCounty(Guid id, [FromBody] VisitedCountyRequestDto visitedCountyRequestDto)
+        public async Task<IActionResult> UpdateVisitedCounty(int id, [FromBody] VisitedCountyRequestDto visitedCountyRequestDto)
         {
-            var visitedCountyToUpdate = await _visitedCountyService.GetAsync(c => c.GId == id);
+            var visitedCountyToUpdate = await _visitedCountyService.GetAsync(c => c.Id == id);
 
             if (visitedCountyToUpdate == null)
             {

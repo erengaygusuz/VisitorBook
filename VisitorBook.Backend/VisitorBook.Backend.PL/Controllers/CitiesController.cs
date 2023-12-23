@@ -5,6 +5,7 @@ using VisitorBook.Backend.Core.Dtos.CityDtos;
 using VisitorBook.Backend.Core.Entities;
 using VisitorBook.Backend.Core.Utilities.DataTablesServerSideHelpers;
 using VisitorBook.Backend.Core.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace VisitorBook.Backend.PL.Controllers
 {
@@ -28,13 +29,13 @@ namespace VisitorBook.Backend.PL.Controllers
                 return UnprocessableEntity(ModelState.GetValidationErrors());
             }
 
-            return DataTablesResult(_cityService.GetAll<CityResponseDto>(dataTablesOptions));
+            return DataTablesResult(_cityService.GetAll<CityResponseDto>(dataTablesOptions, include: x => x.Include(c => c.Country)));
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllCities()
         {
-            var cities = await _cityService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Name));
+            var cities = await _cityService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Name), include: x => x.Include(c => c.Country));
 
             if (cities == null)
             {
@@ -47,9 +48,9 @@ namespace VisitorBook.Backend.PL.Controllers
         }
 
         [HttpGet("{id}", Name = "GetCity")]
-        public async Task<IActionResult> GetCity(Guid id)
+        public async Task<IActionResult> GetCity(int id)
         {
-            var city = await _cityService.GetAsync(u => u.GId == id);
+            var city = await _cityService.GetAsync(u => u.Id == id, include: u => u.Include(a => a.Country));
 
             if (city == null)
             {
@@ -62,9 +63,9 @@ namespace VisitorBook.Backend.PL.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCity(Guid id)
+        public async Task<IActionResult> DeleteCity(int id)
         {
-            var cityToDelete = await _cityService.GetAsync(u => u.GId == id);
+            var cityToDelete = await _cityService.GetAsync(u => u.Id == id);
 
             if (cityToDelete == null)
             {
@@ -97,9 +98,9 @@ namespace VisitorBook.Backend.PL.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCity(Guid id, [FromBody] CityRequestDto cityRequestDto)
+        public async Task<IActionResult> UpdateCity(int id, [FromBody] CityRequestDto cityRequestDto)
         {
-            var cityToUpdate = await _cityService.GetAsync(c => c.GId == id);
+            var cityToUpdate = await _cityService.GetAsync(c => c.Id == id);
 
             if (cityToUpdate == null)
             {

@@ -39,10 +39,28 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 });
 
 builder.Services.AddScoped(typeof(RazorViewConverter));
+builder.Services.AddScoped(typeof(RegionDataTablesOptions));
+builder.Services.AddScoped(typeof(SubRegionDataTablesOptions));
+builder.Services.AddScoped(typeof(CountryDataTablesOptions));
 builder.Services.AddScoped(typeof(CityDataTablesOptions));
 builder.Services.AddScoped(typeof(CountyDataTablesOptions));
 builder.Services.AddScoped(typeof(VisitedCountyDataTablesOptions));
 builder.Services.AddScoped(typeof(VisitorDataTablesOptions));
+
+builder.Services.AddHttpClient<RegionApiService>(opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+
+builder.Services.AddHttpClient<SubRegionApiService>(opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+
+builder.Services.AddHttpClient<CountryApiService>(opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
 
 builder.Services.AddHttpClient<CityApiService>(opt =>
 {

@@ -30,7 +30,7 @@ namespace VisitorBook.Frontend.UI.Services
             return response;
         }
 
-        public async Task<VisitedCountyOutput> GetByIdAsync(Guid id)
+        public async Task<VisitedCountyOutput> GetByIdAsync(int id)
         {
             var response = await _httpClient.GetFromJsonAsync<VisitedCountyOutput>($"visitedcounties/{id}");
 
@@ -44,14 +44,14 @@ namespace VisitorBook.Frontend.UI.Services
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> UpdateAsync(Guid id, VisitedCountyInput visitedCountyAddInput)
+        public async Task<bool> UpdateAsync(int id, VisitedCountyInput visitedCountyAddInput)
         {
             var response = await _httpClient.PutAsJsonAsync($"visitedcounties/{id}", visitedCountyAddInput);
 
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> RemoveAsync(Guid id)
+        public async Task<bool> RemoveAsync(int id)
         {
             var response = await _httpClient.DeleteAsync($"visitedcounties/{id}");
 

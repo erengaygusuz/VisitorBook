@@ -6,8 +6,6 @@ namespace VisitorBook.Backend.Core.Entities
 {
     public class Role : IdentityRole<int>
     {
-        [Required]
-        [NotEmptyGuid]
-        public Guid GId { get; set; }
+
     }
 }
