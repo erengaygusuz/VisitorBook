@@ -61,17 +61,18 @@
                 var makeServiceActive = "";
                 var makeContactActive = "";
 
-                @if (this.ViewContext.RouteData.Values["action"].ToString().ToLower() == "index")
-                {
-                    makeHomeActive = "active";
-                }
-                else if (this.ViewContext.RouteData.Values["action"].ToString().ToLower() == "service")
+                if (this.ViewContext.RouteData.Values["action"].ToString().ToLower() == "service")
                 {
                     makeServiceActive = "active";
                 }
                 else if (this.ViewContext.RouteData.Values["action"].ToString().ToLower() == "contact")
                 {
                     makeContactActive = "active";
+                }
+
+                else
+                {
+                    makeHomeActive = "active";
                 }
             }
             <div class="navbar-nav mx-auto bg-light rounded pe-4 py-3 py-lg-0">

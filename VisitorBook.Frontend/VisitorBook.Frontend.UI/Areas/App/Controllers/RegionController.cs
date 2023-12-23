@@ -76,7 +76,7 @@ namespace VisitorBook.Frontend.UI.Areas.Admin.Controllers
             {
                 await _regionApiService.AddAsync(region);
 
-                return Json(new { isValid = true, message = _localization["Cities.Notification.Add.Text"].Value });
+                return Json(new { isValid = true, message = _localization["Regions.Notification.Add.Text"].Value });
             }
 
             return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", region) });
@@ -91,7 +91,7 @@ namespace VisitorBook.Frontend.UI.Areas.Admin.Controllers
             {
                 await _regionApiService.UpdateAsync(id, region);
 
-                return Json(new { isValid = true, message = _localization["Cities.Notification.Edit.Text"].Value });
+                return Json(new { isValid = true, message = _localization["Regions.Notification.Edit.Text"].Value });
             }
 
             return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", region) });
@@ -104,10 +104,10 @@ namespace VisitorBook.Frontend.UI.Areas.Admin.Controllers
 
             if (result)
             {
-                return Json(new { message = _localization["Cities.Notification.SuccessfullDelete.Text"].Value });
+                return Json(new { message = _localization["Regions.Notification.SuccessfullDelete.Text"].Value });
             }
 
-            return BadRequest(new { message = _localization["Cities.Notification.UnSuccessfullDelete.Text"].Value });
+            return BadRequest(new { message = _localization["Regions.Notification.UnSuccessfullDelete.Text"].Value });
         }
     }
 }

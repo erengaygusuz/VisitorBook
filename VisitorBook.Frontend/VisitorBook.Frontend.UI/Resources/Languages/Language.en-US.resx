@@ -450,4 +450,7 @@
   <data name="Countries.Table.Column3.Text" xml:space="preserve">
     <value>SubRegion Name</value>
   </data>
+  <data name="Cities.Table.Column3.Text" xml:space="preserve">
+    <value>Country Name</value>
+  </data>
 </root>

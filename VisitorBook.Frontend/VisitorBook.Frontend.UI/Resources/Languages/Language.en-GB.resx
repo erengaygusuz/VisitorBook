@@ -391,7 +391,7 @@
     <value>Name</value>
   </data>
   <data name="Countries.Table.Column2.Text" xml:space="preserve">
-    <value>SubRegion Name</value>
+    <value>Code</value>
   </data>
   <data name="Countries.Title.Text" xml:space="preserve">
     <value>Country List</value>
@@ -449,5 +449,8 @@
   </data>
   <data name="Countries.Table.Column3.Text" xml:space="preserve">
     <value>SubRegion Name</value>
+  </data>
+  <data name="Cities.Table.Column3.Text" xml:space="preserve">
+    <value>Country Name</value>
   </data>
 </root>

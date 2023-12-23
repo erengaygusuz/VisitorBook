@@ -116,7 +116,7 @@ namespace VisitorBook.Frontend.UI.Areas.Admin.Controllers
             {
                 await _countryApiService.AddAsync(countryViewModel.Country);
 
-                return Json(new { isValid = true, message = _localization["Counties.Notification.Add.Text"].Value });
+                return Json(new { isValid = true, message = _localization["Countries.Notification.Add.Text"].Value });
             }
 
             var subRegions = await _subRegionApiService.GetAllAsync();
@@ -140,7 +140,7 @@ namespace VisitorBook.Frontend.UI.Areas.Admin.Controllers
             {
                 await _countryApiService.UpdateAsync(id, countryViewModel.Country);
 
-                return Json(new { isValid = true, message = _localization["Counties.Notification.Edit.Text"].Value });
+                return Json(new { isValid = true, message = _localization["Countries.Notification.Edit.Text"].Value });
             }
 
             var subRegions = await _subRegionApiService.GetAllAsync();
@@ -162,10 +162,10 @@ namespace VisitorBook.Frontend.UI.Areas.Admin.Controllers
 
             if (result)
             {
-                return Json(new { message = _localization["Counties.Notification.SuccessfullDelete.Text"].Value });
+                return Json(new { message = _localization["Countries.Notification.SuccessfullDelete.Text"].Value });
             }
 
-            return BadRequest(new { message = _localization["Counties.Notification.UnSuccessfullDelete.Text"].Value });
+            return BadRequest(new { message = _localization["Countries.Notification.UnSuccessfullDelete.Text"].Value });
         }
     }
 }

@@ -391,7 +391,7 @@
     <value>Ülke Adı</value>
   </data>
   <data name="Countries.Table.Column2.Text" xml:space="preserve">
-    <value>Alt Bölge Adı</value>
+    <value>Ülke Kodu</value>
   </data>
   <data name="Countries.Title.Text" xml:space="preserve">
     <value>Ülke Listesi</value>
@@ -449,5 +449,8 @@
   </data>
   <data name="Countries.Table.Column3.Text" xml:space="preserve">
     <value>Alt Bölge Adı</value>
+  </data>
+  <data name="Cities.Table.Column3.Text" xml:space="preserve">
+    <value>Ülke Adı</value>
   </data>
 </root>

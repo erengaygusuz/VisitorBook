@@ -5,6 +5,7 @@ using VisitorBook.Backend.Core.Dtos.SubRegionDtos;
 using VisitorBook.Backend.Core.Entities;
 using VisitorBook.Backend.Core.Utilities.DataTablesServerSideHelpers;
 using VisitorBook.Backend.Core.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace VisitorBook.Backend.PL.Controllers
 {
@@ -28,13 +29,13 @@ namespace VisitorBook.Backend.PL.Controllers
                 return UnprocessableEntity(ModelState.GetValidationErrors());
             }
 
-            return DataTablesResult(_subRegionService.GetAll<SubRegionResponseDto>(dataTablesOptions));
+            return DataTablesResult(_subRegionService.GetAll<SubRegionResponseDto>(dataTablesOptions, include: u => u.Include(a => a.Region)));
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllSubRegions()
         {
-            var subRegions = await _subRegionService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Name));
+            var subRegions = await _subRegionService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Name), include: u => u.Include(a => a.Region));
 
             if (subRegions == null)
             {
@@ -49,7 +50,7 @@ namespace VisitorBook.Backend.PL.Controllers
         [HttpGet("{id}", Name = "GetSubRegion")]
         public async Task<IActionResult> GetSubRegion(int id)
         {
-            var subRegion = await _subRegionService.GetAsync(u => u.Id == id);
+            var subRegion = await _subRegionService.GetAsync(u => u.Id == id, include: u => u.Include(a => a.Region));
 
             if (subRegion == null)
             {

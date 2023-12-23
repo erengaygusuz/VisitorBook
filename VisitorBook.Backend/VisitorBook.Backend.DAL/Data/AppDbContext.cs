@@ -31,14 +31,6 @@ namespace VisitorBook.Backend.DAL.Data
 
             //_fakeDataGenerator.GenerateData();
 
-            //modelBuilder.Entity<City>().HasData(
-            //    _fakeDataGenerator.Cities
-            //);
-
-            //modelBuilder.Entity<County>().HasData(
-            //    _fakeDataGenerator.Counties
-            //);
-
             //modelBuilder.Entity<Visitor>().HasData(
             //    _fakeDataGenerator.Visitors
             //);

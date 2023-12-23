@@ -39,9 +39,9 @@
             <div class="row mt-4">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label asp-for="@Model.City.CountryId" class="control-label">@localization["Counties.Table.Column2.Text"]</label>
+                        <label asp-for="@Model.City.CountryId" class="control-label">@localization["Cities.Table.Column3.Text"]</label>
                         <select asp-for="@Model.City.CountryId" asp-items="@Model.CountryList" class="form-control select2" style="width: 100% !important;" id="city-select-field">
-                            <option disabled selected>@localization["AddOrEditModal.CitySelection.Text"]</option>
+                            <option disabled selected>@localization["AddOrEditModal.CountrySelection.Text"]</option>
                         </select>
                         <span asp-validation-for="@Model.City.CountryId" class="text-danger"></span>
                     </div>
