@@ -21,7 +21,7 @@
             <div class="row mt-4">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label asp-for="@Model.Country.Name" class="control-label">@localization["Cities.Table.Column1.Text"]</label>
+                        <label asp-for="@Model.Country.Name" class="control-label">@localization["Countries.Table.Column1.Text"]</label>
                         <input asp-for="@Model.Country.Name" class="form-control" />
                         <span asp-validation-for="@Model.Country.Name" class="text-danger"></span>
                     </div>
@@ -30,7 +30,7 @@
             <div class="row mt-4">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label asp-for="@Model.Country.Code" class="control-label">@localization["Cities.Table.Column2.Text"]</label>
+                        <label asp-for="@Model.Country.Code" class="control-label">@localization["Countries.Table.Column2.Text"]</label>
                         <input asp-for="@Model.Country.Code" class="form-control" />
                         <span asp-validation-for="@Model.Country.Code" class="text-danger"></span>
                     </div>
@@ -39,9 +39,9 @@
             <div class="row mt-4">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label asp-for="@Model.Country.SubRegionId" class="control-label">@localization["Counties.Table.Column2.Text"]</label>
+                        <label asp-for="@Model.Country.SubRegionId" class="control-label">@localization["SubRegions.Table.Column2.Text"]</label>
                         <select asp-for="@Model.Country.SubRegionId" asp-items="@Model.SubRegionList" class="form-control select2" style="width: 100% !important;" id="city-select-field">
-                            <option disabled selected>@localization["AddOrEditModal.CitySelection.Text"]</option>
+                            <option disabled selected>@localization["AddOrEditModal.CountrySelection.Text"]</option>
                         </select>
                         <span asp-validation-for="@Model.Country.SubRegionId" class="text-danger"></span>
                     </div>

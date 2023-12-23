@@ -5,6 +5,7 @@ using VisitorBook.Backend.Core.Dtos.CountryDtos;
 using VisitorBook.Backend.Core.Entities;
 using VisitorBook.Backend.Core.Utilities.DataTablesServerSideHelpers;
 using VisitorBook.Backend.Core.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace VisitorBook.Backend.PL.Controllers
 {
@@ -28,13 +29,13 @@ namespace VisitorBook.Backend.PL.Controllers
                 return UnprocessableEntity(ModelState.GetValidationErrors());
             }
 
-            return DataTablesResult(_countryService.GetAll<CountryResponseDto>(dataTablesOptions));
+            return DataTablesResult(_countryService.GetAll<CountryResponseDto>(dataTablesOptions, include: u => u.Include(a => a.SubRegion)));
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllCountries()
         {
-            var countries = await _countryService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Name));
+            var countries = await _countryService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Name), include: u => u.Include(a => a.SubRegion));
 
             if (countries == null)
             {
@@ -49,7 +50,7 @@ namespace VisitorBook.Backend.PL.Controllers
         [HttpGet("{id}", Name = "GetCountry")]
         public async Task<IActionResult> GetCountry(int id)
         {
-            var country = await _countryService.GetAsync(u => u.Id == id);
+            var country = await _countryService.GetAsync(u => u.Id == id, include: u => u.Include(a => a.SubRegion));
 
             if (country == null)
             {

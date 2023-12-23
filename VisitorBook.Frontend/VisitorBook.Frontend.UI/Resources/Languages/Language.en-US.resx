@@ -360,4 +360,94 @@
   <data name="Layout.Header.Navbar.Items9.Text" xml:space="preserve">
     <value>Cities</value>
   </data>
+  <data name="AddOrEditModal.CountrySelection.Text" xml:space="preserve">
+    <value>--Select Country--</value>
+  </data>
+  <data name="AddOrEditModal.RegionSelection.Text" xml:space="preserve">
+    <value>--Select Region--</value>
+  </data>
+  <data name="AddOrEditModal.SubRegionSelection.Text" xml:space="preserve">
+    <value>--Select SubRegion--</value>
+  </data>
+  <data name="Countries.AddModal.Title.Text" xml:space="preserve">
+    <value>Add Country</value>
+  </data>
+  <data name="Countries.EditModal.Title.Text" xml:space="preserve">
+    <value>Edit Country</value>
+  </data>
+  <data name="Countries.Notification.Add.Text" xml:space="preserve">
+    <value>Country added successfully</value>
+  </data>
+  <data name="Countries.Notification.Edit.Text" xml:space="preserve">
+    <value>Country edited successfully</value>
+  </data>
+  <data name="Countries.Notification.SuccessfullDelete.Text" xml:space="preserve">
+    <value>Country deleted successfully</value>
+  </data>
+  <data name="Countries.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
+    <value>Country did not deleted due to usage of it. Please first delete the record which uses this country after that try to delete it again</value>
+  </data>
+  <data name="Countries.Table.Column1.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Countries.Table.Column2.Text" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Countries.Title.Text" xml:space="preserve">
+    <value>Country List</value>
+  </data>
+  <data name="Regions.AddModal.Title.Text" xml:space="preserve">
+    <value>Add Region</value>
+  </data>
+  <data name="Regions.EditModal.Title.Text" xml:space="preserve">
+    <value>Edit Region</value>
+  </data>
+  <data name="Regions.Notification.Add.Text" xml:space="preserve">
+    <value>Region added successfully</value>
+  </data>
+  <data name="Regions.Notification.Edit.Text" xml:space="preserve">
+    <value>Region edited successfully</value>
+  </data>
+  <data name="Regions.Notification.SuccessfullDelete.Text" xml:space="preserve">
+    <value>Region deleted successfully</value>
+  </data>
+  <data name="Regions.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
+    <value>Region did not deleted due to usage of it. Please first delete the record which uses this region after that try to delete it again</value>
+  </data>
+  <data name="Regions.Table.Column1.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Regions.Title.Text" xml:space="preserve">
+    <value>Region List</value>
+  </data>
+  <data name="SubRegions.AddModal.Title.Text" xml:space="preserve">
+    <value>Add SubRegion</value>
+  </data>
+  <data name="SubRegions.EditModal.Title.Text" xml:space="preserve">
+    <value>Edit SubRegion</value>
+  </data>
+  <data name="SubRegions.Notification.Add.Text" xml:space="preserve">
+    <value>SubRegion added successfully</value>
+  </data>
+  <data name="SubRegions.Notification.Edit.Text" xml:space="preserve">
+    <value>SubRegion edited successfully</value>
+  </data>
+  <data name="SubRegions.Notification.SuccessfullDelete.Text" xml:space="preserve">
+    <value>SubRegion deleted successfully</value>
+  </data>
+  <data name="SubRegions.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
+    <value>SubRegion did not deleted due to usage of it. Please first delete the record which uses this subregion after that try to delete it again</value>
+  </data>
+  <data name="SubRegions.Table.Column1.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="SubRegions.Table.Column2.Text" xml:space="preserve">
+    <value>Region Name</value>
+  </data>
+  <data name="SubRegions.Title.Text" xml:space="preserve">
+    <value>SubRegion List</value>
+  </data>
+  <data name="Countries.Table.Column3.Text" xml:space="preserve">
+    <value>SubRegion Name</value>
+  </data>
 </root>

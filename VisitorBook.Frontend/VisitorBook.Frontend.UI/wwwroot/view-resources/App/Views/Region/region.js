@@ -4,7 +4,7 @@ $(document).ready(function () {
     var exportBtnText = document.getElementById('TableExportBtnText').value
     var editBtnText = document.getElementById('TableEditBtnText').value
     var deleteBtnText = document.getElementById('TableDeleteBtnText').value
-    var editModalTitleText = document.getElementById('CitiesEditModalTitleText').value
+    var editModalTitleText = document.getElementById('RegionsEditModalTitleText').value
 
     var activeLanguage = document.getElementById('ActiveLanguage').value
 
@@ -41,7 +41,7 @@ function loadDataTable(
             {
                 extend: 'pdfHtml5',
                 text: exportBtnText,
-                filename: 'VisitorBook-Cities',
+                filename: 'VisitorBook-Regions',
                 orientation: 'landscape',
                 pageSize: 'A4',
                 customize: function (doc) {
@@ -78,7 +78,7 @@ function loadDataTable(
                     doc.content[0].layout = objLayout
                 },
                 exportOptions: {
-                    columns: [0, 1],
+                    columns: [0],
                 },
             },
         ],
@@ -119,13 +119,7 @@ function loadDataTable(
                 },
                 width: '20%',
             },
-        ],
-        columnDefs: [
-            {
-                targets: [2],
-                orderable: false,
-            },
-        ],
+        ]
     })
 }
 

@@ -5,7 +5,7 @@ $(document).ready(function () {
     var exportBtnText = document.getElementById('TableExportBtnText').value
     var editBtnText = document.getElementById('TableEditBtnText').value
     var deleteBtnText = document.getElementById('TableDeleteBtnText').value
-    var editModalTitleText = document.getElementById('CountiesEditModalTitleText').value
+    var editModalTitleText = document.getElementById('CountriesEditModalTitleText').value
 
     var activeLanguage = document.getElementById('ActiveLanguage').value
 
@@ -42,7 +42,7 @@ function loadDataTable(
             {
                 extend: 'pdfHtml5',
                 text: exportBtnText,
-                filename: 'VisitorBook-Counties',
+                filename: 'VisitorBook-Countries',
                 orientation: 'landscape',
                 pageSize: 'A4',
                 customize: function (doc) {
@@ -79,7 +79,7 @@ function loadDataTable(
                     doc.content[0].layout = objLayout
                 },
                 exportOptions: {
-                    columns: [0, 1, 2, 3],
+                    columns: [0, 1, 2],
                 },
             },
         ],
@@ -106,7 +106,7 @@ function loadDataTable(
         columns: [
             { data: 'name', width: '30%' },
             { data: 'code', width: '30%' },
-            { data: 'subregion.name', width: '20%' },
+            { data: 'subRegion.name', width: '20%' },
             {
                 data: 'id',
                 render: function (data) {
@@ -122,13 +122,7 @@ function loadDataTable(
                 },
                 width: '20%',
             },
-        ],
-        columnDefs: [
-            {
-                targets: [4],
-                orderable: false,
-            },
-        ],
+        ]
     })
 }
 

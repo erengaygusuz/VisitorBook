@@ -1,4 +1,4 @@
-﻿@model CityInput
+﻿@model RegionInput
 
 @{
     ViewData["Title"] = "Add";
@@ -12,8 +12,8 @@
             <div class="row mt-4">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label asp-for="Name" class="control-label">@localization["Cities.Table.Column1.Text"]</label>
-                        <input asp-for="Name" class="form-control" />
+                        <label asp-for="@Model.Name" class="control-label">@localization["Regions.Table.Column1.Text"]</label>
+                        <input asp-for="@Model.Name" class="form-control" />
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                 </div>

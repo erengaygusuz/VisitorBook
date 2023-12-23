@@ -5,6 +5,14 @@
     Layout = null;
 }
 
+<script type="text/javascript">
+    $('.select2').select2({
+        dropdownParent: $('#form-modal'),
+        theme: 'bootstrap4',
+        language: document.getElementById('ActiveLanguage').value.substring(0, 2)
+    });
+</script>
+
 <div class="row">
     <div class="col-md-12">
         <form asp-action="Add" onsubmit="return AddRecord(this);" autocomplete="off">
@@ -12,7 +20,7 @@
             <div class="row mt-4">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label asp-for="@Model.SubRegion.Name" class="control-label">@localization["Cities.Table.Column1.Text"]</label>
+                        <label asp-for="@Model.SubRegion.Name" class="control-label">@localization["SubRegions.Table.Column1.Text"]</label>
                         <input asp-for="@Model.SubRegion.Name" class="form-control" />
                         <span asp-validation-for="@Model.SubRegion.Name" class="text-danger"></span>
                     </div>
@@ -21,9 +29,9 @@
             <div class="row mt-4">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label asp-for="@Model.SubRegion.RegionId" class="control-label">@localization["Counties.Table.Column2.Text"]</label>
+                        <label asp-for="@Model.SubRegion.RegionId" class="control-label">@localization["SubRegions.Table.Column2.Text"]</label>
                         <select asp-for="@Model.SubRegion.RegionId" asp-items="@Model.RegionList" class="form-control select2" style="width: 100% !important;" id="city-select-field">
-                            <option disabled selected>@localization["AddOrEditModal.CitySelection.Text"]</option>
+                            <option disabled selected>@localization["AddOrEditModal.RegionSelection.Text"]</option>
                         </select>
                         <span asp-validation-for="@Model.SubRegion.RegionId" class="text-danger"></span>
                     </div>

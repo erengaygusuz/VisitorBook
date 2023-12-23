@@ -331,10 +331,10 @@
     <value>İlçe kullanıldığı için silinemedi. Öncelikle ilçeyi kullanan kaydı silin sonra ilçeyi silmeyi deneyin</value>
   </data>
   <data name="Cities.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
-    <value>İl kullanıldığı için silinemedi. Öncelikle ilçeyi kullanan kaydı silin sonra ili silmeyi deneyin</value>
+    <value>İl kullanıldığı için silinemedi. Öncelikle ili kullanan kaydı silin sonra ili silmeyi deneyin</value>
   </data>
   <data name="VisitedCounties.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
-    <value>Ziyaret edilen ilçe kullanıldığı için silinemedi. Öncelikle ziyaret edilen ilçeyi kullanan kaydı silin sonra ilçeyi silmeyi deneyin</value>
+    <value>Ziyaret edilen ilçe kullanıldığı için silinemedi. Öncelikle ziyaret edilen ilçeyi kullanan kaydı silin sonra ziyaret edilen ilçeyi silmeyi deneyin</value>
   </data>
   <data name="Layout.Header.Navbar.Items6.Text" xml:space="preserve">
     <value>Bölgeler</value>
@@ -359,5 +359,95 @@
   </data>
   <data name="Layout.Header.Navbar.Items9.Text" xml:space="preserve">
     <value>İller</value>
+  </data>
+  <data name="AddOrEditModal.CountrySelection.Text" xml:space="preserve">
+    <value>--Ülke Seç--</value>
+  </data>
+  <data name="AddOrEditModal.RegionSelection.Text" xml:space="preserve">
+    <value>--Bölge Seç--</value>
+  </data>
+  <data name="AddOrEditModal.SubRegionSelection.Text" xml:space="preserve">
+    <value>--Alt Bölge Seç--</value>
+  </data>
+  <data name="Countries.AddModal.Title.Text" xml:space="preserve">
+    <value>Ülke Ekle</value>
+  </data>
+  <data name="Countries.EditModal.Title.Text" xml:space="preserve">
+    <value>Ülke Düzenle</value>
+  </data>
+  <data name="Countries.Notification.Add.Text" xml:space="preserve">
+    <value>Ülke başarılı bir şekilde eklendi</value>
+  </data>
+  <data name="Countries.Notification.Edit.Text" xml:space="preserve">
+    <value>Ülke başarılı bir şekilde düzenlendi</value>
+  </data>
+  <data name="Countries.Notification.SuccessfullDelete.Text" xml:space="preserve">
+    <value>Ülke başarılı bir şekilde silindi</value>
+  </data>
+  <data name="Countries.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
+    <value>Ülke kullanıldığı için silinemedi. Öncelikle ülkeyi kullanan kaydı silin sonra ülkeyi silmeyi deneyin</value>
+  </data>
+  <data name="Countries.Table.Column1.Text" xml:space="preserve">
+    <value>Ülke Adı</value>
+  </data>
+  <data name="Countries.Table.Column2.Text" xml:space="preserve">
+    <value>Alt Bölge Adı</value>
+  </data>
+  <data name="Countries.Title.Text" xml:space="preserve">
+    <value>Ülke Listesi</value>
+  </data>
+  <data name="Regions.AddModal.Title.Text" xml:space="preserve">
+    <value>Bölge Ekle</value>
+  </data>
+  <data name="Regions.EditModal.Title.Text" xml:space="preserve">
+    <value>Bölge Düzenle</value>
+  </data>
+  <data name="Regions.Notification.Add.Text" xml:space="preserve">
+    <value>Bölge başarılı bir şekilde eklendi</value>
+  </data>
+  <data name="Regions.Notification.Edit.Text" xml:space="preserve">
+    <value>Bölge başarılı bir şekilde düzenlendi</value>
+  </data>
+  <data name="Regions.Notification.SuccessfullDelete.Text" xml:space="preserve">
+    <value>Bölge başarılı bir şekilde silindi</value>
+  </data>
+  <data name="Regions.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
+    <value>Bölge kullanıldığı için silinemedi. Öncelikle bölgeyi kullanan kaydı silin sonra bölgeyi silmeyi deneyin</value>
+  </data>
+  <data name="Regions.Table.Column1.Text" xml:space="preserve">
+    <value>Bölge Adı</value>
+  </data>
+  <data name="Regions.Title.Text" xml:space="preserve">
+    <value>Bölge Listesi</value>
+  </data>
+  <data name="SubRegions.AddModal.Title.Text" xml:space="preserve">
+    <value>Alt Bölge Ekle</value>
+  </data>
+  <data name="SubRegions.EditModal.Title.Text" xml:space="preserve">
+    <value>Alt Bölge Düzenle</value>
+  </data>
+  <data name="SubRegions.Notification.Add.Text" xml:space="preserve">
+    <value>Alt Bölge başarılı bir şekilde eklendi</value>
+  </data>
+  <data name="SubRegions.Notification.Edit.Text" xml:space="preserve">
+    <value>Alt Bölge başarılı bir şekilde düzenlendi</value>
+  </data>
+  <data name="SubRegions.Notification.SuccessfullDelete.Text" xml:space="preserve">
+    <value>Alt Bölge başarılı bir şekilde silindi</value>
+  </data>
+  <data name="SubRegions.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
+    <value>Alt bölge kullanıldığı için silinemedi. Öncelikle alt bölgeyi kullanan kaydı silin sonra alt bölgeyi silmeyi deneyin</value>
+  </data>
+  <data name="SubRegions.Table.Column1.Text" xml:space="preserve">
+    <value>Alt Bölge Adı</value>
+  </data>
+  <data name="SubRegions.Table.Column2.Text" xml:space="preserve">
+    <value>Bölge Adı</value>
+  </data>
+  <data name="SubRegions.Title.Text" xml:space="preserve">
+    <value>Alt Bölge Listesi</value>
+  </data>
+  <data name="Countries.Table.Column3.Text" xml:space="preserve">
+    <value>Alt Bölge Adı</value>
   </data>
 </root>

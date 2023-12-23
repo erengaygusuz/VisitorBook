@@ -3,12 +3,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">@localization["Cities.Title.Text"]</h1>
+                <h1 class="m-0">@localization["Regions.Title.Text"]</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item">Admin</li>
-                    <li class="breadcrumb-item active">@localization["Cities.Title.Text"]</li>
+                    <li class="breadcrumb-item active">@localization["Regions.Title.Text"]</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -27,7 +27,7 @@
                             <input type="hidden" id="TableEditBtnText" value="@localization["Table.EditBtn.Text"]" />
                             <input type="hidden" id="TableDeleteBtnText" value="@localization["Table.DeleteBtn.Text"]" />
                             <input type="hidden" id="ActiveLanguage" value="@Thread.CurrentThread.CurrentCulture.Name" />
-                            <input type="hidden" id="CitiesEditModalTitleText" value="@localization["Cities.EditModal.Title.Text"]" />
+                            <input type="hidden" id="RegionsEditModalTitleText" value="@localization["Regions.EditModal.Title.Text"]" />
                             <input type="hidden" id="DeleteRequestPopupTitleText" value="@localization["DeleteRequestPopup.Title.Text"]" />
                             <input type="hidden" id="DeleteRequestPopupBodyText" value="@localization["DeleteRequestPopup.Body.Text"]" />
                             <input type="hidden" id="DeleteRequestPopupConfirmBtnText"
@@ -38,7 +38,7 @@
                                 <div id="outside">
                                 </div>
                                 <div>
-                                    <a onclick="showInPopup('@Url.Action("Add", "City", new { Id = 0 }, Context.Request.Scheme)', '@localization["Cities.AddModal.Title.Text"]')"
+                                    <a onclick="showInPopup('@Url.Action("Add", "Region", new { Id = 0 }, Context.Request.Scheme)', '@localization["Regions.AddModal.Title.Text"]')"
                                        class="btn btn-primary mb-3 mr-2" role='button'>
                                         @localization["Table.AddBtn.Text"]
                                     </a>
@@ -49,7 +49,7 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        @localization["Cities.Table.Column1.Text"]
+                                        @localization["Regions.Table.Column1.Text"]
                                     </th>
                                     <th>
 
