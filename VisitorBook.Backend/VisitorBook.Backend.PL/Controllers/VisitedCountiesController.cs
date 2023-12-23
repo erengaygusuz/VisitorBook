@@ -30,14 +30,14 @@ namespace VisitorBook.Backend.PL.Controllers
             }
 
             return DataTablesResult(_visitedCountyService.GetAll<VisitedCountyResponseDto>(dataTablesOptions, 
-                include: x => x.Include(c => c.Visitor).Include(c => c.County).ThenInclude(c => c.City)));
+                include: x => x.Include(c => c.Visitor).ThenInclude(u => u.User).Include(c => c.County).ThenInclude(c => c.City)));
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllVisitedCounties()
         {
             var visitedCounties = await _visitedCountyService.GetAllAsync(orderBy: o => o.OrderBy(x => x.Visitor.User.Name),
-                include: x => x.Include(c => c.Visitor).Include(c => c.County).ThenInclude(c => c.City));
+                include: x => x.Include(c => c.Visitor).ThenInclude(u => u.User).Include(c => c.County).ThenInclude(c => c.City));
 
             if (visitedCounties == null)
             {
@@ -53,7 +53,7 @@ namespace VisitorBook.Backend.PL.Controllers
         public async Task<IActionResult> GetVisitedCounty(int id)
         {
             var visitedCounty = await _visitedCountyService.GetAsync(u => u.Id == id,
-                include: x => x.Include(c => c.Visitor).Include(c => c.County).ThenInclude(c => c.City));
+                include: x => x.Include(c => c.Visitor).ThenInclude(u => u.User).Include(c => c.County).ThenInclude(c => c.City));
 
             if (visitedCounty == null)
             {

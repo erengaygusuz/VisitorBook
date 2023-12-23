@@ -6,10 +6,10 @@ namespace VisitorBook.Backend.Core.Dtos.VisitorDtos
     {
         protected override IList<IPropertyMapping> _mappings => new List<IPropertyMapping>
         {
-            new PropertyMapping("Name", "Name"),
-            new PropertyMapping("Surname", "Surname"),
-            new PropertyMapping("BirthDate", "BirthDate"),
-            new PropertyMapping("Gender", "Gender")
+            new PropertyMapping("User.Name", "User.Name"),
+            new PropertyMapping("User.Surname", "User.Surname"),
+            new PropertyMapping("User.BirthDate", "User.BirthDate"),
+            new PropertyMapping("User.Gender", "User.Gender")
         };
 
         public override IList<IPropertyMapping> GetAssociatedMappings()

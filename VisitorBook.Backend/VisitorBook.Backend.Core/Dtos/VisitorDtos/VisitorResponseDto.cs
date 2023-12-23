@@ -5,7 +5,7 @@ namespace VisitorBook.Backend.Core.Dtos.VisitorDtos
 {
     public class VisitorResponseDto
     {
-        public UserResponseDto UserResponseDto { get; set; }
+        public UserResponseDto User { get; set; }
         public VisitorAddressResponseDto? VisitorAddress { get; set; }
     }
 }

@@ -107,16 +107,16 @@ function loadDataTable(
             datatype: 'json',
         },
         columns: [
-            { data: 'name', width: '30%' },
-            { data: 'surname', width: '30%' },
+            { data: 'user.name', width: '30%' },
+            { data: 'user.surname', width: '30%' },
             {
-                data: 'birthDate',
+                data: 'user.birthDate',
                 width: '12%',
                 render: function (data) {
                     return moment(data).format('DD/MM/YYYY')
                 }
             },
-            { data: 'gender', width: '8%' },
+            { data: 'user.gender', width: '8%' },
             {
                 data: 'id',
                 render: function (data) {

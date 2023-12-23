@@ -22,8 +22,8 @@ namespace VisitorBook.Frontend.UI.Configurations
                 {
                     new Column
                     {
-                        Data = "Visitor.Name",
-                        Name = "Visitor.Name",
+                        Data = "Visitor.User.Name",
+                        Name = "Visitor.User.Name",
                         Searchable = true,
                         Orderable = true,
                         Search = new Search

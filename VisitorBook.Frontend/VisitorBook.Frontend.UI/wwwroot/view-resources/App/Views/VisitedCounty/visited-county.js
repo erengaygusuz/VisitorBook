@@ -106,7 +106,7 @@ function loadDataTable(
         },
         columns: [
             {
-                data: 'visitor',
+                data: 'visitor.user',
                 width: '30%',
                 render: function (data) {
                     return data.name + ' ' + data.surname

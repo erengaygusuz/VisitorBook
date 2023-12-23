@@ -22,8 +22,8 @@ namespace VisitorBook.Frontend.UI.Configurations
                 {
                     new Column
                     {
-                        Data = "Name",
-                        Name = "Name",
+                        Data = "User.Name",
+                        Name = "User.Name",
                         Searchable = true,
                         Orderable = true,
                         Search = new Search
@@ -34,8 +34,8 @@ namespace VisitorBook.Frontend.UI.Configurations
                     },
                     new Column
                     {
-                        Data = "Surname",
-                        Name = "Surname",
+                        Data = "User.Surname",
+                        Name = "User.Surname",
                         Searchable = true,
                         Orderable = true,
                         Search = new Search
@@ -46,8 +46,8 @@ namespace VisitorBook.Frontend.UI.Configurations
                     },
                     new Column
                     {
-                        Data = "BirthDate",
-                        Name = "BirthDate",
+                        Data = "User.BirthDate",
+                        Name = "User.BirthDate",
                         Searchable = true,
                         Orderable = true,
                         Search = new Search
@@ -58,8 +58,8 @@ namespace VisitorBook.Frontend.UI.Configurations
                     },
                     new Column
                     {
-                        Data = "Gender",
-                        Name = "Gender",
+                        Data = "User.Gender",
+                        Name = "User.Gender",
                         Searchable = true,
                         Orderable = true,
                         Search = new Search

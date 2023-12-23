@@ -6,7 +6,7 @@ namespace VisitorBook.Backend.Core.Dtos.VisitedCountyDtos
     {
         protected override IList<IPropertyMapping> _mappings => new List<IPropertyMapping>
         {
-            new PropertyMapping("Visitor.Name", "Visitor.Name"),
+            new PropertyMapping("Visitor.User.Name", "Visitor.User.Name"),
             new PropertyMapping("County.Name", "County.Name"),
             new PropertyMapping("County.City.Name", "County.City.Name"),
             new PropertyMapping("VisitDate", "VisitDate")

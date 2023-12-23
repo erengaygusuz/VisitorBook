@@ -37,8 +37,8 @@ namespace VisitorBook.Backend.PL.Controllers
         {
             var visitors = await _visitorService.GetAllAsync(
                 orderBy: o => o.OrderBy(x => x.User.Name),
-                include: x => x.Include(c => c.VisitorAddress).ThenInclude(c => c.County)
-                );
+                include: x => x.Include(c => c.VisitorAddress).ThenInclude(c => c.County).Include(u => u.User)
+            );
 
             if (visitors == null)
             {

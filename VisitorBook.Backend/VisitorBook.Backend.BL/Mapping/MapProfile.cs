@@ -47,7 +47,7 @@ namespace VisitorBook.Backend.BL.Mapping
             CreateMap<VisitedCounty, VisitedCountyResponseDto>()
                 .ForPath(e => e.County.City, opts => opts.MapFrom(e => e.County.City))
                 .ForMember(e => e.County, opts => opts.MapFrom(e => e.County))
-                .ForMember(e => e.Visitor, opts => opts.MapFrom(e => e.Visitor));
+                .ForPath(e => e.Visitor.User, opts => opts.MapFrom(e => e.Visitor.User));
 
             CreateMap<VisitorAddressRequestDto, VisitorAddress>();
 
@@ -57,6 +57,7 @@ namespace VisitorBook.Backend.BL.Mapping
             CreateMap<VisitorRequestDto, Visitor>();
 
             CreateMap<Visitor, VisitorResponseDto>()
+                .ForPath(e => e.User, opts => opts.MapFrom(e => e.User))
                 .ForMember(e => e.VisitorAddress, opts => { opts.Condition(e => e.VisitorAddress != null); opts.MapFrom(e => e.VisitorAddress); });
 
             CreateMap<UserRequestDto, User>()
