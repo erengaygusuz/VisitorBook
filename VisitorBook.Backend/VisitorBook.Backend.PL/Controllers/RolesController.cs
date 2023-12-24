@@ -32,7 +32,7 @@ namespace VisitorBook.Backend.PL.Controllers
                 return UnprocessableEntity(ModelState.GetValidationErrors());
             }
 
-            return DataTablesResult(_roleManager.Roles.ToPagedList(dataTablesOptions));
+            return DataTablesResult(_roleManager.Roles.Select(x => new RoleResponseDto { }).ToPagedList(dataTablesOptions));
         }
 
         [HttpGet]

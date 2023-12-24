@@ -28,7 +28,7 @@ builder.Services.AddScoped<IPropertyMappingCollection, VisitorToVisitorGetRespon
 builder.Services.AddScoped(typeof(VisitorStatisticService));
 builder.Services.AddScoped(typeof(LocationHelper));
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
-builder.Services.AddScoped(typeof(IAuthService), typeof(AuthService));
+builder.Services.AddScoped(typeof(IEmailService), typeof(EmailService));
 
 builder.Services.AddDbContext<AppDbContext>(opt =>
 {

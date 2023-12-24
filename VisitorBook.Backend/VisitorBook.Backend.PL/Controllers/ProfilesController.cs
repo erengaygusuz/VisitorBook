@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using VisitorBook.Backend.Core.Dtos.ProfileDtos;
 using VisitorBook.Backend.Core.Dtos.UserDtos;
 using VisitorBook.Backend.Core.Entities;
+using VisitorBook.Backend.Core.Enums;
 using VisitorBook.Backend.Core.Extensions;
 
 namespace VisitorBook.Backend.PL.Controllers
@@ -93,7 +94,7 @@ namespace VisitorBook.Backend.PL.Controllers
             userToUpdate.Name = userRequestDto.Name;
             userToUpdate.Surname = userRequestDto.Surname;
             userToUpdate.BirthDate = userRequestDto.BirthDate;
-            userToUpdate.Gender = userRequestDto.Gender;
+            userToUpdate.Gender = (Gender)Enum.Parse(typeof(Gender), userRequestDto.Gender);
 
             _mapper.Map(userRequestDto, userToUpdate);
 

@@ -29,7 +29,7 @@ namespace VisitorBook.Backend.PL.Controllers
                 return UnprocessableEntity(ModelState.GetValidationErrors());
             }
 
-            return DataTablesResult(_userManager.Users.ToPagedList(dataTablesOptions));
+            return DataTablesResult(_userManager.Users.Select(x => new UserResponseDto { }).ToPagedList(dataTablesOptions));
         }
 
         [HttpGet]

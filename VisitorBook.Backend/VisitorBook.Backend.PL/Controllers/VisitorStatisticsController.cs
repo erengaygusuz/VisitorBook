@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using VisitorBook.Backend.BL.Services;
+using VisitorBook.Backend.BL.Concrete;
 using VisitorBook.Backend.Core.Dtos.VisitorStatisticDtos;
 
 namespace VisitorBook.Backend.PL.Controllers
