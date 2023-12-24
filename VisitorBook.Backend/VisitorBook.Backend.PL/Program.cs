@@ -10,8 +10,7 @@ using VisitorBook.Backend.DAL.Concrete;
 using VisitorBook.Backend.DAL.Data;
 using VisitorBook.Backend.BL.Concrete;
 using VisitorBook.Backend.BL.Mapping;
-using VisitorBook.Backend.BL.Services;
-using VisitorBook.Backend.PL;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,11 +28,17 @@ builder.Services.AddScoped<IPropertyMappingCollection, VisitorToVisitorGetRespon
 builder.Services.AddScoped(typeof(VisitorStatisticService));
 builder.Services.AddScoped(typeof(LocationHelper));
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
+builder.Services.AddScoped(typeof(IAuthService), typeof(AuthService));
 
 builder.Services.AddDbContext<AppDbContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("SQLServerConnection"));
 });
+
+builder.Services.AddIdentity<User, Role>(options =>
+{
+    options.Password.RequiredLength = 5;
+}).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
 builder.Services.AddControllers();
 

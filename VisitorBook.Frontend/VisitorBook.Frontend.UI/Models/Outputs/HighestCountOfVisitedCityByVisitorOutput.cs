@@ -1,6 +1,6 @@
-﻿namespace VisitorBook.Frontend.UI.Models
+﻿namespace VisitorBook.Frontend.UI.Models.Outputs
 {
-    public class HighestCountOfVisitedCityByVisitor
+    public class HighestCountOfVisitedCityByVisitorOutput
     {
         public string VisitorInfo { get; set; }
         public string CountOfDistinctVisitedCity { get; set; }

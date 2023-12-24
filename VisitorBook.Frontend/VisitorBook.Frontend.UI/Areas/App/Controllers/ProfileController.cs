@@ -9,5 +9,15 @@ namespace VisitorBook.Frontend.UI.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public IActionResult UpdatePassword()
+        {
+            return View();
+        }
+
+        public IActionResult UpdateGeneralInfo()
+        {
+            return View();
+        }
     }
 }

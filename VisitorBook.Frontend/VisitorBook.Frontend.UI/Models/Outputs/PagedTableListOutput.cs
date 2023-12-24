@@ -1,6 +1,6 @@
-﻿namespace VisitorBook.Frontend.UI.Models
+﻿namespace VisitorBook.Frontend.UI.Models.Outputs
 {
-    public class PagedTableList<T>
+    public class PagedTableListOutput<T>
     {
         public int RecordsTotal { get; set; }
         public int RecordsFiltered { get; set; }

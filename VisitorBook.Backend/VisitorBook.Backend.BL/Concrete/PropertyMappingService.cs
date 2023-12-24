@@ -1,6 +1,6 @@
 ﻿using VisitorBook.Backend.Core.Abstract;
 
-namespace VisitorBook.Backend.BL.Services
+namespace VisitorBook.Backend.BL.Concrete
 {
     public class PropertyMappingService : IPropertyMappingService
     {

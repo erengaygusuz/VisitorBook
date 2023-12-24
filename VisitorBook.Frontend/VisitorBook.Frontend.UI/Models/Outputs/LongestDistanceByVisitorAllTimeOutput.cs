@@ -1,6 +1,6 @@
-﻿namespace VisitorBook.Frontend.UI.Models
+﻿namespace VisitorBook.Frontend.UI.Models.Outputs
 {
-    public class LongestDistanceByVisitorAllTime
+    public class LongestDistanceByVisitorAllTimeOutput
     {
         public string VisitorInfo { get; set; }
         public string LongestDistance { get; set; }

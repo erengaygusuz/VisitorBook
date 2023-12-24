@@ -4,12 +4,17 @@ namespace VisitorBook.Frontend.UI.Controllers
 {
     public class AuthController : Controller
     {
-        public IActionResult SignIn()
+        public IActionResult Login()
         {
             return View();
         }
 
-        public IActionResult SignUp()
+        public IActionResult Logout()
+        {
+            return View();
+        }
+
+        public IActionResult Register()
         {
             return View();
         }
@@ -20,6 +25,11 @@ namespace VisitorBook.Frontend.UI.Controllers
         }
 
         public IActionResult RecoverPassword()
+        {
+            return View();
+        }
+
+        public IActionResult AccessDenied()
         {
             return View();
         }

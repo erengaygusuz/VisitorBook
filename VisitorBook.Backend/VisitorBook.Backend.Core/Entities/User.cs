@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
-using VisitorBook.Backend.Core.Attributes;
 using VisitorBook.Backend.Core.Enums;
 
 namespace VisitorBook.Backend.Core.Entities

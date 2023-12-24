@@ -3,7 +3,7 @@ using VisitorBook.Backend.Core.Abstract;
 using VisitorBook.Backend.Core.Entities;
 using VisitorBook.Backend.Core.Utilities;
 
-namespace VisitorBook.Backend.BL.Services
+namespace VisitorBook.Backend.BL.Concrete
 {
     public class VisitorStatisticService
     {

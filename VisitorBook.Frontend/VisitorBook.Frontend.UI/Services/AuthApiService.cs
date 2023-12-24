@@ -4,11 +4,11 @@ using VisitorBook.Frontend.UI.Utilities.DataTablesServerSideHelpers;
 
 namespace VisitorBook.Frontend.UI.Services
 {
-    public class CityApiService
+    public class AuthApiService
     {
         private readonly HttpClient _httpClient;
 
-        public CityApiService(HttpClient httpClient)
+        public AuthApiService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }

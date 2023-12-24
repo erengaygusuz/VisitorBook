@@ -9,5 +9,25 @@ namespace VisitorBook.Frontend.UI.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public IActionResult CreateRole()
+        {
+            return View();
+        }
+
+        public IActionResult EditRole()
+        {
+            return View();
+        }
+
+        public IActionResult DeleteRole()
+        {
+            return View();
+        }
+
+        public IActionResult AssignRoleToUser()
+        {
+            return View();
+        }
     }
 }

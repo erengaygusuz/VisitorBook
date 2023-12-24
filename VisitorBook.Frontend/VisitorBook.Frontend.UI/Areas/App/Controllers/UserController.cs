@@ -9,5 +9,20 @@ namespace VisitorBook.Frontend.UI.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public IActionResult CreateUser()
+        {
+            return View();
+        }
+
+        public IActionResult EditUser()
+        {
+            return View();
+        }
+
+        public IActionResult DeleteUser()
+        {
+            return View();
+        }
     }
 }

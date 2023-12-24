@@ -1,5 +1,4 @@
-﻿using VisitorBook.Frontend.UI.Models;
-using VisitorBook.Frontend.UI.Models.Inputs;
+﻿using VisitorBook.Frontend.UI.Models.Inputs;
 using VisitorBook.Frontend.UI.Models.Outputs;
 using VisitorBook.Frontend.UI.Utilities.DataTablesServerSideHelpers;
 
@@ -14,11 +13,11 @@ namespace VisitorBook.Frontend.UI.Services
             _httpClient = httpClient;
         }
 
-        public async Task<PagedTableList<SubRegionOutput>> GetTableData(DataTablesOptions dataTablesOptions)
+        public async Task<PagedTableListOutput<SubRegionOutput>> GetTableData(DataTablesOptions dataTablesOptions)
         {
             var response = await _httpClient.PostAsJsonAsync("subregions/gettabledata", dataTablesOptions);
 
-            var result = await response.Content.ReadFromJsonAsync<PagedTableList<SubRegionOutput>>();
+            var result = await response.Content.ReadFromJsonAsync<PagedTableListOutput<SubRegionOutput>>();
 
             return result;
         }
