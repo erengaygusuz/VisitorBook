@@ -1,4 +1,5 @@
-﻿using VisitorBook.Frontend.UI.Models.Inputs;
+﻿using System.Net.Http.Headers;
+using VisitorBook.Frontend.UI.Models.Inputs;
 using VisitorBook.Frontend.UI.Models.Outputs;
 using VisitorBook.Frontend.UI.Utilities.DataTablesServerSideHelpers;
 
@@ -13,8 +14,10 @@ namespace VisitorBook.Frontend.UI.Services
             _httpClient = httpClient;
         }
 
-        public async Task<PagedTableListOutput<CityOutput>> GetTableData(DataTablesOptions dataTablesOptions)
+        public async Task<PagedTableListOutput<CityOutput>> GetTableData(DataTablesOptions dataTablesOptions, string token)
         {
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
             var response = await _httpClient.PostAsJsonAsync("cities/gettabledata", dataTablesOptions);
 
             var result = await response.Content.ReadFromJsonAsync<PagedTableListOutput<CityOutput>>();

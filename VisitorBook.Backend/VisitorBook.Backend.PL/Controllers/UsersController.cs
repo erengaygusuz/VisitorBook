@@ -93,7 +93,7 @@ namespace VisitorBook.Backend.PL.Controllers
 
             var userToAdd = _mapper.Map<User>(userRequestDto);
 
-            await _userManager.CreateAsync(userToAdd);
+            await _userManager.CreateAsync(userToAdd, "12345");
 
             return CreatedAtRoute("GetUser", userToAdd, new { id = userToAdd.Id });
         }

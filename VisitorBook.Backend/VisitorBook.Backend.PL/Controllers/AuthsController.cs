@@ -1,14 +1,14 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using VisitorBook.Backend.Core.Abstract;
 using VisitorBook.Backend.Core.Dtos.AuthDtos;
 using VisitorBook.Backend.Core.Entities;
 using VisitorBook.Backend.Core.Extensions;
+using VisitorBook.Backend.Core.Utilities;
 
 namespace VisitorBook.Backend.PL.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class AuthsController : ControllerBase
     {
@@ -18,14 +18,16 @@ namespace VisitorBook.Backend.PL.Controllers
 
         private readonly IEmailService _emailService;
 
-        public AuthsController(UserManager<User> userManager, SignInManager<User> signInManager, IEmailService emailService)
+        private readonly TokenHelper _tokenHelper;
+
+        public AuthsController(UserManager<User> userManager, SignInManager<User> signInManager, IEmailService emailService, TokenHelper tokenHelper)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailService = emailService;
+            _tokenHelper = tokenHelper;
         }
 
-        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] LoginRequestDto loginRequestDto)
         {
@@ -50,7 +52,13 @@ namespace VisitorBook.Backend.PL.Controllers
 
             if (signInResult.Succeeded)
             {
-                return Ok();
+                var token = _tokenHelper.CreateAccessToken(5);
+
+                return Ok(new LoginResponseDto()
+                {
+                    AccessToken = token.AccessToken,
+                    Expiration = token.Expiration
+                });
             }
 
             if (signInResult.IsLockedOut)
@@ -67,7 +75,6 @@ namespace VisitorBook.Backend.PL.Controllers
             return Unauthorized();
         }
 
-        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Register([FromBody] RegisterRequestDto registerRequestDto)
         {
@@ -83,9 +90,10 @@ namespace VisitorBook.Backend.PL.Controllers
 
             var identityResult = await _userManager.CreateAsync(new User()
             {
+                Name = registerRequestDto.Name,
+                Surname = registerRequestDto.Surname,
                 UserName = registerRequestDto.Username,
-                Email = registerRequestDto.Email,
-                PhoneNumber = registerRequestDto.Phone
+                Email = registerRequestDto.Email
             }, registerRequestDto.PasswordConfirm);
 
             if (identityResult.Succeeded)
@@ -98,7 +106,6 @@ namespace VisitorBook.Backend.PL.Controllers
             return BadRequest();
         }
 
-        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequestDto forgotPasswordRequestDto)
         {
@@ -128,7 +135,6 @@ namespace VisitorBook.Backend.PL.Controllers
             return Ok();
         }
 
-        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequestDto resetPasswordRequestDto)
         {

@@ -65,7 +65,6 @@ namespace VisitorBook.Backend.PL.Controllers
             return Ok(roleResponseDto);
         }
 
-
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRole(int id)
         {
@@ -129,6 +128,7 @@ namespace VisitorBook.Backend.PL.Controllers
         }
 
         [HttpPost]
+        [Route("AssignRoleToUser")]
         public async Task<IActionResult> AssignRoleToUser(string userId, [FromBody] UserRoleRequestDto userRoleRequestDto)
         {
             var userToAssignRoles = await _userManager.FindByIdAsync(userId);

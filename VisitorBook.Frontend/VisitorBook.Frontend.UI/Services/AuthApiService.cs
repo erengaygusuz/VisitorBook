@@ -1,6 +1,5 @@
 ﻿using VisitorBook.Frontend.UI.Models.Inputs;
 using VisitorBook.Frontend.UI.Models.Outputs;
-using VisitorBook.Frontend.UI.Utilities.DataTablesServerSideHelpers;
 
 namespace VisitorBook.Frontend.UI.Services
 {
@@ -13,55 +12,22 @@ namespace VisitorBook.Frontend.UI.Services
             _httpClient = httpClient;
         }
 
-        public async Task<PagedTableListOutput<CityOutput>> GetTableData(DataTablesOptions dataTablesOptions)
+        public async Task<RegisterOutput> RegisterAsync(RegisterInput registerInput)
         {
-            var response = await _httpClient.PostAsJsonAsync("cities/gettabledata", dataTablesOptions);
+            var response = await _httpClient.PostAsJsonAsync("auths/register", registerInput);
 
-            var result = await response.Content.ReadFromJsonAsync<PagedTableListOutput<CityOutput>>();
+            var result = await response.Content.ReadFromJsonAsync<RegisterOutput>();
 
             return result;
         }
 
-        public async Task<List<CityOutput>> GetAllAsync()
+        public async Task<LoginOutput> LoginAsync(LoginInput loginInput)
         {
-            var response = await _httpClient.GetFromJsonAsync<List<CityOutput>>($"cities");
+            var response = await _httpClient.PostAsJsonAsync("auths/login", loginInput);
 
-            return response;
-        }
+            var result = await response.Content.ReadFromJsonAsync<LoginOutput>();
 
-        public async Task<List<CountryOutput>> GetAllByCountryAsync(int countryId)
-        {
-            var response = await _httpClient.GetFromJsonAsync<List<CountryOutput>>($"counties/getallcountriesbycountry/{countryId}");
-
-            return response;
-        }
-
-        public async Task<CityOutput> GetByIdAsync(int id)
-        {
-            var response = await _httpClient.GetFromJsonAsync<CityOutput>($"cities/{id}");
-
-            return response;
-        }
-
-        public async Task<bool> AddAsync(CityInput cityAddInput)
-        {
-            var response = await _httpClient.PostAsJsonAsync("cities", cityAddInput);
-
-            return response.IsSuccessStatusCode;
-        }
-
-        public async Task<bool> UpdateAsync(int id, CityInput cityAddInput)
-        {
-            var response = await _httpClient.PutAsJsonAsync($"cities/{id}", cityAddInput);
-
-            return response.IsSuccessStatusCode;
-        }
-
-        public async Task<bool> RemoveAsync(int id)
-        {
-            var response = await _httpClient.DeleteAsync($"cities/{id}");
-
-            return response.IsSuccessStatusCode;
+            return result;
         }
     }
 }

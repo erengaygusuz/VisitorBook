@@ -6,9 +6,11 @@ using VisitorBook.Backend.Core.Entities;
 using VisitorBook.Backend.Core.Utilities.DataTablesServerSideHelpers;
 using VisitorBook.Backend.Core.Extensions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VisitorBook.Backend.PL.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [Route("api/[controller]")]
     [ApiController]
     public class CitiesController : BaseController

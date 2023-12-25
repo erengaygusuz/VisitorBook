@@ -10,7 +10,7 @@ using VisitorBook.Backend.Core.Extensions;
 
 namespace VisitorBook.Backend.PL.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ProfilesController : ControllerBase
     {

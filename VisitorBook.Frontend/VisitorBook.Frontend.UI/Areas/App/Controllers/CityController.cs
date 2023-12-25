@@ -40,7 +40,7 @@ namespace VisitorBook.Frontend.UI.Area.App.Controllers
         {
             _cityDataTableOptions.SetDataTableOptions(Request);
 
-            var result = await _cityApiService.GetTableData(_cityDataTableOptions.GetDataTablesOptions());
+            var result = await _cityApiService.GetTableData(_cityDataTableOptions.GetDataTablesOptions(), Request.Cookies["X-Access-Token"]);
 
             return Json(new
             {

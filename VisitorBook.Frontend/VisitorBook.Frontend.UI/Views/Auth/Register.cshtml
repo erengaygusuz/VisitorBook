@@ -1,6 +1,7 @@
-﻿
+﻿@model RegisterInput
+
 @{
-    ViewData["Title"] = "SignUp";
+    ViewData["Title"] = "Register";
     Layout = "_AuthLayout";
 }
 
@@ -19,9 +20,9 @@
         <div class="card-body">
             <p class="login-box-msg">Sisteme erişmek için üye ol</p>
 
-            <form action="../../index.html" method="post">
+            <form asp-controller="Auth" asp-action="Register">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Ad Soyad">
+                    <input type="text" class="form-control" placeholder="Ad" asp-for="@Model.Name">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -29,7 +30,23 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="E-posta">
+                    <input type="text" class="form-control" placeholder="Soyad" asp-for="@Model.Surname">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Kullanıcı Adı" asp-for="@Model.Username">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="email" class="form-control" placeholder="E-posta" asp-for="@Model.Email">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -37,7 +54,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Şifre">
+                    <input type="password" class="form-control" placeholder="Şifre" asp-for="@Model.Password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -45,7 +62,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Şifre (Tekrar)">
+                    <input type="password" class="form-control" placeholder="Şifre (Tekrar)" asp-for="@Model.PasswordConfirm">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -84,5 +101,3 @@
         <!-- /.form-box -->
     </div><!-- /.card -->
 </div>
-<!-- /.register-box -->
-

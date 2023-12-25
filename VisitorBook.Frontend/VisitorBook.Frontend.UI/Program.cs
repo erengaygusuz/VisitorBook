@@ -47,6 +47,11 @@ builder.Services.AddScoped(typeof(CountyDataTablesOptions));
 builder.Services.AddScoped(typeof(VisitedCountyDataTablesOptions));
 builder.Services.AddScoped(typeof(VisitorDataTablesOptions));
 
+builder.Services.AddHttpClient<AuthApiService>(opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+
 builder.Services.AddHttpClient<RegionApiService>(opt =>
 {
     opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
