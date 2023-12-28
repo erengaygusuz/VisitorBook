@@ -16,6 +16,11 @@ using VisitorBook.Core.Dtos.VisitedCountyDtos;
 using VisitorBook.Core.Entities;
 using VisitorBook.DAL.Concrete;
 using VisitorBook.DAL.Data;
+using VisitorBook.Core.Dtos.CountryDtos;
+using VisitorBook.Core.Dtos.RegionDtos;
+using VisitorBook.Core.Dtos.RoleDtos;
+using VisitorBook.Core.Dtos.SubRegionDtos;
+using VisitorBook.Core.Dtos.UserDtos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +34,11 @@ builder.Services.AddScoped(typeof(FakeDataGenerator));
 builder.Services.AddScoped<IPropertyMappingCollection, CityToCityGetResponseDtoMappingCollection<City, CityResponseDto>>();
 builder.Services.AddScoped<IPropertyMappingCollection, CountyToCountyGetResponseDtoMappingCollection<County, CountyResponseDto>>();
 builder.Services.AddScoped<IPropertyMappingCollection, VisitedCountyToVisitedCountyGetResponseDtoMappingCollection<VisitedCounty, VisitedCountyResponseDto>>();
+builder.Services.AddScoped<IPropertyMappingCollection, RegionToRegionGetResponseDtoMappingCollection<Region, RegionResponseDto>>();
+builder.Services.AddScoped<IPropertyMappingCollection, RoleToRoleGetResponseDtoMappingCollection<Role, RoleResponseDto>>();
+builder.Services.AddScoped<IPropertyMappingCollection, SubRegionToSubRegionGetResponseDtoMappingCollection<SubRegion, SubRegionResponseDto>>();
+builder.Services.AddScoped<IPropertyMappingCollection, UserToUserGetResponseDtoMappingCollection<User, UserResponseDto>>();
+builder.Services.AddScoped<IPropertyMappingCollection, CountryToCountryGetResponseDtoMappingCollection<Country, CountryResponseDto>>();
 builder.Services.AddScoped(typeof(VisitorStatisticService));
 builder.Services.AddScoped(typeof(LocationHelper));
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();

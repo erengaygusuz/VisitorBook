@@ -56,6 +56,7 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
 
             var regionRequestDto = new RegionRequestDto()
             {
+                Id = id,
                 Name = regionResponseDto.Name
             };
 

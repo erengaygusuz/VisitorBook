@@ -123,6 +123,7 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
             {
                 User = new UserRequestDto()
                 {
+                    Id = id,
                     Name = userResponseDto.Name,
                     Surname = userResponseDto.Surname,
                     BirthDate = userResponseDto.BirthDate,

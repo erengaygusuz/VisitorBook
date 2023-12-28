@@ -79,6 +79,7 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
 
             var roleRequestDto = new RoleRequestDto()
             {
+                Id = id,
                 Name = roleResponseDto.Name
             };
 

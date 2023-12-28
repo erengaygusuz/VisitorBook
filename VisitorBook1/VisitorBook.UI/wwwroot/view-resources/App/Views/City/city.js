@@ -78,7 +78,7 @@ function loadDataTable(
                     doc.content[0].layout = objLayout
                 },
                 exportOptions: {
-                    columns: [0, 1],
+                    columns: [0, 1, 2],
                 },
             },
         ],
@@ -124,7 +124,7 @@ function loadDataTable(
         ],
         columnDefs: [
             {
-                targets: [2],
+                targets: [3],
                 orderable: false,
             },
         ],

@@ -89,7 +89,7 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         [NoDirectAccess]
         public async Task<IActionResult> Edit(int id)
         {
-            var countryResponseDto = await _countryService.GetAsync<CountryResponseDto>(x => x.Id == id);
+            var countryResponseDto = await _countryService.GetAsync<CountryResponseDto>(x => x.Id == id, include: x => x.Include(c => c.SubRegion));
 
             var subRegionResponseDtos = await _subRegionService.GetAllAsync<SubRegionResponseDto>();
 
@@ -103,6 +103,7 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
                    }),
                 Country = new CountryRequestDto()
                 {
+                    Id = id,
                     Name = countryResponseDto.Name,
                     Code = countryResponseDto.Code,
                     SubRegionId = countryResponseDto.SubRegion.Id

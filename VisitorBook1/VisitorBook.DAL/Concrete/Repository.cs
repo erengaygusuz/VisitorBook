@@ -60,7 +60,7 @@ namespace VisitorBook.DAL.Concrete
 
             if (!trackChanges)
             {
-                query.AsNoTracking();
+                query = query.AsNoTracking();
             }
 
             return query;
@@ -98,7 +98,7 @@ namespace VisitorBook.DAL.Concrete
 
             if (!trackChanges)
             {
-                query.AsNoTracking();
+                query = query.AsNoTracking();
             }
 
             return new Tuple<int, int, IQueryable<TEntity>>(totalCount, filteredCount, query);
@@ -123,7 +123,7 @@ namespace VisitorBook.DAL.Concrete
 
             if (!trackChanges)
             {
-                query.AsNoTracking();
+                query = query.AsNoTracking();
             }
 
             return await query.FirstOrDefaultAsync();

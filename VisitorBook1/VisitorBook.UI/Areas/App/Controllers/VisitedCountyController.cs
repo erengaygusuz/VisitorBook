@@ -103,6 +103,7 @@ namespace VisitorBook.UI.Area.App.Controllers
             {
                 VisitedCounty = new VisitedCountyRequestDto()
                 {
+                    Id = id,
                     VisitorId = visitedCountyResponseDto.User.Id,
                     CityId = visitedCountyResponseDto.County.City.Id,
                     CountyId = visitedCountyResponseDto.County.Id,

@@ -89,7 +89,7 @@ namespace VisitorBook.UI.Area.App.Controllers
         [NoDirectAccess]
         public async Task<IActionResult> Edit(int id)
         {
-            var countyResponseDto = await _countyService.GetAsync<CountyResponseDto>(x => x.Id == id);
+            var countyResponseDto = await _countyService.GetAsync<CountyResponseDto>(x => x.Id == id, include: x => x.Include(c => c.City));
 
             var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>();
 
@@ -103,6 +103,7 @@ namespace VisitorBook.UI.Area.App.Controllers
                    }),
                 County = new CountyRequestDto()
                 {
+                    Id = id,
                     Name = countyResponseDto.Name,
                     Latitude = countyResponseDto.Latitude,
                     Longitude = countyResponseDto.Longitude,

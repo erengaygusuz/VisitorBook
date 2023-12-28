@@ -7,6 +7,7 @@ namespace VisitorBook.Core.Dtos.CountryDtos
         protected override IList<IPropertyMapping> _mappings => new List<IPropertyMapping>
         {
             new PropertyMapping("Name", "Name"),
+            new PropertyMapping("Code", "Code"),
             new PropertyMapping("SubRegion.Name", "SubRegion.Name")
         };
 
