@@ -471,4 +471,7 @@
   <data name="Roles.Title.Text" xml:space="preserve">
     <value>Role List</value>
   </data>
+  <data name="Layout.Header.Navbar.Items12.Text" xml:space="preserve">
+    <value>Role Assignment</value>
+  </data>
 </root>

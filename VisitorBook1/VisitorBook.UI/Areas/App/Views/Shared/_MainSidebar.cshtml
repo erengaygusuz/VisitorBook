@@ -1,7 +1,7 @@
 ﻿<aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a asp-area="App" asp-controller="Home" asp-action="Index" class="brand-link">
-        <img src="~/img/icon/app-logo-light.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="~/img/icon/app-logo-light.png" alt="VisitorBook Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">@localization["Layout.Header.Title.Text"]</span>
     </a>
 
@@ -19,6 +19,7 @@
             var makeVisitedCountyActive = "";
             var makeUserActive = "";
             var makeRoleActive = "";
+            var makeRoleAssignmentActive = "";
 
             @if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "home")
             {
@@ -52,9 +53,15 @@
             {
                 makeUserActive = "active";
             }
-            else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "role")
+            else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "role" &&
+                    this.ViewContext.RouteData.Values["action"].ToString().ToLower(new System.Globalization.CultureInfo("en-US", false)) == "index")
             {
                 makeRoleActive = "active";
+            }
+            else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "role" && 
+                    this.ViewContext.RouteData.Values["action"].ToString().ToLower() == "userroles")
+            {
+                makeRoleAssignmentActive = "active";
             }
         }
         <nav class="mt-2">
@@ -92,6 +99,15 @@
                                 <i class="nav-icon fas fa-user-tag"></i>
                                 <p>
                                     @localization["Layout.Header.Navbar.Items4.Text"]
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @makeRoleAssignmentActive" asp-area="App" asp-controller="Role"
+                               asp-action="UserRoles">
+                                <i class="nav-icon fas fa-user-plus"></i>
+                                <p>
+                                    @localization["Layout.Header.Navbar.Items12.Text"]
                                 </p>
                             </a>
                         </li>

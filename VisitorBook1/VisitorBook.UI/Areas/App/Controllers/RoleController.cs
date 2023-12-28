@@ -86,6 +86,11 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
             return View(roleRequestDto);
         }
 
+        public IActionResult UserRoles()
+        {
+            return View();
+        }
+
         [NoDirectAccess]
         public async Task<IActionResult> AssignRoleToUser(string id)
         {
