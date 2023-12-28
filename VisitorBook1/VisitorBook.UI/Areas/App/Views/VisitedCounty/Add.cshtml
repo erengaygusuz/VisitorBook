@@ -1,0 +1,119 @@
+﻿@model VisitedCountyViewModel
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = null;
+}
+
+<script type="text/javascript">
+    var visitorBirthDates = @Html.Raw(Json.Serialize(ViewBag.BirthDates));
+    var visitorBirthDate = moment(visitorBirthDates[0]).format('YYYY-MM');
+
+    $('.select2').select2({
+        dropdownParent: $('#form-modal'),
+        theme: 'bootstrap4',
+        language: document.getElementById('ActiveLanguage').value.substring(0, 2)
+    });
+
+    var visitedDate = $("#visited-date").flatpickr({
+        "locale": document.getElementById('ActiveLanguage').value.substring(0, 2),
+        "enableTime": true,
+        "maxDate": "today",
+        "minDate": "2000-01",
+        "defaultDate": "today",
+        "time_24hr": true,
+        "allowInput": true,
+        "altInput": true,
+        "altFormat": "j F Y H:i",
+        "onOpen": function (selectedDates, dateStr, instance) {
+            visitedDate.set('minDate', visitorBirthDate);
+        },
+        "disableMobile": true
+    });
+
+    visitedDate._input.disabled = true;
+
+    $('#visitor-select-field').on('select2:selecting', function (e) {
+
+        visitorBirthDate = moment(visitorBirthDates[e.params.args.data.element.index]).format('YYYY-MM')
+
+        if (e.params.args.data.element.index != 0) {
+            visitedDate._input.disabled = false;
+        }
+        else {
+            visitedDate._input.disabled = true;
+        }
+    });
+</script>
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Add" onsubmit="return AddRecord(this);"
+              autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="@Model.VisitedCounty.VisitorId"
+                               class="control-label">@localization["VisitedCounties.Table.Column1.Text"]</label>
+                        <select asp-for="@Model.VisitedCounty.VisitorId" asp-items="@Model.VisitorList" class="form-control select2" style="width: 100% !important;" id="visitor-select-field">
+                            <option disabled selected>@localization["AddOrEditModal.VisitorSelection.Text"]</option>
+                        </select>
+                        <span asp-validation-for="@Model.VisitedCounty.VisitorId" class=" text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="@Model.VisitedCounty.CityId"
+                               class="control-label">@localization["VisitedCounties.Table.Column3.Text"]</label>
+                        <select id="citylist" onchange="cityChange()" asp-for="@Model.VisitedCounty.CityId" asp-items="@Model.CityList"
+                                class="form-control select2" style="width: 100% !important;">
+                            <option disabled selected value="0">@localization["AddOrEditModal.CitySelection.Text"]</option>
+                        </select>
+                        <span asp-validation-for="@Model.VisitedCounty.CityId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4" id="countylist">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="@Model.VisitedCounty.CountyId"
+                               class="control-label">@localization["VisitedCounties.Table.Column2.Text"]</label>
+                        <select id="county-id" asp-for="@Model.VisitedCounty.CountyId" asp-items="@Model.CountyList" class="form-control select2" style="width: 100% !important;">
+                            <option disabled selected value="0">
+                                @localization["AddOrEditModal.CountySelection.Text"]
+                            </option>
+                        </select>
+                        <span asp-validation-for="@Model.VisitedCounty.CountyId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="@Model.VisitedCounty.VisitDate"
+                               class="control-label">@localization["VisitedCounties.Table.Column4.Text"]</label>
+                        <input asp-for="@Model.VisitedCounty.VisitDate" class="form-control" id="visited-date" />
+                        <span asp-validation-for="@Model.VisitedCounty.VisitDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="form-group mt-4">
+                        <input type="submit" value="@localization["AddOrEditModal.SubmitBtn.Text"]"
+                               class="btn btn-primary w-100" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,65 @@
+﻿@model CountryViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = null;
+}
+
+<script type="text/javascript">
+    $('.select2').select2({
+        dropdownParent: $('#form-modal'),
+        theme: 'bootstrap4',
+        language: document.getElementById('ActiveLanguage').value.substring(0, 2)
+    });
+</script>
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit" asp-route-id="@Model.Country.Id" onsubmit="return EditRecord(this);" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="@Model.Country.Id" />
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="@Model.Country.Name" class="control-label">@localization["Countries.Table.Column1.Text"]</label>
+                        <input asp-for="@Model.Country.Name" class="form-control" />
+                        <span asp-validation-for="@Model.Country.Name" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="@Model.Country.Code" class="control-label">@localization["Countries.Table.Column2.Text"]</label>
+                        <input asp-for="@Model.Country.Code" class="form-control" />
+                        <span asp-validation-for="@Model.Country.Code" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="@Model.Country.SubRegionId" class="control-label">@localization["SubRegions.Table.Column2.Text"]</label>
+                        <select asp-for="@Model.Country.SubRegionId" asp-items="@Model.SubRegionList" class="form-control select2" style="width: 100% !important;" id="city-select-field">
+                            <option disabled selected>@localization["AddOrEditModal.CountrySelection.Text"]</option>
+                        </select>
+                        <span asp-validation-for="@Model.Country.SubRegionId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="form-group mt-4">
+                        <input type="submit" value="@localization["AddOrEditModal.SubmitBtn.Text"]" class="btn btn-primary w-100" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

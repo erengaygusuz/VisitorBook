@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddOrEditModal.CitySelection.Text" xml:space="preserve">
+    <value>--İl Seç--</value>
+  </data>
+  <data name="AddOrEditModal.GenderSelection.Text" xml:space="preserve">
+    <value>--Cinsiyet Seç--</value>
+  </data>
+  <data name="AddOrEditModal.CountySelection.Text" xml:space="preserve">
+    <value>--İlçe Seç--</value>
+  </data>
+  <data name="AddOrEditModal.SubmitBtn.Text" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="AddOrEditModal.VisitorSelection.Text" xml:space="preserve">
+    <value>--Ziyaretçi Seç--</value>
+  </data>
+  <data name="Cities.Table.Column1.Text" xml:space="preserve">
+    <value>İl Adı</value>
+  </data>
+  <data name="Cities.Table.Column2.Text" xml:space="preserve">
+    <value>İl Kodu</value>
+  </data>
+  <data name="Cities.Title.Text" xml:space="preserve">
+    <value>İl Listesi</value>
+  </data>
+  <data name="HomePage.Card1.Body.Text" xml:space="preserve">
+    <value>km</value>
+  </data>
+  <data name="HomePage.Card1.Footer.Text" xml:space="preserve">
+    <value>Tek Seferde En Uzun Mesafe Giden Ziyaretçi</value>
+  </data>
+  <data name="HomePage.Card2.Body.Text" xml:space="preserve">
+    <value>km</value>
+  </data>
+  <data name="HomePage.Card2.Footer.Text" xml:space="preserve">
+    <value>Toplam En Uzun Mesafe Giden Ziyaretçi</value>
+  </data>
+  <data name="HomePage.Card3.Body.Text" xml:space="preserve">
+    <value>ilçe</value>
+  </data>
+  <data name="HomePage.Card3.Footer.Text" xml:space="preserve">
+    <value>En Çok İlçe Gezen Ziyaretçi</value>
+  </data>
+  <data name="HomePage.Card4.Body.Text" xml:space="preserve">
+    <value>il</value>
+  </data>
+  <data name="HomePage.Card4.Footer.Text" xml:space="preserve">
+    <value>En Çok İl Gezen Ziyaretçi</value>
+  </data>
+  <data name="Layout.Footer.Text" xml:space="preserve">
+    <value>&amp;copy; 2023 - Ziyaretçi Defteri</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items1.Text" xml:space="preserve">
+    <value>Ana Sayfa</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items2.Text" xml:space="preserve">
+    <value>Kullanıcı Yönetimi</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items3.Text" xml:space="preserve">
+    <value>Kullanıcılar</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items4.Text" xml:space="preserve">
+    <value>Roller</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items5.Text" xml:space="preserve">
+    <value>Yer Yönetimi</value>
+  </data>
+  <data name="Layout.Header.Title.Text" xml:space="preserve">
+    <value>Ziyaretçi Defteri</value>
+  </data>
+  <data name="Counties.Table.Column1.Text" xml:space="preserve">
+    <value>İlçe Adı</value>
+  </data>
+  <data name="Counties.Table.Column2.Text" xml:space="preserve">
+    <value>İl Adı</value>
+  </data>
+  <data name="Counties.Table.Column3.Text" xml:space="preserve">
+    <value>Enlem</value>
+  </data>
+  <data name="Counties.Table.Column4.Text" xml:space="preserve">
+    <value>Boylam</value>
+  </data>
+  <data name="Counties.Title.Text" xml:space="preserve">
+    <value>İlçe Listesi</value>
+  </data>
+  <data name="Table.AddBtn.Text" xml:space="preserve">
+    <value>Ekle</value>
+  </data>
+  <data name="Table.DeleteBtn.Text" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="Table.EditBtn.Text" xml:space="preserve">
+    <value>Düzenle</value>
+  </data>
+  <data name="Table.ExportBtn.Text" xml:space="preserve">
+    <value>Çıktı Al</value>
+  </data>
+  <data name="VisitedCounties.Table.Column1.Text" xml:space="preserve">
+    <value>Ziyaretçi Ad - Soyad</value>
+  </data>
+  <data name="VisitedCounties.Table.Column2.Text" xml:space="preserve">
+    <value>İlçe Adı</value>
+  </data>
+  <data name="VisitedCounties.Table.Column3.Text" xml:space="preserve">
+    <value>İl Adı</value>
+  </data>
+  <data name="VisitedCounties.Table.Column4.Text" xml:space="preserve">
+    <value>Ziyaret Tarihi</value>
+  </data>
+  <data name="VisitedCounties.Title.Text" xml:space="preserve">
+    <value>Ziyaret Edilen İlçe Listesi</value>
+  </data>
+  <data name="Users.Table.Column1.Text" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="Users.Table.Column2.Text" xml:space="preserve">
+    <value>Soyad</value>
+  </data>
+  <data name="Users.Table.Column3.Text" xml:space="preserve">
+    <value>Doğum Tarihi</value>
+  </data>
+  <data name="Users.Table.Column4.Text" xml:space="preserve">
+    <value>Cinsiyet</value>
+  </data>
+  <data name="Users.Table.Column6.Text" xml:space="preserve">
+    <value>Adres İl</value>
+  </data>
+  <data name="Users.Table.Column7.Text" xml:space="preserve">
+    <value>Adres İlçe</value>
+  </data>
+  <data name="Users.Title.Text" xml:space="preserve">
+    <value>Kullanıcı Listesi</value>
+  </data>
+  <data name="Cities.Notification.Add.Text" xml:space="preserve">
+    <value>İl başarılı bir şekilde eklendi</value>
+  </data>
+  <data name="Cities.Notification.Edit.Text" xml:space="preserve">
+    <value>İl başarılı bir şekilde düzenlendi</value>
+  </data>
+  <data name="Cities.Notification.SuccessfullDelete.Text" xml:space="preserve">
+    <value>İl başarılı bir şekilde silindi</value>
+  </data>
+  <data name="VisitedCounties.Notification.Add.Text" xml:space="preserve">
+    <value>Ziyaret edilen ilçe bilgisi başarılı bir şekilde eklendi</value>
+  </data>
+  <data name="VisitedCounties.Notification.Edit.Text" xml:space="preserve">
+    <value>Ziyaret edilen ilçe bilgisi başarılı bir şekilde düzenlendi</value>
+  </data>
+  <data name="VisitedCounties.Notification.SuccessfullDelete.Text" xml:space="preserve">
+    <value>Ziyaret edilen ilçe bilgisi başarılı bir şekilde silindi</value>
+  </data>
+  <data name="Counties.Notification.Add.Text" xml:space="preserve">
+    <value>İlçe başarılı bir şekilde eklendi</value>
+  </data>
+  <data name="Counties.Notification.Edit.Text" xml:space="preserve">
+    <value>İlçe başarılı bir şekilde düzenlendi</value>
+  </data>
+  <data name="Counties.Notification.SuccessfullDelete.Text" xml:space="preserve">
+    <value>İlçe başarılı bir şekilde silindi</value>
+  </data>
+  <data name="Users.Notification.Add.Text" xml:space="preserve">
+    <value>Kullanıcı başarılı bir şekilde eklendi</value>
+  </data>
+  <data name="Users.Notification.Edit.Text" xml:space="preserve">
+    <value>Kullanıcı başarılı bir şekilde düzenlendi</value>
+  </data>
+  <data name="Users.Notification.Delete.Text" xml:space="preserve">
+    <value>Kullanıcı başarılı bir şekilde silindi</value>
+  </data>
+  <data name="DeleteRequestPopup.Title.Text" xml:space="preserve">
+    <value>Emin misiniz?</value>
+  </data>
+  <data name="DeleteRequestPopup.Body.Text" xml:space="preserve">
+    <value>Bu işlemi geri alamayacaksınız!</value>
+  </data>
+  <data name="DeleteRequestPopup.ConfirmBtn.Text" xml:space="preserve">
+    <value>Evet, sil!</value>
+  </data>
+  <data name="Users.AddModal.Title.Text" xml:space="preserve">
+    <value>Kullanıcı Ekle</value>
+  </data>
+  <data name="Users.EditModal.Title.Text" xml:space="preserve">
+    <value>Kullanıcı Düzenle</value>
+  </data>
+  <data name="Counties.AddModal.Title.Text" xml:space="preserve">
+    <value>İlçe Ekle</value>
+  </data>
+  <data name="Counties.EditModal.Title.Text" xml:space="preserve">
+    <value>İlçe Düzenle</value>
+  </data>
+  <data name="Cities.AddModal.Title.Text" xml:space="preserve">
+    <value>İl Ekle</value>
+  </data>
+  <data name="Cities.EditModal.Title.Text" xml:space="preserve">
+    <value>İl Düzenle</value>
+  </data>
+  <data name="VisitedCounties.AddModal.Title.Text" xml:space="preserve">
+    <value>Ziyaret Edilen İlçe Ekle</value>
+  </data>
+  <data name="VisitedCounties.EditModal.Title.Text" xml:space="preserve">
+    <value>Ziyaret Edilen İlçe Düzenle</value>
+  </data>
+  <data name="DeleteRequestPopup.CancelBtn.Text" xml:space="preserve">
+    <value>İptal</value>
+  </data>
+  <data name="Enum.Gender.Female.Text" xml:space="preserve">
+    <value>Kadın</value>
+  </data>
+  <data name="Enum.Gender.Male.Text" xml:space="preserve">
+    <value>Erkek</value>
+  </data>
+  <data name="Counties.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
+    <value>İlçe kullanıldığı için silinemedi. Öncelikle ilçeyi kullanan kaydı silin sonra ilçeyi silmeyi deneyin</value>
+  </data>
+  <data name="Cities.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
+    <value>İl kullanıldığı için silinemedi. Öncelikle ili kullanan kaydı silin sonra ili silmeyi deneyin</value>
+  </data>
+  <data name="VisitedCounties.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
+    <value>Ziyaret edilen ilçe kullanıldığı için silinemedi. Öncelikle ziyaret edilen ilçeyi kullanan kaydı silin sonra ziyaret edilen ilçeyi silmeyi deneyin</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items6.Text" xml:space="preserve">
+    <value>Bölgeler</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items7.Text" xml:space="preserve">
+    <value>Alt Bölgeler</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items8.Text" xml:space="preserve">
+    <value>Ülkeler</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items10.Text" xml:space="preserve">
+    <value>İlçeler</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items11.Text" xml:space="preserve">
+    <value>Ziyaret Edilen İlçeler</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items9.Text" xml:space="preserve">
+    <value>İller</value>
+  </data>
+  <data name="AddOrEditModal.CountrySelection.Text" xml:space="preserve">
+    <value>--Ülke Seç--</value>
+  </data>
+  <data name="AddOrEditModal.RegionSelection.Text" xml:space="preserve">
+    <value>--Bölge Seç--</value>
+  </data>
+  <data name="AddOrEditModal.SubRegionSelection.Text" xml:space="preserve">
+    <value>--Alt Bölge Seç--</value>
+  </data>
+  <data name="Countries.AddModal.Title.Text" xml:space="preserve">
+    <value>Ülke Ekle</value>
+  </data>
+  <data name="Countries.EditModal.Title.Text" xml:space="preserve">
+    <value>Ülke Düzenle</value>
+  </data>
+  <data name="Countries.Notification.Add.Text" xml:space="preserve">
+    <value>Ülke başarılı bir şekilde eklendi</value>
+  </data>
+  <data name="Countries.Notification.Edit.Text" xml:space="preserve">
+    <value>Ülke başarılı bir şekilde düzenlendi</value>
+  </data>
+  <data name="Countries.Notification.SuccessfullDelete.Text" xml:space="preserve">
+    <value>Ülke başarılı bir şekilde silindi</value>
+  </data>
+  <data name="Countries.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
+    <value>Ülke kullanıldığı için silinemedi. Öncelikle ülkeyi kullanan kaydı silin sonra ülkeyi silmeyi deneyin</value>
+  </data>
+  <data name="Countries.Table.Column1.Text" xml:space="preserve">
+    <value>Ülke Adı</value>
+  </data>
+  <data name="Countries.Table.Column2.Text" xml:space="preserve">
+    <value>Ülke Kodu</value>
+  </data>
+  <data name="Countries.Title.Text" xml:space="preserve">
+    <value>Ülke Listesi</value>
+  </data>
+  <data name="Regions.AddModal.Title.Text" xml:space="preserve">
+    <value>Bölge Ekle</value>
+  </data>
+  <data name="Regions.EditModal.Title.Text" xml:space="preserve">
+    <value>Bölge Düzenle</value>
+  </data>
+  <data name="Regions.Notification.Add.Text" xml:space="preserve">
+    <value>Bölge başarılı bir şekilde eklendi</value>
+  </data>
+  <data name="Regions.Notification.Edit.Text" xml:space="preserve">
+    <value>Bölge başarılı bir şekilde düzenlendi</value>
+  </data>
+  <data name="Regions.Notification.SuccessfullDelete.Text" xml:space="preserve">
+    <value>Bölge başarılı bir şekilde silindi</value>
+  </data>
+  <data name="Regions.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
+    <value>Bölge kullanıldığı için silinemedi. Öncelikle bölgeyi kullanan kaydı silin sonra bölgeyi silmeyi deneyin</value>
+  </data>
+  <data name="Regions.Table.Column1.Text" xml:space="preserve">
+    <value>Bölge Adı</value>
+  </data>
+  <data name="Regions.Title.Text" xml:space="preserve">
+    <value>Bölge Listesi</value>
+  </data>
+  <data name="SubRegions.AddModal.Title.Text" xml:space="preserve">
+    <value>Alt Bölge Ekle</value>
+  </data>
+  <data name="SubRegions.EditModal.Title.Text" xml:space="preserve">
+    <value>Alt Bölge Düzenle</value>
+  </data>
+  <data name="SubRegions.Notification.Add.Text" xml:space="preserve">
+    <value>Alt Bölge başarılı bir şekilde eklendi</value>
+  </data>
+  <data name="SubRegions.Notification.Edit.Text" xml:space="preserve">
+    <value>Alt Bölge başarılı bir şekilde düzenlendi</value>
+  </data>
+  <data name="SubRegions.Notification.SuccessfullDelete.Text" xml:space="preserve">
+    <value>Alt Bölge başarılı bir şekilde silindi</value>
+  </data>
+  <data name="SubRegions.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
+    <value>Alt bölge kullanıldığı için silinemedi. Öncelikle alt bölgeyi kullanan kaydı silin sonra alt bölgeyi silmeyi deneyin</value>
+  </data>
+  <data name="SubRegions.Table.Column1.Text" xml:space="preserve">
+    <value>Alt Bölge Adı</value>
+  </data>
+  <data name="SubRegions.Table.Column2.Text" xml:space="preserve">
+    <value>Bölge Adı</value>
+  </data>
+  <data name="SubRegions.Title.Text" xml:space="preserve">
+    <value>Alt Bölge Listesi</value>
+  </data>
+  <data name="Countries.Table.Column3.Text" xml:space="preserve">
+    <value>Alt Bölge Adı</value>
+  </data>
+  <data name="Cities.Table.Column3.Text" xml:space="preserve">
+    <value>Ülke Adı</value>
+  </data>
+  <data name="Roles.AddModal.Title.Text" xml:space="preserve">
+    <value>Rol Ekle</value>
+  </data>
+  <data name="Roles.EditModal.Title.Text" xml:space="preserve">
+    <value>Rol Düzenle</value>
+  </data>
+  <data name="Roles.Notification.Add.Text" xml:space="preserve">
+    <value>Rol başarılı bir şekilde eklendi</value>
+  </data>
+  <data name="Roles.Notification.Edit.Text" xml:space="preserve">
+    <value>Rol başarılı bir şekilde düzenlendi</value>
+  </data>
+  <data name="Roles.Notification.SuccessfullDelete.Text" xml:space="preserve">
+    <value>Rol başarılı bir şekilde silindi</value>
+  </data>
+  <data name="Roles.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
+    <value>Rol kullanıldığı için silinemedi. Öncelikle rolü kullanan kaydı silin sonra rolü silmeyi deneyin</value>
+  </data>
+  <data name="Roles.Table.Column1.Text" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="Roles.Title.Text" xml:space="preserve">
+    <value>Rol Listesi</value>
+  </data>
+</root>

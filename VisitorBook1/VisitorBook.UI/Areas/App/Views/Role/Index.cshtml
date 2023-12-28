@@ -1,0 +1,69 @@
+﻿<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">@localization["Roles.Title.Text"]</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">Admin</li>
+                    <li class="breadcrumb-item active">@localization["Roles.Title.Text"]</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+                            <input type="hidden" id="TableExportBtnText" value="@localization["Table.ExportBtn.Text"]" />
+                            <input type="hidden" id="TableEditBtnText" value="@localization["Table.EditBtn.Text"]" />
+                            <input type="hidden" id="TableDeleteBtnText" value="@localization["Table.DeleteBtn.Text"]" />
+                            <input type="hidden" id="ActiveLanguage" value="@Thread.CurrentThread.CurrentCulture.Name" />
+                            <input type="hidden" id="RolesEditModalTitleText" value="@localization["Roles.EditModal.Title.Text"]" />
+                            <input type="hidden" id="DeleteRequestPopupTitleText" value="@localization["DeleteRequestPopup.Title.Text"]" />
+                            <input type="hidden" id="DeleteRequestPopupBodyText" value="@localization["DeleteRequestPopup.Body.Text"]" />
+                            <input type="hidden" id="DeleteRequestPopupConfirmBtnText"
+                                   value="@localization["DeleteRequestPopup.ConfirmBtn.Text"]" />
+                            <input type="hidden" id="DeleteRequestPopupCancelBtnText"
+                                   value="@localization["DeleteRequestPopup.CancelBtn.Text"]" />
+                            <div class="row d-flex justify-content-between">
+                                <div id="outside">
+                                </div>
+                                <div>
+                                    <a onclick="showInPopup('@Url.Action("Add", "Role", new { Id = 0 }, Context.Request.Scheme)', '@localization["Roles.AddModal.Title.Text"]')"
+                                       class="btn btn-primary mb-3 mr-2" role='button'>
+                                        @localization["Table.AddBtn.Text"]
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <table id="tblData" class="table table-bordered table-striped" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @localization["Roles.Table.Column1.Text"]
+                                    </th>
+                                    <th>
+
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+@section Scripts {
+    <script src="~/view-resources/app/views/role/role.js"></script>
+}

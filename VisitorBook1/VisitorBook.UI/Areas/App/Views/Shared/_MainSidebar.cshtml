@@ -1,0 +1,170 @@
+﻿<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a asp-area="App" asp-controller="Home" asp-action="Index" class="brand-link">
+        <img src="~/img/icon/app-logo-light.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">@localization["Layout.Header.Title.Text"]</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <!-- Sidebar Menu -->
+        @{
+            var makeHomeActive = "";
+            var makeRegionActive = "";
+            var makeSubRegionActive = "";
+            var makeCountryActive = "";
+            var makeCityActive = "";
+            var makeCountyActive = "";
+            var makeVisitedCountyActive = "";
+            var makeUserActive = "";
+            var makeRoleActive = "";
+
+            @if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "home")
+            {
+                makeHomeActive = "active";
+            }
+            else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "region")
+            {
+                makeRegionActive = "active";
+            }
+            else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "subregion")
+            {
+                makeSubRegionActive = "active";
+            }
+            else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "country")
+            {
+                makeCountryActive = "active";
+            }
+            else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "city")
+            {
+                makeCityActive = "active";
+            }
+            else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "county")
+            {
+                makeCountyActive = "active";
+            }
+            else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "visitedcounty")
+            {
+                makeVisitedCountyActive = "active";
+            }
+            else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "user")
+            {
+                makeUserActive = "active";
+            }
+            else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "role")
+            {
+                makeRoleActive = "active";
+            }
+        }
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
+                    <a class="nav-link @makeHomeActive" asp-area="App" asp-controller="Home"
+                       asp-action="Index">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>
+                            @localization["Layout.Header.Navbar.Items1.Text"]
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-users-cog"></i>
+                        <p>
+                            @localization["Layout.Header.Navbar.Items2.Text"]
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
+                            <a class="nav-link @makeUserActive" asp-area="App" asp-controller="User"
+                               asp-action="Index">
+                                <i class="nav-icon fas fa-user-friends"></i>
+                                <p>
+                                    @localization["Layout.Header.Navbar.Items3.Text"]
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @makeRoleActive" asp-area="App" asp-controller="Role"
+                               asp-action="Index">
+                                <i class="nav-icon fas fa-user-tag"></i>
+                                <p>
+                                    @localization["Layout.Header.Navbar.Items4.Text"]
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-landmark"></i>
+                        <p>
+                            @localization["Layout.Header.Navbar.Items5.Text"]
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
+                            <a class="nav-link @makeRegionActive" asp-area="App" asp-controller="Region"
+                               asp-action="Index">
+                                <i class="nav-icon fas fa-globe-africa"></i>
+                                <p>
+                                    @localization["Layout.Header.Navbar.Items6.Text"]
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @makeSubRegionActive" asp-area="App" asp-controller="SubRegion"
+                               asp-action="Index">
+                                <i class="nav-icon fas fa-map"></i>
+                                <p>
+                                    @localization["Layout.Header.Navbar.Items7.Text"]
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @makeCountryActive" asp-area="App" asp-controller="Country"
+                               asp-action="Index">
+                                <i class="nav-icon fas fa-flag"></i>
+                                <p>
+                                    @localization["Layout.Header.Navbar.Items8.Text"]
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @makeCityActive" asp-area="App" asp-controller="City"
+                               asp-action="Index">
+                                <i class="nav-icon fas fa-city"></i>
+                                <p>
+                                    @localization["Layout.Header.Navbar.Items9.Text"]
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @makeCountyActive" asp-area="App" asp-controller="County"
+                               asp-action="Index">
+                                <i class="nav-icon fas fa-building"></i>
+                                <p>
+                                    @localization["Layout.Header.Navbar.Items10.Text"]
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @makeVisitedCountyActive" asp-area="App" asp-controller="VisitedCounty"
+                       asp-action="Index">
+                        <i class="nav-icon fas fa-car-side"></i>
+                        <p>
+                            @localization["Layout.Header.Navbar.Items11.Text"]
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

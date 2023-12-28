@@ -1,0 +1,117 @@
+﻿@model UserViewModel
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = null;
+}
+
+<script type="text/javascript">
+    $('.select2').select2({
+        dropdownParent: $('#form-modal'),
+        theme: 'bootstrap4',
+        language: document.getElementById('ActiveLanguage').value.substring(0, 2)
+    });
+
+    $("#visitor-birthdate").flatpickr({
+        "locale": document.getElementById('ActiveLanguage').value.substring(0, 2),
+        "enableTime": true,
+        "maxDate": "2023-11",
+        "minDate": "1923-01",
+        "defaultDate": "1992-12-14 04:30",
+        "time_24hr": true,
+        "allowInput": true,
+        "altInput": true,
+        "altFormat": "j F Y H:i",
+        "disableMobile": true
+    });
+</script>
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Add" onsubmit="return AddRecord(this);"
+              autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="@Model.User.Name"
+                               class="control-label">@localization["Users.Table.Column1.Text"]</label>
+                        <input asp-for="@Model.User.Name" class="form-control" />
+                        <span asp-validation-for="@Model.User.Name" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="@Model.User.Surname"
+                               class="control-label">@localization["Users.Table.Column2.Text"]</label>
+                        <input asp-for="@Model.User.Surname" class="form-control" />
+                        <span asp-validation-for="@Model.User.Surname" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-6 mb-md-0 mb-sm-4 mb-4">
+                    <div class="form-group">
+                        <label asp-for="@Model.User.BirthDate"
+                               class="control-label">@localization["Users.Table.Column3.Text"]</label>
+                        <input asp-for="@Model.User.BirthDate" class="form-control" id="visitor-birthdate" />
+                        <span asp-validation-for="@Model.User.BirthDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="@Model.User.Gender"
+                               class="control-label">@localization["Users.Table.Column4.Text"]</label>
+                        <select asp-for="@Model.User.Gender" asp-items="@Model.GenderList" class="form-control select2" style="width: 100% !important;" id="gender-select-field">
+                            <option disabled selected>@localization["AddOrEditModal.GenderSelection.Text"]</option>
+                        </select>
+                        <span asp-validation-for="@Model.User.Gender" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="@Model.User.UserAddress.CityId"
+                               class="control-label">@localization["Users.Table.Column6.Text"]</label>
+                        <select id="citylist" onchange="cityChange()" asp-for="@Model.User.UserAddress.CityId"
+                                asp-items="@Model.CityList" class="form-control select2" style="width: 100% !important;">
+                            <option disabled selected value="0">@localization["AddOrEditModal.CitySelection.Text"]</option>
+                        </select>
+                        <span asp-validation-for="@Model.User.UserAddress.CityId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4" id="countylist">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="@Model.User.UserAddress.CountyId"
+                               class="control-label">@localization["Users.Table.Column7.Text"]</label>
+                        <select id="county-id" asp-for="@Model.User.UserAddress.CountyId" asp-items="@Model.CountyList" class="form-control select2" style="width: 100% !important;">
+                            <option disabled selected value="0">
+                                @localization["AddOrEditModal.CountySelection.Text"]
+                            </option>
+                        </select>
+                        <span asp-validation-for="@Model.User.UserAddress.CountyId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="form-group mt-4">
+                        <input type="submit" value="@localization["AddOrEditModal.SubmitBtn.Text"]"
+                               class="btn btn-primary w-100" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
