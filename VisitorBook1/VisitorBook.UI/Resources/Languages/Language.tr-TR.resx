@@ -282,7 +282,7 @@
   <data name="Users.Notification.Edit.Text" xml:space="preserve">
     <value>Kullanıcı başarılı bir şekilde düzenlendi</value>
   </data>
-  <data name="Users.Notification.Delete.Text" xml:space="preserve">
+  <data name="Users.Notification.SuccessfullDelete.Text" xml:space="preserve">
     <value>Kullanıcı başarılı bir şekilde silindi</value>
   </data>
   <data name="DeleteRequestPopup.Title.Text" xml:space="preserve">
@@ -471,7 +471,19 @@
   <data name="Roles.Title.Text" xml:space="preserve">
     <value>Rol Listesi</value>
   </data>
-  <data name="Layout.Header.Navbar.Items12.Text" xml:space="preserve">
-    <value>Rol Atama</value>
+  <data name="AddOrEditModal.RoleSelection.Text" xml:space="preserve">
+    <value>--Rol Seç--</value>
+  </data>
+  <data name="Users.Table.Column10.Text" xml:space="preserve">
+    <value>Rol</value>
+  </data>
+  <data name="Users.Table.Column8.Text" xml:space="preserve">
+    <value>E-Posta</value>
+  </data>
+  <data name="Users.Table.Column9.Text" xml:space="preserve">
+    <value>Kullanıcı Adı</value>
+  </data>
+  <data name="Users.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
+    <value>Kullanıcı kullanıldığı için silinemedi. Öncelikle kullanıcıyı kullanan kaydı silin sonra kullanıcıyı silmeyi deneyin</value>
   </data>
 </root>

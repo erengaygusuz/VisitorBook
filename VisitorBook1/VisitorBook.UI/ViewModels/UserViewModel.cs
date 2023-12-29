@@ -8,6 +8,11 @@ namespace VisitorBook.UI.ViewModels
     {
         public UserRequestDto User { get; set; }
 
+        public int RoleId { get; set; }
+
+        [ValidateNever]
+        public IEnumerable<SelectListItem> RoleList { get; set; }
+
         [ValidateNever]
         public IEnumerable<SelectListItem> GenderList { get; set; }
 

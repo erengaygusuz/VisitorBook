@@ -17,6 +17,8 @@ using VisitorBook.Core.Dtos.CountyDtos;
 using Microsoft.EntityFrameworkCore;
 using VisitorBook.Core.Dtos.VisitorAddressDtos;
 using AutoMapper;
+using VisitorBook.Core.Dtos.RoleDtos;
+using System.Linq;
 
 namespace VisitorBook.UI.Areas.Admin.Controllers
 {
@@ -26,6 +28,8 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         private readonly IService<County> _countyService;
         private readonly IService<City> _cityService;
         private readonly UserManager<User> _userManager;
+        private readonly RoleManager<Role> _roleManager;
+        private readonly SignInManager<User> _signInManager;
         private readonly IStringLocalizer<Language> _localization;
         private readonly RazorViewConverter _razorViewConverter;
         private readonly UserDataTablesOptions _userDataTableOptions;
@@ -34,7 +38,7 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         public UserController(IService<County> countyService, IService<City> cityService,
             UserManager<User> userManager, IStringLocalizer<Language> localization,
             RazorViewConverter razorViewConverter,
-            UserDataTablesOptions userDataTableOptions, IMapper mapper)
+            UserDataTablesOptions userDataTableOptions, IMapper mapper, RoleManager<Role> roleManager, SignInManager<User> signInManager)
         {
             _countyService = countyService;
             _cityService = cityService;
@@ -43,6 +47,8 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
             _razorViewConverter = razorViewConverter;
             _userDataTableOptions = userDataTableOptions;
             _mapper = mapper;
+            _roleManager = roleManager;
+            _signInManager = signInManager;
         }
 
         public IActionResult Index()
@@ -75,6 +81,15 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         {
             var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>();
 
+            var roleResponseDtos = await _roleManager.Roles.Select(x =>
+
+                new RoleResponseDto
+                {
+                    Id = x.Id,
+                    Name = x.Name
+
+                }).ToListAsync();
+
             var visitorViewModel = new UserViewModel()
             {
                 User = new UserRequestDto(),
@@ -90,7 +105,13 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
                        Text = u.Name,
                        Value = u.Id.ToString()
                    }),
-                CountyList = new List<SelectListItem>()
+                CountyList = new List<SelectListItem>(),
+                RoleList = (roleResponseDtos)
+                   .Select(u => new SelectListItem
+                   {
+                       Text = u.Name,
+                       Value = u.Id.ToString()
+                   })
             };
 
             return View(visitorViewModel);
@@ -99,15 +120,19 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         [NoDirectAccess]
         public async Task<IActionResult> Edit(int id)
         {
-            var userResponseDto = await _userManager.Users.Include(u => u.UserAddress).FirstOrDefaultAsync(u => u.Id == id);
+            var user = await _userManager.Users.Include(u => u.UserAddress).ThenInclude(c => c.County).FirstOrDefaultAsync(u => u.Id == id);
+
+            var userRoleName = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
+
+            var userRoleId = (await _roleManager.Roles.FirstOrDefaultAsync(r => r.Name == userRoleName)).Id;
 
             IEnumerable<CountyResponseDto> countyResponseDtos;
 
             var userAddressResponseDto = new UserAddressResponseDto();
 
-            if (userResponseDto.UserAddress != null)
+            if (user.UserAddress != null)
             {
-                userAddressResponseDto = _mapper.Map<UserAddressResponseDto>(userResponseDto.UserAddress);
+                userAddressResponseDto = _mapper.Map<UserAddressResponseDto>(user.UserAddress);
 
                 countyResponseDtos = await _countyService.GetAllAsync<CountyResponseDto>(
                     orderBy: o => o.OrderBy(x => x.Name),
@@ -122,16 +147,28 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
 
             var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>();
 
+            var roleResponseDtos = await _roleManager.Roles.Select(x =>
+
+                new RoleResponseDto
+                {
+                    Id = x.Id,
+                    Name = x.Name
+
+                }).ToListAsync();
+
             var userViewModel = new UserViewModel()
             {
                 User = new UserRequestDto()
                 {
                     Id = id,
-                    Name = userResponseDto.Name,
-                    Surname = userResponseDto.Surname,
-                    BirthDate = userResponseDto.BirthDate,
-                    Gender = userResponseDto.Gender.ToString(),
-                    UserAddress = userResponseDto.UserAddress != null ?
+                    Email = user.Email,
+                    Username = user.UserName,
+                    Name = user.Name,
+                    Surname = user.Surname,
+                    BirthDate = user.BirthDate,
+                    Gender = user.Gender.ToString(),
+                    SecurityStamp = user.SecurityStamp,
+                    UserAddress = user.UserAddress != null ?
                     new UserAddressRequestDto()
                     {
                         Id = userAddressResponseDto.Id,
@@ -141,6 +178,7 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
                     :
                     new UserAddressRequestDto()
                 },
+                RoleId = userRoleId,
                 GenderList = new List<string> { "Male", "Female" }
                    .Select(u => new SelectListItem
                    {
@@ -158,6 +196,12 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
                    {
                        Text = u.Name,
                        Value = u.Id.ToString()
+                   }),
+                RoleList = (roleResponseDtos)
+                   .Select(u => new SelectListItem
+                   {
+                       Text = u.Name,
+                       Value = u.Id.ToString()
                    })
             };
 
@@ -171,7 +215,19 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _userManager.CreateAsync(_mapper.Map<User>(userViewModel.User));
+                var user = _mapper.Map<User>(userViewModel.User);
+                user.SecurityStamp = _userManager.CreateSecurityTokenAsync(user).ToString();
+
+                var result = await _userManager.CreateAsync(user, "12345");
+
+                if (result.Succeeded)
+                {
+                    var userToAssignRole = await _userManager.FindByEmailAsync(userViewModel.User.Email);
+
+                    var role = await _roleManager.Roles.FirstOrDefaultAsync(r => r.Id == userViewModel.RoleId);
+
+                    await _userManager.AddToRoleAsync(userToAssignRole, role.Name);
+                }
 
                 return Json(new { isValid = true, message = _localization["Users.Notification.Add.Text"].Value });
             }
@@ -192,6 +248,22 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
                        Value = u.ToString()
                    });
 
+            var roleResponseDtos = await _roleManager.Roles.Select(x =>
+
+                new RoleResponseDto
+                {
+                    Id = x.Id,
+                    Name = x.Name
+
+                }).ToListAsync();
+
+            userViewModel.RoleList = (roleResponseDtos)
+                   .Select(u => new SelectListItem
+                   {
+                       Text = u.Name,
+                       Value = u.Id.ToString()
+                   });
+
             return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", userViewModel) });
         }
 
@@ -202,7 +274,27 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _userManager.UpdateAsync(_mapper.Map<User>(userViewModel.User));
+                var userToUpdate = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userViewModel.User.Id);
+
+                _mapper.Map(userViewModel.User, userToUpdate);
+
+                await _userManager.UpdateAsync(userToUpdate);
+
+                var userRoles = await _userManager.GetRolesAsync(userToUpdate);
+
+                var role = await _roleManager.Roles.FirstOrDefaultAsync(r => r.Id == userViewModel.RoleId);
+
+                foreach(var userRole in userRoles)
+                {
+                    await _userManager.RemoveFromRoleAsync(userToUpdate, userRole);
+                }
+                
+                await _userManager.AddToRoleAsync(userToUpdate, role.Name);
+
+                await _userManager.UpdateSecurityStampAsync(userToUpdate);
+
+                await _signInManager.SignOutAsync();
+                await _signInManager.SignInAsync(userToUpdate, true);
 
                 return Json(new { isValid = true, message = _localization["Users.Notification.Edit.Text"].Value });
             }
@@ -221,6 +313,22 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
                    {
                        Text = _localization["Enum.Gender." + u + ".Text"].Value,
                        Value = u.ToString()
+                   });
+
+            var roleResponseDtos = await _roleManager.Roles.Select(x =>
+
+                new RoleResponseDto
+                {
+                    Id = x.Id,
+                    Name = x.Name
+
+                }).ToListAsync();
+
+            userViewModel.RoleList = (roleResponseDtos)
+                   .Select(u => new SelectListItem
+                   {
+                       Text = u.Name,
+                       Value = u.Id.ToString()
                    });
 
             return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", userViewModel) });

@@ -11,7 +11,6 @@ using VisitorBook.UI.Languages;
 using VisitorBook.Core.Extensions;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
-using VisitorBook.Core.Dtos.UserRoleDtos;
 
 namespace VisitorBook.UI.Areas.Admin.Controllers
 {
@@ -20,16 +19,14 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
     {
         private readonly IStringLocalizer<Language> _localization;
         private readonly RazorViewConverter _razorViewConverter;
-        private readonly UserManager<User> _userManager;
         private readonly RoleManager<Role> _roleManager;
         private readonly RoleDataTablesOptions _roleDataTableOptions;
         private readonly IMapper _mapper;
 
         public RoleController(RazorViewConverter razorViewConverter,
-            IStringLocalizer<Language> localization, UserManager<User> userManager, RoleManager<Role> roleManager, RoleDataTablesOptions roleDataTableOptions,
+            IStringLocalizer<Language> localization, RoleManager<Role> roleManager, RoleDataTablesOptions roleDataTableOptions,
             IMapper mapper)
         {
-            _userManager = userManager;
             _roleManager = roleManager;
             _localization = localization;
             _razorViewConverter = razorViewConverter;
@@ -91,38 +88,6 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
             return View();
         }
 
-        [NoDirectAccess]
-        public async Task<IActionResult> AssignRoleToUser(string id)
-        {
-            var currentUser = await _userManager.FindByIdAsync(id);
-
-            ViewBag.userId = id;
-
-            var roles = await _roleManager.Roles.ToListAsync();
-
-            var userRoleResponseDtos = new List<UserRoleResponseDto>();
-
-            var userRoles = await _userManager.GetRolesAsync(currentUser);
-
-            foreach (var role in roles)
-            {
-                var userRoleResponseDto = new UserRoleResponseDto()
-                {
-                    Id = role.Id,
-                    Name = role.Name
-                };
-
-                if (userRoles.Contains(role.Name))
-                {
-                    userRoleResponseDto.Exist = true;
-                }
-
-                userRoleResponseDtos.Add(userRoleResponseDto);
-            }
-
-            return View(userRoleResponseDtos);
-        }
-
         [ActionName("Add")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -182,44 +147,6 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
             }
 
             return BadRequest(new { message = _localization["Roles.Notification.UnSuccessfullDelete.Text"].Value });
-        }
-
-        [ActionName("AssignRoleToUser")]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AssignRoleToUser(UserRoleRequestDto userRoleRequestDto)
-        {
-            var userToAssignRoles = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userRoleRequestDto.UserId);
-
-            if (userToAssignRoles == null)
-            {
-                return NotFound();
-            }
-
-            if (userRoleRequestDto == null)
-            {
-                return BadRequest();
-            }
-
-            if (!ModelState.IsValid)
-            {
-                return UnprocessableEntity(ModelState.GetValidationErrors());
-            }
-
-            foreach (var userRoleInfo in userRoleRequestDto.UserRoleInfo)
-            {
-                if (userRoleInfo.Exist)
-                {
-                    await _userManager.AddToRoleAsync(userToAssignRoles, userRoleInfo.Name);
-                }
-
-                else
-                {
-                    await _userManager.RemoveFromRoleAsync(userToAssignRoles, userRoleInfo.Name);
-                }
-            }
-
-            return RedirectToAction(nameof(UserController.Index), "User");
         }
     }
 }

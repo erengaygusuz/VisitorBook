@@ -1,4 +1,5 @@
-﻿using VisitorBook.Core.Dtos.VisitorAddressDtos;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using VisitorBook.Core.Dtos.VisitorAddressDtos;
 
 namespace VisitorBook.Core.Dtos.UserDtos
 {
@@ -11,6 +12,10 @@ namespace VisitorBook.Core.Dtos.UserDtos
         public string Surname { get; set; }
         public DateTime BirthDate { get; set; }
         public string Gender { get; set; }
+
+        [ValidateNever]
+        public string SecurityStamp { get; set; }
+
         public UserAddressRequestDto? UserAddress { get; set; }
     }
 }

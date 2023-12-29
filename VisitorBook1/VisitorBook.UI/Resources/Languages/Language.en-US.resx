@@ -282,7 +282,7 @@
   <data name="Users.Notification.Edit.Text" xml:space="preserve">
     <value>User edited successfully</value>
   </data>
-  <data name="Users.Notification.Delete.Text" xml:space="preserve">
+  <data name="Users.Notification.SuccessfullDelete.Text" xml:space="preserve">
     <value>User deleted successfully</value>
   </data>
   <data name="DeleteRequestPopup.Title.Text" xml:space="preserve">
@@ -471,7 +471,19 @@
   <data name="Roles.Title.Text" xml:space="preserve">
     <value>Role List</value>
   </data>
-  <data name="Layout.Header.Navbar.Items12.Text" xml:space="preserve">
-    <value>Role Assignment</value>
+  <data name="AddOrEditModal.RoleSelection.Text" xml:space="preserve">
+    <value>--Select Role--</value>
+  </data>
+  <data name="Users.Table.Column10.Text" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="Users.Table.Column8.Text" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Users.Table.Column9.Text" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="Users.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
+    <value>User did not deleted due to usage of it. Please first delete the record which uses this user after that try to delete it again</value>
   </data>
 </root>

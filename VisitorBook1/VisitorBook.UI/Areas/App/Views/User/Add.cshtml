@@ -12,18 +12,7 @@
         language: document.getElementById('ActiveLanguage').value.substring(0, 2)
     });
 
-    $("#visitor-birthdate").flatpickr({
-        "locale": document.getElementById('ActiveLanguage').value.substring(0, 2),
-        "enableTime": true,
-        "maxDate": "2023-11",
-        "minDate": "1923-01",
-        "defaultDate": "1992-12-14 04:30",
-        "time_24hr": true,
-        "allowInput": true,
-        "altInput": true,
-        "altFormat": "j F Y H:i",
-        "disableMobile": true
-    });
+    $('#visitor-birthdate').datetimepicker({ icons: { time: 'far fa-clock' } });
 </script>
 
 <div class="row">
@@ -56,7 +45,12 @@
                     <div class="form-group">
                         <label asp-for="@Model.User.BirthDate"
                                class="control-label">@localization["Users.Table.Column3.Text"]</label>
-                        <input asp-for="@Model.User.BirthDate" class="form-control" id="visitor-birthdate" />
+                        <div class="input-group date" id="visitor-birthdate" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#visitor-birthdate" asp-for="@Model.User.BirthDate">
+                            <div class="input-group-append" data-target="#visitor-birthdate" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
                         <span asp-validation-for="@Model.User.BirthDate" class="text-danger"></span>
                     </div>
                 </div>
@@ -68,6 +62,39 @@
                             <option disabled selected>@localization["AddOrEditModal.GenderSelection.Text"]</option>
                         </select>
                         <span asp-validation-for="@Model.User.Gender" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="@Model.User.Email"
+                               class="control-label">@localization["Users.Table.Column8.Text"]</label>
+                        <input asp-for="@Model.User.Email" class="form-control" />
+                        <span asp-validation-for="@Model.User.Email" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="@Model.User.Username"
+                               class="control-label">@localization["Users.Table.Column9.Text"]</label>
+                        <input asp-for="@Model.User.Username" class="form-control" />
+                        <span asp-validation-for="@Model.User.Username" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="@Model.RoleId"
+                               class="control-label">@localization["Users.Table.Column10.Text"]</label>
+                        <select asp-for="@Model.RoleId"
+                                asp-items="@Model.RoleList" class="form-control select2" style="width: 100% !important;">
+                            <option disabled selected value="0">@localization["AddOrEditModal.RoleSelection.Text"]</option>
+                        </select>
+                        <span asp-validation-for="@Model.RoleId" class="text-danger"></span>
                     </div>
                 </div>
             </div>
