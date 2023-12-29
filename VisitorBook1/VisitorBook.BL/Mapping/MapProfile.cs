@@ -46,7 +46,7 @@ namespace VisitorBook.BL.Mapping
             CreateMap<VisitedCounty, VisitedCountyResponseDto>()
                 .ForPath(e => e.County.City, opts => opts.MapFrom(e => e.County.City))
                 .ForMember(e => e.County, opts => opts.MapFrom(e => e.County))
-                .ForPath(e => e.User, opts => opts.MapFrom(e => e.User));
+                .ForMember(e => e.User, opts => opts.MapFrom(e => e.User));
             CreateMap<VisitedCountyResponseDto, VisitedCounty>();
 
             CreateMap<UserAddressRequestDto, UserAddress>();

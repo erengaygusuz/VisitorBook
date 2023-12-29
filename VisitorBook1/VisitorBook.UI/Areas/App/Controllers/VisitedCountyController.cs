@@ -52,7 +52,7 @@ namespace VisitorBook.UI.Area.App.Controllers
             _visitedCountyDataTableOptions.SetDataTableOptions(Request);
 
             var result = _visitedCountyService.GetAll<VisitedCountyResponseDto>(_visitedCountyDataTableOptions.GetDataTablesOptions(), 
-                include: x => x.Include(c => c.User).Include(c => c.County));
+                include: x => x.Include(c => c.User).Include(c => c.County).ThenInclude(c => c.City));
 
             return DataTablesResult(result);
         }
@@ -91,7 +91,7 @@ namespace VisitorBook.UI.Area.App.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var visitedCountyResponseDto = await _visitedCountyService.GetAsync<VisitedCountyResponseDto>(u => u.Id == id, 
-                include: x => x.Include(c => c.User).Include(c => c.County));
+                include: x => x.Include(c => c.User).Include(c => c.County).ThenInclude(c => c.City));
 
             var countyResponseDto = await _countyService.GetAllAsync<CountyResponseDto>(u => u.CityId == visitedCountyResponseDto.County.City.Id);
 
@@ -104,7 +104,7 @@ namespace VisitorBook.UI.Area.App.Controllers
                 VisitedCounty = new VisitedCountyRequestDto()
                 {
                     Id = id,
-                    VisitorId = visitedCountyResponseDto.User.Id,
+                    UserId = visitedCountyResponseDto.User.Id,
                     CityId = visitedCountyResponseDto.County.City.Id,
                     CountyId = visitedCountyResponseDto.County.Id,
                     VisitDate = visitedCountyResponseDto.VisitDate
@@ -128,8 +128,6 @@ namespace VisitorBook.UI.Area.App.Controllers
                        Value = u.Id.ToString()
                    })
             };
-
-            ViewData["BirthDates"] = visitorsWithVisitorAddress.Select(x => x.BirthDate).ToList();
 
             return View(visitedCountyViewModel);
         }
@@ -164,15 +162,13 @@ namespace VisitorBook.UI.Area.App.Controllers
                        Value = u.Id.ToString()
                    });
 
-            ViewData["BirthDates"] = visitorsWithVisitorAddress.Select(x => x.BirthDate).ToList();
-
             return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", visitedCountyViewModel) });
         }
 
         [ActionName("Edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost(int id, VisitedCountyViewModel visitedCountyViewModel)
+        public async Task<IActionResult> EditPost(VisitedCountyViewModel visitedCountyViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -199,22 +195,21 @@ namespace VisitorBook.UI.Area.App.Controllers
                        Value = u.Id.ToString()
                    });
 
-            ViewData["BirthDates"] = visitorsWithVisitorAddress.Select(x => x.BirthDate).ToList();
-
             return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", visitedCountyViewModel) });
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
-            var visitedCountyResponseDto = await _visitedCountyService.GetAsync<VisitedCountyResponseDto>(u => u.Id == id);
+            var visitedCountyResponseDto = await _visitedCountyService.GetAsync<VisitedCountyResponseDto>(u => u.Id == id, 
+                include: x => x.Include(c => c.User).Include(c => c.County).ThenInclude(c => c.City));
 
             if (visitedCountyResponseDto == null)
             {
                 return NotFound();
             }
 
-            var result = await _visitedCountyService.RemoveAsync(id);
+            var result = await _visitedCountyService.RemoveAsync(visitedCountyResponseDto);
 
             if (result)
             {

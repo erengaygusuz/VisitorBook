@@ -15,35 +15,7 @@
         language: document.getElementById('ActiveLanguage').value.substring(0, 2)
     });
 
-    var visitedDate = $("#visited-date").flatpickr({
-        "locale": document.getElementById('ActiveLanguage').value.substring(0, 2),
-        "enableTime": true,
-        "maxDate": "today",
-        "minDate": "2000-01",
-        "defaultDate": "today",
-        "time_24hr": true,
-        "allowInput": true,
-        "altInput": true,
-        "altFormat": "j F Y H:i",
-        "onOpen": function (selectedDates, dateStr, instance) {
-            visitedDate.set('minDate', visitorBirthDate);
-        },
-        "disableMobile": true
-    });
-
-    visitedDate._input.disabled = true;
-
-    $('#visitor-select-field').on('select2:selecting', function (e) {
-
-        visitorBirthDate = moment(visitorBirthDates[e.params.args.data.element.index]).format('YYYY-MM')
-
-        if (e.params.args.data.element.index != 0) {
-            visitedDate._input.disabled = false;
-        }
-        else {
-            visitedDate._input.disabled = true;
-        }
-    });
+    $('#visitor-birthdate').datetimepicker({ icons: { time: 'far fa-clock' } });
 </script>
 
 <div class="row">
@@ -54,12 +26,12 @@
             <div class="row mt-4">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label asp-for="@Model.VisitedCounty.VisitorId"
+                        <label asp-for="@Model.VisitedCounty.UserId"
                                class="control-label">@localization["VisitedCounties.Table.Column1.Text"]</label>
-                        <select asp-for="@Model.VisitedCounty.VisitorId" asp-items="@Model.VisitorList" class="form-control select2" style="width: 100% !important;" id="visitor-select-field">
+                        <select asp-for="@Model.VisitedCounty.UserId" asp-items="@Model.VisitorList" class="form-control select2" style="width: 100% !important;" id="visitor-select-field">
                             <option disabled selected>@localization["AddOrEditModal.VisitorSelection.Text"]</option>
                         </select>
-                        <span asp-validation-for="@Model.VisitedCounty.VisitorId" class=" text-danger"></span>
+                        <span asp-validation-for="@Model.VisitedCounty.UserId" class=" text-danger"></span>
                     </div>
                 </div>
             </div>
@@ -95,7 +67,12 @@
                     <div class="form-group">
                         <label asp-for="@Model.VisitedCounty.VisitDate"
                                class="control-label">@localization["VisitedCounties.Table.Column4.Text"]</label>
-                        <input asp-for="@Model.VisitedCounty.VisitDate" class="form-control" id="visited-date" />
+                        <div class="input-group date" id="visited-date" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#visited-date" asp-for="@Model.VisitedCounty.VisitDate">
+                            <div class="input-group-append" data-target="#visited-date" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
                         <span asp-validation-for="@Model.VisitedCounty.VisitDate" class="text-danger"></span>
                     </div>
                 </div>

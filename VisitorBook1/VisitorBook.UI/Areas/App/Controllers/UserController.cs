@@ -292,11 +292,6 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
                 
                 await _userManager.AddToRoleAsync(userToUpdate, role.Name);
 
-                await _userManager.UpdateSecurityStampAsync(userToUpdate);
-
-                await _signInManager.SignOutAsync();
-                await _signInManager.SignInAsync(userToUpdate, true);
-
                 return Json(new { isValid = true, message = _localization["Users.Notification.Edit.Text"].Value });
             }
 
