@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
@@ -15,6 +16,7 @@ using VisitorBook.UI.ViewModels;
 
 namespace VisitorBook.UI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("App")]
     public class CountryController : BaseController
     {

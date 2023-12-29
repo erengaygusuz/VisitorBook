@@ -18,10 +18,11 @@ using Microsoft.EntityFrameworkCore;
 using VisitorBook.Core.Dtos.VisitorAddressDtos;
 using AutoMapper;
 using VisitorBook.Core.Dtos.RoleDtos;
-using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VisitorBook.UI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("App")]
     public class UserController : BaseController
     {

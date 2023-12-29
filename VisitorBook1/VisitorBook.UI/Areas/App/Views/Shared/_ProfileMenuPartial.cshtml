@@ -1,6 +1,4 @@
-﻿@using System.Security.Claims;
-
-<li class="nav-item dropdown user-menu">
+﻿<li class="nav-item dropdown user-menu">
     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
         <img src="~/dist/img/user-avatar-small.png" class="user-image img-circle elevation-2" alt="User Image">
         <span class="d-none d-md-inline">@User.Identity.Name</span>
@@ -14,7 +12,7 @@
         <!-- Menu Footer-->
         <li class="user-footer">
             <a asp-controller="Profile" asp-action="Index" class="btn btn-default btn-flat">Profile</a>
-            <a href="#" class="btn btn-default btn-flat float-right">Logout</a>
+            <a asp-route-returnurl="/Home/Index" asp-area="App" asp-controller="Profile" asp-action="Logout" class="btn btn-default btn-flat float-right">Logout</a>
         </li>
     </ul>
 </li>

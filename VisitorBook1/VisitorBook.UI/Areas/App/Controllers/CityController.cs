@@ -12,9 +12,11 @@ using Microsoft.EntityFrameworkCore;
 using VisitorBook.Core.Dtos.CityDtos;
 using VisitorBook.UI.Areas.App.Controllers;
 using VisitorBook.Core.Dtos.CountryDtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VisitorBook.UI.Area.App.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("App")]
     public class CityController : BaseController
     {

@@ -1,0 +1,11 @@
+﻿@using System.Security.Claims;
+
+@if (!User.Identity.IsAuthenticated)
+{
+    <a asp-controller="Auth" asp-action="Login" class="btn btn-primary me-2">Giriş Yap</a>
+    <a asp-controller="Auth" asp-action="Register" class="btn btn-primary ">Üye Ol</a>
+}
+else
+{
+    <a asp-area="App" asp-controller="Home" asp-action="Index" class="btn btn-primary me-2">Panele Git</a>
+}

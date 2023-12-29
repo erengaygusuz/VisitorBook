@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using VisitorBook.Core.Dtos.ProfileDtos;
@@ -9,6 +10,7 @@ using VisitorBook.Core.Extensions;
 
 namespace VisitorBook.UI.Areas.Admin.Controllers
 {
+    [Authorize]
     [Area("App")]
     public class ProfileController : Controller
     {

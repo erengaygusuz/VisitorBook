@@ -8,14 +8,15 @@ using VisitorBook.Core.Utilities;
 using VisitorBook.UI.ViewModels;
 using VisitorBook.Core.Entities;
 using VisitorBook.Core.Abstract;
-using VisitorBook.Core.Dtos.CityDtos;
 using VisitorBook.UI.Areas.App.Controllers;
 using Microsoft.EntityFrameworkCore;
 using VisitorBook.Core.Dtos.SubRegionDtos;
 using VisitorBook.Core.Dtos.RegionDtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VisitorBook.UI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("App")]
     public class SubRegionController : BaseController
     {

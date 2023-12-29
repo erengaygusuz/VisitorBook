@@ -8,9 +8,11 @@ using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Entities;
 using VisitorBook.Core.Dtos.RegionDtos;
 using VisitorBook.UI.Areas.App.Controllers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VisitorBook.UI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("App")]
     public class RegionController : BaseController
     {

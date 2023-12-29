@@ -11,9 +11,11 @@ using VisitorBook.UI.Languages;
 using VisitorBook.Core.Extensions;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VisitorBook.UI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("App")]
     public class RoleController : BaseController
     {
