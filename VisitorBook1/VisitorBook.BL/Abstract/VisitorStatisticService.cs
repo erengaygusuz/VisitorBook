@@ -23,13 +23,18 @@ namespace VisitorBook.BL.Concrete
 
             var groupedVisitedList = visitedCountyWithVisitorAndVisitorAddress.GroupBy(a => a.UserId);
 
-            var highestCountOfVisitedCountyByVisitor = await groupedVisitedList.Select(a => new
-            {
-                VisitorInfo = a.First().User.Name + " " + a.First().User.Surname,
-                CountOfDistinctVisitedCounty = a.Distinct().Count()
-            }).OrderByDescending(a => a.CountOfDistinctVisitedCounty).ThenBy(b => b.VisitorInfo).FirstAsync();
+            var tuple = new Tuple<string, string>("Nobody", "0");
 
-            var tuple = new Tuple<string, string>(highestCountOfVisitedCountyByVisitor.VisitorInfo, highestCountOfVisitedCountyByVisitor.CountOfDistinctVisitedCounty.ToString());
+            if (groupedVisitedList.Count() > 0)
+            {
+                var highestCountOfVisitedCountyByVisitor = await groupedVisitedList.Select(a => new
+                {
+                    VisitorInfo = a.First().User.Name + " " + a.First().User.Surname,
+                    CountOfDistinctVisitedCounty = a.Distinct().Count()
+                }).OrderByDescending(a => a.CountOfDistinctVisitedCounty).ThenBy(b => b.VisitorInfo).FirstAsync();
+
+                tuple = new Tuple<string, string>(highestCountOfVisitedCountyByVisitor.VisitorInfo, highestCountOfVisitedCountyByVisitor.CountOfDistinctVisitedCounty.ToString());
+            }
 
             return tuple;
         }
@@ -41,13 +46,18 @@ namespace VisitorBook.BL.Concrete
 
             var groupedVisitedList = visitedCountyWithVisitorAndVisitorAddress.GroupBy(a => a.UserId);
 
-            var highestCountOfVisitedCityByVisitor = await groupedVisitedList.Select(a => new
-            {
-                VisitorInfo = a.First().User.Name + " " + a.First().User.Surname,
-                CountOfDistinctVisitedCounty = a.GroupBy(c => c.County.City).Count()
-            }).OrderByDescending(a => a.CountOfDistinctVisitedCounty).ThenBy(b => b.VisitorInfo).FirstAsync();
+            var tuple = new Tuple<string, string>("Nobody", "0");
 
-            var tuple = new Tuple<string, string>(highestCountOfVisitedCityByVisitor.VisitorInfo, highestCountOfVisitedCityByVisitor.CountOfDistinctVisitedCounty.ToString());
+            if (groupedVisitedList.Count() > 0)
+            {
+                var highestCountOfVisitedCityByVisitor = await groupedVisitedList.Select(a => new
+                {
+                    VisitorInfo = a.First().User.Name + " " + a.First().User.Surname,
+                    CountOfDistinctVisitedCounty = a.GroupBy(c => c.County.City).Count()
+                }).OrderByDescending(a => a.CountOfDistinctVisitedCounty).ThenBy(b => b.VisitorInfo).FirstAsync();
+
+                tuple = new Tuple<string, string>(highestCountOfVisitedCityByVisitor.VisitorInfo, highestCountOfVisitedCityByVisitor.CountOfDistinctVisitedCounty.ToString());
+            }
 
             return tuple;
         }
@@ -60,13 +70,18 @@ namespace VisitorBook.BL.Concrete
 
             var groupedVisitedList = visitedCountyWithVisitorAndVisitorAddress.GroupBy(a => a.UserId);
 
-            var longestDistanceWithVisitorInfo = (await groupedVisitedList.ToListAsync()).Select(a => new
-            {
-                VisitorInfo = a.First().User.Name + " " + a.First().User.Surname,
-                LongestDistance = a.Max(visitedCounty => CalculateDistance(visitedCounty))
-            }).OrderByDescending(a => a.LongestDistance).ThenBy(b => b.VisitorInfo).First();
+            var tuple = new Tuple<string, string>("Nobody", "0");
 
-            var tuple = new Tuple<string, string>(longestDistanceWithVisitorInfo.VisitorInfo, String.Format("{0:0.##}", longestDistanceWithVisitorInfo.LongestDistance));
+            if (groupedVisitedList.Count() > 0)
+            {
+                var longestDistanceWithVisitorInfo = (await groupedVisitedList.ToListAsync()).Select(a => new
+                {
+                    VisitorInfo = a.First().User.Name + " " + a.First().User.Surname,
+                    LongestDistance = a.Max(visitedCounty => CalculateDistance(visitedCounty))
+                }).OrderByDescending(a => a.LongestDistance).ThenBy(b => b.VisitorInfo).First();
+
+                tuple = new Tuple<string, string>(longestDistanceWithVisitorInfo.VisitorInfo, String.Format("{0:0.##}", longestDistanceWithVisitorInfo.LongestDistance));
+            }
 
             return tuple;
         }
@@ -79,13 +94,18 @@ namespace VisitorBook.BL.Concrete
 
             var groupedVisitedList = visitedCountyWithVisitorAndVisitorAddress.GroupBy(a => a.UserId);
 
-            var longestDistanceWithVisitorInfo = (await groupedVisitedList.ToListAsync()).Select(a => new
-            {
-                VisitorInfo = a.First().User.Name + " " + a.First().User.Surname,
-                LongestDistance = a.Sum(visitedCounty => CalculateDistance(visitedCounty))
-            }).OrderByDescending(a => a.LongestDistance).ThenBy(b => b.VisitorInfo).First();
+            var tuple = new Tuple<string, string>("Nobody", "0");
 
-            var tuple = new Tuple<string, string>(longestDistanceWithVisitorInfo.VisitorInfo, String.Format("{0:0.##}", longestDistanceWithVisitorInfo.LongestDistance));
+            if (groupedVisitedList.Count() > 0)
+            {
+                var longestDistanceWithVisitorInfo = (await groupedVisitedList.ToListAsync()).Select(a => new
+                {
+                    VisitorInfo = a.First().User.Name + " " + a.First().User.Surname,
+                    LongestDistance = a.Sum(visitedCounty => CalculateDistance(visitedCounty))
+                }).OrderByDescending(a => a.LongestDistance).ThenBy(b => b.VisitorInfo).First();
+
+                tuple = new Tuple<string, string>(longestDistanceWithVisitorInfo.VisitorInfo, String.Format("{0:0.##}", longestDistanceWithVisitorInfo.LongestDistance));
+            }
 
             return tuple;
         }
