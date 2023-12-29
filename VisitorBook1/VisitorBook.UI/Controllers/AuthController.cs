@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Dtos.AuthDtos;
@@ -12,12 +13,14 @@ namespace VisitorBook.UI.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IEmailService _emailService;
+        private readonly INotyfService _notifyService;
 
-        public AuthController(UserManager<User> userManager, SignInManager<User> signInManager, IEmailService emailService)
+        public AuthController(UserManager<User> userManager, SignInManager<User> signInManager, IEmailService emailService, INotyfService notifyService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailService = emailService;
+            _notifyService = notifyService;
         }
 
         public IActionResult Login()
@@ -30,6 +33,8 @@ namespace VisitorBook.UI.Controllers
         {
             if (!ModelState.IsValid)
             {
+                _notifyService.Error("Email veya şifre yanlış.");
+
                 return View();
             }
 
@@ -41,6 +46,8 @@ namespace VisitorBook.UI.Controllers
             {
                 ModelState.AddModelError(string.Empty, "Email veya şifre yanlış");
 
+                _notifyService.Error("Email veya şifre yanlış.");
+
                 return View();
             }
 
@@ -48,6 +55,10 @@ namespace VisitorBook.UI.Controllers
 
             if (signInResult.Succeeded)
             {
+                _notifyService.Success("Giriş başarılı.");
+
+                _notifyService.RemoveAll();
+
                 return Redirect(returnUrl);
             }
 
@@ -55,8 +66,12 @@ namespace VisitorBook.UI.Controllers
             {
                 ModelState.AddModelErrorList(new List<string>() { "3 dakika boyunca giriş yapamazsınız." });
 
+                _notifyService.Error("3 dakika boyunca giriş yapamazsınız.");
+
                 return View();
             }
+
+            _notifyService.Error($"Email veya şifre yanlış. (Başarısız giriş sayısı = {await _userManager.GetAccessFailedCountAsync(user)})");
 
             ModelState.AddModelErrorList(new List<string>()
             {
@@ -77,6 +92,8 @@ namespace VisitorBook.UI.Controllers
         {
             if (!ModelState.IsValid)
             {
+                _notifyService.Error("Lütfen bilgilerinizi eksiksiz bir şekilde doldurunuz.");
+
                 return View();
             }
 
@@ -96,7 +113,7 @@ namespace VisitorBook.UI.Controllers
 
                 if (result.Succeeded)
                 {
-                    TempData["SuccessMessage"] = "Üyelik kayıt işlemi başarıyla gerçekleşmiştir.";
+                    _notifyService.Success("Üyelik kayıt işlemi başarıyla gerçekleşmiştir.");
 
                     return RedirectToAction(nameof(Register));
                 }
@@ -121,6 +138,8 @@ namespace VisitorBook.UI.Controllers
             {
                 ModelState.AddModelError(string.Empty, "Bu email adresine sahip kullanıcı bulunamamıştır.");
 
+                _notifyService.Error("Bu email adresine sahip kullanıcı bulunamamıştır.");
+
                 return View();
             }
 
@@ -130,7 +149,7 @@ namespace VisitorBook.UI.Controllers
 
             await _emailService.SendResetPasswordEmail(passwordResetLink, user.Email);
 
-            TempData["SuccessMessage"] = "Şifre yenileme linki eposta adresinize gönderilmiştir";
+            _notifyService.Success("Şifre yenileme linki eposta adresinize gönderilmiştir.");
 
             return RedirectToAction(nameof(ForgotPassword));
         }
@@ -167,7 +186,7 @@ namespace VisitorBook.UI.Controllers
 
             if (result.Succeeded)
             {
-                TempData["SuccessMessage"] = "Şifreniz başarıyla yenilenmiştir.";
+                _notifyService.Success("Şifreniz başarıyla yenilenmiştir.");
             }
 
             else

@@ -25,7 +25,7 @@
             <input type="hidden" asp-for="@Model.User.Id" />
             <input type="hidden" asp-for="@Model.User.UserAddress.Id" />
             <div class="row mt-4">
-                <div class="col-md-12">
+                <div class="col-md-6 mb-md-0 mb-sm-4 mb-4">
                     <div class="form-group">
                         <label asp-for="@Model.User.Name"
                                class="control-label">@localization["Users.Table.Column1.Text"]</label>
@@ -33,9 +33,7 @@
                         <span asp-validation-for="@Model.User.Name" class="text-danger"></span>
                     </div>
                 </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="@Model.User.Surname"
                                class="control-label">@localization["Users.Table.Column2.Text"]</label>
@@ -70,7 +68,7 @@
                 </div>
             </div>
             <div class="row mt-4">
-                <div class="col-md-12">
+                <div class="col-md-6 mb-md-0 mb-sm-4 mb-4">
                     <div class="form-group">
                         <label asp-for="@Model.User.Email"
                                class="control-label">@localization["Users.Table.Column8.Text"]</label>
@@ -78,9 +76,7 @@
                         <span asp-validation-for="@Model.User.Email" class="text-danger"></span>
                     </div>
                 </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="@Model.User.Username"
                                class="control-label">@localization["Users.Table.Column9.Text"]</label>
@@ -103,7 +99,7 @@
                 </div>
             </div>
             <div class="row mt-4">
-                <div class="col-md-12">
+                <div class="col-md-6 mb-md-0 mb-sm-4 mb-4">
                     <div class="form-group">
                         <label asp-for="@Model.User.UserAddress!.CityId"
                                class="control-label">@localization["Users.Table.Column6.Text"]</label>
@@ -114,14 +110,13 @@
                         <span asp-validation-for="@Model.User.UserAddress!.CityId" class="text-danger"></span>
                     </div>
                 </div>
-            </div>
-            <div class="row mt-4" id="countylist">
-                <div class="col-md-12">
+                <div class="col-md-6" id="countylist">
                     <div class="form-group">
                         <label asp-for="@Model.User.UserAddress!.CountyId"
                                class="control-label">@localization["Users.Table.Column7.Text"]</label>
                         <select id="county-id" asp-for="@Model.User.UserAddress!.CountyId" asp-items="@Model.CountyList" class="form-control select2" style="width: 100% !important;">
-                            <option disabled selected value="0">@localization["AddOrEditModal.CountySelection.Text"]
+                            <option disabled selected value="0">
+                                @localization["AddOrEditModal.CountySelection.Text"]
                             </option>
                         </select>
                         <span asp-validation-for="@Model.User.UserAddress!.CountyId" class="text-danger"></span>

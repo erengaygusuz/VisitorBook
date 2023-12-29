@@ -21,6 +21,8 @@ using VisitorBook.Core.Dtos.RegionDtos;
 using VisitorBook.Core.Dtos.RoleDtos;
 using VisitorBook.Core.Dtos.SubRegionDtos;
 using VisitorBook.Core.Dtos.UserDtos;
+using AspNetCoreHero.ToastNotification;
+using AspNetCoreHero.ToastNotification.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -117,7 +119,11 @@ builder.Services.ConfigureApplicationCookie(opt =>
     opt.SlidingExpiration = true;
 });
 
+builder.Services.AddNotyf(config => { config.DurationInSeconds = 5; config.IsDismissable = true; config.Position = NotyfPosition.TopRight; });
+
 var app = builder.Build();
+
+app.UseNotyf();
 
 app.UseStatusCodePagesWithReExecute("/Error/{0}");
 

@@ -140,6 +140,10 @@ function loadDataTable(
     })
 }
 
+$("#general-modal").on("hidden.bs.modal", function () {
+    $("#general-modal").removeClass("modal-lg");
+});
+
 showInPopup = (url, title) => {
     $.ajax({
         type: 'GET',
@@ -147,6 +151,9 @@ showInPopup = (url, title) => {
         success: function (res) {
             $('#form-modal .modal-body').html(res)
             $('#form-modal .modal-title').html(title)
+
+            $("#general-modal").addClass("modal-lg");
+
             $('#form-modal').modal('show')
 
             if ($('#citylist option:selected').val() == 0) {
