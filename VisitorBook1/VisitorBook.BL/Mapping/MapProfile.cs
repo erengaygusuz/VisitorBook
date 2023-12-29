@@ -3,6 +3,7 @@ using VisitorBook.Core.Dtos.CityDtos;
 using VisitorBook.Core.Dtos.CountryDtos;
 using VisitorBook.Core.Dtos.CountyDtos;
 using VisitorBook.Core.Dtos.RegionDtos;
+using VisitorBook.Core.Dtos.RoleDtos;
 using VisitorBook.Core.Dtos.SubRegionDtos;
 using VisitorBook.Core.Dtos.UserDtos;
 using VisitorBook.Core.Dtos.VisitedCountyDtos;
@@ -75,6 +76,10 @@ namespace VisitorBook.BL.Mapping
             CreateMap<Tuple<string, string>, LongestDistanceByVisitorAllTimeResponseDto>()
                 .ForMember(e => e.VisitorInfo, opts => opts.MapFrom(e => e.Item1))
                 .ForMember(e => e.LongestDistance, opts => opts.MapFrom(e => e.Item2));
+
+            CreateMap<RoleRequestDto, Role>();
+            CreateMap<Role, RoleResponseDto>();
+            CreateMap<RoleResponseDto, Role>();
         }
     }
 }

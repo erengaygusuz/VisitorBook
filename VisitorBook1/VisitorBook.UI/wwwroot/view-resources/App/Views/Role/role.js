@@ -41,7 +41,7 @@ function loadDataTable(
             {
                 extend: 'pdfHtml5',
                 text: exportBtnText,
-                filename: 'VisitorBook-Cities',
+                filename: 'VisitorBook-Roles',
                 orientation: 'landscape',
                 pageSize: 'A4',
                 customize: function (doc) {

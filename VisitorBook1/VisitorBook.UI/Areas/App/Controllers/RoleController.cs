@@ -134,7 +134,7 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
 
                 await _roleManager.CreateAsync(roleToAdd);
 
-                return Json(new { isValid = true, message = _localization["Regions.Notification.Add.Text"].Value });
+                return Json(new { isValid = true, message = _localization["Roles.Notification.Add.Text"].Value });
             }
 
             return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", roleRequestDto) });
@@ -147,11 +147,18 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var roleToUpdate = _mapper.Map<Role>(roleRequestDto);
+                var roleToUpdate = await _roleManager.Roles.FirstOrDefaultAsync(x => x.Id == roleRequestDto.Id);
+
+                if (roleToUpdate == null)
+                {
+                    throw new Exception("Güncellenecek rol bulunamamıştır.");
+                }
+
+                roleToUpdate.Name = roleRequestDto.Name;
 
                 await _roleManager.UpdateAsync(roleToUpdate);
 
-                return Json(new { isValid = true, message = _localization["Regions.Notification.Edit.Text"].Value });
+                return Json(new { isValid = true, message = _localization["Roles.Notification.Edit.Text"].Value });
             }
 
             return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", roleRequestDto) });

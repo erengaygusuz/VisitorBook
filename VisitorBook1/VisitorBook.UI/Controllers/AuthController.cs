@@ -82,15 +82,24 @@ namespace VisitorBook.UI.Controllers
 
             var identityResult = await _userManager.CreateAsync(new User()
             {
+                Name = registerRequestDto.Name,
+                Surname = registerRequestDto.Surname,
                 UserName = registerRequestDto.Username,
                 Email = registerRequestDto.Email
             }, registerRequestDto.PasswordConfirm);
 
             if (identityResult.Succeeded)
             {
-                TempData["SuccessMessage"] = "Üyelik kayıt işlemi başarıyla gerçekleşmiştir.";
+                var userToAssignRole = await _userManager.FindByEmailAsync(registerRequestDto.Email);
 
-                return RedirectToAction(nameof(Register));
+                var result = await _userManager.AddToRoleAsync(userToAssignRole, "Visitor");
+
+                if (result.Succeeded)
+                {
+                    TempData["SuccessMessage"] = "Üyelik kayıt işlemi başarıyla gerçekleşmiştir.";
+
+                    return RedirectToAction(nameof(Register));
+                }
             }
 
             ModelState.AddModelErrorList(identityResult.Errors.Select(x => x.Description).ToList());
@@ -117,7 +126,7 @@ namespace VisitorBook.UI.Controllers
 
             string passwordResetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
 
-            var passwordResetLink = Url.Action("ResetPassword", "Home", new { userId = user.Id, token = passwordResetToken }, HttpContext.Request.Scheme);
+            var passwordResetLink = Url.Action("ResetPassword", "Auth", new { userId = user.Id, token = passwordResetToken }, HttpContext.Request.Scheme);
 
             await _emailService.SendResetPasswordEmail(passwordResetLink, user.Email);
 
@@ -126,7 +135,7 @@ namespace VisitorBook.UI.Controllers
             return RedirectToAction(nameof(ForgotPassword));
         }
 
-        public IActionResult RecoverPassword(string userId, string token)
+        public IActionResult ResetPassword(string userId, string token)
         {
             TempData["userId"] = userId;
             TempData["token"] = token;

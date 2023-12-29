@@ -60,7 +60,10 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
                 new UserResponseDto
                 {
                     Id = x.Id,
-                    Name = x.Name
+                    Name = x.Name,
+                    Surname = x.Surname,
+                    BirthDate = x.BirthDate,
+                    Gender = _localization["Enum.Gender." + x.Gender.ToString() + ".Text"].Value
 
                 }).ToPagedList(_userDataTableOptions.GetDataTablesOptions());
 

@@ -5,6 +5,13 @@
     Layout = "_AuthLayout";
 }
 
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-info" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
 <div class="register-box">
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
@@ -70,16 +77,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-8">
-                        <div class="icheck-primary">
-                            <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-                            <label for="agreeTerms">
-                                Koşulları <a href="#">onaylıyorum</a>
-                            </label>
-                        </div>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-4">
+                    <div class="col-12">
                         <button type="submit" class="btn btn-primary btn-block">Üye Ol</button>
                     </div>
                     <!-- /.col -->
