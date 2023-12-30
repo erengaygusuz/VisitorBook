@@ -806,4 +806,19 @@
   <data name="Role.VisitorRecorder.Text" xml:space="preserve">
     <value>Ziyaretçi Kaydedici</value>
   </data>
+  <data name="Profiles.GeneralTab.Message1.Text" xml:space="preserve">
+    <value>Lütfen bilgilerinizi eksiksiz doldurunuz</value>
+  </data>
+  <data name="Profiles.GeneralTab.Message2.Text" xml:space="preserve">
+    <value>Kullanıcı bilgileri başarıyla güncellenmiştir</value>
+  </data>
+  <data name="Profiles.SecurityTab.Message1.Text" xml:space="preserve">
+    <value>Lütfen bilgilerinizi eksiksiz doldurunuz</value>
+  </data>
+  <data name="Profiles.SecurityTab.Message2.Text" xml:space="preserve">
+    <value>Eski şifreniz yanlış</value>
+  </data>
+  <data name="Profiles.SecurityTab.Message3.Text" xml:space="preserve">
+    <value>Şifreniz başarıyla değiştirilmiştir</value>
+  </data>
 </root>

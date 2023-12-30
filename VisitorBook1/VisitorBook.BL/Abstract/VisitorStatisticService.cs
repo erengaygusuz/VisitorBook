@@ -23,7 +23,7 @@ namespace VisitorBook.BL.Concrete
 
             var groupedVisitedList = visitedCountyWithVisitorAndVisitorAddress.GroupBy(a => a.UserId);
 
-            var tuple = new Tuple<string, string>("Nobody", "0");
+            var tuple = new Tuple<string, string>("--", "0");
 
             if (groupedVisitedList.Count() > 0)
             {
@@ -46,7 +46,7 @@ namespace VisitorBook.BL.Concrete
 
             var groupedVisitedList = visitedCountyWithVisitorAndVisitorAddress.GroupBy(a => a.UserId);
 
-            var tuple = new Tuple<string, string>("Nobody", "0");
+            var tuple = new Tuple<string, string>("--", "0");
 
             if (groupedVisitedList.Count() > 0)
             {
@@ -70,7 +70,7 @@ namespace VisitorBook.BL.Concrete
 
             var groupedVisitedList = visitedCountyWithVisitorAndVisitorAddress.GroupBy(a => a.UserId);
 
-            var tuple = new Tuple<string, string>("Nobody", "0");
+            var tuple = new Tuple<string, string>("--", "0");
 
             if (groupedVisitedList.Count() > 0)
             {
@@ -94,7 +94,7 @@ namespace VisitorBook.BL.Concrete
 
             var groupedVisitedList = visitedCountyWithVisitorAndVisitorAddress.GroupBy(a => a.UserId);
 
-            var tuple = new Tuple<string, string>("Nobody", "0");
+            var tuple = new Tuple<string, string>("--", "0");
 
             if (groupedVisitedList.Count() > 0)
             {

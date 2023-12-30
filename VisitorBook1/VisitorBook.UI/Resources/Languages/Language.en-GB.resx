@@ -804,4 +804,19 @@
   <data name="Role.VisitorRecorder.Text" xml:space="preserve">
     <value>Visitor Recorder</value>
   </data>
+  <data name="Profiles.GeneralTab.Message1.Text" xml:space="preserve">
+    <value>Please fill all information below</value>
+  </data>
+  <data name="Profiles.GeneralTab.Message2.Text" xml:space="preserve">
+    <value>User information updated successfully</value>
+  </data>
+  <data name="Profiles.SecurityTab.Message1.Text" xml:space="preserve">
+    <value>Please fill all information below</value>
+  </data>
+  <data name="Profiles.SecurityTab.Message2.Text" xml:space="preserve">
+    <value>Your old password is wrong</value>
+  </data>
+  <data name="Profiles.SecurityTab.Message3.Text" xml:space="preserve">
+    <value>Your password updated successfully</value>
+  </data>
 </root>
