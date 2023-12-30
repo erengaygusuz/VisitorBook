@@ -7,7 +7,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item">@localization["Role." + @User.Claims.Where(x => x.Type == ClaimTypes.Role).Select(x => x.Value).FirstOrDefault() + ".Text"]</li>
                     <li class="breadcrumb-item active">@localization["Profiles.Title.Text"]</li>
                 </ol>
             </div>

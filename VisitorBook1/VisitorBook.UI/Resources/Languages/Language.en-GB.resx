@@ -795,4 +795,13 @@
   <data name="Auth.ResetPassword.Message2.Text" xml:space="preserve">
     <value>Your password reset successfully.</value>
   </data>
+  <data name="Role.Admin.Text" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="Role.Visitor.Text" xml:space="preserve">
+    <value>Visitor</value>
+  </data>
+  <data name="Role.VisitorRecorder.Text" xml:space="preserve">
+    <value>Visitor Recorder</value>
+  </data>
 </root>

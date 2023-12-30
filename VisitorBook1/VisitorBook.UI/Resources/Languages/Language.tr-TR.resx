@@ -797,4 +797,13 @@
   <data name="Auth.ResetPassword.Message2.Text" xml:space="preserve">
     <value>Şifreniz başarıyla yenilenmiştir.</value>
   </data>
+  <data name="Role.Admin.Text" xml:space="preserve">
+    <value>Yönetici</value>
+  </data>
+  <data name="Role.Visitor.Text" xml:space="preserve">
+    <value>Ziyaretçi</value>
+  </data>
+  <data name="Role.VisitorRecorder.Text" xml:space="preserve">
+    <value>Ziyaretçi Kaydedici</value>
+  </data>
 </root>

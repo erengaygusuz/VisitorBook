@@ -1,5 +1,4 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
-using Bogus.DataSets;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
