@@ -4,7 +4,15 @@ $(document).ready(function () {
         language: document.getElementById('ActiveLanguage').value.substring(0, 2)
     });
 
-    $('#user-birthdate').datetimepicker({ icons: { time: 'far fa-clock' } });
+    $('#user-birthdate').datetimepicker(
+        {
+            icons:
+            {
+                time: 'far fa-clock'
+            },
+            format: "DD/MM/YYYY",
+            locale: document.getElementById('ActiveLanguage').value
+        });
 })
 
 UpdateGeneralInfo = (form) => {
