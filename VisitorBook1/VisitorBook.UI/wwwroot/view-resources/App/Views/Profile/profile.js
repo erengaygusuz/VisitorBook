@@ -10,12 +10,12 @@ $(document).ready(function () {
             {
                 time: 'far fa-clock'
             },
-            format: "DD/MM/YYYY",
             locale: document.getElementById('ActiveLanguage').value
         });
+
 })
 
-UpdateGeneralInfo = (form) => {
+updateGeneralInfo = (form) => {
     try {
         $.ajax({
             type: 'POST',

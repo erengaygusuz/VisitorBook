@@ -6,8 +6,6 @@
 }
 
 <script type="text/javascript">
-    var visitorBirthDates = @Html.Raw(Json.Serialize(ViewBag.BirthDates));
-    var visitorBirthDate = moment(visitorBirthDates[0]).format('YYYY-MM');
 
     $('.select2').select2({
         dropdownParent: $('#form-modal'),
@@ -15,12 +13,11 @@
         language: document.getElementById('ActiveLanguage').value.substring(0, 2)
     });
 
-    $('#visitor-birthdate').datetimepicker({
+    $('#visited-date').datetimepicker({
         icons:
         {
             time: 'far fa-clock'
         },
-        format: "DD/MM/YYYY",
         locale: document.getElementById('ActiveLanguage').value,
         date: Date()
     });
