@@ -29,6 +29,9 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
 
+    <!-- Fancy Select -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mdbassit/FancySelect@latest/dist/fancyselect.min.css">
+
     <!-- Template Stylesheet -->
     <link href="~/view-resources/views/shared/layout.css" rel="stylesheet" />
 </head>
@@ -80,6 +83,7 @@
                 <a asp-controller="Home" asp-action="Service" class="nav-item nav-link @makeServiceActive">Servislerimiz</a>
                 <a asp-controller="Home" asp-action="Contact" class="nav-item nav-link @makeContactActive">İletişim</a>
             </div>
+            <partial name="_CulturePartial" />
             <partial name="_NavbarLogin" />
         </div>
     </nav>
@@ -148,6 +152,9 @@
     <script src="~/lib/waypoints/waypoints.min.js"></script>
     <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="~/lib/counterup/counterup.min.js"></script>
+
+    <!-- Fancy Select -->
+    <script src="https://cdn.jsdelivr.net/gh/mdbassit/FancySelect@latest/dist/fancyselect.min.js"></script>
 
     <!-- Template Javascript -->
     <script src="~/view-resources/views/shared/layout.js"></script>

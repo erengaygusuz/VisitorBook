@@ -3,12 +3,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Profile</h1>
+                <h1>@localization["Profiles.Title.Text"]</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">User Profile</li>
+                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item active">@localization["Profiles.Title.Text"]</li>
                 </ol>
             </div>
         </div>
@@ -23,8 +23,8 @@
                 <div class="card">
                     <div class="card-header p-2">
                         <ul class="nav nav-pills">
-                            <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">General</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Security</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">@localization["Profiles.GeneralTab.Title.Text"]</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">@localization["Profiles.SecurityTab.Title.Text"]</a></li>
                         </ul>
                     </div>
                     <div class="card-body">
@@ -32,38 +32,38 @@
                             <div class="active tab-pane" id="activity">
                                 <form class="form-horizontal">
                                     <div class="form-group row">
-                                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                                        <label for="inputName" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row1.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputName" placeholder="Name">
+                                            <input type="text" class="form-control" id="inputName" placeholder="@localization["Profiles.GeneralTab.Row1.Text"]">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputSurname" class="col-sm-2 col-form-label">Surname</label>
+                                        <label for="inputSurname" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row2.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputSurname" placeholder="Surname">
+                                            <input type="text" class="form-control" id="inputSurname" placeholder="@localization["Profiles.GeneralTab.Row2.Text"]">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputBirthDate" class="col-sm-2 col-form-label">BirthDate</label>
+                                        <label for="inputBirthDate" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row3.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputBirthDate" placeholder="Birth Date">
+                                            <input type="text" class="form-control" id="inputBirthDate" placeholder="@localization["Profiles.GeneralTab.Row3.Text"]">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputPhoneNumber" class="col-sm-2 col-form-label">PhoneNumber</label>
+                                        <label for="inputPhoneNumber" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row4.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputPhoneNumber" placeholder="Phone Number">
+                                            <input type="text" class="form-control" id="inputPhoneNumber" placeholder="@localization["Profiles.GeneralTab.Row4.Text"]">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputGender" class="col-sm-2 col-form-label">Gender</label>
+                                        <label for="inputGender" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row5.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputGender" placeholder="Gender">
+                                            <input type="text" class="form-control" id="inputGender" placeholder="@localization["Profiles.GeneralTab.Row5.Text"]">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="offset-sm-2 col-sm-10">
-                                            <button type="submit" class="btn btn-success">Submit</button>
+                                            <button type="submit" class="btn btn-success">@localization["Profiles.SubmitBtn.Text"]</button>
                                         </div>
                                     </div>
                                 </form>
@@ -71,38 +71,38 @@
                             <div class="tab-pane" id="settings">
                                 <form class="form-horizontal">
                                     <div class="form-group row">
-                                        <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
+                                        <label for="inputUsername" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row1.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputUsername" placeholder="Username" disabled>
+                                            <input type="text" class="form-control" id="inputUsername" placeholder="@localization["Profiles.SecurityTab.Row1.Text"]" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                        <label for="inputEmail" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row2.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="email" class="form-control" id="inputEmail" placeholder="Email" disabled>
+                                            <input type="email" class="form-control" id="inputEmail" placeholder="@localization["Profiles.SecurityTab.Row2.Text"]" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputPassword" class="col-sm-2 col-form-label">Current Password</label>
+                                        <label for="inputPassword" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row3.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                            <input type="password" class="form-control" id="inputPassword" placeholder="@localization["Profiles.SecurityTab.Row3.Text"]">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputPassword" class="col-sm-2 col-form-label">New Password</label>
+                                        <label for="inputPassword" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row4.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="inputPassword" placeholder="New Password">
+                                            <input type="password" class="form-control" id="inputPassword" placeholder="@localization["Profiles.SecurityTab.Row4.Text"]">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputPassword" class="col-sm-2 col-form-label">New Password (Again)</label>
+                                        <label for="inputPassword" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row5.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="inputPassword" placeholder="New Password (Again)">
+                                            <input type="password" class="form-control" id="inputPassword" placeholder="@localization["Profiles.SecurityTab.Row5.Text"]">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="offset-sm-2 col-sm-10">
-                                            <button type="submit" class="btn btn-success">Submit</button>
+                                            <button type="submit" class="btn btn-success">@localization["Profiles.SubmitBtn.Text"]</button>
                                         </div>
                                     </div>
                                 </form>

@@ -486,4 +486,151 @@
   <data name="Users.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
     <value>User did not deleted due to usage of it. Please first delete the record which uses this user after that try to delete it again</value>
   </data>
+  <data name="Profiles.GeneralTab.Row1.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Profiles.GeneralTab.Row2.Text" xml:space="preserve">
+    <value>Surname</value>
+  </data>
+  <data name="Profiles.GeneralTab.Row3.Text" xml:space="preserve">
+    <value>Birth Date</value>
+  </data>
+  <data name="Profiles.GeneralTab.Row4.Text" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="Profiles.GeneralTab.Row5.Text" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="Profiles.GeneralTab.Title.Text" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Profiles.SecurityTab.Row1.Text" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="Profiles.SecurityTab.Row2.Text" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Profiles.SecurityTab.Row3.Text" xml:space="preserve">
+    <value>Current Password</value>
+  </data>
+  <data name="Profiles.SecurityTab.Row4.Text" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="Profiles.SecurityTab.Row5.Text" xml:space="preserve">
+    <value>New Password (Again)</value>
+  </data>
+  <data name="Profiles.SecurityTab.Title.Text" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="Profiles.SubmitBtn.Text" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="Profiles.RightMenu.Item1.Text" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="Profiles.RightMenu.Item2.Text" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Profiles.Title.Text" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="Login.Item1.Text" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="Login.Item2.Text" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Login.Item3.Text" xml:space="preserve">
+    <value>Remember Me</value>
+  </data>
+  <data name="Login.Item4.Text" xml:space="preserve">
+    <value>Forgot Password</value>
+  </data>
+  <data name="Login.Item5.Text" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="Login.Item6.Text" xml:space="preserve">
+    <value>Go back to home</value>
+  </data>
+  <data name="Login.SubmitBtn1.Text" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Login.SubmitBtn2.Text" xml:space="preserve">
+    <value>Login with Facebook</value>
+  </data>
+  <data name="Login.SubTitle.Text" xml:space="preserve">
+    <value>Please login to enter the system</value>
+  </data>
+  <data name="Register.Item1.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Register.Item2.Text" xml:space="preserve">
+    <value>Surname</value>
+  </data>
+  <data name="Register.Item3.Text" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="Register.Item4.Text" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="Register.Item5.Text" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Register.Item6.Text" xml:space="preserve">
+    <value>Password (Again)</value>
+  </data>
+  <data name="Register.Item7.Text" xml:space="preserve">
+    <value>I have already an account</value>
+  </data>
+  <data name="Register.Item8.Text" xml:space="preserve">
+    <value>Go back to home</value>
+  </data>
+  <data name="Register.SubmitBtn1.Text" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="Register.SubmitBtn2.Text" xml:space="preserve">
+    <value>Register with Facebook</value>
+  </data>
+  <data name="Register.SubTitle.Text" xml:space="preserve">
+    <value>Please register to enter the system</value>
+  </data>
+  <data name="ForgotPassword.Item2.Text" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="ForgotPassword.Item3.Text" xml:space="preserve">
+    <value>Go back to home</value>
+  </data>
+  <data name="ForgotPassword.Item1.Text" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="ForgotPassword.SubmitBtn.Text" xml:space="preserve">
+    <value>Request a New Password</value>
+  </data>
+  <data name="ForgotPassword.SubTitle1.Text" xml:space="preserve">
+    <value>Did you forget your password?</value>
+  </data>
+  <data name="ForgotPassword.SubTitle2.Text" xml:space="preserve">
+    <value>You can request a new password by using your by using your e-mail address.</value>
+  </data>
+  <data name="ResetPassword.Item1.Text" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="ResetPassword.Item2.Text" xml:space="preserve">
+    <value>New Password (Again)</value>
+  </data>
+  <data name="ResetPassword.Item3.Text" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="ResetPassword.Item4.Text" xml:space="preserve">
+    <value>Go back to home</value>
+  </data>
+  <data name="ResetPassword.SubmitBtn.Text" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="ResetPassword.SubTitle1.Text" xml:space="preserve">
+    <value>There is one last step to get a new password.</value>
+  </data>
+  <data name="ResetPassword.SubTitle2.Text" xml:space="preserve">
+    <value>Please enter your new passwords to below areas and confirm the change.</value>
+  </data>
 </root>

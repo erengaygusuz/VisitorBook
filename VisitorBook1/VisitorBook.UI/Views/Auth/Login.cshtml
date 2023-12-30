@@ -16,14 +16,14 @@
                      width="64"
                      height="64" />
             </div>
-            <a href="~/index2.html" class="h1">Ziyaretçi Defteri</a>
+            <h1>@localization["Layout.Header.Title.Text"]</h1>
         </div>
         <div class="card-body">
-            <p class="login-box-msg">Sisteme girmek için giriş yapın</p>
+            <p class="login-box-msg">@localization["Login.SubTitle.Text"]</p>
 
             <form asp-controller="Auth" asp-action="Login" asp-route-returnurl="@Context.Request.Query["returnURL"]">
                 <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="E-posta" asp-for="@Model.Email">
+                    <input type="email" class="form-control" placeholder="@localization["Login.Item1.Text"]" asp-for="@Model.Email">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Şifre" asp-for="@Model.Password">
+                    <input type="password" class="form-control" placeholder="@localization["Login.Item2.Text"]" asp-for="@Model.Password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -43,13 +43,13 @@
                         <div class="icheck-primary">
                             <input type="checkbox" asp-for="@Model.RememberMe">
                             <label for="RememberMe" asp-for="@Model.RememberMe">
-                                Beni Hatırla
+                                @localization["Login.Item3.Text"]
                             </label>
                         </div>
                     </div>
                     <!-- /.col -->
                     <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block">Giriş Yap</button>
+                        <button type="submit" class="btn btn-primary btn-block">@localization["Login.SubmitBtn1.Text"]</button>
                     </div>
                     <!-- /.col -->
                 </div>
@@ -57,19 +57,19 @@
 
             <div class="social-auth-links text-center mt-2 mb-3">
                 <a href="#" class="btn btn-block btn-primary">
-                    <i class="fab fa-facebook mr-2"></i> Facebook ile Giriş Yap
+                    <i class="fab fa-facebook mr-2"></i> @localization["Login.SubmitBtn2.Text"]
                 </a>
             </div>
             <!-- /.social-auth-links -->
 
             <p class="mb-1">
-                <a asp-controller="Auth" asp-action="ForgotPassword">Şifremi Unuttum</a>
+                <a asp-controller="Auth" asp-action="ForgotPassword">@localization["Login.Item4.Text"]</a>
             </p>
             <p class="mb-1">
-                <a asp-controller="Auth" asp-action="Register" class="text-center">Üye Ol</a>
+                <a asp-controller="Auth" asp-action="Register" class="text-center">@localization["Login.Item5.Text"]</a>
             </p>
             <p>
-                <a asp-controller="Home" asp-action="Index" class="text-center">Ana Sayfaya Geri Dön</a>
+                <a asp-controller="Home" asp-action="Index" class="text-center">@localization["Login.Item6.Text"]</a>
             </p>
         </div>
         <!-- /.card-body -->

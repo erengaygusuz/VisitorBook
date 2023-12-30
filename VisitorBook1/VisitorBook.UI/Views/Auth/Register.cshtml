@@ -5,13 +5,6 @@
     Layout = "_AuthLayout";
 }
 
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-info" role="alert">
-        @TempData["SuccessMessage"]
-    </div>
-}
-
 <div class="register-box">
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
@@ -22,14 +15,14 @@
                      width="64"
                      height="64" />
             </div>
-            <a href="~/index2.html" class="h1">Ziyaretçi Defteri</a>
+            <h1>@localization["Layout.Header.Title.Text"]</h1>
         </div>
         <div class="card-body">
-            <p class="login-box-msg">Sisteme erişmek için üye ol</p>
+            <p class="login-box-msg">@localization["Register.SubTitle.Text"]</p>
 
             <form asp-controller="Auth" asp-action="Register">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Ad" asp-for="@Model.Name">
+                    <input type="text" class="form-control" placeholder="@localization["Register.Item1.Text"]" asp-for="@Model.Name">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -37,7 +30,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Soyad" asp-for="@Model.Surname">
+                    <input type="text" class="form-control" placeholder="@localization["Register.Item2.Text"]" asp-for="@Model.Surname">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -45,7 +38,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Kullanıcı Adı" asp-for="@Model.Username">
+                    <input type="text" class="form-control" placeholder="@localization["Register.Item3.Text"]" asp-for="@Model.Username">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -53,7 +46,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="E-posta" asp-for="@Model.Email">
+                    <input type="email" class="form-control" placeholder="@localization["Register.Item4.Text"]" asp-for="@Model.Email">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -61,7 +54,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Şifre" asp-for="@Model.Password">
+                    <input type="password" class="form-control" placeholder="@localization["Register.Item5.Text"]" asp-for="@Model.Password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -69,7 +62,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Şifre (Tekrar)" asp-for="@Model.PasswordConfirm">
+                    <input type="password" class="form-control" placeholder="@localization["Register.Item6.Text"]" asp-for="@Model.PasswordConfirm">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -78,7 +71,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block">Üye Ol</button>
+                        <button type="submit" class="btn btn-primary btn-block">@localization["Register.SubmitBtn1.Text"]</button>
                     </div>
                     <!-- /.col -->
                 </div>
@@ -87,13 +80,13 @@
             <div class="social-auth-links text-center">
                 <a href="#" class="btn btn-block btn-primary">
                     <i class="fab fa-facebook mr-2"></i>
-                    Facebook ile Üye Ol
+                    @localization["Register.SubmitBtn2.Text"]
                 </a>
             </div>
 
-            <a asp-controller="Auth" asp-action="Login" class="text-center">Zaten bir üyeliğim var</a>
+            <a asp-controller="Auth" asp-action="Login" class="text-center">@localization["Register.Item7.Text"]</a>
             <p>
-                <a asp-controller="Home" asp-action="Index" class="text-center">Ana Sayfaya Geri Dön</a>
+                <a asp-controller="Home" asp-action="Index" class="text-center">@localization["Register.Item8.Text"]</a>
             </p>
         </div>
         <!-- /.form-box -->

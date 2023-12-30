@@ -486,4 +486,151 @@
   <data name="Users.Notification.UnSuccessfullDelete.Text" xml:space="preserve">
     <value>Kullanıcı kullanıldığı için silinemedi. Öncelikle kullanıcıyı kullanan kaydı silin sonra kullanıcıyı silmeyi deneyin</value>
   </data>
+  <data name="Profiles.GeneralTab.Row1.Text" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="Profiles.GeneralTab.Row2.Text" xml:space="preserve">
+    <value>Soyad</value>
+  </data>
+  <data name="Profiles.GeneralTab.Row3.Text" xml:space="preserve">
+    <value>Doğum Tarihi</value>
+  </data>
+  <data name="Profiles.GeneralTab.Row4.Text" xml:space="preserve">
+    <value>Telefon Numarası</value>
+  </data>
+  <data name="Profiles.GeneralTab.Row5.Text" xml:space="preserve">
+    <value>Cinsiyet</value>
+  </data>
+  <data name="Profiles.GeneralTab.Title.Text" xml:space="preserve">
+    <value>Genel</value>
+  </data>
+  <data name="Profiles.SecurityTab.Row1.Text" xml:space="preserve">
+    <value>Kullanıcı Adı</value>
+  </data>
+  <data name="Profiles.SecurityTab.Row2.Text" xml:space="preserve">
+    <value>E-Posta</value>
+  </data>
+  <data name="Profiles.SecurityTab.Row3.Text" xml:space="preserve">
+    <value>Mevcut Şifre</value>
+  </data>
+  <data name="Profiles.SecurityTab.Row4.Text" xml:space="preserve">
+    <value>Yeni Şifre</value>
+  </data>
+  <data name="Profiles.SecurityTab.Row5.Text" xml:space="preserve">
+    <value>Yeni Şifre (Tekrar)</value>
+  </data>
+  <data name="Profiles.SecurityTab.Title.Text" xml:space="preserve">
+    <value>Güvenlik</value>
+  </data>
+  <data name="Profiles.SubmitBtn.Text" xml:space="preserve">
+    <value>Güncelle</value>
+  </data>
+  <data name="Profiles.RightMenu.Item1.Text" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="Profiles.RightMenu.Item2.Text" xml:space="preserve">
+    <value>Çıkış Yap</value>
+  </data>
+  <data name="Profiles.Title.Text" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="Login.Item1.Text" xml:space="preserve">
+    <value>E-Posta</value>
+  </data>
+  <data name="Login.Item2.Text" xml:space="preserve">
+    <value>Şifre</value>
+  </data>
+  <data name="Login.Item3.Text" xml:space="preserve">
+    <value>Beni Hatırla</value>
+  </data>
+  <data name="Login.Item4.Text" xml:space="preserve">
+    <value>Şifremi Unuttum</value>
+  </data>
+  <data name="Login.Item5.Text" xml:space="preserve">
+    <value>Üye Ol</value>
+  </data>
+  <data name="Login.Item6.Text" xml:space="preserve">
+    <value>Ana sayfaya geri dön</value>
+  </data>
+  <data name="Login.SubmitBtn1.Text" xml:space="preserve">
+    <value>Giriş Yap</value>
+  </data>
+  <data name="Login.SubmitBtn2.Text" xml:space="preserve">
+    <value>Facebook ile Giriş Yap</value>
+  </data>
+  <data name="Login.SubTitle.Text" xml:space="preserve">
+    <value>Lütfen sisteme girmek için giriş yapın</value>
+  </data>
+  <data name="Register.Item1.Text" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="Register.Item2.Text" xml:space="preserve">
+    <value>Soyad</value>
+  </data>
+  <data name="Register.Item3.Text" xml:space="preserve">
+    <value>Kullanıcı Adı</value>
+  </data>
+  <data name="Register.Item4.Text" xml:space="preserve">
+    <value>E-posta</value>
+  </data>
+  <data name="Register.Item5.Text" xml:space="preserve">
+    <value>Şifre</value>
+  </data>
+  <data name="Register.Item6.Text" xml:space="preserve">
+    <value>Şifre (Tekrar)</value>
+  </data>
+  <data name="Register.Item7.Text" xml:space="preserve">
+    <value>Zaten bir üyeliğim var</value>
+  </data>
+  <data name="Register.Item8.Text" xml:space="preserve">
+    <value>Ana sayfaya geri dön</value>
+  </data>
+  <data name="Register.SubmitBtn1.Text" xml:space="preserve">
+    <value>Üye Ol</value>
+  </data>
+  <data name="Register.SubmitBtn2.Text" xml:space="preserve">
+    <value>Facebook ile Üye Ol</value>
+  </data>
+  <data name="Register.SubTitle.Text" xml:space="preserve">
+    <value>Lütfen sisteme girmek için üye olun</value>
+  </data>
+  <data name="ForgotPassword.Item2.Text" xml:space="preserve">
+    <value>Giriş yap</value>
+  </data>
+  <data name="ForgotPassword.Item3.Text" xml:space="preserve">
+    <value>Ana sayfaya geri dön</value>
+  </data>
+  <data name="ForgotPassword.Item1.Text" xml:space="preserve">
+    <value>E-posta</value>
+  </data>
+  <data name="ForgotPassword.SubmitBtn.Text" xml:space="preserve">
+    <value>Yeni Şifre Talebi Gönder</value>
+  </data>
+  <data name="ForgotPassword.SubTitle1.Text" xml:space="preserve">
+    <value>Şifrenizi mi unuttunuz?</value>
+  </data>
+  <data name="ForgotPassword.SubTitle2.Text" xml:space="preserve">
+    <value>E-posta adresinizi kullanarak yeni şifre talebinde bulunabilirsiniz.</value>
+  </data>
+  <data name="ResetPassword.Item1.Text" xml:space="preserve">
+    <value>Yeni Şifre</value>
+  </data>
+  <data name="ResetPassword.Item2.Text" xml:space="preserve">
+    <value>Yeni Şifre (Tekrar)</value>
+  </data>
+  <data name="ResetPassword.Item3.Text" xml:space="preserve">
+    <value>Giriş yap</value>
+  </data>
+  <data name="ResetPassword.Item4.Text" xml:space="preserve">
+    <value>Ana sayfaya geri dön</value>
+  </data>
+  <data name="ResetPassword.SubmitBtn.Text" xml:space="preserve">
+    <value>Şifremi Değiştir</value>
+  </data>
+  <data name="ResetPassword.SubTitle1.Text" xml:space="preserve">
+    <value>Yeni şifrenizi almanız için son bir adım kaldı.</value>
+  </data>
+  <data name="ResetPassword.SubTitle2.Text" xml:space="preserve">
+    <value>Lütfen yeni şifrenizi aşağıda belirtilen alanlara girin ve değişikliği onaylayın.</value>
+  </data>
 </root>

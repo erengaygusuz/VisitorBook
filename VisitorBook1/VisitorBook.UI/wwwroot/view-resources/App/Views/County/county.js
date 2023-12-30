@@ -84,7 +84,7 @@ function loadDataTable(
             },
         ],
         language: {
-            url: activeLanguagePath,
+            url: activeLanguagePath
         },
         preDrawCallback: function () {
             var btns = $('.dt-button, .buttons-pdf, .buttons-html5')
@@ -129,7 +129,7 @@ function loadDataTable(
                 targets: [4],
                 orderable: false,
             },
-        ],
+        ]
     })
 }
 

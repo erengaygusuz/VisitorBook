@@ -12,7 +12,7 @@
 }
 <div>
     <form asp-controller="Home" asp-action="SetCulture" asp-route-returnUrl="@returnUrl"
-          class="form-horizontal nav-link text-dark">
+          class="form-horizontal text-dark me-4 mb-lg-0 mb-md-3 mb-sm-3 mb-3">
         <select name="culture" class="form-select"
                 onchange="this.form.submit();"
                 asp-for="@requestCulture.RequestCulture.UICulture.Name">
