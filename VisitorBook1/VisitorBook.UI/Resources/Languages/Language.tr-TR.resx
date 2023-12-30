@@ -767,4 +767,34 @@
   <data name="Home.Service.Title1.Text" xml:space="preserve">
     <value>Sizler için profesyonel hizmetler sunuyoruz</value>
   </data>
+  <data name="Auth.ForgotPassword.Message1.Text" xml:space="preserve">
+    <value>Bu email adresine sahip kullanıcı bulunamamıştır.</value>
+  </data>
+  <data name="Auth.ForgotPassword.Message2.Text" xml:space="preserve">
+    <value>Şifre yenileme linki eposta adresinize gönderilmiştir.</value>
+  </data>
+  <data name="Auth.Login.Message1.Text" xml:space="preserve">
+    <value>Email veya şifre yanlış.</value>
+  </data>
+  <data name="Auth.Login.Message2.Text" xml:space="preserve">
+    <value>Giriş başarılı.</value>
+  </data>
+  <data name="Auth.Login.Message3.Text" xml:space="preserve">
+    <value>3 dakika boyunca giriş yapamazsınız.</value>
+  </data>
+  <data name="Auth.Login.Message4.Text" xml:space="preserve">
+    <value>Email veya şifre yanlış. (Başarısız giriş sayısı = {0})</value>
+  </data>
+  <data name="Auth.Register.Message1.Text" xml:space="preserve">
+    <value>Lütfen bilgilerinizi eksiksiz bir şekilde doldurunuz.</value>
+  </data>
+  <data name="Auth.Register.Message2.Text" xml:space="preserve">
+    <value>Üyelik kayıt işlemi başarıyla gerçekleşmiştir.</value>
+  </data>
+  <data name="Auth.ResetPassword.Message1.Text" xml:space="preserve">
+    <value>Kullanıcı bulunamamıştır.</value>
+  </data>
+  <data name="Auth.ResetPassword.Message2.Text" xml:space="preserve">
+    <value>Şifreniz başarıyla yenilenmiştir.</value>
+  </data>
 </root>

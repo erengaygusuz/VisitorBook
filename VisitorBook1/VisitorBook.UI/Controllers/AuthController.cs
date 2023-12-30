@@ -1,10 +1,13 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Bogus.DataSets;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Dtos.AuthDtos;
 using VisitorBook.Core.Entities;
 using VisitorBook.Core.Extensions;
+using VisitorBook.UI.Languages;
 
 namespace VisitorBook.UI.Controllers
 {
@@ -14,13 +17,16 @@ namespace VisitorBook.UI.Controllers
         private readonly SignInManager<User> _signInManager;
         private readonly IEmailService _emailService;
         private readonly INotyfService _notifyService;
+        private readonly IStringLocalizer<Language> _localization;
 
-        public AuthController(UserManager<User> userManager, SignInManager<User> signInManager, IEmailService emailService, INotyfService notifyService)
+        public AuthController(UserManager<User> userManager, SignInManager<User> signInManager, IEmailService emailService, INotyfService notifyService,
+            IStringLocalizer<Language> localization)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailService = emailService;
             _notifyService = notifyService;
+            _localization = localization;
         }
 
         public IActionResult Login()
@@ -33,7 +39,7 @@ namespace VisitorBook.UI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                _notifyService.Error("Email veya şifre yanlış.");
+                _notifyService.Error(_localization["Auth.Login.Message1.Text"].Value);
 
                 return View();
             }
@@ -46,7 +52,7 @@ namespace VisitorBook.UI.Controllers
             {
                 ModelState.AddModelError(string.Empty, "Email veya şifre yanlış");
 
-                _notifyService.Error("Email veya şifre yanlış.");
+                _notifyService.Error(_localization["Auth.Login.Message1.Text"].Value);
 
                 return View();
             }
@@ -55,7 +61,7 @@ namespace VisitorBook.UI.Controllers
 
             if (signInResult.Succeeded)
             {
-                _notifyService.Success("Giriş başarılı.");
+                _notifyService.Success(_localization["Auth.Login.Message2.Text"].Value);
 
                 _notifyService.RemoveAll();
 
@@ -64,14 +70,14 @@ namespace VisitorBook.UI.Controllers
 
             if (signInResult.IsLockedOut)
             {
-                ModelState.AddModelErrorList(new List<string>() { "3 dakika boyunca giriş yapamazsınız." });
+                ModelState.AddModelErrorList(new List<string>() { _localization["Auth.Login.Message3.Text"].Value });
 
-                _notifyService.Error("3 dakika boyunca giriş yapamazsınız.");
+                _notifyService.Error(_localization["Auth.Login.Message3.Text"].Value);
 
                 return View();
             }
 
-            _notifyService.Error($"Email veya şifre yanlış. (Başarısız giriş sayısı = {await _userManager.GetAccessFailedCountAsync(user)})");
+            _notifyService.Error(string.Format(_localization["Auth.Login.Message4.Text"].Value, await _userManager.GetAccessFailedCountAsync(user)));
 
             ModelState.AddModelErrorList(new List<string>()
             {
@@ -92,7 +98,7 @@ namespace VisitorBook.UI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                _notifyService.Error("Lütfen bilgilerinizi eksiksiz bir şekilde doldurunuz.");
+                _notifyService.Error(_localization["Auth.Register.Message1.Text"].Value);
 
                 return View();
             }
@@ -113,7 +119,7 @@ namespace VisitorBook.UI.Controllers
 
                 if (result.Succeeded)
                 {
-                    _notifyService.Success("Üyelik kayıt işlemi başarıyla gerçekleşmiştir.");
+                    _notifyService.Success(_localization["Auth.Register.Message2.Text"].Value);
 
                     return RedirectToAction(nameof(Register));
                 }
@@ -138,7 +144,7 @@ namespace VisitorBook.UI.Controllers
             {
                 ModelState.AddModelError(string.Empty, "Bu email adresine sahip kullanıcı bulunamamıştır.");
 
-                _notifyService.Error("Bu email adresine sahip kullanıcı bulunamamıştır.");
+                _notifyService.Error(_localization["Auth.ForgotPassword.Message1.Text"].Value);
 
                 return View();
             }
@@ -149,7 +155,7 @@ namespace VisitorBook.UI.Controllers
 
             await _emailService.SendResetPasswordEmail(passwordResetLink, user.Email);
 
-            _notifyService.Success("Şifre yenileme linki eposta adresinize gönderilmiştir.");
+            _notifyService.Success(_localization["Auth.ForgotPassword.Message2.Text"].Value);
 
             return RedirectToAction(nameof(ForgotPassword));
         }
@@ -179,6 +185,8 @@ namespace VisitorBook.UI.Controllers
             {
                 ModelState.AddModelError(string.Empty, "Kullanıcı bulunamamıştır");
 
+                _notifyService.Error(_localization["Auth.ResetPassword.Message1.Text"].Value);
+
                 return View();
             }
 
@@ -186,7 +194,7 @@ namespace VisitorBook.UI.Controllers
 
             if (result.Succeeded)
             {
-                _notifyService.Success("Şifreniz başarıyla yenilenmiştir.");
+                _notifyService.Success(_localization["Auth.ResetPassword.Message2.Text"].Value);
             }
 
             else

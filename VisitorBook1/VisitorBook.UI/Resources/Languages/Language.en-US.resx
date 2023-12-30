@@ -765,4 +765,34 @@
   <data name="Home.Service.Title1.Text" xml:space="preserve">
     <value>We are offering prefessional services</value>
   </data>
+  <data name="Auth.ForgotPassword.Message1.Text" xml:space="preserve">
+    <value>There is account with this email address.</value>
+  </data>
+  <data name="Auth.ForgotPassword.Message2.Text" xml:space="preserve">
+    <value>Password recovery link is sent to e-mail account.</value>
+  </data>
+  <data name="Auth.Login.Message1.Text" xml:space="preserve">
+    <value>E-mail or password is wrong.</value>
+  </data>
+  <data name="Auth.Login.Message2.Text" xml:space="preserve">
+    <value>Login is successfull.</value>
+  </data>
+  <data name="Auth.Login.Message3.Text" xml:space="preserve">
+    <value>You can not login the system for 3 minutes.</value>
+  </data>
+  <data name="Auth.Login.Message4.Text" xml:space="preserve">
+    <value>E-mail or password is wrong. (Unsuccessfull login attempt = {0})</value>
+  </data>
+  <data name="Auth.Register.Message1.Text" xml:space="preserve">
+    <value>Please fill all the information below.</value>
+  </data>
+  <data name="Auth.Register.Message2.Text" xml:space="preserve">
+    <value>Your account is created successfully.</value>
+  </data>
+  <data name="Auth.ResetPassword.Message1.Text" xml:space="preserve">
+    <value>User could not found.</value>
+  </data>
+  <data name="Auth.ResetPassword.Message2.Text" xml:space="preserve">
+    <value>Your password reset successfully.</value>
+  </data>
 </root>
