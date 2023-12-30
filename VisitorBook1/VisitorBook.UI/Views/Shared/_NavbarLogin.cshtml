@@ -2,10 +2,10 @@
 
 @if (!User.Identity.IsAuthenticated)
 {
-    <a asp-controller="Auth" asp-action="Login" class="btn btn-primary me-4">Giriş Yap</a>
-    <a asp-controller="Auth" asp-action="Register" class="btn btn-primary ">Üye Ol</a>
+    <a asp-controller="Auth" asp-action="Login" class="btn btn-primary me-4">@localization["Home.Navbar.Item4.Text"]</a>
+    <a asp-controller="Auth" asp-action="Register" class="btn btn-primary ">@localization["Home.Navbar.Item5.Text"]</a>
 }
 else
 {
-    <a asp-area="App" asp-controller="Home" asp-action="Index" class="btn btn-primary me-2">Panele Git</a>
+    <a asp-area="App" asp-controller="Home" asp-action="Index" class="btn btn-primary me-2">@localization["Home.Navbar.Item6.Text"]</a>
 }

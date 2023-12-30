@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Ziyaretçi Defteri</title>
+    <title>@localization["Layout.Header.Title.Text"]</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="keywords" />
     <meta content="" name="description" />
@@ -49,7 +49,7 @@
             <h1 class="m-0">
                 <img class="img-fluid me-3"
                      src="~/img/icon/app-logo-primary.png"
-                     alt="" />Ziyaretçi Defteri
+                     alt="" />@localization["Layout.Header.Title.Text"]
             </h1>
         </a>
         <button type="button"
@@ -79,9 +79,9 @@
                 }
             }
             <div class="navbar-nav mx-auto bg-light rounded pe-4 py-3 py-lg-0">
-                <a asp-controller="Home" asp-action="Index" class="nav-item nav-link @makeHomeActive">Ana Sayfa</a>
-                <a asp-controller="Home" asp-action="Service" class="nav-item nav-link @makeServiceActive">Servislerimiz</a>
-                <a asp-controller="Home" asp-action="Contact" class="nav-item nav-link @makeContactActive">İletişim</a>
+                <a asp-controller="Home" asp-action="Index" class="nav-item nav-link @makeHomeActive">@localization["Home.Navbar.Item1.Text"]</a>
+                <a asp-controller="Home" asp-action="Service" class="nav-item nav-link @makeServiceActive">@localization["Home.Navbar.Item2.Text"]</a>
+                <a asp-controller="Home" asp-action="Contact" class="nav-item nav-link @makeContactActive">@localization["Home.Navbar.Item3.Text"]</a>
             </div>
             <partial name="_CulturePartial" />
             <partial name="_NavbarLogin" />
@@ -102,36 +102,35 @@
                              src="~/img/icon/app-logo-light.png"
                              alt=""
                              width="64"
-                             height="64" />Ziyaretçi Defteri
+                             height="64" />@localization["Layout.Header.Title.Text"]
                     </h5>
                     <p>
-                        Ziyaretçilerinizin bilgilerini tek bir yerden yönetin. İşletmenize giren çıkan kişilerin kaydını tutun.
-                        İstatistiki bilgileri kolayca görüntüleyin.
+                        @localization["Home.Footer.Info1.Text"]
                     </p>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="text-light mb-4">Adres</h5>
+                    <h5 class="text-light mb-4">@localization["Home.Footer.Title1.Text"]</h5>
                     <p>
-                        <i class="fa fa-map-marker-alt me-3"></i>Mamak, Ankara, TURKEY
+                        <i class="fa fa-map-marker-alt me-3"></i>@localization["Home.Footer.Info2.Text"]
                     </p>
-                    <p><i class="fa fa-phone-alt me-3"></i>+09 0555 55 55</p>
-                    <p><i class="fa fa-envelope me-3"></i>visitor-book@erengaygusuz.com.tr</p>
+                    <p><i class="fa fa-phone-alt me-3"></i>@localization["Home.Footer.Info3.Text"]</p>
+                    <p><i class="fa fa-envelope me-3"></i>@localization["Home.Footer.Info4.Text"]</p>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="text-light mb-4">Hızlı Erişim</h5>
-                    <a class="btn btn-link" asp-controller="Home" asp-action="Service">Servislerimiz</a>
-                    <a class="btn btn-link" asp-controller="Home" asp-action="Contact">İletişim</a>
+                    <h5 class="text-light mb-4">@localization["Home.Footer.Title2.Text"]</h5>
+                    <a class="btn btn-link" asp-controller="Home" asp-action="Service">@localization["Home.Navbar.Item2.Text"]</a>
+                    <a class="btn btn-link" asp-controller="Home" asp-action="Contact">@localization["Home.Navbar.Item3.Text"]</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="text-light mb-4">Haber Bülteni</h5>
-                    <p>Yeniliklerden haberdar olmak için kaydınız yapabilirsiniz.</p>
+                    <h5 class="text-light mb-4">@localization["Home.Footer.Title3.Text"]</h5>
+                    <p>@localization["Home.Footer.Info5.Text"]</p>
                     <div class="position-relative mx-auto" style="max-width: 400px">
                         <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5"
                                type="text"
-                               placeholder="E-posta adresiniz" />
+                               placeholder="@localization["Home.Footer.Info6.Text"]" />
                         <button type="button"
                                 class="btn btn-secondary py-2 position-absolute top-0 end-0 mt-2 me-2">
-                            Kayıt Ol
+                            @localization["Home.Footer.SubmitBtn.Text"]
                         </button>
                     </div>
                 </div>

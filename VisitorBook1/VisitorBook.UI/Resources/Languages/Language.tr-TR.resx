@@ -633,4 +633,138 @@
   <data name="ResetPassword.SubTitle2.Text" xml:space="preserve">
     <value>Lütfen yeni şifrenizi aşağıda belirtilen alanlara girin ve değişikliği onaylayın.</value>
   </data>
+  <data name="Home.Fact.Item1.Text" xml:space="preserve">
+    <value>Ülke</value>
+  </data>
+  <data name="Home.Fact.Item2.Text" xml:space="preserve">
+    <value>Ziyaret Edilen Lokasyon</value>
+  </data>
+  <data name="Home.Fact.Item3.Text" xml:space="preserve">
+    <value>Ziyaretçi</value>
+  </data>
+  <data name="Home.Fact.Item4.Text" xml:space="preserve">
+    <value>Aktif Kullanıcı</value>
+  </data>
+  <data name="Home.Fact.SubTitle.Text" xml:space="preserve">
+    <value>Binlerce Ziyaret Edilen Lokasyon ve Ziyaretçi Verisi</value>
+  </data>
+  <data name="Home.Fact.Title.Text" xml:space="preserve">
+    <value>Devasa Veri Tabanı</value>
+  </data>
+  <data name="Home.Feature.Item1.Text" xml:space="preserve">
+    <value>Kolay Kullanım</value>
+  </data>
+  <data name="Home.Feature.Item2.Text" xml:space="preserve">
+    <value>Kullanıcı Dostu Arayüz</value>
+  </data>
+  <data name="Home.Feature.Item3.Text" xml:space="preserve">
+    <value>Güvenilir Veri Depolama</value>
+  </data>
+  <data name="Home.Feature.Item4.Text" xml:space="preserve">
+    <value>Tamamen Ücretsiz</value>
+  </data>
+  <data name="Home.Feature.Title.Text" xml:space="preserve">
+    <value>Neden Bizi Seçmelisiniz?</value>
+  </data>
+  <data name="Home.Slider1.Text" xml:space="preserve">
+    <value>Ziyaretçileriniz ile ilgili bilgileri kolayca yönetin</value>
+  </data>
+  <data name="Home.Slider2.Text" xml:space="preserve">
+    <value>Tüm dünyada en çok ziyaret edilen yerleri öğrenin</value>
+  </data>
+  <data name="Home.Navbar.Item1.Text" xml:space="preserve">
+    <value>Ana Sayfa</value>
+  </data>
+  <data name="Home.Navbar.Item2.Text" xml:space="preserve">
+    <value>Servislerimiz</value>
+  </data>
+  <data name="Home.Navbar.Item3.Text" xml:space="preserve">
+    <value>İletişim</value>
+  </data>
+  <data name="Home.Navbar.Item4.Text" xml:space="preserve">
+    <value>Giriş Yap</value>
+  </data>
+  <data name="Home.Navbar.Item5.Text" xml:space="preserve">
+    <value>Üye Ol</value>
+  </data>
+  <data name="Home.Navbar.Item6.Text" xml:space="preserve">
+    <value>Panele Git</value>
+  </data>
+  <data name="Home.Footer.Info1.Text" xml:space="preserve">
+    <value>Ziyaretçilerinizin bilgilerini tek bir yerden yönetin. Yerinizi ziyaret eden kişilerin kaydını tutun.
+İstatistiki bilgileri kolayca görüntüleyin.</value>
+  </data>
+  <data name="Home.Footer.Info2.Text" xml:space="preserve">
+    <value>Mamak, Ankara, TÜRKİYE</value>
+  </data>
+  <data name="Home.Footer.Info3.Text" xml:space="preserve">
+    <value>+09 0555 55 55</value>
+  </data>
+  <data name="Home.Footer.Info4.Text" xml:space="preserve">
+    <value>visitor-book@erengaygusuz.com.tr</value>
+  </data>
+  <data name="Home.Footer.Info5.Text" xml:space="preserve">
+    <value>Yeniliklerden haberdar olmak için kaydınızı yapabilirsiniz.</value>
+  </data>
+  <data name="Home.Footer.Info6.Text" xml:space="preserve">
+    <value>E-posta adresiniz</value>
+  </data>
+  <data name="Home.Footer.SubmitBtn.Text" xml:space="preserve">
+    <value>Kayıt Ol</value>
+  </data>
+  <data name="Home.Footer.Title1.Text" xml:space="preserve">
+    <value>Adres</value>
+  </data>
+  <data name="Home.Footer.Title2.Text" xml:space="preserve">
+    <value>Hızlı Erişim</value>
+  </data>
+  <data name="Home.Footer.Title3.Text" xml:space="preserve">
+    <value>Haber Bülteni</value>
+  </data>
+  <data name="Home.Contact.Info.Text" xml:space="preserve">
+    <value>Bizimle iletişime geçmek için aşağıdaki bilgileri doldurup mesajınızı bize iletebilirsiniz.
+Çalışanlarımız uygun olduklarında mesajınıza dönüş yapacaklardır.</value>
+  </data>
+  <data name="Home.Contact.Item1.Text" xml:space="preserve">
+    <value>Adınız ve Soyadınız</value>
+  </data>
+  <data name="Home.Contact.Item2.Text" xml:space="preserve">
+    <value>E-posta Adresiniz</value>
+  </data>
+  <data name="Home.Contact.Item3.Text" xml:space="preserve">
+    <value>Konu</value>
+  </data>
+  <data name="Home.Contact.Item4.Text" xml:space="preserve">
+    <value>Mesajınız</value>
+  </data>
+  <data name="Home.Contact.SubmitBtn.Text" xml:space="preserve">
+    <value>Mesajı Gönder</value>
+  </data>
+  <data name="Home.Contact.Title.Text" xml:space="preserve">
+    <value>Herhangi bir sorunuz varsa, lütfen bizimle iletişime geçin</value>
+  </data>
+  <data name="Home.Service.Info1.Text" xml:space="preserve">
+    <value>Kendinize Ziyaretçi hesabı oluşturarak ziyaret ettiğiniz yerleri sisteme kaydedebilirsiniz</value>
+  </data>
+  <data name="Home.Service.Info2.Text" xml:space="preserve">
+    <value>Lokasyonunuzu açarak Ziyaretçi Kaydedici hesabı açma isteğinde bulunabilirsiniz</value>
+  </data>
+  <data name="Home.Service.Info3.Text" xml:space="preserve">
+    <value>Hesabınız onaylandığında bulunduğunuz bölgeyi ziyaret eden kişileri sisteme kaydedebilir ve yönetimini sağlayabilirsiniz</value>
+  </data>
+  <data name="Home.Service.Info4.Text" xml:space="preserve">
+    <value>Gezmiş olduğunuz yerler ile ilgili istatistiksel bilgiler görebilirsiniz</value>
+  </data>
+  <data name="Home.Service.SubTitle1.Text" xml:space="preserve">
+    <value>Ziyaret Edilen Yerleri Kaydedin</value>
+  </data>
+  <data name="Home.Service.SubTitle2.Text" xml:space="preserve">
+    <value>Ziyaretçi Kaydedici ile Ziyaretçilerinizi Yönetin</value>
+  </data>
+  <data name="Home.Service.SubTitle3.Text" xml:space="preserve">
+    <value>Her Türlü İstatistiksel Veriyi Görüntüleyin</value>
+  </data>
+  <data name="Home.Service.Title1.Text" xml:space="preserve">
+    <value>Sizler için profesyonel hizmetler sunuyoruz</value>
+  </data>
 </root>
