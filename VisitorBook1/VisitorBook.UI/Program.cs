@@ -127,6 +127,8 @@ builder.Services.AddNotyf(config => { config.DurationInSeconds = 5; config.IsDis
 
 builder.Services.AddScoped<IValidator<LoginRequestDto>, LoginRequestDtoValidator>();
 builder.Services.AddScoped<IValidator<RegisterRequestDto>, RegisterRequestDtoValidator>();
+builder.Services.AddScoped<IValidator<ForgotPasswordRequestDto>, ForgotPasswordRequestDtoValidator>();
+builder.Services.AddScoped<IValidator<ResetPasswordRequestDto>, ResetPasswordRequestDtoValidator>();
 
 builder.Services.AddFluentValidation(fv => {
     fv.DisableDataAnnotationsValidation = true;

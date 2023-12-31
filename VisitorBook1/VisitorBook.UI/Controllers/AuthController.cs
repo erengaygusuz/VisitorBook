@@ -20,9 +20,13 @@ namespace VisitorBook.UI.Controllers
         private readonly IStringLocalizer<Language> _localization;
         private readonly IValidator<LoginRequestDto> _loginRequestDtoValidator;
         private readonly IValidator<RegisterRequestDto> _registerRequestDtoValidator;
+        private readonly IValidator<ForgotPasswordRequestDto> _forgotPasswordRequestDtoValidator;
+        private readonly IValidator<ResetPasswordRequestDto> _resetPasswordRequestDtoValidator;
 
         public AuthController(UserManager<User> userManager, SignInManager<User> signInManager, IEmailService emailService, INotyfService notifyService,
-            IStringLocalizer<Language> localization, IValidator<LoginRequestDto> loginRequestDtoValidator, IValidator<RegisterRequestDto> registerRequestDtoValidator)
+            IStringLocalizer<Language> localization, IValidator<LoginRequestDto> loginRequestDtoValidator, 
+            IValidator<RegisterRequestDto> registerRequestDtoValidator, IValidator<ForgotPasswordRequestDto> forgotPasswordRequestDtoValidator, 
+            IValidator<ResetPasswordRequestDto> resetPasswordRequestDtoValidator)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -31,6 +35,8 @@ namespace VisitorBook.UI.Controllers
             _localization = localization;
             _loginRequestDtoValidator = loginRequestDtoValidator;
             _registerRequestDtoValidator = registerRequestDtoValidator;
+            _forgotPasswordRequestDtoValidator = forgotPasswordRequestDtoValidator;
+            _resetPasswordRequestDtoValidator = resetPasswordRequestDtoValidator;
         }
 
         public IActionResult Login()
@@ -56,8 +62,6 @@ namespace VisitorBook.UI.Controllers
 
             if (user == null)
             {
-                ModelState.AddModelError(string.Empty, "Email veya şifre yanlış");
-
                 _notifyService.Error(_localization["Auth.Login.Message1.Text"].Value);
 
                 return View();
@@ -76,20 +80,12 @@ namespace VisitorBook.UI.Controllers
 
             if (signInResult.IsLockedOut)
             {
-                ModelState.AddModelErrorList(new List<string>() { _localization["Auth.Login.Message3.Text"].Value });
-
                 _notifyService.Error(_localization["Auth.Login.Message3.Text"].Value);
 
                 return View();
             }
 
             _notifyService.Error(string.Format(_localization["Auth.Login.Message4.Text"].Value, await _userManager.GetAccessFailedCountAsync(user)));
-
-            ModelState.AddModelErrorList(new List<string>()
-            {
-                "Email veya şifre yanlış",
-                $"(Başarısız giriş sayısı = {await _userManager.GetAccessFailedCountAsync(user)})"
-            });
 
             return View();
         }
@@ -117,6 +113,7 @@ namespace VisitorBook.UI.Controllers
                 Surname = registerRequestDto.Surname,
                 UserName = registerRequestDto.Username,
                 Email = registerRequestDto.Email
+
             }, registerRequestDto.PasswordConfirm);
 
             if (identityResult.Succeeded)
@@ -146,12 +143,19 @@ namespace VisitorBook.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordRequestDto forgotPasswordRequestDto)
         {
+            var validationResult = await _forgotPasswordRequestDtoValidator.ValidateAsync(forgotPasswordRequestDto);
+
+            if (!validationResult.IsValid)
+            {
+                validationResult.AddToModelState(ModelState);
+
+                return View();
+            }
+
             var user = await _userManager.FindByEmailAsync(forgotPasswordRequestDto.Email);
 
             if (user == null)
             {
-                ModelState.AddModelError(string.Empty, "Bu email adresine sahip kullanıcı bulunamamıştır.");
-
                 _notifyService.Error(_localization["Auth.ForgotPassword.Message1.Text"].Value);
 
                 return View();
@@ -179,6 +183,15 @@ namespace VisitorBook.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> ResetPassword(ResetPasswordRequestDto resetPasswordRequestDto)
         {
+            var validationResult = await _resetPasswordRequestDtoValidator.ValidateAsync(resetPasswordRequestDto);
+
+            if (!validationResult.IsValid)
+            {
+                validationResult.AddToModelState(ModelState);
+
+                return View();
+            }
+
             var userId = TempData["userId"].ToString();
             var token = TempData["token"].ToString();
 
