@@ -14,7 +14,7 @@
                     <div class="form-group">
                         <label asp-for="@Model.Name" class="control-label">@localization["Regions.Table.Column1.Text"]</label>
                         <input asp-for="@Model.Name" class="form-control" />
-                        <span asp-validation-for="Name" class="text-danger"></span>
+                        <span asp-validation-for="Name" class="error invalid-feedback"></span>
                     </div>
                 </div>
             </div>

@@ -27,7 +27,7 @@ using VisitorBook.Core.Dtos.AuthDtos;
 using VisitorBook.BL.Validators;
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using VisitorBook.Core.Dtos.ProfileDtos;
+using VisitorBook.Core.ViewModels;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -130,6 +130,14 @@ builder.Services.AddScoped<IValidator<LoginRequestDto>, LoginRequestDtoValidator
 builder.Services.AddScoped<IValidator<RegisterRequestDto>, RegisterRequestDtoValidator>();
 builder.Services.AddScoped<IValidator<ForgotPasswordRequestDto>, ForgotPasswordRequestDtoValidator>();
 builder.Services.AddScoped<IValidator<ResetPasswordRequestDto>, ResetPasswordRequestDtoValidator>();
+builder.Services.AddScoped<IValidator<CityViewModel>, CityViewModelValidator>();
+builder.Services.AddScoped<IValidator<CountyViewModel>, CountyViewModelValidator>();
+builder.Services.AddScoped<IValidator<CountryViewModel>, CountryViewModelValidator>();
+builder.Services.AddScoped<IValidator<VisitedCountyViewModel>, VisitedCountyViewModelValidator>();
+builder.Services.AddScoped<IValidator<UserViewModel>, UserViewModelValidator>();
+builder.Services.AddScoped<IValidator<RoleRequestDto>, RoleRequestDtoValidator>();
+builder.Services.AddScoped<IValidator<SubRegionViewModel>, SubRegionViewModelValidator>();
+builder.Services.AddScoped<IValidator<RegionRequestDto>, RegionRequestDtoValidator>();
 
 builder.Services.AddFluentValidation(fv => {
     fv.DisableDataAnnotationsValidation = true;

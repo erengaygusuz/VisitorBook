@@ -11,7 +11,7 @@ using VisitorBook.UI.Attributes;
 using VisitorBook.UI.Configurations;
 using VisitorBook.UI.Languages;
 using VisitorBook.UI.Areas.App.Controllers;
-using VisitorBook.UI.ViewModels;
+using VisitorBook.Core.ViewModels;
 using VisitorBook.Core.Dtos.CityDtos;
 using VisitorBook.Core.Dtos.CountyDtos;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +19,7 @@ using VisitorBook.Core.Dtos.VisitorAddressDtos;
 using AutoMapper;
 using VisitorBook.Core.Dtos.RoleDtos;
 using Microsoft.AspNetCore.Authorization;
+using FluentValidation;
 
 namespace VisitorBook.UI.Areas.Admin.Controllers
 {
@@ -35,11 +36,13 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         private readonly RazorViewConverter _razorViewConverter;
         private readonly UserDataTablesOptions _userDataTableOptions;
         private readonly IMapper _mapper;
+        private readonly IValidator<UserViewModel> _userViewModelValidator;
 
         public UserController(IService<County> countyService, IService<City> cityService,
             UserManager<User> userManager, IStringLocalizer<Language> localization,
             RazorViewConverter razorViewConverter,
-            UserDataTablesOptions userDataTableOptions, IMapper mapper, RoleManager<Role> roleManager, SignInManager<User> signInManager)
+            UserDataTablesOptions userDataTableOptions, IMapper mapper, RoleManager<Role> roleManager, SignInManager<User> signInManager,
+            IValidator<UserViewModel> userViewModelValidator)
         {
             _countyService = countyService;
             _cityService = cityService;
@@ -50,6 +53,7 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
             _mapper = mapper;
             _roleManager = roleManager;
             _signInManager = signInManager;
+            _userViewModelValidator = userViewModelValidator;
         }
 
         public IActionResult Index()
@@ -214,58 +218,62 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddPost(UserViewModel userViewModel)
         {
-            if (ModelState.IsValid)
+            var validationResult = await _userViewModelValidator.ValidateAsync(userViewModel);
+
+            if (!validationResult.IsValid)
             {
-                var user = _mapper.Map<User>(userViewModel.User);
-                user.SecurityStamp = _userManager.CreateSecurityTokenAsync(user).ToString();
+                validationResult.AddToModelState(ModelState);
 
-                var result = await _userManager.CreateAsync(user, "12345");
+                var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>();
 
-                if (result.Succeeded)
-                {
-                    var userToAssignRole = await _userManager.FindByEmailAsync(userViewModel.User.Email);
+                userViewModel.CityList = (cityResponseDtos)
+                       .Select(u => new SelectListItem
+                       {
+                           Text = u.Name,
+                           Value = u.Id.ToString()
+                       });
 
-                    var role = await _roleManager.Roles.FirstOrDefaultAsync(r => r.Id == userViewModel.RoleId);
+                userViewModel.GenderList = new List<string> { "Male", "Female" }
+                       .Select(u => new SelectListItem
+                       {
+                           Text = _localization["Enum.Gender." + u + ".Text"].Value,
+                           Value = u.ToString()
+                       });
 
-                    await _userManager.AddToRoleAsync(userToAssignRole, role.Name);
-                }
+                var roleResponseDtos = await _roleManager.Roles.Select(x =>
 
-                return Json(new { isValid = true, message = _localization["Users.Notification.Add.Text"].Value });
+                    new RoleResponseDto
+                    {
+                        Id = x.Id,
+                        Name = x.Name
+
+                    }).ToListAsync();
+
+                userViewModel.RoleList = (roleResponseDtos)
+                       .Select(u => new SelectListItem
+                       {
+                           Text = u.Name,
+                           Value = u.Id.ToString()
+                       });
+
+                return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", userViewModel) });
             }
 
-            var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>();
+            var user = _mapper.Map<User>(userViewModel.User);
+            user.SecurityStamp = _userManager.CreateSecurityTokenAsync(user).ToString();
 
-            userViewModel.CityList = (cityResponseDtos)
-                   .Select(u => new SelectListItem
-                   {
-                       Text = u.Name,
-                       Value = u.Id.ToString()
-                   });
+            var result = await _userManager.CreateAsync(user, "12345");
 
-            userViewModel.GenderList = new List<string> { "Male", "Female" }
-                   .Select(u => new SelectListItem
-                   {
-                       Text = _localization["Enum.Gender." + u + ".Text"].Value,
-                       Value = u.ToString()
-                   });
+            if (result.Succeeded)
+            {
+                var userToAssignRole = await _userManager.FindByEmailAsync(userViewModel.User.Email);
 
-            var roleResponseDtos = await _roleManager.Roles.Select(x =>
+                var role = await _roleManager.Roles.FirstOrDefaultAsync(r => r.Id == userViewModel.RoleId);
 
-                new RoleResponseDto
-                {
-                    Id = x.Id,
-                    Name = x.Name
+                await _userManager.AddToRoleAsync(userToAssignRole, role.Name);
+            }
 
-                }).ToListAsync();
-
-            userViewModel.RoleList = (roleResponseDtos)
-                   .Select(u => new SelectListItem
-                   {
-                       Text = u.Name,
-                       Value = u.Id.ToString()
-                   });
-
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", userViewModel) });
+            return Json(new { isValid = true, message = _localization["Users.Notification.Add.Text"].Value });
         }
 
         [ActionName("Edit")]
@@ -273,61 +281,65 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPost(UserViewModel userViewModel)
         {
-            if (ModelState.IsValid)
+            var validationResult = await _userViewModelValidator.ValidateAsync(userViewModel);
+
+            if (!validationResult.IsValid)
             {
-                var userToUpdate = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userViewModel.User.Id);
+                validationResult.AddToModelState(ModelState);
 
-                _mapper.Map(userViewModel.User, userToUpdate);
+                var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>();
 
-                await _userManager.UpdateAsync(userToUpdate);
+                userViewModel.CityList = (cityResponseDtos)
+                       .Select(u => new SelectListItem
+                       {
+                           Text = u.Name,
+                           Value = u.Id.ToString()
+                       });
 
-                var userRoles = await _userManager.GetRolesAsync(userToUpdate);
+                userViewModel.GenderList = new List<string> { "Male", "Female" }
+                       .Select(u => new SelectListItem
+                       {
+                           Text = _localization["Enum.Gender." + u + ".Text"].Value,
+                           Value = u.ToString()
+                       });
 
-                var role = await _roleManager.Roles.FirstOrDefaultAsync(r => r.Id == userViewModel.RoleId);
+                var roleResponseDtos = await _roleManager.Roles.Select(x =>
 
-                foreach(var userRole in userRoles)
-                {
-                    await _userManager.RemoveFromRoleAsync(userToUpdate, userRole);
-                }
-                
-                await _userManager.AddToRoleAsync(userToUpdate, role.Name);
+                    new RoleResponseDto
+                    {
+                        Id = x.Id,
+                        Name = x.Name
 
-                return Json(new { isValid = true, message = _localization["Users.Notification.Edit.Text"].Value });
+                    }).ToListAsync();
+
+                userViewModel.RoleList = (roleResponseDtos)
+                       .Select(u => new SelectListItem
+                       {
+                           Text = u.Name,
+                           Value = u.Id.ToString()
+                       });
+
+                return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", userViewModel) });
             }
 
-            var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>();
+            var userToUpdate = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userViewModel.User.Id);
 
-            userViewModel.CityList = (cityResponseDtos)
-                   .Select(u => new SelectListItem
-                   {
-                       Text = u.Name,
-                       Value = u.Id.ToString()
-                   });
+            _mapper.Map(userViewModel.User, userToUpdate);
 
-            userViewModel.GenderList = new List<string> { "Male", "Female" }
-                   .Select(u => new SelectListItem
-                   {
-                       Text = _localization["Enum.Gender." + u + ".Text"].Value,
-                       Value = u.ToString()
-                   });
+            await _userManager.UpdateAsync(userToUpdate);
 
-            var roleResponseDtos = await _roleManager.Roles.Select(x =>
+            var userRoles = await _userManager.GetRolesAsync(userToUpdate);
 
-                new RoleResponseDto
-                {
-                    Id = x.Id,
-                    Name = x.Name
+            var role = await _roleManager.Roles.FirstOrDefaultAsync(r => r.Id == userViewModel.RoleId);
 
-                }).ToListAsync();
+            foreach (var userRole in userRoles)
+            {
+                await _userManager.RemoveFromRoleAsync(userToUpdate, userRole);
+            }
 
-            userViewModel.RoleList = (roleResponseDtos)
-                   .Select(u => new SelectListItem
-                   {
-                       Text = u.Name,
-                       Value = u.Id.ToString()
-                   });
+            await _userManager.AddToRoleAsync(userToUpdate, role.Name);
 
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", userViewModel) });
+            return Json(new { isValid = true, message = _localization["Users.Notification.Edit.Text"].Value });
         }
 
         [HttpDelete]

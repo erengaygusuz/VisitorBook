@@ -15,11 +15,13 @@ namespace VisitorBook.BL.Validators
 
             RuleFor(x => x.Name)
                 .NotNull().WithMessage("Lütfen ad alanını boş bırakmayınız")
+                .Matches("^((?![0-9]).)*$").WithMessage("Ad rakam içeremez")
                 .MinimumLength(3).WithMessage("Lütfen minimum üç karaktere sahip bir ad giriniz")
                 .MaximumLength(100).WithMessage("Lütfen maksimum yüz karaktere sahip bir ad giriniz");
 
             RuleFor(x => x.Surname)
                 .NotNull().WithMessage("Lütfen soyad alanını boş bırakmayınız")
+                .Matches("^((?![0-9]).)*$").WithMessage("Soyad rakam içeremez")
                 .MinimumLength(3).WithMessage("Lütfen minimum üç karaktere sahip bir soyad giriniz")
                 .MaximumLength(100).WithMessage("Lütfen maksimum yüz karaktere sahip bir soyad giriniz");
 

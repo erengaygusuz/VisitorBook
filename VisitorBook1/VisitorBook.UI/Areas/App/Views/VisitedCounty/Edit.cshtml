@@ -49,7 +49,7 @@
                                 class="form-control select2" style="width: 100% !important;">
                             <option disabled selected value="0">@localization["AddOrEditModal.CitySelection.Text"]</option>
                         </select>
-                        <span asp-validation-for="@Model.VisitedCounty.CityId" class="text-danger"></span>
+                        <span asp-validation-for="@Model.VisitedCounty.CityId" class="error invalid-feedback"></span>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                                 @localization["AddOrEditModal.CountySelection.Text"]
                             </option>
                         </select>
-                        <span asp-validation-for="@Model.VisitedCounty.CountyId" class="text-danger"></span>
+                        <span asp-validation-for="@Model.VisitedCounty.CountyId" class="error invalid-feedback"></span>
                     </div>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
                         </div>
-                        <span asp-validation-for="@Model.VisitedCounty.VisitDate" class="text-danger"></span>
+                        <span asp-validation-for="@Model.VisitedCounty.VisitDate" class="error invalid-feedback"></span>
                     </div>
                 </div>
             </div>

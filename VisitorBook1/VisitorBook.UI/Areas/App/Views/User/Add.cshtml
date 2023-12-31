@@ -33,7 +33,7 @@
                         <label asp-for="@Model.User.Name"
                                class="control-label">@localization["Users.Table.Column1.Text"]</label>
                         <input asp-for="@Model.User.Name" class="form-control" />
-                        <span asp-validation-for="@Model.User.Name" class="text-danger"></span>
+                        <span asp-validation-for="@Model.User.Name" class="error invalid-feedback"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -41,7 +41,7 @@
                         <label asp-for="@Model.User.Surname"
                                class="control-label">@localization["Users.Table.Column2.Text"]</label>
                         <input asp-for="@Model.User.Surname" class="form-control" />
-                        <span asp-validation-for="@Model.User.Surname" class="text-danger"></span>
+                        <span asp-validation-for="@Model.User.Surname" class="error invalid-feedback"></span>
                     </div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
                         </div>
-                        <span asp-validation-for="@Model.User.BirthDate" class="text-danger"></span>
+                        <span asp-validation-for="@Model.User.BirthDate" class="error invalid-feedback"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -66,7 +66,7 @@
                         <select asp-for="@Model.User.Gender" asp-items="@Model.GenderList" class="form-control select2" style="width: 100% !important;" id="gender-select-field">
                             <option disabled selected>@localization["AddOrEditModal.GenderSelection.Text"]</option>
                         </select>
-                        <span asp-validation-for="@Model.User.Gender" class="text-danger"></span>
+                        <span asp-validation-for="@Model.User.Gender" class="error invalid-feedback"></span>
                     </div>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                         <label asp-for="@Model.User.Email"
                                class="control-label">@localization["Users.Table.Column8.Text"]</label>
                         <input asp-for="@Model.User.Email" class="form-control" />
-                        <span asp-validation-for="@Model.User.Email" class="text-danger"></span>
+                        <span asp-validation-for="@Model.User.Email" class="error invalid-feedback"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -84,7 +84,7 @@
                         <label asp-for="@Model.User.Username"
                                class="control-label">@localization["Users.Table.Column9.Text"]</label>
                         <input asp-for="@Model.User.Username" class="form-control" />
-                        <span asp-validation-for="@Model.User.Username" class="text-danger"></span>
+                        <span asp-validation-for="@Model.User.Username" class="error invalid-feedback"></span>
                     </div>
                 </div>
             </div>
@@ -97,7 +97,7 @@
                                 asp-items="@Model.RoleList" class="form-control select2" style="width: 100% !important;">
                             <option disabled selected value="0">@localization["AddOrEditModal.RoleSelection.Text"]</option>
                         </select>
-                        <span asp-validation-for="@Model.RoleId" class="text-danger"></span>
+                        <span asp-validation-for="@Model.RoleId" class="error invalid-feedback"></span>
                     </div>
                 </div>
             </div>
@@ -110,7 +110,7 @@
                                 asp-items="@Model.CityList" class="form-control select2" style="width: 100% !important;">
                             <option disabled selected value="0">@localization["AddOrEditModal.CitySelection.Text"]</option>
                         </select>
-                        <span asp-validation-for="@Model.User.UserAddress.CityId" class="text-danger"></span>
+                        <span asp-validation-for="@Model.User.UserAddress.CityId" class="error invalid-feedback"></span>
                     </div>
                 </div>
                 <div class="col-md-6" id="countylist">
@@ -122,7 +122,7 @@
                                 @localization["AddOrEditModal.CountySelection.Text"]
                             </option>
                         </select>
-                        <span asp-validation-for="@Model.User.UserAddress.CountyId" class="text-danger"></span>
+                        <span asp-validation-for="@Model.User.UserAddress.CountyId" class="error invalid-feedback"></span>
                     </div>
                 </div>
             </div>

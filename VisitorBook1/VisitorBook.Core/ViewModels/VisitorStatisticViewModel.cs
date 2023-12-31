@@ -1,6 +1,6 @@
 ﻿using VisitorBook.Core.Dtos.VisitorStatisticDtos;
 
-namespace VisitorBook.UI.ViewModels
+namespace VisitorBook.Core.ViewModels
 {
     public class VisitorStatisticViewModel
     {

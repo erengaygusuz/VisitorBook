@@ -22,7 +22,7 @@
                     <div class="form-group">
                         <label asp-for="@Model.SubRegion.Name" class="control-label">@localization["SubRegions.Table.Column1.Text"]</label>
                         <input asp-for="@Model.SubRegion.Name" class="form-control" />
-                        <span asp-validation-for="@Model.SubRegion.Name" class="text-danger"></span>
+                        <span asp-validation-for="@Model.SubRegion.Name" class="error invalid-feedback"></span>
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                         <select asp-for="@Model.SubRegion.RegionId" asp-items="@Model.RegionList" class="form-control select2" style="width: 100% !important;" id="city-select-field">
                             <option disabled selected>@localization["AddOrEditModal.RegionSelection.Text"]</option>
                         </select>
-                        <span asp-validation-for="@Model.SubRegion.RegionId" class="text-danger"></span>
+                        <span asp-validation-for="@Model.SubRegion.RegionId" class="error invalid-feedback"></span>
                     </div>
                 </div>
             </div>

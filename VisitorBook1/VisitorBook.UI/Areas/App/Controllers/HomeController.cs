@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using VisitorBook.BL.Concrete;
 using VisitorBook.Core.Dtos.VisitorStatisticDtos;
-using VisitorBook.UI.ViewModels;
+using VisitorBook.Core.ViewModels;
 
 namespace VisitorBook.UI.Area.App.Controllers
 {

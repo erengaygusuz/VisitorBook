@@ -9,6 +9,8 @@ using VisitorBook.Core.Entities;
 using VisitorBook.Core.Dtos.RegionDtos;
 using VisitorBook.UI.Areas.App.Controllers;
 using Microsoft.AspNetCore.Authorization;
+using FluentValidation;
+using VisitorBook.Core.Extensions;
 
 namespace VisitorBook.UI.Areas.Admin.Controllers
 {
@@ -20,14 +22,16 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         private readonly RazorViewConverter _razorViewConverter;
         private readonly IService<Region> _regionService;
         private readonly RegionDataTablesOptions _regionDataTableOptions;
+        private readonly IValidator<RegionRequestDto> _regionRequestDtoValidator;
 
         public RegionController(RazorViewConverter razorViewConverter,
-            IStringLocalizer<Language> localization, IService<Region> regionService, RegionDataTablesOptions regionDataTableOptions)
+            IStringLocalizer<Language> localization, IService<Region> regionService, RegionDataTablesOptions regionDataTableOptions, IValidator<RegionRequestDto> regionRequestDtoValidator)
         {
             _regionService = regionService;
             _localization = localization;
             _razorViewConverter = razorViewConverter;
             _regionDataTableOptions = regionDataTableOptions;
+            _regionRequestDtoValidator = regionRequestDtoValidator;
         }
 
         public IActionResult Index()
@@ -70,14 +74,18 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddPost(RegionRequestDto regionRequestDto)
         {
-            if (ModelState.IsValid)
+            var validationResult = await _regionRequestDtoValidator.ValidateAsync(regionRequestDto);
+
+            if (!validationResult.IsValid)
             {
-                await _regionService.AddAsync(regionRequestDto);
+                validationResult.AddToModelState(ModelState);
 
-                return Json(new { isValid = true, message = _localization["Regions.Notification.Add.Text"].Value });
+                return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", regionRequestDto) });
             }
+            
+            await _regionService.AddAsync(regionRequestDto);
 
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", regionRequestDto) });
+            return Json(new { isValid = true, message = _localization["Regions.Notification.Add.Text"].Value });
         }
 
         [ActionName("Edit")]
@@ -85,14 +93,18 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPost(RegionRequestDto regionRequestDto)
         {
-            if (ModelState.IsValid)
+            var validationResult = await _regionRequestDtoValidator.ValidateAsync(regionRequestDto);
+
+            if (!validationResult.IsValid)
             {
-                await _regionService.UpdateAsync(regionRequestDto);
+                validationResult.AddToModelState(ModelState);
 
-                return Json(new { isValid = true, message = _localization["Regions.Notification.Edit.Text"].Value });
+                return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", regionRequestDto) });
             }
+            
+            await _regionService.UpdateAsync(regionRequestDto);
 
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", regionRequestDto) });
+            return Json(new { isValid = true, message = _localization["Regions.Notification.Edit.Text"].Value });
         }
 
         [HttpDelete]

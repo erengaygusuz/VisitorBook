@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using VisitorBook.UI.ViewModels;
+using VisitorBook.Core.ViewModels;
 
 namespace VisitorBook.UI.Controllers
 {

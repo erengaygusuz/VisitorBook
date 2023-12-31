@@ -8,7 +8,7 @@ using VisitorBook.Core.Entities;
 using VisitorBook.Core.Enums;
 using VisitorBook.Core.Extensions;
 using VisitorBook.UI.Languages;
-using VisitorBook.UI.ViewModels;
+using VisitorBook.Core.ViewModels;
 
 namespace VisitorBook.UI.Areas.Admin.Controllers
 {

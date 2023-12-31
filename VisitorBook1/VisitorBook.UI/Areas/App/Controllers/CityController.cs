@@ -4,7 +4,7 @@ using VisitorBook.UI.Attributes;
 using VisitorBook.UI.Configurations;
 using VisitorBook.UI.Languages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using VisitorBook.UI.ViewModels;
+using VisitorBook.Core.ViewModels;
 using VisitorBook.Core.Utilities;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Entities;
@@ -13,6 +13,8 @@ using VisitorBook.Core.Dtos.CityDtos;
 using VisitorBook.UI.Areas.App.Controllers;
 using VisitorBook.Core.Dtos.CountryDtos;
 using Microsoft.AspNetCore.Authorization;
+using FluentValidation;
+using VisitorBook.Core.Extensions;
 
 namespace VisitorBook.UI.Area.App.Controllers
 {
@@ -25,16 +27,18 @@ namespace VisitorBook.UI.Area.App.Controllers
         private readonly IService<City> _cityService;
         private readonly IService<Country> _countryService;
         private readonly CityDataTablesOptions _cityDataTableOptions;
+        private readonly IValidator<CityViewModel> _cityViewModelValidator;
 
         public CityController(RazorViewConverter razorViewConverter, 
             IStringLocalizer<Language> localization, IService<City> cityService, CityDataTablesOptions cityDataTableOptions, 
-            IService<Country> countryService)
+            IService<Country> countryService, IValidator<CityViewModel> cityViewModelValidator)
         {
             _cityService = cityService;
             _localization = localization;
             _razorViewConverter = razorViewConverter;
             _cityDataTableOptions = cityDataTableOptions;
             _countryService = countryService;
+            _cityViewModelValidator = cityViewModelValidator;
         }
 
         public IActionResult Index()
@@ -121,23 +125,27 @@ namespace VisitorBook.UI.Area.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddPost(CityViewModel cityViewModel)
         {
-            if (ModelState.IsValid)
-            {
-                await _cityService.AddAsync(cityViewModel.City);
+            var validationResult = await _cityViewModelValidator.ValidateAsync(cityViewModel);
 
-                return Json(new { isValid = true, message = _localization["Cities.Notification.Add.Text"].Value });
+            if (!validationResult.IsValid)
+            {
+                validationResult.AddToModelState(ModelState);
+
+                var countryResponseDtos = await _countryService.GetAllAsync<CountryResponseDto>();
+
+                cityViewModel.CountryList = (countryResponseDtos)
+                      .Select(u => new SelectListItem
+                      {
+                          Text = u.Name,
+                          Value = u.Id.ToString()
+                      });
+
+                return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", cityViewModel) });
             }
 
-            var countryResponseDtos = await _countryService.GetAllAsync<CountryResponseDto>();
+            await _cityService.AddAsync(cityViewModel.City);
 
-            cityViewModel.CountryList = (countryResponseDtos)
-                  .Select(u => new SelectListItem
-                  {
-                      Text = u.Name,
-                      Value = u.Id.ToString()
-                  });
-
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", cityViewModel) });
+            return Json(new { isValid = true, message = _localization["Cities.Notification.Add.Text"].Value });
         }
 
         [ActionName("Edit")]
@@ -145,23 +153,27 @@ namespace VisitorBook.UI.Area.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPost(CityViewModel cityViewModel)
         {
-            if (ModelState.IsValid)
-            {
-                await _cityService.UpdateAsync(cityViewModel.City);
+            var validationResult = await _cityViewModelValidator.ValidateAsync(cityViewModel);
 
-                return Json(new { isValid = true, message = _localization["Cities.Notification.Edit.Text"].Value });
+            if (!validationResult.IsValid)
+            {
+                validationResult.AddToModelState(ModelState);
+
+                var countryResponseDtos = await _countryService.GetAllAsync<CountryResponseDto>();
+
+                cityViewModel.CountryList = (countryResponseDtos)
+                      .Select(u => new SelectListItem
+                      {
+                          Text = u.Name,
+                          Value = u.Id.ToString()
+                      });
+
+                return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", cityViewModel) });
             }
 
-            var countryResponseDtos = await _countryService.GetAllAsync<CountryResponseDto>();
+            await _cityService.UpdateAsync(cityViewModel.City);
 
-            cityViewModel.CountryList = (countryResponseDtos)
-                  .Select(u => new SelectListItem
-                  {
-                      Text = u.Name,
-                      Value = u.Id.ToString()
-                  });
-
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", cityViewModel) });
+            return Json(new { isValid = true, message = _localization["Cities.Notification.Edit.Text"].Value });
         }
 
         [HttpDelete]

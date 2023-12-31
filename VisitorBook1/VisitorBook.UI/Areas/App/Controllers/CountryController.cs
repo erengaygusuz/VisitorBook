@@ -12,7 +12,9 @@ using VisitorBook.UI.Areas.App.Controllers;
 using VisitorBook.UI.Attributes;
 using VisitorBook.UI.Configurations;
 using VisitorBook.UI.Languages;
-using VisitorBook.UI.ViewModels;
+using VisitorBook.Core.ViewModels;
+using FluentValidation;
+using VisitorBook.Core.Extensions;
 
 namespace VisitorBook.UI.Areas.Admin.Controllers
 {
@@ -25,15 +27,18 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         private readonly IService<SubRegion> _subRegionService;
         private readonly IService<Country> _countryService;
         private readonly CountryDataTablesOptions _countryDataTableOptions;
+        private readonly IValidator<CountryViewModel> _countryViewModelValidator;
 
         public CountryController(RazorViewConverter razorViewConverter,
-            IStringLocalizer<Language> localization, IService<SubRegion> subRegionService, CountryDataTablesOptions countryDataTableOptions, IService<Country> countryService)
+            IStringLocalizer<Language> localization, IService<SubRegion> subRegionService, CountryDataTablesOptions countryDataTableOptions, IService<Country> countryService,
+            IValidator<CountryViewModel> countryViewModelValidator)
         {
             _subRegionService = subRegionService;
             _localization = localization;
             _razorViewConverter = razorViewConverter;
             _countryDataTableOptions = countryDataTableOptions;
             _countryService = countryService;
+            _countryViewModelValidator = countryViewModelValidator;
         }
 
         public IActionResult Index()
@@ -120,23 +125,27 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddPost(CountryViewModel countryViewModel)
         {
-            if (ModelState.IsValid)
+            var validationResult = await _countryViewModelValidator.ValidateAsync(countryViewModel);
+
+            if (!validationResult.IsValid)
             {
-                await _countryService.AddAsync(countryViewModel.Country);
+                validationResult.AddToModelState(ModelState);
 
-                return Json(new { isValid = true, message = _localization["Countries.Notification.Add.Text"].Value });
+                var subRegionResponseDtos = await _subRegionService.GetAllAsync<SubRegionResponseDto>();
+
+                countryViewModel.SubRegionList = (subRegionResponseDtos)
+                      .Select(u => new SelectListItem
+                      {
+                          Text = u.Name,
+                          Value = u.Id.ToString()
+                      });
+
+                return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", countryViewModel) });
             }
+            
+            await _countryService.AddAsync(countryViewModel.Country);
 
-            var subRegionResponseDtos = await _subRegionService.GetAllAsync<SubRegionResponseDto>();
-
-            countryViewModel.SubRegionList = (subRegionResponseDtos)
-                  .Select(u => new SelectListItem
-                  {
-                      Text = u.Name,
-                      Value = u.Id.ToString()
-                  });
-
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", countryViewModel) });
+            return Json(new { isValid = true, message = _localization["Countries.Notification.Add.Text"].Value });
         }
 
         [ActionName("Edit")]
@@ -144,23 +153,27 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPost(CountryViewModel countryViewModel)
         {
-            if (ModelState.IsValid)
+            var validationResult = await _countryViewModelValidator.ValidateAsync(countryViewModel);
+
+            if (!validationResult.IsValid)
             {
-                await _countryService.UpdateAsync(countryViewModel.Country);
+                validationResult.AddToModelState(ModelState);
 
-                return Json(new { isValid = true, message = _localization["Countries.Notification.Edit.Text"].Value });
+                var subRegionResponseDtos = await _subRegionService.GetAllAsync<SubRegionResponseDto>();
+
+                countryViewModel.SubRegionList = (subRegionResponseDtos)
+                      .Select(u => new SelectListItem
+                      {
+                          Text = u.Name,
+                          Value = u.Id.ToString()
+                      });
+
+                return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", countryViewModel) });
             }
+            
+            await _countryService.UpdateAsync(countryViewModel.Country);
 
-            var subRegionResponseDtos = await _subRegionService.GetAllAsync<SubRegionResponseDto>();
-
-            countryViewModel.SubRegionList = (subRegionResponseDtos)
-                  .Select(u => new SelectListItem
-                  {
-                      Text = u.Name,
-                      Value = u.Id.ToString()
-                  });
-
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", countryViewModel) });
+            return Json(new { isValid = true, message = _localization["Countries.Notification.Edit.Text"].Value });
         }
 
         [HttpDelete]

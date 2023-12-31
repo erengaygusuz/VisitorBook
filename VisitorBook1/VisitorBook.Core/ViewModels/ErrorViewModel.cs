@@ -1,4 +1,4 @@
-﻿namespace VisitorBook.UI.ViewModels
+﻿namespace VisitorBook.Core.ViewModels
 {
     public class ErrorViewModel
     {

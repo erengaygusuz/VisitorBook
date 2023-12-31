@@ -22,7 +22,7 @@
                     <div class="form-group">
                         <label asp-for="@Model.County.Name" class="control-label">@localization["Counties.Table.Column1.Text"]</label>
                         <input asp-for="@Model.County.Name" class="form-control" />
-                        <span asp-validation-for="@Model.County.Name" class="text-danger"></span>
+                        <span asp-validation-for="@Model.County.Name" class="error invalid-feedback"></span>
                     </div>
                 </div>
             </div>
@@ -31,14 +31,14 @@
                     <div class="form-group">
                         <label asp-for="@Model.County.Latitude" class="control-label">@localization["Counties.Table.Column4.Text"]</label>
                         <input asp-for="@Model.County.Latitude" class="form-control" />
-                        <span asp-validation-for="@Model.County.Latitude" class="text-danger"></span>
+                        <span asp-validation-for="@Model.County.Latitude" class="error invalid-feedback"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="@Model.County.Longitude" class="control-label">@localization["Counties.Table.Column3.Text"]</label>
                         <input asp-for="@Model.County.Longitude" class="form-control" />
-                        <span asp-validation-for="@Model.County.Longitude" class="text-danger"></span>
+                        <span asp-validation-for="@Model.County.Longitude" class="error invalid-feedback"></span>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                         <select asp-for="@Model.County.CityId" asp-items="@Model.CityList" class="form-control select2" style="width: 100% !important;" id="city-select-field">
                             <option disabled selected>@localization["AddOrEditModal.CitySelection.Text"]</option>
                         </select>
-                        <span asp-validation-for="@Model.County.CityId" class="text-danger"></span>
+                        <span asp-validation-for="@Model.County.CityId" class="error invalid-feedback"></span>
                     </div>
                 </div>
             </div>

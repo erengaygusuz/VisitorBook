@@ -5,7 +5,7 @@ using VisitorBook.UI.Attributes;
 using VisitorBook.UI.Configurations;
 using VisitorBook.UI.Languages;
 using VisitorBook.Core.Utilities;
-using VisitorBook.UI.ViewModels;
+using VisitorBook.Core.ViewModels;
 using VisitorBook.Core.Entities;
 using VisitorBook.Core.Abstract;
 using VisitorBook.UI.Areas.App.Controllers;
@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using VisitorBook.Core.Dtos.SubRegionDtos;
 using VisitorBook.Core.Dtos.RegionDtos;
 using Microsoft.AspNetCore.Authorization;
+using FluentValidation;
+using VisitorBook.Core.Extensions;
 
 namespace VisitorBook.UI.Areas.Admin.Controllers
 {
@@ -25,16 +27,18 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         private readonly IService<Region> _regionService;
         private readonly IService<SubRegion> _subRegionService;
         private readonly SubRegionDataTablesOptions _subRegionDataTableOptions;
+        private readonly IValidator<SubRegionViewModel> _subRegionViewModelValidator;
 
         public SubRegionController(RazorViewConverter razorViewConverter,
             IStringLocalizer<Language> localization, IService<SubRegion> subRegionService, SubRegionDataTablesOptions subRegionDataTableOptions,
-            IService<Region> regionService)
+            IService<Region> regionService, IValidator<SubRegionViewModel> subRegionViewModelValidator)
         {
             _subRegionService = subRegionService;
             _localization = localization;
             _razorViewConverter = razorViewConverter;
             _subRegionDataTableOptions = subRegionDataTableOptions;
             _regionService = regionService;
+            _subRegionViewModelValidator = subRegionViewModelValidator;
         }
 
         public IActionResult Index()
@@ -120,23 +124,27 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddPost(SubRegionViewModel subRegionViewModel)
         {
-            if (ModelState.IsValid)
-            {
-                await _subRegionService.AddAsync(subRegionViewModel.SubRegion);
+            var validationResult = await _subRegionViewModelValidator.ValidateAsync(subRegionViewModel);
 
-                return Json(new { isValid = true, message = _localization["SubRegions.Notification.Add.Text"].Value });
+            if (!validationResult.IsValid)
+            {
+                validationResult.AddToModelState(ModelState);
+
+                var regionResponseDtos = await _regionService.GetAllAsync<RegionResponseDto>();
+
+                subRegionViewModel.RegionList = (regionResponseDtos)
+                      .Select(u => new SelectListItem
+                      {
+                          Text = u.Name,
+                          Value = u.Id.ToString()
+                      });
+
+                return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", subRegionViewModel) });
             }
 
-            var regionResponseDtos = await _regionService.GetAllAsync<RegionResponseDto>();
+            await _subRegionService.AddAsync(subRegionViewModel.SubRegion);
 
-            subRegionViewModel.RegionList = (regionResponseDtos)
-                  .Select(u => new SelectListItem
-                  {
-                      Text = u.Name,
-                      Value = u.Id.ToString()
-                  });
-
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", subRegionViewModel) });
+            return Json(new { isValid = true, message = _localization["SubRegions.Notification.Add.Text"].Value });
         }
 
         [ActionName("Edit")]
@@ -144,23 +152,27 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPost(SubRegionViewModel subRegionViewModel)
         {
-            if (ModelState.IsValid)
+            var validationResult = await _subRegionViewModelValidator.ValidateAsync(subRegionViewModel);
+
+            if (!validationResult.IsValid)
             {
-                await _subRegionService.UpdateAsync(subRegionViewModel.SubRegion);
+                validationResult.AddToModelState(ModelState);
 
-                return Json(new { isValid = true, message = _localization["SubRegions.Notification.Edit.Text"].Value });
+                var regionResponseDtos = await _regionService.GetAllAsync<RegionResponseDto>();
+
+                subRegionViewModel.RegionList = (regionResponseDtos)
+                      .Select(u => new SelectListItem
+                      {
+                          Text = u.Name,
+                          Value = u.Id.ToString()
+                      });
+
+                return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", subRegionViewModel) });
             }
+            
+            await _subRegionService.UpdateAsync(subRegionViewModel.SubRegion);
 
-            var regionResponseDtos = await _regionService.GetAllAsync<RegionResponseDto>();
-
-            subRegionViewModel.RegionList = (regionResponseDtos)
-                  .Select(u => new SelectListItem
-                  {
-                      Text = u.Name,
-                      Value = u.Id.ToString()
-                  });
-
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", subRegionViewModel) });
+            return Json(new { isValid = true, message = _localization["SubRegions.Notification.Edit.Text"].Value });
         }
 
         [HttpDelete]

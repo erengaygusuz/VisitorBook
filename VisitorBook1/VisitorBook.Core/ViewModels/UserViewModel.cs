@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using VisitorBook.Core.Dtos.UserDtos;
 
-namespace VisitorBook.UI.ViewModels
+namespace VisitorBook.Core.ViewModels
 {
     public class UserViewModel
     {

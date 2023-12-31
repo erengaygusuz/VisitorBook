@@ -23,7 +23,7 @@
                     <div class="form-group">
                         <label asp-for="@Model.City.Name" class="control-label">@localization["Cities.Table.Column1.Text"]</label>
                         <input asp-for="@Model.City.Name" class="form-control" />
-                        <span asp-validation-for="@Model.City.Name" class="text-danger"></span>
+                        <span asp-validation-for="@Model.City.Name" class="error invalid-feedback"></span>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                     <div class="form-group">
                         <label asp-for="@Model.City.Code" class="control-label">@localization["Cities.Table.Column2.Text"]</label>
                         <input asp-for="@Model.City.Code" class="form-control" />
-                        <span asp-validation-for="@Model.City.Code" class="text-danger"></span>
+                        <span asp-validation-for="@Model.City.Code" class="error invalid-feedback"></span>
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                         <select asp-for="@Model.City.CountryId" asp-items="@Model.CountryList" class="form-control select2" style="width: 100% !important;" id="city-select-field">
                             <option disabled selected>@localization["AddOrEditModal.CountrySelection.Text"]</option>
                         </select>
-                        <span asp-validation-for="@Model.City.CountryId" class="text-danger"></span>
+                        <span asp-validation-for="@Model.City.CountryId" class="error invalid-feedback"></span>
                     </div>
                 </div>
             </div>

@@ -12,6 +12,7 @@ using VisitorBook.Core.Extensions;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using FluentValidation;
 
 namespace VisitorBook.UI.Areas.Admin.Controllers
 {
@@ -24,16 +25,18 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         private readonly RoleManager<Role> _roleManager;
         private readonly RoleDataTablesOptions _roleDataTableOptions;
         private readonly IMapper _mapper;
+        private readonly IValidator<RoleRequestDto> _roleRequestDtoValidator;
 
         public RoleController(RazorViewConverter razorViewConverter,
             IStringLocalizer<Language> localization, RoleManager<Role> roleManager, RoleDataTablesOptions roleDataTableOptions,
-            IMapper mapper)
+            IMapper mapper, IValidator<RoleRequestDto> roleRequestDtoValidator)
         {
             _roleManager = roleManager;
             _localization = localization;
             _razorViewConverter = razorViewConverter;
             _roleDataTableOptions = roleDataTableOptions;
             _mapper = mapper;
+            _roleRequestDtoValidator = roleRequestDtoValidator;
         }
 
         public IActionResult Index()
@@ -95,16 +98,20 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddPost(RoleRequestDto roleRequestDto)
         {
-            if (ModelState.IsValid)
+            var validationResult = await _roleRequestDtoValidator.ValidateAsync(roleRequestDto);
+
+            if (!validationResult.IsValid)
             {
-                var roleToAdd = _mapper.Map<Role>(roleRequestDto);
+                validationResult.AddToModelState(ModelState);
 
-                await _roleManager.CreateAsync(roleToAdd);
-
-                return Json(new { isValid = true, message = _localization["Roles.Notification.Add.Text"].Value });
+                return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", roleRequestDto) });
             }
+                
+            var roleToAdd = _mapper.Map<Role>(roleRequestDto);
+  
+            await _roleManager.CreateAsync(roleToAdd);
 
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", roleRequestDto) });
+            return Json(new { isValid = true, message = _localization["Roles.Notification.Add.Text"].Value });  
         }
 
         [ActionName("Edit")]
@@ -112,23 +119,27 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPost(RoleRequestDto roleRequestDto)
         {
-            if (ModelState.IsValid)
+            var validationResult = await _roleRequestDtoValidator.ValidateAsync(roleRequestDto);
+
+            if (!validationResult.IsValid)
             {
-                var roleToUpdate = await _roleManager.Roles.FirstOrDefaultAsync(x => x.Id == roleRequestDto.Id);
+                validationResult.AddToModelState(ModelState);
 
-                if (roleToUpdate == null)
-                {
-                    throw new Exception("Güncellenecek rol bulunamamıştır.");
-                }
+                return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", roleRequestDto) });
+            }
+                
+            var roleToUpdate = await _roleManager.Roles.FirstOrDefaultAsync(x => x.Id == roleRequestDto.Id);
 
-                roleToUpdate.Name = roleRequestDto.Name;
-
-                await _roleManager.UpdateAsync(roleToUpdate);
-
-                return Json(new { isValid = true, message = _localization["Roles.Notification.Edit.Text"].Value });
+            if (roleToUpdate == null)
+            {
+                throw new Exception("Güncellenecek rol bulunamamıştır.");
             }
 
-            return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", roleRequestDto) });
+            roleToUpdate.Name = roleRequestDto.Name;
+
+            await _roleManager.UpdateAsync(roleToUpdate);
+
+            return Json(new { isValid = true, message = _localization["Roles.Notification.Edit.Text"].Value });
         }
 
         [HttpDelete]
