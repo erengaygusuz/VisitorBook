@@ -59,67 +59,51 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateSecurityInfo(ProfileViewModel profileViewModel)
+        public async Task<IActionResult> UpdateSecurityInfo(UpdateSecurityInfoDto updateSecurityInfoDto)
         {
-            ModelState.Remove("UserGeneralInfo");
-            ModelState.Remove("UserSecurityInfo.Email");
-            ModelState.Remove("UserSecurityInfo.Username");
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(new { message = _localization["Profiles.SecurityTab.Message1.Text"].Value });
-            }
-
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            var checkOldPassword = await _userManager.CheckPasswordAsync(user, profileViewModel.UserSecurityInfo.PasswordOld);
+            var checkOldPassword = await _userManager.CheckPasswordAsync(user, updateSecurityInfoDto.PasswordOld);
 
             if (!checkOldPassword)
             {
-                ModelState.AddModelError(string.Empty, "Eski şifreniz yanlış");
-
                 return BadRequest(new { message = _localization["Profiles.SecurityTab.Message2.Text"].Value });
             }
 
-            var resultChangePassword = await _userManager.ChangePasswordAsync(user, profileViewModel.UserSecurityInfo.PasswordOld, profileViewModel.UserSecurityInfo.PasswordNew);
+            var resultChangePassword = await _userManager.ChangePasswordAsync(user, updateSecurityInfoDto.PasswordOld, updateSecurityInfoDto.PasswordNew);
 
             if (!resultChangePassword.Succeeded)
             {
                 ModelState.AddModelErrorList(resultChangePassword.Errors.Select(x => x.Description).ToList());
+
+                return BadRequest(new { message = _localization["Profiles.SecurityTab.Message1.Text"].Value });
             }
 
             await _userManager.UpdateSecurityStampAsync(user);
 
             await _signInManager.SignOutAsync();
-            await _signInManager.PasswordSignInAsync(user, profileViewModel.UserSecurityInfo.PasswordNew, true, false);
+            await _signInManager.PasswordSignInAsync(user, updateSecurityInfoDto.PasswordNew, true, false);
 
             return Json(new { message = _localization["Profiles.SecurityTab.Message3.Text"].Value });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateGeneralInfo(ProfileViewModel profileViewModel)
+        public async Task<IActionResult> UpdateGeneralInfo(UpdateGeneralInfoDto updateGeneralInfoDto)
         {
-            ModelState.Remove("UserSecurityInfo");
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(new { message = _localization["Profiles.GeneralTab.Message1.Text"].Value });
-            }
-
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            user.Name = profileViewModel.UserGeneralInfo.Name;
-            user.Surname = profileViewModel.UserGeneralInfo.Surname;
-            user.BirthDate = profileViewModel.UserGeneralInfo.BirthDate;
-            user.Gender = (Gender) Enum.Parse(typeof(Gender), profileViewModel.UserGeneralInfo.Gender);
-            user.PhoneNumber = profileViewModel.UserGeneralInfo.PhoneNumber;
+            user.Name = updateGeneralInfoDto.Name;
+            user.Surname = updateGeneralInfoDto.Surname;
+            user.BirthDate = updateGeneralInfoDto.BirthDate;
+            user.Gender = (Gender) Enum.Parse(typeof(Gender), updateGeneralInfoDto.Gender);
+            user.PhoneNumber = updateGeneralInfoDto.PhoneNumber;
 
             var updateToUserResult = await _userManager.UpdateAsync(user);
 
             if (!updateToUserResult.Succeeded)
             {
-                ModelState.AddModelErrorList(updateToUserResult.Errors);
+                return BadRequest(new { message = _localization["Profiles.GeneralTab.Message1.Text"].Value });
             }
 
             await _userManager.UpdateSecurityStampAsync(user);

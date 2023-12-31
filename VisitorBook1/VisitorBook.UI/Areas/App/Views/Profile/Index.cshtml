@@ -33,24 +33,24 @@
                         <input type="hidden" id="ActiveLanguage" value="@Thread.CurrentThread.CurrentCulture.Name" />
                         <div class="tab-content">
                             <div class="active tab-pane" id="activity">
-                                <form class="form-horizontal" asp-area="App" asp-controller="Profile" asp-action="UpdateGeneralInfo" onsubmit="return UpdateGeneralInfo(this);" autocomplete="off">
+                                <form class="form-horizontal" asp-area="App" asp-controller="Profile" asp-action="UpdateGeneralInfo" id="UpdateGeneralInfoForm">
                                     <div class="form-group row">
-                                        <label asp-for="@Model.UserGeneralInfo.Name" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row1.Text"]</label>
+                                        <label for="name" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row1.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" asp-for="@Model.UserGeneralInfo.Name" placeholder="@localization["Profiles.GeneralTab.Row1.Text"]">
+                                            <input type="text" class="form-control" id="name" name="name" value="@Model.UserGeneralInfo.Name" placeholder="@localization["Profiles.GeneralTab.Row1.Text"]">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label asp-for="@Model.UserGeneralInfo.Surname" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row2.Text"]</label>
+                                        <label for="surname" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row2.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" asp-for="@Model.UserGeneralInfo.Surname" placeholder="@localization["Profiles.GeneralTab.Row2.Text"]">
+                                            <input type="text" class="form-control" id="surname" name="surname" value="@Model.UserGeneralInfo.Surname" placeholder="@localization["Profiles.GeneralTab.Row2.Text"]">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label asp-for="@Model.UserGeneralInfo.BirthDate" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row3.Text"]</label>
+                                        <label for="birthdate" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row3.Text"]</label>
                                         <div class="col-sm-10">
                                             <div class="input-group date" id="user-birthdate" data-target-input="nearest">
-                                                <input type="text" class="form-control datetimepicker-input" data-target="#user-birthdate" asp-for="@Model.UserGeneralInfo.BirthDate">
+                                                <input type="text" class="form-control datetimepicker-input" data-target="#user-birthdate" name="birthDate" id="birthDate" value="@Model.UserGeneralInfo.BirthDate">
                                                 <div class="input-group-append" data-target="#user-birthdate" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                 </div>
@@ -58,15 +58,15 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label asp-for="@Model.UserGeneralInfo.PhoneNumber" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row4.Text"]</label>
+                                        <label for="phoneNumber" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row4.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" asp-for="@Model.UserGeneralInfo.PhoneNumber" placeholder="@localization["Profiles.GeneralTab.Row4.Text"]">
+                                            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="@Model.UserGeneralInfo.PhoneNumber" data-inputmask='"mask": "(999) 999-9999"' data-mask>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label asp-for="@Model.UserGeneralInfo.Gender" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row5.Text"]</label>
+                                        <label for="gender" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row5.Text"]</label>
                                         <div class="col-sm-10">
-                                            <select asp-for="@Model.UserGeneralInfo.Gender" asp-items="@Model.GenderList" class="form-control select2" style="width: 100% !important;" id="gender-select-field">
+                                            <select asp-for="@Model.UserGeneralInfo.Gender" id="" asp-items="@Model.GenderList" class="form-control select2" style="width: 100% !important;" name="gender" id="gender">
                                                 <option disabled selected>@localization["AddOrEditModal.GenderSelection.Text"]</option>
                                             </select>
                                         </div>
@@ -79,35 +79,35 @@
                                 </form>
                             </div>
                             <div class="tab-pane" id="settings">
-                                <form class="form-horizontal" asp-area="App" asp-controller="Profile" asp-action="UpdateSecurityInfo" onsubmit="return UpdateSecurityInfo(this);" autocomplete="off">
+                                <form class="form-horizontal" asp-area="App" asp-controller="Profile" asp-action="UpdateSecurityInfo" id="UpdateSecurityInfoForm">
                                     <div class="form-group row">
-                                        <label asp-for="@Model.UserSecurityInfo.Username" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row1.Text"]</label>
+                                        <label for="username" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row1.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" asp-for="@Model.UserSecurityInfo.Username" placeholder="@localization["Profiles.SecurityTab.Row1.Text"]" disabled>
+                                            <input type="text" name="username" id="username" class="form-control" value="@Model.UserSecurityInfo.Username" placeholder="@localization["Profiles.SecurityTab.Row1.Text"]" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label asp-for="@Model.UserSecurityInfo.Email" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row2.Text"]</label>
+                                        <label for="email" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row2.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="email" class="form-control" asp-for="@Model.UserSecurityInfo.Email" placeholder="@localization["Profiles.SecurityTab.Row2.Text"]" disabled>
+                                            <input type="email" name="email" id="email" class="form-control" value="@Model.UserSecurityInfo.Email" placeholder="@localization["Profiles.SecurityTab.Row2.Text"]" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label asp-for="@Model.UserSecurityInfo.PasswordOld" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row3.Text"]</label>
+                                        <label for="passwordOld" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row3.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="password" class="form-control" asp-for="@Model.UserSecurityInfo.PasswordOld" placeholder="@localization["Profiles.SecurityTab.Row3.Text"]">
+                                            <input type="password" name="passwordOld" id="passwordOld" class="form-control" value="@Model.UserSecurityInfo.PasswordOld" placeholder="@localization["Profiles.SecurityTab.Row3.Text"]">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label asp-for="@Model.UserSecurityInfo.PasswordNew" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row4.Text"]</label>
+                                        <label for="passwordNew" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row4.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="password" class="form-control" asp-for="@Model.UserSecurityInfo.PasswordNew" placeholder="@localization["Profiles.SecurityTab.Row4.Text"]">
+                                            <input type="password" name="passwordNew" id="passwordNew" class="form-control" value="@Model.UserSecurityInfo.PasswordNew" placeholder="@localization["Profiles.SecurityTab.Row4.Text"]">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label asp-for="@Model.UserSecurityInfo.PasswordNewConfirm" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row5.Text"]</label>
+                                        <label for="passwordNewConfirm" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row5.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="password" class="form-control" asp-for="@Model.UserSecurityInfo.PasswordNewConfirm" placeholder="@localization["Profiles.SecurityTab.Row5.Text"]">
+                                            <input type="password" name="passwordNewConfirm" id="passwordNewConfirm" class="form-control" value="@Model.UserSecurityInfo.PasswordNewConfirm" placeholder="@localization["Profiles.SecurityTab.Row5.Text"]">
                                         </div>
                                     </div>
                                     <div class="form-group row">

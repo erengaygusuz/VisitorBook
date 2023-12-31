@@ -27,6 +27,7 @@ using VisitorBook.Core.Dtos.AuthDtos;
 using VisitorBook.BL.Validators;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using VisitorBook.Core.Dtos.ProfileDtos;
 
 var builder = WebApplication.CreateBuilder(args);
 
