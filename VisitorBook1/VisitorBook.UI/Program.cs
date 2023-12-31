@@ -23,6 +23,10 @@ using VisitorBook.Core.Dtos.SubRegionDtos;
 using VisitorBook.Core.Dtos.UserDtos;
 using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
+using VisitorBook.Core.Dtos.AuthDtos;
+using VisitorBook.BL.Validators;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -120,6 +124,13 @@ builder.Services.ConfigureApplicationCookie(opt =>
 });
 
 builder.Services.AddNotyf(config => { config.DurationInSeconds = 5; config.IsDismissable = true; config.Position = NotyfPosition.TopRight; });
+
+builder.Services.AddScoped<IValidator<LoginRequestDto>, LoginRequestDtoValidator>();
+builder.Services.AddScoped<IValidator<RegisterRequestDto>, RegisterRequestDtoValidator>();
+
+builder.Services.AddFluentValidation(fv => {
+    fv.DisableDataAnnotationsValidation = true;
+});
 
 var app = builder.Build();
 

@@ -1,4 +1,5 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
@@ -17,15 +18,19 @@ namespace VisitorBook.UI.Controllers
         private readonly IEmailService _emailService;
         private readonly INotyfService _notifyService;
         private readonly IStringLocalizer<Language> _localization;
+        private readonly IValidator<LoginRequestDto> _loginRequestDtoValidator;
+        private readonly IValidator<RegisterRequestDto> _registerRequestDtoValidator;
 
         public AuthController(UserManager<User> userManager, SignInManager<User> signInManager, IEmailService emailService, INotyfService notifyService,
-            IStringLocalizer<Language> localization)
+            IStringLocalizer<Language> localization, IValidator<LoginRequestDto> loginRequestDtoValidator, IValidator<RegisterRequestDto> registerRequestDtoValidator)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailService = emailService;
             _notifyService = notifyService;
             _localization = localization;
+            _loginRequestDtoValidator = loginRequestDtoValidator;
+            _registerRequestDtoValidator = registerRequestDtoValidator;
         }
 
         public IActionResult Login()
@@ -36,9 +41,11 @@ namespace VisitorBook.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginRequestDto loginRequestDto, string returnUrl = null)
         {
-            if (!ModelState.IsValid)
+            var validationResult = await _loginRequestDtoValidator.ValidateAsync(loginRequestDto);
+
+            if (!validationResult.IsValid)
             {
-                _notifyService.Error(_localization["Auth.Login.Message1.Text"].Value);
+                validationResult.AddToModelState(ModelState);
 
                 return View();
             }
@@ -95,9 +102,11 @@ namespace VisitorBook.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterRequestDto registerRequestDto)
         {
-            if (!ModelState.IsValid)
+            var validationResult = await _registerRequestDtoValidator.ValidateAsync(registerRequestDto);
+
+            if (!validationResult.IsValid)
             {
-                _notifyService.Error(_localization["Auth.Register.Message1.Text"].Value);
+                validationResult.AddToModelState(ModelState);
 
                 return View();
             }

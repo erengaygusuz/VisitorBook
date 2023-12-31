@@ -15,7 +15,7 @@ $(document).ready(function () {
 
 })
 
-updateGeneralInfo = (form) => {
+UpdateGeneralInfo = (form) => {
     try {
         $.ajax({
             type: 'POST',

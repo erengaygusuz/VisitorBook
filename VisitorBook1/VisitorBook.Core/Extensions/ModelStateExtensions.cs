@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using FluentValidation.Results;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace VisitorBook.Core.Extensions
@@ -24,6 +25,14 @@ namespace VisitorBook.Core.Extensions
             {
                 modelState.AddModelError(string.Empty, x.Description);
             });
+        }
+
+        public static void AddToModelState(this ValidationResult result, ModelStateDictionary modelState)
+        {
+            foreach (var error in result.Errors)
+            {
+                modelState.AddModelError(error.PropertyName, error.ErrorMessage);
+            }
         }
     }
 }

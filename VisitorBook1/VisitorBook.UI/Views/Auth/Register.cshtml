@@ -28,6 +28,7 @@
                             <span class="fas fa-user"></span>
                         </div>
                     </div>
+                    <span asp-validation-for="@Model.Name" class="error invalid-feedback"></span>
                 </div>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="@localization["Register.Item2.Text"]" asp-for="@Model.Surname">
@@ -36,6 +37,7 @@
                             <span class="fas fa-user"></span>
                         </div>
                     </div>
+                    <span asp-validation-for="@Model.Surname" class="error invalid-feedback"></span>
                 </div>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="@localization["Register.Item3.Text"]" asp-for="@Model.Username">
@@ -44,6 +46,7 @@
                             <span class="fas fa-user"></span>
                         </div>
                     </div>
+                    <span asp-validation-for="@Model.Username" class="error invalid-feedback"></span>
                 </div>
                 <div class="input-group mb-3">
                     <input type="email" class="form-control" placeholder="@localization["Register.Item4.Text"]" asp-for="@Model.Email">
@@ -52,6 +55,7 @@
                             <span class="fas fa-envelope"></span>
                         </div>
                     </div>
+                    <span asp-validation-for="@Model.Email" class="error invalid-feedback"></span>
                 </div>
                 <div class="input-group mb-3">
                     <input type="password" class="form-control" placeholder="@localization["Register.Item5.Text"]" asp-for="@Model.Password">
@@ -60,6 +64,7 @@
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
+                    <span asp-validation-for="@Model.Password" class="error invalid-feedback"></span>
                 </div>
                 <div class="input-group mb-3">
                     <input type="password" class="form-control" placeholder="@localization["Register.Item6.Text"]" asp-for="@Model.PasswordConfirm">
@@ -68,6 +73,7 @@
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
+                    <span asp-validation-for="@Model.PasswordConfirm" class="error invalid-feedback"></span>
                 </div>
                 <div class="row">
                     <div class="col-12">

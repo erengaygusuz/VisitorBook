@@ -29,6 +29,7 @@
                             <span class="fas fa-envelope"></span>
                         </div>
                     </div>
+                    <span asp-validation-for ="@Model.Email" class="error invalid-feedback"></span>
                 </div>
                 <div class="input-group mb-3">
                     <input type="password" class="form-control" placeholder="@localization["Login.Item2.Text"]" asp-for="@Model.Password">
@@ -37,6 +38,7 @@
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
+                    <span asp-validation-for="@Model.Password" class="error invalid-feedback"></span>
                 </div>
                 <div class="row">
                     <div class="col-8">
