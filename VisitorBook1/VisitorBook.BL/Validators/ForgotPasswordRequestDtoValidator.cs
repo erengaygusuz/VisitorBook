@@ -21,6 +21,11 @@ namespace VisitorBook.BL.Validators
 
         private bool NotExistEmail(string email)
         {
+            if (string.IsNullOrEmpty(email))
+            {
+                return false;
+            }
+
             var user = _userManager.FindByEmailAsync(email).GetAwaiter().GetResult();
 
             if (user == null)

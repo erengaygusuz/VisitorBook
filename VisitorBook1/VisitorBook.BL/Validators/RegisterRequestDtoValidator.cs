@@ -45,6 +45,11 @@ namespace VisitorBook.BL.Validators
 
         private bool UniqueUsername(string username)
         {
+            if (string.IsNullOrEmpty(username)) 
+            {
+                return true;
+            } 
+
             var user = _userManager.FindByNameAsync(username).GetAwaiter().GetResult();
 
             if (user == null)
