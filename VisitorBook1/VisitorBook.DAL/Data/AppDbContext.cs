@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using VisitorBook.Core.Entities;
-using VisitorBook.Core.Utilities;
 
 namespace VisitorBook.DAL.Data
 {
@@ -17,30 +16,14 @@ namespace VisitorBook.DAL.Data
         public DbSet<SubRegion> SubRegions { get; set; }
         public DbSet<Country> Countries { get; set; }
 
-        private readonly FakeDataGenerator _fakeDataGenerator;
-
-        public AppDbContext(DbContextOptions<AppDbContext> options, FakeDataGenerator fakeDataGenerator) : base (options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base (options)
         {
-            _fakeDataGenerator = fakeDataGenerator;
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            //_fakeDataGenerator.GenerateData();
-
-            //modelBuilder.Entity<Visitor>().HasData(
-            //    _fakeDataGenerator.Visitors
-            //);
-
-            //modelBuilder.Entity<VisitedCounty>().HasData(
-            //    _fakeDataGenerator.VisitedCounties
-            //);
-
-            //modelBuilder.Entity<VisitorAddress>().HasData(
-            //    _fakeDataGenerator.VisitorAddresses
-            //);
         }
 
         public override int SaveChanges()

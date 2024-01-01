@@ -19,6 +19,7 @@
             var makeVisitedCountyActive = "";
             var makeUserActive = "";
             var makeRoleActive = "";
+            var makeFakeDataActive = "";
 
             @if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "home")
             {
@@ -56,6 +57,10 @@
             {
                 makeRoleActive = "active";
             }
+            else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "fakedata")
+            {
+                makeFakeDataActive = "active";
+            }
         }
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -68,93 +73,93 @@
                         </p>
                     </a>
                 </li>
-                @if(User.HasClaim(x => x.Type == ClaimTypes.Role && x.Value == "Admin"))
+                @if (User.HasClaim(x => x.Type == ClaimTypes.Role && x.Value == "Admin"))
                 {
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-users-cog"></i>
-                        <p>
-                            @localization["Layout.Header.Navbar.Items2.Text"]
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview" style="display: none;">
-                        <li class="nav-item">
-                            <a class="nav-link @makeUserActive" asp-area="App" asp-controller="User"
-                               asp-action="Index">
-                                <i class="nav-icon fas fa-user-friends"></i>
-                                <p>
-                                    @localization["Layout.Header.Navbar.Items3.Text"]
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @makeRoleActive" asp-area="App" asp-controller="Role"
-                               asp-action="Index">
-                                <i class="nav-icon fas fa-user-tag"></i>
-                                <p>
-                                    @localization["Layout.Header.Navbar.Items4.Text"]
-                                </p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-landmark"></i>
-                        <p>
-                            @localization["Layout.Header.Navbar.Items5.Text"]
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview" style="display: none;">
-                        <li class="nav-item">
-                            <a class="nav-link @makeRegionActive" asp-area="App" asp-controller="Region"
-                               asp-action="Index">
-                                <i class="nav-icon fas fa-globe-africa"></i>
-                                <p>
-                                    @localization["Layout.Header.Navbar.Items6.Text"]
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @makeSubRegionActive" asp-area="App" asp-controller="SubRegion"
-                               asp-action="Index">
-                                <i class="nav-icon fas fa-map"></i>
-                                <p>
-                                    @localization["Layout.Header.Navbar.Items7.Text"]
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @makeCountryActive" asp-area="App" asp-controller="Country"
-                               asp-action="Index">
-                                <i class="nav-icon fas fa-flag"></i>
-                                <p>
-                                    @localization["Layout.Header.Navbar.Items8.Text"]
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @makeCityActive" asp-area="App" asp-controller="City"
-                               asp-action="Index">
-                                <i class="nav-icon fas fa-city"></i>
-                                <p>
-                                    @localization["Layout.Header.Navbar.Items9.Text"]
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @makeCountyActive" asp-area="App" asp-controller="County"
-                               asp-action="Index">
-                                <i class="nav-icon fas fa-building"></i>
-                                <p>
-                                    @localization["Layout.Header.Navbar.Items10.Text"]
-                                </p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-users-cog"></i>
+                            <p>
+                                @localization["Layout.Header.Navbar.Items2.Text"]
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview" style="display: none;">
+                            <li class="nav-item">
+                                <a class="nav-link @makeUserActive" asp-area="App" asp-controller="User"
+                                   asp-action="Index">
+                                    <i class="nav-icon fas fa-user-friends"></i>
+                                    <p>
+                                        @localization["Layout.Header.Navbar.Items3.Text"]
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @makeRoleActive" asp-area="App" asp-controller="Role"
+                                   asp-action="Index">
+                                    <i class="nav-icon fas fa-user-tag"></i>
+                                    <p>
+                                        @localization["Layout.Header.Navbar.Items4.Text"]
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-landmark"></i>
+                            <p>
+                                @localization["Layout.Header.Navbar.Items5.Text"]
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview" style="display: none;">
+                            <li class="nav-item">
+                                <a class="nav-link @makeRegionActive" asp-area="App" asp-controller="Region"
+                                   asp-action="Index">
+                                    <i class="nav-icon fas fa-globe-africa"></i>
+                                    <p>
+                                        @localization["Layout.Header.Navbar.Items6.Text"]
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @makeSubRegionActive" asp-area="App" asp-controller="SubRegion"
+                                   asp-action="Index">
+                                    <i class="nav-icon fas fa-map"></i>
+                                    <p>
+                                        @localization["Layout.Header.Navbar.Items7.Text"]
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @makeCountryActive" asp-area="App" asp-controller="Country"
+                                   asp-action="Index">
+                                    <i class="nav-icon fas fa-flag"></i>
+                                    <p>
+                                        @localization["Layout.Header.Navbar.Items8.Text"]
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @makeCityActive" asp-area="App" asp-controller="City"
+                                   asp-action="Index">
+                                    <i class="nav-icon fas fa-city"></i>
+                                    <p>
+                                        @localization["Layout.Header.Navbar.Items9.Text"]
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @makeCountyActive" asp-area="App" asp-controller="County"
+                                   asp-action="Index">
+                                    <i class="nav-icon fas fa-building"></i>
+                                    <p>
+                                        @localization["Layout.Header.Navbar.Items10.Text"]
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 }
                 <li class="nav-item">
                     <a class="nav-link @makeVisitedCountyActive" asp-area="App" asp-controller="VisitedCounty"
@@ -165,6 +170,18 @@
                         </p>
                     </a>
                 </li>
+                @if (User.HasClaim(x => x.Type == ClaimTypes.Role && x.Value == "Admin"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link @makeVisitedCountyActive" asp-area="App" asp-controller="FakeData"
+                           asp-action="Index">
+                            <i class="nav-icon fas fa-user-secret"></i>
+                            <p>
+                                @localization["Layout.Header.Navbar.Items12.Text"]
+                            </p>
+                        </a>
+                    </li>
+                }
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

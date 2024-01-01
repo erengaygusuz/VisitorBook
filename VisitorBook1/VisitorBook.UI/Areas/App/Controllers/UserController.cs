@@ -31,7 +31,6 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         private readonly IService<City> _cityService;
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<Role> _roleManager;
-        private readonly SignInManager<User> _signInManager;
         private readonly IStringLocalizer<Language> _localization;
         private readonly RazorViewConverter _razorViewConverter;
         private readonly UserDataTablesOptions _userDataTableOptions;
@@ -41,7 +40,7 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
         public UserController(IService<County> countyService, IService<City> cityService,
             UserManager<User> userManager, IStringLocalizer<Language> localization,
             RazorViewConverter razorViewConverter,
-            UserDataTablesOptions userDataTableOptions, IMapper mapper, RoleManager<Role> roleManager, SignInManager<User> signInManager,
+            UserDataTablesOptions userDataTableOptions, IMapper mapper, RoleManager<Role> roleManager,
             IValidator<UserViewModel> userViewModelValidator)
         {
             _countyService = countyService;
@@ -52,7 +51,6 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
             _userDataTableOptions = userDataTableOptions;
             _mapper = mapper;
             _roleManager = roleManager;
-            _signInManager = signInManager;
             _userViewModelValidator = userViewModelValidator;
         }
 

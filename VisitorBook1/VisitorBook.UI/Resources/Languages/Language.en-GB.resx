@@ -1092,4 +1092,31 @@
   <data name="Validators.ResetPassword.Message4.Text" xml:space="preserve">
     <value>Please enter a password that has at least five character</value>
   </data>
+  <data name="Layout.Header.Navbar.Items12.Text" xml:space="preserve">
+    <value>Fake Data Generation</value>
+  </data>
+  <data name="FakeDatas.Item1.Text" xml:space="preserve">
+    <value>Please enter user amount</value>
+  </data>
+  <data name="FakeDatas.Item2.Text" xml:space="preserve">
+    <value>Please enter visited county amount</value>
+  </data>
+  <data name="FakeDatas.SubmitBtn.Text" xml:space="preserve">
+    <value>Generate</value>
+  </data>
+  <data name="FakeDatas.SubTitle1.Text" xml:space="preserve">
+    <value>User Data</value>
+  </data>
+  <data name="FakeDatas.SubTitle2.Text" xml:space="preserve">
+    <value>Visited County Data</value>
+  </data>
+  <data name="FakeDatas.Title.Text" xml:space="preserve">
+    <value>Fake Data Generation</value>
+  </data>
+  <data name="Validators.FakeData.Message1.Text" xml:space="preserve">
+    <value>Please fill the area</value>
+  </data>
+  <data name="Validators.FakeData.Message2.Text" xml:space="preserve">
+    <value>Please only enter numbers</value>
+  </data>
 </root>

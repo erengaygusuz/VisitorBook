@@ -1094,4 +1094,31 @@
   <data name="Validators.ResetPassword.Message4.Text" xml:space="preserve">
     <value>Lütfen şifrenizi en az 5 karakter olacak şekilde giriniz</value>
   </data>
+  <data name="Layout.Header.Navbar.Items12.Text" xml:space="preserve">
+    <value>Sahte Veri Oluşturma</value>
+  </data>
+  <data name="FakeDatas.Item1.Text" xml:space="preserve">
+    <value>Kullanıcı miktarını giriniz</value>
+  </data>
+  <data name="FakeDatas.Item2.Text" xml:space="preserve">
+    <value>Ziyaret edilen ilçe miktarını giriniz</value>
+  </data>
+  <data name="FakeDatas.SubmitBtn.Text" xml:space="preserve">
+    <value>Oluştur</value>
+  </data>
+  <data name="FakeDatas.SubTitle1.Text" xml:space="preserve">
+    <value>Kullanıcı Verisi</value>
+  </data>
+  <data name="FakeDatas.SubTitle2.Text" xml:space="preserve">
+    <value>Ziyaret Edilen İlçe Verisi</value>
+  </data>
+  <data name="FakeDatas.Title.Text" xml:space="preserve">
+    <value>Sahte Veri Oluşturma</value>
+  </data>
+  <data name="Validators.FakeData.Message1.Text" xml:space="preserve">
+    <value>Lütfen alanı boş bırakmayınız</value>
+  </data>
+  <data name="Validators.FakeData.Message2.Text" xml:space="preserve">
+    <value>Lütfen sadece sayısal değerler giriniz</value>
+  </data>
 </root>

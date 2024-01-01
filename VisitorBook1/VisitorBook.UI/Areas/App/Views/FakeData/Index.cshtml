@@ -1,0 +1,53 @@
+﻿@model FakeDataViewModel
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">@localization["FakeDatas.Title.Text"]</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">@localization["Role." + @User.Claims.Where(x => x.Type == ClaimTypes.Role).Select(x => x.Value).FirstOrDefault() + ".Text"]</li>
+                    <li class="breadcrumb-item active">@localization["FakeDatas.Title.Text"]</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form asp-area="App" asp-controller="FakeData" asp-action="GenerateUser">
+                            <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label" asp-for="@Model.UserAmount">@localization["FakeDatas.SubTitle1.Text"]</label>
+                                        <input type="text" class="form-control" asp-for="@Model.UserAmount" placeholder="@localization["FakeDatas.Item1.Text"]" />
+                                        <span asp-validation-for="@Model.UserAmount" class="error invalid-feedback"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-success mt-3">@localization["FakeDatas.SubmitBtn.Text"]</button>
+                        </form>
+                        <form asp-area="App" asp-controller="FakeData" asp-action="GenerateVisitedCounty">
+                            <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label" asp-for="@Model.VisitedCountyAmount">@localization["FakeDatas.SubTitle2.Text"]</label>
+                                        <input type="text" class="form-control" asp-for="@Model.VisitedCountyAmount" placeholder="@localization["FakeDatas.Item2.Text"]" />
+                                        <span asp-validation-for="@Model.VisitedCountyAmount" class="error invalid-feedback"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-success mt-3">@localization["FakeDatas.SubmitBtn.Text"]</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
