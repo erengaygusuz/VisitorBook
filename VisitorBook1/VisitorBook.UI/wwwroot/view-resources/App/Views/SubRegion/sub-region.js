@@ -42,7 +42,7 @@ function loadDataTable(
             {
                 extend: 'pdfHtml5',
                 text: exportBtnText,
-                filename: 'VisitorBook-Regions',
+                filename: 'VisitorBook-SubRegions',
                 orientation: 'landscape',
                 pageSize: 'A4',
                 customize: function (doc) {
