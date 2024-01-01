@@ -828,19 +828,19 @@
     <value>İl adı rakam içeremez</value>
   </data>
   <data name="Validators.City.Message3.Text" xml:space="preserve">
-    <value>Lütfen minimum iki karaktere sahip bir ad giriniz</value>
+    <value>Lütfen minimum 2 karaktere sahip bir ad giriniz</value>
   </data>
   <data name="Validators.City.Message4.Text" xml:space="preserve">
-    <value>Lütfen maksimum elli karaktere sahip bir ad giriniz</value>
+    <value>Lütfen maksimum 50 karaktere sahip bir ad giriniz</value>
   </data>
   <data name="Validators.City.Message5.Text" xml:space="preserve">
     <value>Lütfen kod alanını boş bırakmayınız</value>
   </data>
   <data name="Validators.City.Message6.Text" xml:space="preserve">
-    <value>Lütfen minimum iki karaktere sahip bir kod giriniz</value>
+    <value>Lütfen minimum 2 karaktere sahip bir kod giriniz</value>
   </data>
   <data name="Validators.City.Message7.Text" xml:space="preserve">
-    <value>Lütfen maksimum elli karaktere sahip bir kod giriniz</value>
+    <value>Lütfen maksimum 50 karaktere sahip bir kod giriniz</value>
   </data>
   <data name="Validators.City.Message8.Text" xml:space="preserve">
     <value>Lütfen bir ülke seçiniz</value>
@@ -909,10 +909,10 @@
     <value>Soyad rakam içeremez</value>
   </data>
   <data name="Validators.Register.Message7.Text" xml:space="preserve">
-    <value>Lütfen minimum üç karaktere sahip bir soyad giriniz</value>
+    <value>Lütfen minimum 3 karaktere sahip bir soyad giriniz</value>
   </data>
   <data name="Validators.Register.Message8.Text" xml:space="preserve">
-    <value>Lütfen maksimum yüz karaktere sahip bir soyad giriniz</value>
+    <value>Lütfen maksimum 100 karaktere sahip bir soyad giriniz</value>
   </data>
   <data name="Validators.Register.Message9.Text" xml:space="preserve">
     <value>Lütfen email alanını boş bırakmayınız</value>
@@ -925,5 +925,176 @@
   </data>
   <data name="Validators.ResetPassword.Message3.Text" xml:space="preserve">
     <value>Şifreleriniz birbiriyle uyuşmuyor</value>
+  </data>
+  <data name="Validators.Country.Message1.Text" xml:space="preserve">
+    <value>Lütfen ad alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.Country.Message2.Text" xml:space="preserve">
+    <value>Ülke adı rakam içeremez</value>
+  </data>
+  <data name="Validators.Country.Message3.Text" xml:space="preserve">
+    <value>Lütfen minimum 2 karaktere sahip bir ad giriniz</value>
+  </data>
+  <data name="Validators.Country.Message4.Text" xml:space="preserve">
+    <value>Lütfen maksimum 50 karaktere sahip bir ad giriniz</value>
+  </data>
+  <data name="Validators.Country.Message5.Text" xml:space="preserve">
+    <value>Lütfen kod alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.Country.Message6.Text" xml:space="preserve">
+    <value>Lütfen minimum 2 karaktere sahip bir kod giriniz</value>
+  </data>
+  <data name="Validators.Country.Message7.Text" xml:space="preserve">
+    <value>Lütfen maksimum 50 karaktere sahip bir kod giriniz</value>
+  </data>
+  <data name="Validators.Country.Message8.Text" xml:space="preserve">
+    <value>Lütfen bir alt bölge seçiniz</value>
+  </data>
+  <data name="Validators.Region.Message1.Text" xml:space="preserve">
+    <value>Lütfen ad alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.Region.Message2.Text" xml:space="preserve">
+    <value>Bölge adı rakam içeremez</value>
+  </data>
+  <data name="Validators.Region.Message3.Text" xml:space="preserve">
+    <value>Lütfen minimum 3 karaktere sahip bir ad giriniz</value>
+  </data>
+  <data name="Validators.Region.Message4.Text" xml:space="preserve">
+    <value>Lütfen maksimum 100 karaktere sahip bir ad giriniz</value>
+  </data>
+  <data name="Validators.Role.Message1.Text" xml:space="preserve">
+    <value>Lütfen ad alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.Role.Message2.Text" xml:space="preserve">
+    <value>Rol adı rakam içeremez</value>
+  </data>
+  <data name="Validators.Role.Message3.Text" xml:space="preserve">
+    <value>Lütfen minimum 3 karaktere sahip bir ad giriniz</value>
+  </data>
+  <data name="Validators.Role.Message4.Text" xml:space="preserve">
+    <value>Lütfen maksimum 100 karaktere sahip bir ad giriniz</value>
+  </data>
+  <data name="Validators.SubRegion.Message1.Text" xml:space="preserve">
+    <value>Lütfen ad alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.SubRegion.Message2.Text" xml:space="preserve">
+    <value>Alt bölge adı rakam içeremez</value>
+  </data>
+  <data name="Validators.SubRegion.Message3.Text" xml:space="preserve">
+    <value>Lütfen minimum 2 karaktere sahip bir ad giriniz</value>
+  </data>
+  <data name="Validators.SubRegion.Message4.Text" xml:space="preserve">
+    <value>Lütfen maksimum 50 karaktere sahip bir ad giriniz</value>
+  </data>
+  <data name="Validators.SubRegion.Message5.Text" xml:space="preserve">
+    <value>Lütfen bir bölge seçiniz</value>
+  </data>
+  <data name="Validators.User.Message1.Text" xml:space="preserve">
+    <value>Lütfen kullanıcı adı alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.User.Message10.Text" xml:space="preserve">
+    <value>Ad rakam içeremez</value>
+  </data>
+  <data name="Validators.User.Message11.Text" xml:space="preserve">
+    <value>Lütfen minimum 3 karaktere sahip bir ad giriniz</value>
+  </data>
+  <data name="Validators.User.Message12.Text" xml:space="preserve">
+    <value>Lütfen maksimum 100 karaktere sahip bir ad giriniz</value>
+  </data>
+  <data name="Validators.User.Message13.Text" xml:space="preserve">
+    <value>Lütfen soyad alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.User.Message14.Text" xml:space="preserve">
+    <value>Soyad rakam içeremez</value>
+  </data>
+  <data name="Validators.User.Message15.Text" xml:space="preserve">
+    <value>Lütfen minimum 3 karaktere sahip bir soyad giriniz</value>
+  </data>
+  <data name="Validators.User.Message16.Text" xml:space="preserve">
+    <value>Lütfen maksimum 100 karaktere sahip bir soyad giriniz</value>
+  </data>
+  <data name="Validators.User.Message17.Text" xml:space="preserve">
+    <value>Lütfen doğum tarihi alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.User.Message18.Text" xml:space="preserve">
+    <value>Lütfen geçerli bir tarih değeri giriniz</value>
+  </data>
+  <data name="Validators.User.Message19.Text" xml:space="preserve">
+    <value>Lütfen cinsiyet alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.User.Message2.Text" xml:space="preserve">
+    <value>Kullanıcı adınız boşluk içeremez</value>
+  </data>
+  <data name="Validators.User.Message20.Text" xml:space="preserve">
+    <value>Lütfen bir rol seçiniz</value>
+  </data>
+  <data name="Validators.User.Message3.Text" xml:space="preserve">
+    <value>Kullanıcı adınız türkçe karakter içeremez</value>
+  </data>
+  <data name="Validators.User.Message4.Text" xml:space="preserve">
+    <value>Kullanıcı adınız büyük harf içeremez</value>
+  </data>
+  <data name="Validators.User.Message5.Text" xml:space="preserve">
+    <value>Kullanıcı adınız rakam içeremez</value>
+  </data>
+  <data name="Validators.User.Message6.Text" xml:space="preserve">
+    <value>Bu kullanıcı adı daha önceden alınmış. Lütfen farklı bir kullanıcı adı seçiniz</value>
+  </data>
+  <data name="Validators.User.Message7.Text" xml:space="preserve">
+    <value>Lütfen email alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.User.Message8.Text" xml:space="preserve">
+    <value>Lütfen geçerli bir e-posta giriniz</value>
+  </data>
+  <data name="Validators.User.Message9.Text" xml:space="preserve">
+    <value>Lütfen ad alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.VisitedCounty.Message1.Text" xml:space="preserve">
+    <value>Lütfen bir kullanıcı seçiniz</value>
+  </data>
+  <data name="Validators.VisitedCounty.Message2.Text" xml:space="preserve">
+    <value>Lütfen bir il seçiniz</value>
+  </data>
+  <data name="Validators.VisitedCounty.Message3.Text" xml:space="preserve">
+    <value>Lütfen bir ilçe seçiniz</value>
+  </data>
+  <data name="Validators.VisitedCounty.Message4.Text" xml:space="preserve">
+    <value>Lütfen ziyaret tarihi alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.VisitedCounty.Message5.Text" xml:space="preserve">
+    <value>Lütfen geçerli bir tarih değeri giriniz</value>
+  </data>
+  <data name="Validators.County.Message1.Text" xml:space="preserve">
+    <value>Lütfen ad alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.County.Message10.Text" xml:space="preserve">
+    <value>Boylam değeri -180 ile 180 arasında olabilir</value>
+  </data>
+  <data name="Validators.County.Message11.Text" xml:space="preserve">
+    <value>Lütfen bir il seçin</value>
+  </data>
+  <data name="Validators.County.Message2.Text" xml:space="preserve">
+    <value>İlçe adı rakam içeremez</value>
+  </data>
+  <data name="Validators.County.Message3.Text" xml:space="preserve">
+    <value>Lütfen minimum 2 karaktere sahip bir ad giriniz</value>
+  </data>
+  <data name="Validators.County.Message4.Text" xml:space="preserve">
+    <value>Lütfen maksimum 50 karaktere sahip bir ad giriniz</value>
+  </data>
+  <data name="Validators.County.Message5.Text" xml:space="preserve">
+    <value>Lütfen enlem alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.County.Message6.Text" xml:space="preserve">
+    <value>Lütfen geçerli bir enlem değeri giriniz</value>
+  </data>
+  <data name="Validators.County.Message7.Text" xml:space="preserve">
+    <value>Enlem değeri -90 ile 90 arasında olabilir</value>
+  </data>
+  <data name="Validators.County.Message8.Text" xml:space="preserve">
+    <value>Lütfen boylam alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.County.Message9.Text" xml:space="preserve">
+    <value>Lütfen geçerli bir boylam değeri giriniz</value>
   </data>
 </root>

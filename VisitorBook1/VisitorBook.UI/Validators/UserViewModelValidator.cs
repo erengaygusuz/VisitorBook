@@ -1,51 +1,55 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Localization;
 using VisitorBook.Core.Entities;
 using VisitorBook.Core.ViewModels;
+using VisitorBook.UI.Languages;
 
 namespace VisitorBook.UI.Validators
 {
     public class UserViewModelValidator : AbstractValidator<UserViewModel>
     {
         private readonly UserManager<User> _userManager;
+        private readonly IStringLocalizer<Language> _localization;
 
-        public UserViewModelValidator(UserManager<User> userManager)
+        public UserViewModelValidator(IStringLocalizer<Language> localization, UserManager<User> userManager)
         {
+            _localization = localization;
             _userManager = userManager;
 
             RuleFor(x => x.User.Username)
-                .NotNull().WithMessage("Lütfen kullanıcı adı alanını boş bırakmayınız")
-                .Matches("^((?![ ]).)*$").WithMessage("Kullanıcı adınız boşluk içeremez")
-                .Matches("^((?![ğĞçÇşŞüÜöÖıİ]).)*$").WithMessage("Kullanıcı adınız türkçe karakter içeremez")
-                .Matches("^((?![A-Z]).)*$").WithMessage("Kullanıcı adınız büyük harf içeremez")
-                .Matches("^((?![0-9]).)*$").WithMessage("Kullanıcı adınız rakam içeremez")
-                .Must(UniqueUsername).WithMessage("Bu kullanıcı adı daha önceden alınmış. Lütfen farklı bir kullanıcı adı seçiniz");
+                .NotNull().WithMessage(_localization["Validators.User.Message1.Text"].Value)
+                .Matches("^((?![ ]).)*$").WithMessage(_localization["Validators.User.Message2.Text"].Value)
+                .Matches("^((?![ğĞçÇşŞüÜöÖıİ]).)*$").WithMessage(_localization["Validators.User.Message3.Text"].Value)
+                .Matches("^((?![A-Z]).)*$").WithMessage(_localization["Validators.User.Message4.Text"].Value)
+                .Matches("^((?![0-9]).)*$").WithMessage(_localization["Validators.User.Message5.Text"].Value)
+                .Must(UniqueUsername).WithMessage(_localization["Validators.User.Message6.Text"].Value);
 
             RuleFor(x => x.User.Email)
-                .NotNull().WithMessage("Lütfen email alanını boş bırakmayınız")
-                .EmailAddress().WithMessage("Lütfen geçerli bir e-posta giriniz");
+                .NotNull().WithMessage(_localization["Validators.User.Message7.Text"].Value)
+                .EmailAddress().WithMessage(_localization["Validators.User.Message8.Text"].Value);
 
             RuleFor(x => x.User.Name)
-                .NotNull().WithMessage("Lütfen ad alanını boş bırakmayınız")
-                .Matches("^((?![0-9]).)*$").WithMessage("Ad rakam içeremez")
-                .MinimumLength(3).WithMessage("Lütfen minimum üç karaktere sahip bir ad giriniz")
-                .MaximumLength(100).WithMessage("Lütfen maksimum yüz karaktere sahip bir ad giriniz");
+                .NotNull().WithMessage(_localization["Validators.User.Message9.Text"].Value)
+                .Matches("^((?![0-9]).)*$").WithMessage(_localization["Validators.User.Message10.Text"].Value)
+                .MinimumLength(3).WithMessage(_localization["Validators.User.Message11.Text"].Value)
+                .MaximumLength(100).WithMessage(_localization["Validators.User.Message12.Text"].Value);
 
             RuleFor(x => x.User.Surname)
-                .NotNull().WithMessage("Lütfen soyad alanını boş bırakmayınız")
-                .Matches("^((?![0-9]).)*$").WithMessage("Soyad rakam içeremez")
-                .MinimumLength(3).WithMessage("Lütfen minimum üç karaktere sahip bir soyad giriniz")
-                .MaximumLength(100).WithMessage("Lütfen maksimum yüz karaktere sahip bir soyad giriniz");
+                .NotNull().WithMessage(_localization["Validators.User.Message13.Text"].Value)
+                .Matches("^((?![0-9]).)*$").WithMessage(_localization["Validators.User.Message14.Text"].Value)
+                .MinimumLength(3).WithMessage(_localization["Validators.User.Message15.Text"].Value)
+                .MaximumLength(100).WithMessage(_localization["Validators.User.Message16.Text"].Value);
 
             RuleFor(x => x.User.BirthDate)
-                .NotNull().WithMessage("Lütfen doğum tarihi alanını boş bırakmayınız")
-                .Must(IsValidDate).WithMessage("Lütfen geçerli bir tarih değeri giriniz");
+                .NotNull().WithMessage(_localization["Validators.User.Message17.Text"].Value)
+                .Must(IsValidDate).WithMessage(_localization["Validators.User.Message18.Text"].Value);
 
             RuleFor(x => x.User.Gender)
-                .NotNull().WithMessage("Lütfen cinsiyet alanını boş bırakmayınız");
+                .NotNull().WithMessage(_localization["Validators.User.Message19.Text"].Value);
 
             RuleFor(x => x.RoleId)
-               .Must(IsRoleSelected).WithMessage("Lütfen bir rol seçiniz");
+               .Must(IsRoleSelected).WithMessage(_localization["Validators.User.Message20.Text"].Value);
         }
 
         private bool UniqueUsername(string username)

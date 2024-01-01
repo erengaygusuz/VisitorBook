@@ -1,25 +1,31 @@
 ﻿using FluentValidation;
+using Microsoft.Extensions.Localization;
 using VisitorBook.Core.ViewModels;
+using VisitorBook.UI.Languages;
 
 namespace VisitorBook.UI.Validators
 {
     public class CountryViewModelValidator : AbstractValidator<CountryViewModel>
     {
-        public CountryViewModelValidator()
+        private readonly IStringLocalizer<Language> _localization;
+
+        public CountryViewModelValidator(IStringLocalizer<Language> localization)
         {
+            _localization = localization;
+
             RuleFor(x => x.Country.Name)
-                .NotNull().WithMessage("Lütfen ad alanını boş bırakmayınız")
-                .Matches("^((?![0-9]).)*$").WithMessage("Ülke adı rakam içeremez")
-                .MinimumLength(2).WithMessage("Lütfen minimum iki karaktere sahip bir ad giriniz")
-                .MaximumLength(50).WithMessage("Lütfen maksimum elli karaktere sahip bir ad giriniz");
+                .NotNull().WithMessage(_localization["Validators.Country.Message1.Text"].Value)
+                .Matches("^((?![0-9]).)*$").WithMessage(_localization["Validators.Country.Message2.Text"].Value)
+                .MinimumLength(2).WithMessage(_localization["Validators.Country.Message3.Text"].Value)
+                .MaximumLength(50).WithMessage(_localization["Validators.Country.Message4.Text"].Value);
 
             RuleFor(x => x.Country.Code)
-                .NotNull().WithMessage("Lütfen kod alanını boş bırakmayınız")
-                .MinimumLength(2).WithMessage("Lütfen minimum iki karaktere sahip bir kod giriniz")
-                .MaximumLength(50).WithMessage("Lütfen maksimum elli karaktere sahip bir kod giriniz");
+                .NotNull().WithMessage(_localization["Validators.Country.Message5.Text"].Value)
+                .MinimumLength(2).WithMessage(_localization["Validators.Country.Message6.Text"].Value)
+                .MaximumLength(50).WithMessage(_localization["Validators.Country.Message7.Text"].Value);
 
             RuleFor(x => x.Country.SubRegionId)
-               .Must(IsSubRegionSelected).WithMessage("Lütfen bir alt bölge seçiniz");
+               .Must(IsSubRegionSelected).WithMessage(_localization["Validators.Country.Message8.Text"].Value);
         }
 
         private bool IsSubRegionSelected(int subRegionId)

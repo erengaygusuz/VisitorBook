@@ -1,24 +1,30 @@
 ﻿using FluentValidation;
+using Microsoft.Extensions.Localization;
 using VisitorBook.Core.ViewModels;
+using VisitorBook.UI.Languages;
 
 namespace VisitorBook.UI.Validators
 {
     public class VisitedCountyViewModelValidator : AbstractValidator<VisitedCountyViewModel>
     {
-        public VisitedCountyViewModelValidator()
+        private readonly IStringLocalizer<Language> _localization;
+
+        public VisitedCountyViewModelValidator(IStringLocalizer<Language> localization)
         {
+            _localization = localization;
+
             RuleFor(x => x.VisitedCounty.UserId)
-               .Must(IsUserSelected).WithMessage("Lütfen bir kullanıcı seçiniz");
+               .Must(IsUserSelected).WithMessage(_localization["Validators.VisitedCounty.Message1.Text"].Value);
 
             RuleFor(x => x.VisitedCounty.CityId)
-               .Must(IsCitySelected).WithMessage("Lütfen bir il seçiniz");
+               .Must(IsCitySelected).WithMessage(_localization["Validators.VisitedCounty.Message2.Text"].Value);
 
             RuleFor(x => x.VisitedCounty.CountyId)
-               .Must(IsCountySelected).WithMessage("Lütfen bir ilçe seçiniz");
+               .Must(IsCountySelected).WithMessage(_localization["Validators.VisitedCounty.Message3.Text"].Value);
 
             RuleFor(x => x.VisitedCounty.VisitDate)
-               .NotNull().WithMessage("Lütfen ziyaret tarihi alanını boş bırakmayınız")
-               .Must(IsValidDate).WithMessage("Lütfen geçerli bir tarih değeri giriniz");
+               .NotNull().WithMessage(_localization["Validators.VisitedCounty.Message4.Text"].Value)
+               .Must(IsValidDate).WithMessage(_localization["Validators.VisitedCounty.Message5.Text"].Value);
         }
 
         private bool IsValidDate(DateTime date)

@@ -924,4 +924,175 @@
   <data name="Validators.ResetPassword.Message3.Text" xml:space="preserve">
     <value>The passwords that you entered do not match</value>
   </data>
+  <data name="Validators.Country.Message1.Text" xml:space="preserve">
+    <value>Please fill the name area</value>
+  </data>
+  <data name="Validators.Country.Message2.Text" xml:space="preserve">
+    <value>Country name can not contain number</value>
+  </data>
+  <data name="Validators.Country.Message3.Text" xml:space="preserve">
+    <value>Please enter a name minimum 2 character at least</value>
+  </data>
+  <data name="Validators.Country.Message4.Text" xml:space="preserve">
+    <value>Please enter a name maximum 50 character at most</value>
+  </data>
+  <data name="Validators.Country.Message5.Text" xml:space="preserve">
+    <value>Please fill the code area</value>
+  </data>
+  <data name="Validators.Country.Message6.Text" xml:space="preserve">
+    <value>Please enter a code minimum 2 character at least</value>
+  </data>
+  <data name="Validators.Country.Message7.Text" xml:space="preserve">
+    <value>Please enter a code maximum 50 character at most</value>
+  </data>
+  <data name="Validators.Country.Message8.Text" xml:space="preserve">
+    <value>Please choose a sub region</value>
+  </data>
+  <data name="Validators.County.Message1.Text" xml:space="preserve">
+    <value>Please fill the name area</value>
+  </data>
+  <data name="Validators.County.Message10.Text" xml:space="preserve">
+    <value>Longitude value can be between -180 and 180</value>
+  </data>
+  <data name="Validators.County.Message11.Text" xml:space="preserve">
+    <value>Please choose a city</value>
+  </data>
+  <data name="Validators.County.Message2.Text" xml:space="preserve">
+    <value>County name can not contain number</value>
+  </data>
+  <data name="Validators.County.Message3.Text" xml:space="preserve">
+    <value>Please enter a name minimum 2 character at least</value>
+  </data>
+  <data name="Validators.County.Message4.Text" xml:space="preserve">
+    <value>Please enter a name maximum 50 character at most</value>
+  </data>
+  <data name="Validators.County.Message5.Text" xml:space="preserve">
+    <value>Please fill the latitude area</value>
+  </data>
+  <data name="Validators.County.Message6.Text" xml:space="preserve">
+    <value>Please enter a valid latitude value</value>
+  </data>
+  <data name="Validators.County.Message7.Text" xml:space="preserve">
+    <value>Latitude value can be between -90 and 90</value>
+  </data>
+  <data name="Validators.County.Message8.Text" xml:space="preserve">
+    <value>Please fill the longitude area</value>
+  </data>
+  <data name="Validators.County.Message9.Text" xml:space="preserve">
+    <value>Please enter a valid longitude value</value>
+  </data>
+  <data name="Validators.Role.Message1.Text" xml:space="preserve">
+    <value>Please fill the name area</value>
+  </data>
+  <data name="Validators.Role.Message2.Text" xml:space="preserve">
+    <value>Role name can not contain number</value>
+  </data>
+  <data name="Validators.Role.Message3.Text" xml:space="preserve">
+    <value>Please enter a name minimum 3 character at least</value>
+  </data>
+  <data name="Validators.Role.Message4.Text" xml:space="preserve">
+    <value>Please enter a name maximum 100 character at most</value>
+  </data>
+  <data name="Validators.SubRegion.Message1.Text" xml:space="preserve">
+    <value>Please fill the name area</value>
+  </data>
+  <data name="Validators.SubRegion.Message2.Text" xml:space="preserve">
+    <value>Sub Region name can not contain number</value>
+  </data>
+  <data name="Validators.SubRegion.Message3.Text" xml:space="preserve">
+    <value>Please enter a name minimum 2 character at least</value>
+  </data>
+  <data name="Validators.SubRegion.Message4.Text" xml:space="preserve">
+    <value>Please enter a name maximum 50 character at most</value>
+  </data>
+  <data name="Validators.SubRegion.Message5.Text" xml:space="preserve">
+    <value>Please choose a region</value>
+  </data>
+  <data name="Validators.User.Message1.Text" xml:space="preserve">
+    <value>Please fill the username area</value>
+  </data>
+  <data name="Validators.User.Message10.Text" xml:space="preserve">
+    <value>Name can not contain number</value>
+  </data>
+  <data name="Validators.User.Message11.Text" xml:space="preserve">
+    <value>Please enter a name minimum 3 character at least</value>
+  </data>
+  <data name="Validators.User.Message12.Text" xml:space="preserve">
+    <value>Please enter a name maximum 100 character at most</value>
+  </data>
+  <data name="Validators.User.Message13.Text" xml:space="preserve">
+    <value>Please fill the surname area</value>
+  </data>
+  <data name="Validators.User.Message14.Text" xml:space="preserve">
+    <value>Surname can not contain number</value>
+  </data>
+  <data name="Validators.User.Message15.Text" xml:space="preserve">
+    <value>Please enter a surname minimum 3 character at least</value>
+  </data>
+  <data name="Validators.User.Message16.Text" xml:space="preserve">
+    <value>Please enter a surname maximum 100 character at most</value>
+  </data>
+  <data name="Validators.User.Message17.Text" xml:space="preserve">
+    <value>Please fill the birthdate area</value>
+  </data>
+  <data name="Validators.User.Message18.Text" xml:space="preserve">
+    <value>Please enter a valid birthdate</value>
+  </data>
+  <data name="Validators.User.Message19.Text" xml:space="preserve">
+    <value>Please fill the gender area</value>
+  </data>
+  <data name="Validators.User.Message2.Text" xml:space="preserve">
+    <value>Username can not contain white space</value>
+  </data>
+  <data name="Validators.User.Message20.Text" xml:space="preserve">
+    <value>Please choose a role</value>
+  </data>
+  <data name="Validators.User.Message3.Text" xml:space="preserve">
+    <value>Username can not contain turkish letters</value>
+  </data>
+  <data name="Validators.User.Message4.Text" xml:space="preserve">
+    <value>Username can not start with uppercase letter</value>
+  </data>
+  <data name="Validators.User.Message5.Text" xml:space="preserve">
+    <value>Username can not contain number</value>
+  </data>
+  <data name="Validators.User.Message6.Text" xml:space="preserve">
+    <value>This username is taken. Please enter another username.</value>
+  </data>
+  <data name="Validators.User.Message7.Text" xml:space="preserve">
+    <value>Please fill the email area</value>
+  </data>
+  <data name="Validators.User.Message8.Text" xml:space="preserve">
+    <value>Please enter a valid e-mail</value>
+  </data>
+  <data name="Validators.User.Message9.Text" xml:space="preserve">
+    <value>Please fill the name area</value>
+  </data>
+  <data name="Validators.VisitedCounty.Message1.Text" xml:space="preserve">
+    <value>Please choose a user</value>
+  </data>
+  <data name="Validators.VisitedCounty.Message2.Text" xml:space="preserve">
+    <value>Please choose a city</value>
+  </data>
+  <data name="Validators.VisitedCounty.Message3.Text" xml:space="preserve">
+    <value>Please choose a county</value>
+  </data>
+  <data name="Validators.VisitedCounty.Message4.Text" xml:space="preserve">
+    <value>Please fill the visited date area</value>
+  </data>
+  <data name="Validators.VisitedCounty.Message5.Text" xml:space="preserve">
+    <value>Please enter a valid visited date</value>
+  </data>
+  <data name="Validators.Region.Message1.Text" xml:space="preserve">
+    <value>Please fill the name area</value>
+  </data>
+  <data name="Validators.Region.Message2.Text" xml:space="preserve">
+    <value>Region name can not contain number</value>
+  </data>
+  <data name="Validators.Region.Message3.Text" xml:space="preserve">
+    <value>Please enter a name minimum 2 character at least</value>
+  </data>
+  <data name="Validators.Region.Message4.Text" xml:space="preserve">
+    <value>Please enter a name maximum 50 character at most</value>
+  </data>
 </root>

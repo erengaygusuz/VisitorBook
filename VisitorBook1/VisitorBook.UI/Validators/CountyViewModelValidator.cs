@@ -1,30 +1,36 @@
 ﻿using FluentValidation;
+using Microsoft.Extensions.Localization;
 using VisitorBook.Core.ViewModels;
+using VisitorBook.UI.Languages;
 
 namespace VisitorBook.UI.Validators
 {
     public class CountyViewModelValidator : AbstractValidator<CountyViewModel>
     {
-        public CountyViewModelValidator()
+        private readonly IStringLocalizer<Language> _localization;
+
+        public CountyViewModelValidator(IStringLocalizer<Language> localization)
         {
+            _localization = localization;
+
             RuleFor(x => x.County.Name)
-                .NotNull().WithMessage("Lütfen ad alanını boş bırakmayınız")
-                .Matches("[a-zA-Z]").WithMessage("İlçe adı rakam içeremez")
-                .MinimumLength(2).WithMessage("Lütfen minimum iki karaktere sahip bir ad giriniz")
-                .MaximumLength(50).WithMessage("Lütfen maksimum elli karaktere sahip bir ad giriniz");
+                .NotNull().WithMessage(_localization["Validators.County.Message1.Text"].Value)
+                .Matches("[a-zA-Z]").WithMessage(_localization["Validators.County.Message2.Text"].Value)
+                .MinimumLength(2).WithMessage(_localization["Validators.County.Message3.Text"].Value)
+                .MaximumLength(50).WithMessage(_localization["Validators.County.Message4.Text"].Value);
 
             RuleFor(x => x.County.Latitude)
-                .NotNull().WithMessage("Lütfen enlem alanını boş bırakmayınız")
-                .Must(IsValidValue).WithMessage("Lütfen geçerli enlem değeri giriniz")
-                .InclusiveBetween(-90.0, 90.0).WithMessage("Enlem değeri -180 ile 180 arasında bir değer olabilir");
+                .NotNull().WithMessage(_localization["Validators.County.Message5.Text"].Value)
+                .Must(IsValidValue).WithMessage(_localization["Validators.County.Message6.Text"].Value)
+                .InclusiveBetween(-90.0, 90.0).WithMessage(_localization["Validators.County.Message7.Text"].Value);
 
             RuleFor(x => x.County.Longitude)
-                .NotNull().WithMessage("Lütfen boylam alanını boş bırakmayınız")
-                .Must(IsValidValue).WithMessage("Lütfen geçerli bir boylam değeri giriniz")
-                .InclusiveBetween(-180.0, 180.0).WithMessage("Boylam değeri -180 ile 180 arasında bir değer olabilir");
+                .NotNull().WithMessage(_localization["Validators.County.Message8.Text"].Value)
+                .Must(IsValidValue).WithMessage(_localization["Validators.County.Message9.Text"].Value)
+                .InclusiveBetween(-180.0, 180.0).WithMessage(_localization["Validators.County.Message10.Text"].Value);
 
             RuleFor(x => x.County.CityId)
-                .Must(IsCitySelected).WithMessage("Lütfen bir il seçiniz");
+                .Must(IsCitySelected).WithMessage(_localization["Validators.County.Message11.Text"].Value);
         }
 
         private bool IsValidValue(double value)

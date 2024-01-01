@@ -1,20 +1,26 @@
 ﻿using FluentValidation;
+using Microsoft.Extensions.Localization;
 using VisitorBook.Core.ViewModels;
+using VisitorBook.UI.Languages;
 
 namespace VisitorBook.UI.Validators
 {
     public class SubRegionViewModelValidator : AbstractValidator<SubRegionViewModel>
     {
-        public SubRegionViewModelValidator()
+        private readonly IStringLocalizer<Language> _localization;
+
+        public SubRegionViewModelValidator(IStringLocalizer<Language> localization)
         {
+            _localization = localization;
+
             RuleFor(x => x.SubRegion.Name)
-                .NotNull().WithMessage("Lütfen ad alanını boş bırakmayınız")
-                .Matches("^((?![0-9]).)*$").WithMessage("Alt bölge adı rakam içeremez")
-                .MinimumLength(2).WithMessage("Lütfen minimum iki karaktere sahip bir ad giriniz")
-                .MaximumLength(50).WithMessage("Lütfen maksimum elli karaktere sahip bir ad giriniz");
+                .NotNull().WithMessage(_localization["Validators.SubRegion.Message1.Text"].Value)
+                .Matches("^((?![0-9]).)*$").WithMessage(_localization["Validators.SubRegion.Message2.Text"].Value)
+                .MinimumLength(2).WithMessage(_localization["Validators.SubRegion.Message3.Text"].Value)
+                .MaximumLength(50).WithMessage(_localization["Validators.SubRegion.Message4.Text"].Value);
 
             RuleFor(x => x.SubRegion.RegionId)
-              .Must(IsRegionSelected).WithMessage("Lütfen bir bölge seçiniz");
+              .Must(IsRegionSelected).WithMessage(_localization["Validators.SubRegion.Message5.Text"].Value);
         }
 
         private bool IsRegionSelected(int regionId)
