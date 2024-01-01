@@ -703,23 +703,11 @@
   <data name="Home.Footer.Info4.Text" xml:space="preserve">
     <value>visitor-book@erengaygusuz.com.tr</value>
   </data>
-  <data name="Home.Footer.Info5.Text" xml:space="preserve">
-    <value>Yeniliklerden haberdar olmak için kaydınızı yapabilirsiniz.</value>
-  </data>
-  <data name="Home.Footer.Info6.Text" xml:space="preserve">
-    <value>E-posta adresiniz</value>
-  </data>
-  <data name="Home.Footer.SubmitBtn.Text" xml:space="preserve">
-    <value>Kayıt Ol</value>
-  </data>
   <data name="Home.Footer.Title1.Text" xml:space="preserve">
     <value>Adres</value>
   </data>
   <data name="Home.Footer.Title2.Text" xml:space="preserve">
     <value>Hızlı Erişim</value>
-  </data>
-  <data name="Home.Footer.Title3.Text" xml:space="preserve">
-    <value>Haber Bülteni</value>
   </data>
   <data name="Home.Contact.Info.Text" xml:space="preserve">
     <value>Bizimle iletişime geçmek için aşağıdaki bilgileri doldurup mesajınızı bize iletebilirsiniz.

@@ -702,23 +702,11 @@
   <data name="Home.Footer.Info4.Text" xml:space="preserve">
     <value>visitor-book@erengaygusuz.com.tr</value>
   </data>
-  <data name="Home.Footer.Info5.Text" xml:space="preserve">
-    <value>You can subscribe to get news.</value>
-  </data>
-  <data name="Home.Footer.Info6.Text" xml:space="preserve">
-    <value>Your E-mail</value>
-  </data>
-  <data name="Home.Footer.SubmitBtn.Text" xml:space="preserve">
-    <value>Subscribe</value>
-  </data>
   <data name="Home.Footer.Title1.Text" xml:space="preserve">
     <value>Address</value>
   </data>
   <data name="Home.Footer.Title2.Text" xml:space="preserve">
     <value>Quick Access</value>
-  </data>
-  <data name="Home.Footer.Title3.Text" xml:space="preserve">
-    <value>News</value>
   </data>
   <data name="Home.Contact.Info.Text" xml:space="preserve">
     <value>You can contact with by filling the information below. Our employees will answer your questions when they are suitable.</value>
