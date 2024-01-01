@@ -42,11 +42,13 @@ namespace VisitorBook.UI.Validators
                 .Must(UniqueUsername).WithMessage(_localization["Validators.Register.Message16.Text"].Value);
 
             RuleFor(x => x.Password)
-                .NotNull().WithMessage(_localization["Validators.Register.Message17.Text"].Value);
+                .NotNull().WithMessage(_localization["Validators.Register.Message17.Text"].Value)
+                .MinimumLength(5).WithMessage(_localization["Validators.Register.Message20.Text"].Value);
 
             RuleFor(x => x.PasswordConfirm)
                 .NotNull().WithMessage(_localization["Validators.Register.Message18.Text"].Value)
-                .Equal(x => x.Password).WithMessage(_localization["Validators.Register.Message19.Text"].Value);
+                .Equal(x => x.Password).WithMessage(_localization["Validators.Register.Message19.Text"].Value)
+                .MinimumLength(5).WithMessage(_localization["Validators.Register.Message20.Text"].Value);
         }
 
         private bool UniqueUsername(string username)

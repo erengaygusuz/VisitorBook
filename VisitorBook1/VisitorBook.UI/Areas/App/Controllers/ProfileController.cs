@@ -76,7 +76,7 @@ namespace VisitorBook.UI.Areas.Admin.Controllers
             {
                 ModelState.AddModelErrorList(resultChangePassword.Errors.Select(x => x.Description).ToList());
 
-                return BadRequest(new { message = _localization["Profiles.SecurityTab.Message1.Text"].Value });
+                return BadRequest(new { message = _localization["Profiles.SecurityTab.Message4.Text"].Value });
             }
 
             await _userManager.UpdateSecurityStampAsync(user);

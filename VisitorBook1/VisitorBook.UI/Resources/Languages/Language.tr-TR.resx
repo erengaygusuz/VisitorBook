@@ -1097,4 +1097,13 @@
   <data name="Validators.County.Message9.Text" xml:space="preserve">
     <value>Lütfen geçerli bir boylam değeri giriniz</value>
   </data>
+  <data name="Profiles.SecurityTab.Message4.Text" xml:space="preserve">
+    <value>Lütfen şifrenizi en az 5 karakter olacak şekilde giriniz</value>
+  </data>
+  <data name="Validators.Register.Message20.Text" xml:space="preserve">
+    <value>Lütfen şifrenizi en az 5 karakter olacak şekilde giriniz</value>
+  </data>
+  <data name="Validators.ResetPassword.Message4.Text" xml:space="preserve">
+    <value>Lütfen şifrenizi en az 5 karakter olacak şekilde giriniz</value>
+  </data>
 </root>

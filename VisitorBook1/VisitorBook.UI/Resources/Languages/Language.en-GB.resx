@@ -1095,4 +1095,13 @@
   <data name="Validators.VisitedCounty.Message5.Text" xml:space="preserve">
     <value>Please enter a valid visited date</value>
   </data>
+  <data name="Profiles.SecurityTab.Message4.Text" xml:space="preserve">
+    <value>Please enter a password that has at least five character</value>
+  </data>
+  <data name="Validators.Register.Message20.Text" xml:space="preserve">
+    <value>Please enter a password that has at least five character</value>
+  </data>
+  <data name="Validators.ResetPassword.Message4.Text" xml:space="preserve">
+    <value>Please enter a password that has at least five character</value>
+  </data>
 </root>

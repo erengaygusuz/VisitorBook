@@ -12,11 +12,13 @@ namespace VisitorBook.UI.Validators
             _localization = localization; 
 
             RuleFor(x => x.Password)
-                .NotNull().WithMessage(_localization["Validators.ResetPassword.Message1.Text"].Value);
+                .NotNull().WithMessage(_localization["Validators.ResetPassword.Message1.Text"].Value)
+                .MinimumLength(5).WithMessage(_localization["Validators.ResetPassword.Message4.Text"].Value);
 
             RuleFor(x => x.PasswordConfirm)
                 .NotNull().WithMessage(_localization["Validators.ResetPassword.Message2.Text"].Value)
-                .Equal(x => x.Password).WithMessage(_localization["Validators.ResetPassword.Message3.Text"].Value);
+                .Equal(x => x.Password).WithMessage(_localization["Validators.ResetPassword.Message3.Text"].Value)
+                .MinimumLength(5).WithMessage(_localization["Validators.ResetPassword.Message4.Text"].Value);
         }
     }
 }
