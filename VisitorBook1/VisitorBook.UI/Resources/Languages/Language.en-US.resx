@@ -819,4 +819,109 @@
   <data name="Profiles.SecurityTab.Message3.Text" xml:space="preserve">
     <value>Your password updated successfully</value>
   </data>
+  <data name="Validators.ForgotPassword.Message1.Text" xml:space="preserve">
+    <value>Please fill the email area</value>
+  </data>
+  <data name="Validators.ForgotPassword.Message2.Text" xml:space="preserve">
+    <value>Please enter a valid e-mail</value>
+  </data>
+  <data name="Validators.ForgotPassword.Message3.Text" xml:space="preserve">
+    <value>This email already exists in our database</value>
+  </data>
+  <data name="Validators.Login.Message1.Text" xml:space="preserve">
+    <value>Please enter a valid e-mail address</value>
+  </data>
+  <data name="Validators.Login.Message2.Text" xml:space="preserve">
+    <value>Please enter a valid password</value>
+  </data>
+  <data name="Validators.Register.Message1.Text" xml:space="preserve">
+    <value>Please fill the name area</value>
+  </data>
+  <data name="Validators.Register.Message10.Text" xml:space="preserve">
+    <value>Please enter a valid e-mail</value>
+  </data>
+  <data name="Validators.Register.Message11.Text" xml:space="preserve">
+    <value>Please fill the username area</value>
+  </data>
+  <data name="Validators.Register.Message12.Text" xml:space="preserve">
+    <value>Username can not contain white space</value>
+  </data>
+  <data name="Validators.Register.Message13.Text" xml:space="preserve">
+    <value>Username can not contain turkish letters</value>
+  </data>
+  <data name="Validators.Register.Message14.Text" xml:space="preserve">
+    <value>Username can not start with uppercase letter</value>
+  </data>
+  <data name="Validators.Register.Message15.Text" xml:space="preserve">
+    <value>Username can not contain number</value>
+  </data>
+  <data name="Validators.Register.Message16.Text" xml:space="preserve">
+    <value>This username is taken. Please enter another username.</value>
+  </data>
+  <data name="Validators.Register.Message17.Text" xml:space="preserve">
+    <value>Please fill the password area</value>
+  </data>
+  <data name="Validators.Register.Message18.Text" xml:space="preserve">
+    <value>Please fill the password again area</value>
+  </data>
+  <data name="Validators.Register.Message19.Text" xml:space="preserve">
+    <value>The passwords that you entered do not match</value>
+  </data>
+  <data name="Validators.Register.Message2.Text" xml:space="preserve">
+    <value>Name can not contain number</value>
+  </data>
+  <data name="Validators.Register.Message3.Text" xml:space="preserve">
+    <value>Please enter a name minimum 3 character at least</value>
+  </data>
+  <data name="Validators.Register.Message4.Text" xml:space="preserve">
+    <value>Please enter a name maximum 100 character at most</value>
+  </data>
+  <data name="Validators.Register.Message5.Text" xml:space="preserve">
+    <value>Please fill the surname area</value>
+  </data>
+  <data name="Validators.Register.Message6.Text" xml:space="preserve">
+    <value>Surname can not contain number</value>
+  </data>
+  <data name="Validators.Register.Message7.Text" xml:space="preserve">
+    <value>Please enter a surname minimum 3 character at least</value>
+  </data>
+  <data name="Validators.Register.Message8.Text" xml:space="preserve">
+    <value>Please enter a surname maximum 100 character at most</value>
+  </data>
+  <data name="Validators.Register.Message9.Text" xml:space="preserve">
+    <value>Please fill the email area</value>
+  </data>
+  <data name="Validators.City.Message1.Text" xml:space="preserve">
+    <value>Please fill the name area</value>
+  </data>
+  <data name="Validators.City.Message2.Text" xml:space="preserve">
+    <value>City name can not contain number</value>
+  </data>
+  <data name="Validators.City.Message3.Text" xml:space="preserve">
+    <value>Please enter a name minimum 2 character at least</value>
+  </data>
+  <data name="Validators.City.Message4.Text" xml:space="preserve">
+    <value>Please enter a name maximum 50 character at most</value>
+  </data>
+  <data name="Validators.City.Message5.Text" xml:space="preserve">
+    <value>Please fill the code area</value>
+  </data>
+  <data name="Validators.City.Message6.Text" xml:space="preserve">
+    <value>Please enter a code minimum 2 character at least</value>
+  </data>
+  <data name="Validators.City.Message7.Text" xml:space="preserve">
+    <value>Please enter a code maximum 50 character at most</value>
+  </data>
+  <data name="Validators.City.Message8.Text" xml:space="preserve">
+    <value>Please choose a country</value>
+  </data>
+  <data name="Validators.ResetPassword.Message1.Text" xml:space="preserve">
+    <value>Please fill the password area</value>
+  </data>
+  <data name="Validators.ResetPassword.Message2.Text" xml:space="preserve">
+    <value>Please fill the password again area</value>
+  </data>
+  <data name="Validators.ResetPassword.Message3.Text" xml:space="preserve">
+    <value>The passwords that you entered do not match</value>
+  </data>
 </root>

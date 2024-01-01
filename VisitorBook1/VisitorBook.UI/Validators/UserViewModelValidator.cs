@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using VisitorBook.Core.Entities;
 using VisitorBook.Core.ViewModels;
 
-namespace VisitorBook.BL.Validators
+namespace VisitorBook.UI.Validators
 {
     public class UserViewModelValidator : AbstractValidator<UserViewModel>
     {

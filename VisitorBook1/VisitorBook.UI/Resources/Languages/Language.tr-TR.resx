@@ -821,4 +821,109 @@
   <data name="Profiles.SecurityTab.Message3.Text" xml:space="preserve">
     <value>Şifreniz başarıyla değiştirilmiştir</value>
   </data>
+  <data name="Validators.City.Message1.Text" xml:space="preserve">
+    <value>Lütfen ad alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.City.Message2.Text" xml:space="preserve">
+    <value>İl adı rakam içeremez</value>
+  </data>
+  <data name="Validators.City.Message3.Text" xml:space="preserve">
+    <value>Lütfen minimum iki karaktere sahip bir ad giriniz</value>
+  </data>
+  <data name="Validators.City.Message4.Text" xml:space="preserve">
+    <value>Lütfen maksimum elli karaktere sahip bir ad giriniz</value>
+  </data>
+  <data name="Validators.City.Message5.Text" xml:space="preserve">
+    <value>Lütfen kod alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.City.Message6.Text" xml:space="preserve">
+    <value>Lütfen minimum iki karaktere sahip bir kod giriniz</value>
+  </data>
+  <data name="Validators.City.Message7.Text" xml:space="preserve">
+    <value>Lütfen maksimum elli karaktere sahip bir kod giriniz</value>
+  </data>
+  <data name="Validators.City.Message8.Text" xml:space="preserve">
+    <value>Lütfen bir ülke seçiniz</value>
+  </data>
+  <data name="Validators.ForgotPassword.Message1.Text" xml:space="preserve">
+    <value>Lütfen email alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.ForgotPassword.Message2.Text" xml:space="preserve">
+    <value>Lütfen geçerli bir e-posta giriniz</value>
+  </data>
+  <data name="Validators.ForgotPassword.Message3.Text" xml:space="preserve">
+    <value>Bu e-posta adresi kayıtlarımızda bulunmamaktadır</value>
+  </data>
+  <data name="Validators.Login.Message1.Text" xml:space="preserve">
+    <value>Lütfen geçerli bir e-posta giriniz</value>
+  </data>
+  <data name="Validators.Login.Message2.Text" xml:space="preserve">
+    <value>Lütfen geçerli bir şifre giriniz</value>
+  </data>
+  <data name="Validators.Register.Message1.Text" xml:space="preserve">
+    <value>Lütfen ad alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.Register.Message10.Text" xml:space="preserve">
+    <value>Lütfen geçerli bir e-posta giriniz</value>
+  </data>
+  <data name="Validators.Register.Message11.Text" xml:space="preserve">
+    <value>Lütfen kullanıcı adı alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.Register.Message12.Text" xml:space="preserve">
+    <value>Kullanıcı adınız boşluk içeremez</value>
+  </data>
+  <data name="Validators.Register.Message13.Text" xml:space="preserve">
+    <value>Kullanıcı adınız türkçe karakter içeremez</value>
+  </data>
+  <data name="Validators.Register.Message14.Text" xml:space="preserve">
+    <value>Kullanıcı adınız büyük harf içeremez</value>
+  </data>
+  <data name="Validators.Register.Message15.Text" xml:space="preserve">
+    <value>Kullanıcı adınız rakam içeremez</value>
+  </data>
+  <data name="Validators.Register.Message16.Text" xml:space="preserve">
+    <value>Bu kullanıcı adı daha önceden alınmış. Lütfen farklı bir kullanıcı adı giriniz</value>
+  </data>
+  <data name="Validators.Register.Message17.Text" xml:space="preserve">
+    <value>Lütfen şifre alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.Register.Message18.Text" xml:space="preserve">
+    <value>Lütfen şifre tekrar alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.Register.Message19.Text" xml:space="preserve">
+    <value>Şifreleriniz birbiriyle uyuşmuyor</value>
+  </data>
+  <data name="Validators.Register.Message2.Text" xml:space="preserve">
+    <value>Ad rakam içeremez</value>
+  </data>
+  <data name="Validators.Register.Message3.Text" xml:space="preserve">
+    <value>Lütfen minimum 3 karaktere sahip bir ad giriniz</value>
+  </data>
+  <data name="Validators.Register.Message4.Text" xml:space="preserve">
+    <value>Lütfen maksimum 100 karaktere sahip bir ad giriniz</value>
+  </data>
+  <data name="Validators.Register.Message5.Text" xml:space="preserve">
+    <value>Lütfen soyad alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.Register.Message6.Text" xml:space="preserve">
+    <value>Soyad rakam içeremez</value>
+  </data>
+  <data name="Validators.Register.Message7.Text" xml:space="preserve">
+    <value>Lütfen minimum üç karaktere sahip bir soyad giriniz</value>
+  </data>
+  <data name="Validators.Register.Message8.Text" xml:space="preserve">
+    <value>Lütfen maksimum yüz karaktere sahip bir soyad giriniz</value>
+  </data>
+  <data name="Validators.Register.Message9.Text" xml:space="preserve">
+    <value>Lütfen email alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.ResetPassword.Message1.Text" xml:space="preserve">
+    <value>Lütfen şifre alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.ResetPassword.Message2.Text" xml:space="preserve">
+    <value>Lütfen şifre tekrar alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.ResetPassword.Message3.Text" xml:space="preserve">
+    <value>Şifreleriniz birbiriyle uyuşmuyor</value>
+  </data>
 </root>

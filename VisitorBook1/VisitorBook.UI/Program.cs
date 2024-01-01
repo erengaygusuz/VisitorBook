@@ -24,7 +24,7 @@ using VisitorBook.Core.Dtos.UserDtos;
 using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
 using VisitorBook.Core.Dtos.AuthDtos;
-using VisitorBook.BL.Validators;
+using VisitorBook.UI.Validators;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using VisitorBook.Core.ViewModels;

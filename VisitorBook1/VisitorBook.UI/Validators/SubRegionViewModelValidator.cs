@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using VisitorBook.Core.ViewModels;
 
-namespace VisitorBook.BL.Validators
+namespace VisitorBook.UI.Validators
 {
     public class SubRegionViewModelValidator : AbstractValidator<SubRegionViewModel>
     {
