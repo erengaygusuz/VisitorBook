@@ -1,6 +1,8 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
+using System.Linq;
 using VisitorBook.Core.Entities;
 using VisitorBook.Core.ViewModels;
 using VisitorBook.UI.Languages;
@@ -23,7 +25,7 @@ namespace VisitorBook.UI.Validators
                 .Matches("^((?![ğĞçÇşŞüÜöÖıİ]).)*$").WithMessage(_localization["Validators.User.Message3.Text"].Value)
                 .Matches("^((?![A-Z]).)*$").WithMessage(_localization["Validators.User.Message4.Text"].Value)
                 .Matches("^((?![0-9]).)*$").WithMessage(_localization["Validators.User.Message5.Text"].Value)
-                .Must(UniqueUsername).WithMessage(_localization["Validators.User.Message6.Text"].Value);
+                .Must((model, subModel) => IsUniqueUsername(model.User.Id, subModel)).WithMessage(_localization["Validators.User.Message6.Text"].Value);
 
             RuleFor(x => x.User.Email)
                 .NotNull().WithMessage(_localization["Validators.User.Message7.Text"].Value)
@@ -52,16 +54,25 @@ namespace VisitorBook.UI.Validators
                .Must(IsRoleSelected).WithMessage(_localization["Validators.User.Message20.Text"].Value);
         }
 
-        private bool UniqueUsername(string username)
+        private bool IsUniqueUsername(int currentUserId, string newUsername)
         {
-            if (string.IsNullOrEmpty(username))
+            if (string.IsNullOrEmpty(newUsername))
             {
                 return true;
             }
 
-            var user = _userManager.FindByNameAsync(username).GetAwaiter().GetResult();
+            var currentUser = _userManager.Users.FirstOrDefault(x => x.Id == currentUserId);
 
-            if (user == null)
+            var others = _userManager.Users;
+
+            if (currentUser != null)
+            {
+                others = _userManager.Users.Where(u => u.UserName != currentUser.UserName);
+            }
+
+            var result = others.Any(u => u.UserName == newUsername);
+
+            if (!result)
             {
                 return true;
             }
