@@ -10,7 +10,7 @@ using VisitorBook.Core.Extensions;
 using VisitorBook.UI.Languages;
 using VisitorBook.Core.ViewModels;
 
-namespace VisitorBook.UI.Areas.Admin.Controllers
+namespace VisitorBook.UI.Areas.AppControllers
 {
     [Authorize]
     [Area("App")]

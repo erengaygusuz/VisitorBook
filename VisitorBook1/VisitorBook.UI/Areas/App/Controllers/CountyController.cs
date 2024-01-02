@@ -15,10 +15,11 @@ using VisitorBook.Core.Dtos.CityDtos;
 using Microsoft.AspNetCore.Authorization;
 using FluentValidation;
 using VisitorBook.Core.Extensions;
+using VisitorBook.Core.Constants;
 
 namespace VisitorBook.UI.Area.App.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = Roles.Admin)]
     [Area("App")]
     public class CountyController : BaseController
     {

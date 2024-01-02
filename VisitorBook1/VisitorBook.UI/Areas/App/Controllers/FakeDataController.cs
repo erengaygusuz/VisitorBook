@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using VisitorBook.Core.Abstract;
+using VisitorBook.Core.Constants;
 using VisitorBook.Core.ViewModels;
 
 namespace VisitorBook.UI.Areas.App.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = Roles.Admin)]
     [Area("App")]
     public class FakeDataController : Controller
     {

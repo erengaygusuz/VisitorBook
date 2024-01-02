@@ -71,7 +71,7 @@
                         </p>
                     </a>
                 </li>
-                @if (User.HasClaim(x => x.Type == ClaimTypes.Role && x.Value == "Admin"))
+                @if (User.HasClaim(x => x.Type == ClaimTypes.Role && x.Value == Roles.Admin))
                 {
                     <li class="nav-item">
                         <a href="#" class="nav-link">
@@ -168,7 +168,7 @@
                         </p>
                     </a>
                 </li>
-                @if (User.HasClaim(x => x.Type == ClaimTypes.Role && x.Value == "Admin"))
+                @if (User.HasClaim(x => x.Type == ClaimTypes.Role && x.Value == Roles.Admin))
                 {
                     <li class="nav-item">
                         <a class="nav-link @makeFakeDataActive" asp-area="App" asp-controller="FakeData"

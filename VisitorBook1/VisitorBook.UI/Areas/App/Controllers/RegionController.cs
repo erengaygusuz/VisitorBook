@@ -11,10 +11,11 @@ using VisitorBook.UI.Areas.App.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using FluentValidation;
 using VisitorBook.Core.Extensions;
+using VisitorBook.Core.Constants;
 
-namespace VisitorBook.UI.Areas.Admin.Controllers
+namespace VisitorBook.UI.Areas.AppControllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = Roles.Admin)]
     [Area("App")]
     public class RegionController : BaseController
     {
