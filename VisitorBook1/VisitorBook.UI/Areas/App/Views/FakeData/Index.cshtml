@@ -22,7 +22,7 @@
                 <div class="card">
                     <div class="card-body">
                         <form asp-area="App" asp-controller="FakeData" asp-action="GenerateUser">
-                            <div class="row mt-4">
+                            <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label" asp-for="@Model.UserAmount">@localization["FakeDatas.SubTitle1.Text"]</label>
@@ -31,10 +31,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-success mt-3">@localization["FakeDatas.SubmitBtn.Text"]</button>
+                            <button class="btn btn-success">@localization["FakeDatas.SubmitBtn.Text"]</button>
                         </form>
                         <form asp-area="App" asp-controller="FakeData" asp-action="GenerateVisitedCounty">
-                            <div class="row mt-4">
+                            <div class="row mt-5">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label" asp-for="@Model.VisitedCountyAmount">@localization["FakeDatas.SubTitle2.Text"]</label>
@@ -43,7 +43,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-success mt-3">@localization["FakeDatas.SubmitBtn.Text"]</button>
+                            <button class="btn btn-success">@localization["FakeDatas.SubmitBtn.Text"]</button>
                         </form>
                     </div>
                 </div>

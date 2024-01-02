@@ -36,7 +36,7 @@ function loadDataTable(
     editModalTitleText
 ) {
     dataTable = $('#tblData').DataTable({
-        dom: "B<'row'<'col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 'l><'col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12'f>>t<'row mt-3'<'col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12'i><'col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12'p>>",
+        dom: "B<'row'<'col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 'l><'col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12'f>>tr<'row mt-3'<'col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12'i><'col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12'p>>",
         buttons: [
             {
                 extend: 'pdfHtml5',

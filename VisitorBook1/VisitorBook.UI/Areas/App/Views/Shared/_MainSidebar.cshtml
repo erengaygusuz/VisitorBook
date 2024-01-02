@@ -173,7 +173,7 @@
                 @if (User.HasClaim(x => x.Type == ClaimTypes.Role && x.Value == "Admin"))
                 {
                     <li class="nav-item">
-                        <a class="nav-link @makeVisitedCountyActive" asp-area="App" asp-controller="FakeData"
+                        <a class="nav-link @makeFakeDataActive" asp-area="App" asp-controller="FakeData"
                            asp-action="Index">
                             <i class="nav-icon fas fa-user-secret"></i>
                             <p>
