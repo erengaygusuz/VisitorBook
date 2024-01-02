@@ -3,6 +3,8 @@
     Layout = "_Layout";
 }
 
+@model HomeFactViewModel
+
 <div class="container-fluid p-0 mb-5 wow fadeIn" data-wow-delay="0.1s">
     <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -64,19 +66,19 @@
                 <div class="h-100 px-4 pe-lg-0">
                     <div class="row g-5">
                         <div class="col-sm-6">
-                            <h1 class="display-5" data-toggle="counter-up">1234</h1>
+                            <h1 class="display-5" data-toggle="counter-up">@Model.CountryCount</h1>
                             <p class="fs-5 text-primary">@localization["Home.Fact.Item1.Text"]</p>
                         </div>
                         <div class="col-sm-6">
-                            <h1 class="display-5" data-toggle="counter-up">1234</h1>
+                            <h1 class="display-5" data-toggle="counter-up">@Model.VisitedLocationCount</h1>
                             <p class="fs-5 text-primary">@localization["Home.Fact.Item2.Text"]</p>
                         </div>
                         <div class="col-sm-6">
-                            <h1 class="display-5" data-toggle="counter-up">1234</h1>
+                            <h1 class="display-5" data-toggle="counter-up">@Model.VisitorCount</h1>
                             <p class="fs-5 text-primary">@localization["Home.Fact.Item3.Text"]</p>
                         </div>
                         <div class="col-sm-6">
-                            <h1 class="display-5" data-toggle="counter-up">1234</h1>
+                            <h1 class="display-5" data-toggle="counter-up">@Model.UserCount</h1>
                             <p class="fs-5 text-primary">@localization["Home.Fact.Item4.Text"]</p>
                         </div>
                     </div>

@@ -1121,4 +1121,7 @@
   <data name="Validators.FakeData.Message2.Text" xml:space="preserve">
     <value>Lütfen sadece sayısal değerler giriniz</value>
   </data>
+  <data name="AccessDenied.Message.Text" xml:space="preserve">
+    <value>Bu sayfayı görmeye yetkiniz yoktur. Yetki almak için yöneticiniz ile görüşünüz.</value>
+  </data>
 </root>

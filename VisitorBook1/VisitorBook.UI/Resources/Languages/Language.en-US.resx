@@ -1119,4 +1119,7 @@
   <data name="Validators.FakeData.Message2.Text" xml:space="preserve">
     <value>Please only enter numbers</value>
   </data>
+  <data name="AccessDenied.Message.Text" xml:space="preserve">
+    <value>You are not authorized to view this page. Please contact your administrator to get authorization.</value>
+  </data>
 </root>

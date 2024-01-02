@@ -5,7 +5,7 @@ using VisitorBook.Core.Utilities;
 
 namespace VisitorBook.BL.Concrete
 {
-    public class VisitorStatisticService
+    public class VisitorStatisticService : IVisitorStatisticService
     {
         private readonly IRepository<VisitedCounty> _visitedCountyRepository;
         private readonly LocationHelper _locationHelper;

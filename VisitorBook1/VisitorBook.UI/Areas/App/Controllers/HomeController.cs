@@ -1,19 +1,22 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
-using VisitorBook.BL.Concrete;
+using Microsoft.Extensions.Localization;
+using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Dtos.VisitorStatisticDtos;
 using VisitorBook.Core.ViewModels;
+using VisitorBook.UI.Languages;
 
 namespace VisitorBook.UI.Area.App.Controllers
 {
     [Area("App")]
     public class HomeController : Controller
     {
-        private readonly VisitorStatisticService _visitorStatisticService;
+        private readonly IVisitorStatisticService _visitorStatisticService;
         private readonly IMapper _mapper;
+        private readonly IStringLocalizer<Language> _localization;
 
-        public HomeController(VisitorStatisticService visitorStatisticService, IMapper mapper) 
+        public HomeController(IVisitorStatisticService visitorStatisticService, IMapper mapper) 
         { 
             _visitorStatisticService = visitorStatisticService;
             _mapper = mapper;
@@ -46,11 +49,7 @@ namespace VisitorBook.UI.Area.App.Controllers
 
         public IActionResult AccessDenied(string returnUrl)
         {
-            string message = string.Empty;
-
-            message = "Bu sayfayı görmeye yetkiniz yoktur. Yetki almak için yöneticiniz ile görüşünüz.";
-
-            ViewBag.message = message;
+            ViewBag.message = _localization["AccessDenied.Message.Text"].Value;
 
             return View();
         }

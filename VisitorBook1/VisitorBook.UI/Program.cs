@@ -46,10 +46,11 @@ builder.Services.AddScoped<IPropertyMappingCollection, RoleToRoleGetResponseDtoM
 builder.Services.AddScoped<IPropertyMappingCollection, SubRegionToSubRegionGetResponseDtoMappingCollection<SubRegion, SubRegionResponseDto>>();
 builder.Services.AddScoped<IPropertyMappingCollection, UserToUserGetResponseDtoMappingCollection<User, UserResponseDto>>();
 builder.Services.AddScoped<IPropertyMappingCollection, CountryToCountryGetResponseDtoMappingCollection<Country, CountryResponseDto>>();
-builder.Services.AddScoped(typeof(VisitorStatisticService));
+builder.Services.AddScoped(typeof(IVisitorStatisticService), typeof(VisitorStatisticService));
 builder.Services.AddScoped(typeof(LocationHelper));
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 builder.Services.AddScoped(typeof(IEmailService), typeof(EmailService));
+builder.Services.AddScoped(typeof(IHomeFactStatisticService), typeof(HomeFactStatisticService));
 
 builder.Services.Configure<SecurityStampValidatorOptions>(options =>
 {

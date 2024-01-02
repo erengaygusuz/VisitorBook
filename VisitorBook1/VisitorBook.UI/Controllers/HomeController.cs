@@ -1,21 +1,46 @@
 ﻿using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using VisitorBook.Core.Abstract;
+using VisitorBook.Core.ViewModels;
 
 namespace VisitorBook.UI.Controllers
 {
     public class HomeController : Controller
     {
-        public async Task<IActionResult> Index()
-        {          
-            return View();
+        private readonly IHomeFactStatisticService _homeFactStatisticService;
+
+        public HomeController(IHomeFactStatisticService homeFactStatisticService)
+        {
+            _homeFactStatisticService = homeFactStatisticService;
         }
 
-        public async Task<IActionResult> Contact()
+        public async Task<IActionResult> Index()
+        {
+            var countryCount = _homeFactStatisticService.GetTotalCountryCount();
+
+            var visitedLocationCount = _homeFactStatisticService.GetTotalVisitedLocationCount();
+
+            var visitorCount = await _homeFactStatisticService.GetTotalVisitorCountAsync();
+
+            var userCount = _homeFactStatisticService.GetTotalUserCount();
+
+            var homeFactViewModel = new HomeFactViewModel
+            {
+                CountryCount = countryCount,
+                VisitedLocationCount = visitedLocationCount,
+                VisitorCount = visitorCount,
+                UserCount = userCount
+            };
+
+            return View(homeFactViewModel);
+        }
+
+        public IActionResult Contact()
         {
             return View();
         }
 
-        public async Task<IActionResult> Service()
+        public IActionResult Service()
         {
             return View();
         }
