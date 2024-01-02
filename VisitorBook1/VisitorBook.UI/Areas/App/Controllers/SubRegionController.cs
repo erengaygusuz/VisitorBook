@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Localization;
-using VisitorBook.UI.Attributes;
 using VisitorBook.UI.Configurations;
 using VisitorBook.UI.Languages;
 using VisitorBook.Core.Utilities;
@@ -19,7 +18,7 @@ using VisitorBook.Core.Constants;
 
 namespace VisitorBook.UI.Areas.AppControllers
 {
-    [Authorize(Roles = Roles.Admin)]
+    [Authorize]
     [Area("App")]
     public class SubRegionController : BaseController
     {
@@ -42,11 +41,13 @@ namespace VisitorBook.UI.Areas.AppControllers
             _subRegionViewModelValidator = subRegionViewModelValidator;
         }
 
+        [Authorize(Permissions.PlaceManagement.View)]
         public IActionResult Index()
         {
             return View();
         }
 
+        [Authorize(Permissions.PlaceManagement.View)]
         [HttpPost]
         public IActionResult GetAll()
         {
@@ -57,6 +58,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             return DataTablesResult(result);
         }
 
+        [Authorize(Permissions.PlaceManagement.View)]
         public async Task<IActionResult> GetAllByRegion(int regionId)
         {
             var subRegionResponseDtos = await _subRegionService.GetAllAsync<SubRegionResponseDto>(
@@ -75,7 +77,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             });
         }
 
-        [NoDirectAccess]
+        [Authorize(Permissions.PlaceManagement.Create)]
         public async Task<IActionResult> Add()
         {
             var regionResponseDtos = await _regionService.GetAllAsync<RegionResponseDto>();
@@ -94,7 +96,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             return View(subRegionViewModel);
         }
 
-        [NoDirectAccess]
+        [Authorize(Permissions.PlaceManagement.Edit)]
         public async Task<IActionResult> Edit(int id)
         {
             var subRegionResponseDto = await _subRegionService.GetAsync<SubRegionResponseDto>(x => x.Id == id, include: x => x.Include(c => c.Region));
@@ -120,6 +122,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             return View(subRegionViewModel);
         }
 
+        [Authorize(Permissions.PlaceManagement.Create)]
         [ActionName("Add")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -148,6 +151,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             return Json(new { isValid = true, message = _localization["SubRegions.Notification.Add.Text"].Value });
         }
 
+        [Authorize(Permissions.PlaceManagement.Edit)]
         [ActionName("Edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -176,6 +180,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             return Json(new { isValid = true, message = _localization["SubRegions.Notification.Edit.Text"].Value });
         }
 
+        [Authorize(Permissions.PlaceManagement.Delete)]
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {

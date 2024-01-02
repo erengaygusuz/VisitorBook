@@ -6,7 +6,7 @@ using VisitorBook.Core.ViewModels;
 
 namespace VisitorBook.UI.Areas.App.Controllers
 {
-    [Authorize(Roles = Roles.Admin)]
+    [Authorize]
     [Area("App")]
     public class FakeDataController : Controller
     {
@@ -17,11 +17,13 @@ namespace VisitorBook.UI.Areas.App.Controllers
             _fakeDataService = fakeDataService;
         }
 
+        [Authorize(Permissions.FakeDataManagement.View)]
         public IActionResult Index()
         {
             return View();
         }
 
+        [Authorize(Permissions.FakeDataManagement.Create)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> GenerateUser(FakeDataViewModel fakeDataViewModel)
@@ -38,6 +40,7 @@ namespace VisitorBook.UI.Areas.App.Controllers
             return View("Index");
         }
 
+        [Authorize(Permissions.FakeDataManagement.Create)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> GenerateVisitedCounty(FakeDataViewModel fakeDataViewModel)

@@ -1,5 +1,6 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
@@ -11,6 +12,7 @@ using VisitorBook.UI.Languages;
 
 namespace VisitorBook.UI.Controllers
 {
+    [AllowAnonymous]
     public class AuthController : Controller
     {
         private readonly UserManager<User> _userManager;

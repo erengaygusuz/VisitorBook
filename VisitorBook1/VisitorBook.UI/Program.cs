@@ -28,8 +28,13 @@ using VisitorBook.UI.Validators;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using VisitorBook.Core.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using VisitorBook.UI.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
+builder.Services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
 
 builder.Services.AddAutoMapper(typeof(MapProfile));
 

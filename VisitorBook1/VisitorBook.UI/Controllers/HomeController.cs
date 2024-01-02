@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Localization;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.ViewModels;
 
 namespace VisitorBook.UI.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly IHomeFactStatisticService _homeFactStatisticService;

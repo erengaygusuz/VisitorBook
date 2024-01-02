@@ -5,7 +5,6 @@ using VisitorBook.Core.Dtos.RoleDtos;
 using VisitorBook.Core.Entities;
 using VisitorBook.Core.Utilities;
 using VisitorBook.UI.Areas.App.Controllers;
-using VisitorBook.UI.Attributes;
 using VisitorBook.UI.Configurations;
 using VisitorBook.UI.Languages;
 using VisitorBook.Core.Extensions;
@@ -14,10 +13,12 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using FluentValidation;
 using VisitorBook.Core.Constants;
+using VisitorBook.Core.ViewModels;
+using System.Security.Claims;
 
 namespace VisitorBook.UI.Areas.AppControllers
 {
-    [Authorize(Roles = Roles.Admin)]
+    [Authorize]
     [Area("App")]
     public class RoleController : BaseController
     {
@@ -40,11 +41,13 @@ namespace VisitorBook.UI.Areas.AppControllers
             _roleRequestDtoValidator = roleRequestDtoValidator;
         }
 
+        [Authorize(Permissions.UserManagement.View)]
         public IActionResult Index()
         {
             return View();
         }
 
+        [Authorize(Permissions.UserManagement.View)]
         [HttpPost]
         public IActionResult GetAll()
         {
@@ -62,38 +65,50 @@ namespace VisitorBook.UI.Areas.AppControllers
             return DataTablesResult(result);
         }
 
-        [NoDirectAccess]
+        [Authorize(Permissions.UserManagement.Create)]
         public IActionResult Add()
         {
             return View();
         }
 
-        [NoDirectAccess]
+        [Authorize(Permissions.UserManagement.Edit)]
         public async Task<IActionResult> Edit(int id)
         {
-            var roleResponseDto = await _roleManager.Roles.Select(x =>
+            var role = await _roleManager.Roles.FirstOrDefaultAsync(x => x.Id == id);
 
-                new RoleResponseDto
-                {
-                    Id = x.Id,
-                    Name = x.Name
-
-                }).FirstOrDefaultAsync(x => x.Id == id);
-
-            var roleRequestDto = new RoleRequestDto()
+            if (role == null)
             {
-                Id = id,
-                Name = roleResponseDto.Name
+                return NotFound();
+            }
+
+            var roleClaims = _roleManager.GetClaimsAsync(role).Result.Select(c => c.Value).ToList();
+
+            var allClaims = Permissions.GenerateAllPermissions();
+
+            var allPermissions = allClaims.Select(p => new RoleViewModel { DisplayValue = p }).ToList();
+
+            foreach (var permission in allPermissions)
+            {
+                if (roleClaims.Any(c => c == permission.DisplayValue))
+                {
+                    permission.IsSelected = true;
+                }
+            }
+
+            var viewModel = new PermissionViewModel
+            {
+                Role = new RoleRequestDto
+                {
+                    Id = id,
+                    Name = role.Name
+                },
+                RoleClaims = allPermissions
             };
 
-            return View(roleRequestDto);
+            return View(viewModel);
         }
 
-        public IActionResult UserRoles()
-        {
-            return View();
-        }
-
+        [Authorize(Permissions.UserManagement.Create)]
         [ActionName("Add")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -115,34 +130,50 @@ namespace VisitorBook.UI.Areas.AppControllers
             return Json(new { isValid = true, message = _localization["Roles.Notification.Add.Text"].Value });  
         }
 
+        [Authorize(Permissions.UserManagement.Edit)]
         [ActionName("Edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost(RoleRequestDto roleRequestDto)
+        public async Task<IActionResult> EditPost(PermissionViewModel permissionViewModel)
         {
-            var validationResult = await _roleRequestDtoValidator.ValidateAsync(roleRequestDto);
+            var validationResult = await _roleRequestDtoValidator.ValidateAsync(permissionViewModel.Role);
 
             if (!validationResult.IsValid)
             {
                 validationResult.AddToModelState(ModelState);
 
-                return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", roleRequestDto) });
+                return View(permissionViewModel);
             }
-                
-            var roleToUpdate = await _roleManager.Roles.FirstOrDefaultAsync(x => x.Id == roleRequestDto.Id);
+
+            var roleToUpdate = await _roleManager.Roles.FirstOrDefaultAsync(x => x.Id == permissionViewModel.Role.Id);
 
             if (roleToUpdate == null)
             {
                 throw new Exception("Güncellenecek rol bulunamamıştır.");
             }
 
-            roleToUpdate.Name = roleRequestDto.Name;
+            roleToUpdate.Name = permissionViewModel.Role.Name;
 
             await _roleManager.UpdateAsync(roleToUpdate);
 
-            return Json(new { isValid = true, message = _localization["Roles.Notification.Edit.Text"].Value });
+            var roleClaims = await _roleManager.GetClaimsAsync(roleToUpdate);
+
+            foreach (var claim in roleClaims)
+            {
+                await _roleManager.RemoveClaimAsync(roleToUpdate, claim);
+            }
+
+            var selectedClaims = permissionViewModel.RoleClaims.Where(c => c.IsSelected).ToList();
+
+            foreach (var claim in selectedClaims)
+            {
+                await _roleManager.AddClaimAsync(roleToUpdate, new Claim("Permission", claim.DisplayValue));
+            }
+
+            return View(permissionViewModel);
         }
 
+        [Authorize(Permissions.UserManagement.Delete)]
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
@@ -162,5 +193,6 @@ namespace VisitorBook.UI.Areas.AppControllers
 
             return BadRequest(new { message = _localization["Roles.Notification.UnSuccessfullDelete.Text"].Value });
         }
+
     }
 }

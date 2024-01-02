@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using VisitorBook.Core.ViewModels;
 
 namespace VisitorBook.UI.Controllers
 {
+    [AllowAnonymous]
     public class ErrorController : Controller
     {
         [Route("/Error")]

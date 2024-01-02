@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
-using VisitorBook.UI.Attributes;
 using VisitorBook.UI.Configurations;
 using VisitorBook.UI.Languages;
 using VisitorBook.Core.Utilities;
@@ -15,7 +14,7 @@ using VisitorBook.Core.Constants;
 
 namespace VisitorBook.UI.Areas.AppControllers
 {
-    [Authorize(Roles = Roles.Admin)]
+    [Authorize]
     [Area("App")]
     public class RegionController : BaseController
     {
@@ -35,11 +34,13 @@ namespace VisitorBook.UI.Areas.AppControllers
             _regionRequestDtoValidator = regionRequestDtoValidator;
         }
 
+        [Authorize(Permissions.PlaceManagement.View)]
         public IActionResult Index()
         {
             return View();
         }
 
+        [Authorize(Permissions.PlaceManagement.View)]
         [HttpPost]
         public IActionResult GetAll()
         {
@@ -50,13 +51,13 @@ namespace VisitorBook.UI.Areas.AppControllers
             return DataTablesResult(result);
         }
 
-        [NoDirectAccess]
+        [Authorize(Permissions.PlaceManagement.Create)]
         public IActionResult Add()
         {
             return View();
         }
 
-        [NoDirectAccess]
+        [Authorize(Permissions.PlaceManagement.Edit)]
         public async Task<IActionResult> Edit(int id)
         {
             var regionResponseDto = await _regionService.GetAsync<RegionResponseDto>(x => x.Id == id);
@@ -70,6 +71,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             return View(regionRequestDto);
         }
 
+        [Authorize(Permissions.PlaceManagement.Create)]
         [ActionName("Add")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -89,6 +91,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             return Json(new { isValid = true, message = _localization["Regions.Notification.Add.Text"].Value });
         }
 
+        [Authorize(Permissions.PlaceManagement.Edit)]
         [ActionName("Edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -108,6 +111,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             return Json(new { isValid = true, message = _localization["Regions.Notification.Edit.Text"].Value });
         }
 
+        [Authorize(Permissions.PlaceManagement.Delete)]
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {

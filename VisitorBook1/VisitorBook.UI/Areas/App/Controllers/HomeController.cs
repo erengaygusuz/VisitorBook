@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
@@ -9,6 +10,7 @@ using VisitorBook.UI.Languages;
 
 namespace VisitorBook.UI.Area.App.Controllers
 {
+    [Authorize]
     [Area("App")]
     public class HomeController : Controller
     {
@@ -16,10 +18,11 @@ namespace VisitorBook.UI.Area.App.Controllers
         private readonly IMapper _mapper;
         private readonly IStringLocalizer<Language> _localization;
 
-        public HomeController(IVisitorStatisticService visitorStatisticService, IMapper mapper) 
+        public HomeController(IVisitorStatisticService visitorStatisticService, IMapper mapper, IStringLocalizer<Language> localization) 
         { 
             _visitorStatisticService = visitorStatisticService;
             _mapper = mapper;
+            _localization = localization;
         }
 
         public async Task<IActionResult> Index()

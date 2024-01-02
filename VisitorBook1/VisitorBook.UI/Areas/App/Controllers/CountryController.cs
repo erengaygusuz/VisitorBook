@@ -9,7 +9,6 @@ using VisitorBook.Core.Dtos.SubRegionDtos;
 using VisitorBook.Core.Entities;
 using VisitorBook.Core.Utilities;
 using VisitorBook.UI.Areas.App.Controllers;
-using VisitorBook.UI.Attributes;
 using VisitorBook.UI.Configurations;
 using VisitorBook.UI.Languages;
 using VisitorBook.Core.ViewModels;
@@ -19,7 +18,7 @@ using VisitorBook.Core.Constants;
 
 namespace VisitorBook.UI.Areas.AppControllers
 {
-    [Authorize(Roles = Roles.Admin)]
+    [Authorize]
     [Area("App")]
     public class CountryController : BaseController
     {
@@ -42,11 +41,13 @@ namespace VisitorBook.UI.Areas.AppControllers
             _countryViewModelValidator = countryViewModelValidator;
         }
 
+        [Authorize(Permissions.PlaceManagement.View)]
         public IActionResult Index()
         {
             return View();
         }
 
+        [Authorize(Permissions.PlaceManagement.View)]
         [HttpPost]
         public IActionResult GetAll()
         {
@@ -57,6 +58,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             return DataTablesResult(result);
         }
 
+        [Authorize(Permissions.PlaceManagement.View)]
         public async Task<IActionResult> GetAllBySubRegion(int subRegionId)
         {
             var countryResponseDtos = await _countryService.GetAllAsync<CountryResponseDto>(
@@ -75,7 +77,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             });
         }
 
-        [NoDirectAccess]
+        [Authorize(Permissions.PlaceManagement.Create)]
         public async Task<IActionResult> Add()
         {
             var subRegionResponseDtos = await _subRegionService.GetAllAsync<SubRegionResponseDto>();
@@ -94,7 +96,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             return View(countryViewModel);
         }
 
-        [NoDirectAccess]
+        [Authorize(Permissions.PlaceManagement.Edit)]
         public async Task<IActionResult> Edit(int id)
         {
             var countryResponseDto = await _countryService.GetAsync<CountryResponseDto>(x => x.Id == id, include: x => x.Include(c => c.SubRegion));
@@ -121,6 +123,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             return View(countryViewModel);
         }
 
+        [Authorize(Permissions.PlaceManagement.Create)]
         [ActionName("Add")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -149,6 +152,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             return Json(new { isValid = true, message = _localization["Countries.Notification.Add.Text"].Value });
         }
 
+        [Authorize(Permissions.PlaceManagement.Edit)]
         [ActionName("Edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -177,6 +181,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             return Json(new { isValid = true, message = _localization["Countries.Notification.Edit.Text"].Value });
         }
 
+        [Authorize(Permissions.PlaceManagement.Delete)]
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {

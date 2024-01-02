@@ -1,12 +1,11 @@
 ﻿<aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="Home/Index" class="brand-link">
+    <a asp-area="" asp-controller="Home" asp-action="Index" class="brand-link">
         <img src="~/img/icon/app-logo-light.png" alt="VisitorBook Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">@localization["Layout.Header.Title.Text"]</span>
     </a>
 
     <div class="sidebar">
 
-        <!-- Sidebar Menu -->
         @{
             var makeHomeActive = "";
             var makeRegionActive = "";
@@ -71,7 +70,7 @@
                         </p>
                     </a>
                 </li>
-                @if (User.HasClaim(x => x.Type == ClaimTypes.Role && x.Value == Roles.Admin))
+                @if (User.HasClaim(x => x.Type == "Permission" && x.Value == Permissions.UserManagement.View))
                 {
                     <li class="nav-item">
                         <a href="#" class="nav-link">
@@ -102,6 +101,9 @@
                             </li>
                         </ul>
                     </li>
+                }
+                @if (User.HasClaim(x => x.Type == "Permission" && x.Value == Permissions.PlaceManagement.View))
+                {
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-landmark"></i>
@@ -159,16 +161,19 @@
                         </ul>
                     </li>
                 }
-                <li class="nav-item">
-                    <a class="nav-link @makeVisitedCountyActive" asp-area="App" asp-controller="VisitedCounty"
-                       asp-action="Index">
-                        <i class="nav-icon fas fa-car-side"></i>
-                        <p>
-                            @localization["Layout.Header.Navbar.Items11.Text"]
-                        </p>
-                    </a>
-                </li>
-                @if (User.HasClaim(x => x.Type == ClaimTypes.Role && x.Value == Roles.Admin))
+                @if (User.HasClaim(x => x.Type == "Permission" && x.Value == Permissions.VisitedCountyManagement.View))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link @makeVisitedCountyActive" asp-area="App" asp-controller="VisitedCounty"
+                           asp-action="Index">
+                            <i class="nav-icon fas fa-car-side"></i>
+                            <p>
+                                @localization["Layout.Header.Navbar.Items11.Text"]
+                            </p>
+                        </a>
+                    </li>
+                }
+                @if (User.HasClaim(x => x.Type == "Permission" && x.Value == Permissions.FakeDataManagement.View))
                 {
                     <li class="nav-item">
                         <a class="nav-link @makeFakeDataActive" asp-area="App" asp-controller="FakeData"
@@ -182,7 +187,5 @@
                 }
             </ul>
         </nav>
-        <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sidebar -->
 </aside>

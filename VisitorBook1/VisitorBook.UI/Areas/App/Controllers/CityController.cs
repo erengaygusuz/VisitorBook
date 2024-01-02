@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
-using VisitorBook.UI.Attributes;
 using VisitorBook.UI.Configurations;
 using VisitorBook.UI.Languages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -19,7 +18,7 @@ using VisitorBook.Core.Constants;
 
 namespace VisitorBook.UI.Area.App.Controllers
 {
-    [Authorize(Roles = Roles.Admin)]
+    [Authorize]
     [Area("App")]
     public class CityController : BaseController
     {
@@ -42,11 +41,13 @@ namespace VisitorBook.UI.Area.App.Controllers
             _cityViewModelValidator = cityViewModelValidator;
         }
 
+        [Authorize(Permissions.PlaceManagement.View)]
         public IActionResult Index()
         {
             return View();
         }
 
+        [Authorize(Permissions.PlaceManagement.View)]
         [HttpPost]
         public IActionResult GetAll()
         {
@@ -57,6 +58,7 @@ namespace VisitorBook.UI.Area.App.Controllers
             return DataTablesResult(result);
         }
 
+        [Authorize(Permissions.PlaceManagement.View)]
         public async Task<IActionResult> GetAllByCountry(int countryId)
         {
             var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>(
@@ -75,7 +77,7 @@ namespace VisitorBook.UI.Area.App.Controllers
             });
         }
 
-        [NoDirectAccess]
+        [Authorize(Permissions.PlaceManagement.Create)]
         public async Task<IActionResult> Add()
         {
             var countryResponseDtos = await _countryService.GetAllAsync<CountryResponseDto>();
@@ -94,7 +96,7 @@ namespace VisitorBook.UI.Area.App.Controllers
             return View(cityViewModel);
         }
 
-        [NoDirectAccess]
+        [Authorize(Permissions.PlaceManagement.Edit)]
         public async Task<IActionResult> Edit(int id)
         {
             var cityResponseDto = await _cityService.GetAsync<CityResponseDto>(x => x.Id == id, include: x => x.Include(c => c.Country));
@@ -121,6 +123,7 @@ namespace VisitorBook.UI.Area.App.Controllers
             return View(cityViewModel);
         }
 
+        [Authorize(Permissions.PlaceManagement.Create)]
         [ActionName("Add")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -149,6 +152,7 @@ namespace VisitorBook.UI.Area.App.Controllers
             return Json(new { isValid = true, message = _localization["Cities.Notification.Add.Text"].Value });
         }
 
+        [Authorize(Permissions.PlaceManagement.Edit)]
         [ActionName("Edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -177,6 +181,7 @@ namespace VisitorBook.UI.Area.App.Controllers
             return Json(new { isValid = true, message = _localization["Cities.Notification.Edit.Text"].Value });
         }
 
+        [Authorize(Permissions.PlaceManagement.Delete)]
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {

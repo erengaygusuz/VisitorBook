@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
     <!-- intl-tel-input -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">
+    <!-- Mvc Grid -->
+    <link href="~/css/mvc-grid/mvc-grid.css" rel="stylesheet" />
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
@@ -154,6 +156,11 @@
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
     <!-- InputMask -->
     <script src="~/plugins/inputmask/jquery.inputmask.min.js"></script>
+    <!-- Mvc Grid -->
+    <script src="~/js/mvc-grid/mvc-grid.js"></script>
+    <script>
+        document.querySelectorAll(".mvc-grid").forEach(element => new MvcGrid(element));
+    </script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

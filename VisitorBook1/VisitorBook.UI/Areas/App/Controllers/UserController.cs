@@ -7,7 +7,6 @@ using VisitorBook.Core.Extensions;
 using VisitorBook.Core.Dtos.UserDtos;
 using VisitorBook.Core.Entities;
 using VisitorBook.Core.Utilities;
-using VisitorBook.UI.Attributes;
 using VisitorBook.UI.Configurations;
 using VisitorBook.UI.Languages;
 using VisitorBook.UI.Areas.App.Controllers;
@@ -24,7 +23,7 @@ using VisitorBook.Core.Constants;
 
 namespace VisitorBook.UI.Areas.AppControllers
 {
-    [Authorize(Roles = Roles.Admin)]
+    [Authorize]
     [Area("App")]
     public class UserController : BaseController
     {
@@ -55,11 +54,13 @@ namespace VisitorBook.UI.Areas.AppControllers
             _userViewModelValidator = userViewModelValidator;
         }
 
+        [Authorize(Permissions.UserManagement.View)]
         public IActionResult Index()
         {
             return View();
         }
 
+        [Authorize(Permissions.UserManagement.View)]
         [HttpPost]
         public IActionResult GetAll()
         {
@@ -80,7 +81,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             return DataTablesResult(result);
         }
 
-        [NoDirectAccess]
+        [Authorize(Permissions.UserManagement.Create)]
         public async Task<IActionResult> Add()
         {
             var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>();
@@ -121,7 +122,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             return View(visitorViewModel);
         }
 
-        [NoDirectAccess]
+        [Authorize(Permissions.UserManagement.Edit)]
         public async Task<IActionResult> Edit(int id)
         {
             var user = await _userManager.Users.Include(u => u.UserAddress).ThenInclude(c => c.County).FirstOrDefaultAsync(u => u.Id == id);
@@ -212,6 +213,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             return View(userViewModel);
         }
 
+        [Authorize(Permissions.UserManagement.Create)]
         [ActionName("Add")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -275,6 +277,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             return Json(new { isValid = true, message = _localization["Users.Notification.Add.Text"].Value });
         }
 
+        [Authorize(Permissions.UserManagement.Edit)]
         [ActionName("Edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -341,6 +344,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             return Json(new { isValid = true, message = _localization["Users.Notification.Edit.Text"].Value });
         }
 
+        [Authorize(Permissions.UserManagement.Delete)]
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {

@@ -1124,4 +1124,37 @@
   <data name="AccessDenied.Message.Text" xml:space="preserve">
     <value>Bu sayfayı görmeye yetkiniz yoktur. Yetki almak için yöneticiniz ile görüşünüz.</value>
   </data>
+  <data name="Roles.Permission.Create.Text" xml:space="preserve">
+    <value>Oluşturma</value>
+  </data>
+  <data name="Roles.Permission.Delete.Text" xml:space="preserve">
+    <value>Silme</value>
+  </data>
+  <data name="Roles.Permission.Edit.Text" xml:space="preserve">
+    <value>Düzenleme</value>
+  </data>
+  <data name="Roles.Permission.FakeDataManagement.Text" xml:space="preserve">
+    <value>Sahte Veri Yönetimi</value>
+  </data>
+  <data name="Roles.Permission.PlaceManagement.Text" xml:space="preserve">
+    <value>Yer Yönetimi</value>
+  </data>
+  <data name="Roles.Permission.Table.Column1.Text" xml:space="preserve">
+    <value>Modül</value>
+  </data>
+  <data name="Roles.Permission.Table.Column2.Text" xml:space="preserve">
+    <value>İzin</value>
+  </data>
+  <data name="Roles.Permission.Title.Text" xml:space="preserve">
+    <value>Yetki Listesi</value>
+  </data>
+  <data name="Roles.Permission.UserManagement.Text" xml:space="preserve">
+    <value>Kullanıcı Yönetimi</value>
+  </data>
+  <data name="Roles.Permission.View.Text" xml:space="preserve">
+    <value>Görüntüleme</value>
+  </data>
+  <data name="Roles.Permission.VisitedCountyManagement.Text" xml:space="preserve">
+    <value>Ziyaret Edilen İlçe Yönetimi</value>
+  </data>
 </root>

@@ -1122,4 +1122,37 @@
   <data name="AccessDenied.Message.Text" xml:space="preserve">
     <value>You are not authorized to view this page. Please contact your administrator to get authorization.</value>
   </data>
+  <data name="Roles.Permission.Create.Text" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="Roles.Permission.Delete.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Roles.Permission.Edit.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Roles.Permission.FakeDataManagement.Text" xml:space="preserve">
+    <value>Fake Data Management</value>
+  </data>
+  <data name="Roles.Permission.PlaceManagement.Text" xml:space="preserve">
+    <value>Place Management</value>
+  </data>
+  <data name="Roles.Permission.Table.Column1.Text" xml:space="preserve">
+    <value>Module</value>
+  </data>
+  <data name="Roles.Permission.Table.Column2.Text" xml:space="preserve">
+    <value>Permission</value>
+  </data>
+  <data name="Roles.Permission.Title.Text" xml:space="preserve">
+    <value>Authority List</value>
+  </data>
+  <data name="Roles.Permission.UserManagement.Text" xml:space="preserve">
+    <value>User Management</value>
+  </data>
+  <data name="Roles.Permission.View.Text" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="Roles.Permission.VisitedCountyManagement.Text" xml:space="preserve">
+    <value>Visited County Management</value>
+  </data>
 </root>

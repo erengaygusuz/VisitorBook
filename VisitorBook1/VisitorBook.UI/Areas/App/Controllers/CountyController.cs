@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Localization;
-using VisitorBook.UI.Attributes;
 using VisitorBook.Core.Utilities;
 using VisitorBook.UI.Configurations;
 using VisitorBook.UI.Languages;
@@ -19,7 +18,7 @@ using VisitorBook.Core.Constants;
 
 namespace VisitorBook.UI.Area.App.Controllers
 {
-    [Authorize(Roles = Roles.Admin)]
+    [Authorize]
     [Area("App")]
     public class CountyController : BaseController
     {
@@ -41,11 +40,13 @@ namespace VisitorBook.UI.Area.App.Controllers
             _countyViewModelValidator = countyViewModelValidator;
         }
 
+        [Authorize(Permissions.PlaceManagement.View)]
         public IActionResult Index()
         {
             return View();
         }
 
+        [Authorize(Permissions.PlaceManagement.View)]
         [HttpPost]
         public IActionResult GetAll()
         {
@@ -56,6 +57,7 @@ namespace VisitorBook.UI.Area.App.Controllers
             return DataTablesResult(result);
         }
 
+        [Authorize(Permissions.PlaceManagement.View)]
         public async Task<IActionResult> GetAllByCity(int cityId)
         {
             var countyResponseDtos = await _countyService.GetAllAsync<CountyResponseDto>(
@@ -74,7 +76,7 @@ namespace VisitorBook.UI.Area.App.Controllers
             });
         }
 
-        [NoDirectAccess]
+        [Authorize(Permissions.PlaceManagement.Create)]
         public async Task<IActionResult> Add()
         {
             var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>();
@@ -93,7 +95,7 @@ namespace VisitorBook.UI.Area.App.Controllers
             return View(countyViewModel);
         }
 
-        [NoDirectAccess]
+        [Authorize(Permissions.PlaceManagement.Edit)]
         public async Task<IActionResult> Edit(int id)
         {
             var countyResponseDto = await _countyService.GetAsync<CountyResponseDto>(x => x.Id == id, include: x => x.Include(c => c.City));
@@ -121,6 +123,7 @@ namespace VisitorBook.UI.Area.App.Controllers
             return View(countyViewModel);
         }
 
+        [Authorize(Permissions.PlaceManagement.Create)]
         [ActionName("Add")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -149,6 +152,7 @@ namespace VisitorBook.UI.Area.App.Controllers
             return Json(new { isValid = true, message = _localization["Counties.Notification.Add.Text"].Value });
         }
 
+        [Authorize(Permissions.PlaceManagement.Edit)]
         [ActionName("Edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -177,6 +181,7 @@ namespace VisitorBook.UI.Area.App.Controllers
             return Json(new { isValid = true, message = _localization["Counties.Notification.Edit.Text"].Value });
         }
 
+        [Authorize(Permissions.PlaceManagement.Delete)]
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
