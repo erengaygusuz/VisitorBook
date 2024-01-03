@@ -1117,7 +1117,7 @@
     <value>Please fill the area</value>
   </data>
   <data name="Validators.FakeData.Message2.Text" xml:space="preserve">
-    <value>Please only enter numbers</value>
+    <value>Please enter a number between 0 and 100</value>
   </data>
   <data name="AccessDenied.Message.Text" xml:space="preserve">
     <value>You are not authorized to view this page. Please contact your administrator to get authorization.</value>

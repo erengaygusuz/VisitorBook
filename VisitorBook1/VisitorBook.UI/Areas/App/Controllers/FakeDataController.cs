@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Constants;
@@ -11,10 +12,12 @@ namespace VisitorBook.UI.Areas.App.Controllers
     public class FakeDataController : Controller
     {
         private readonly IFakeDataService _fakeDataService;
+        private readonly IValidator<FakeDataViewModel> _fakeDataViewModelValidator;
 
-        public FakeDataController(IFakeDataService fakeDataService)
+        public FakeDataController(IFakeDataService fakeDataService, IValidator<FakeDataViewModel> fakeDataViewModelValidator)
         {
             _fakeDataService = fakeDataService;
+            _fakeDataViewModelValidator = fakeDataViewModelValidator;
         }
 
         [Authorize(Permissions.FakeDataManagement.View)]
@@ -28,16 +31,21 @@ namespace VisitorBook.UI.Areas.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> GenerateUser(FakeDataViewModel fakeDataViewModel)
         {
-            ModelState.Remove("VisitedCountyAmount");
-
-            if (!ModelState.IsValid)
+            var validationResult = await _fakeDataViewModelValidator.ValidateAsync(fakeDataViewModel, options =>
             {
-                return View("Index", fakeDataViewModel);
+                options.IncludeProperties("UserAmount");
+            });
+
+            if (!validationResult.IsValid)
+            {
+                TempData["ErrorMessage1"] = validationResult.Errors.FirstOrDefault().ErrorMessage;
+
+                return RedirectToAction("Index");
             }
 
             await _fakeDataService.InsertUserDatas(fakeDataViewModel.UserAmount);
 
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         [Authorize(Permissions.FakeDataManagement.Create)]
@@ -45,16 +53,21 @@ namespace VisitorBook.UI.Areas.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> GenerateVisitedCounty(FakeDataViewModel fakeDataViewModel)
         {
-            ModelState.Remove("UserAmount");
-
-            if (!ModelState.IsValid)
+            var validationResult = await _fakeDataViewModelValidator.ValidateAsync(fakeDataViewModel, options =>
             {
-                return View("Index", fakeDataViewModel);
+                options.IncludeProperties("VisitedCountyAmount");
+            });
+
+            if (!validationResult.IsValid)
+            {
+                TempData["ErrorMessage2"] = validationResult.Errors.FirstOrDefault().ErrorMessage;
+
+                return RedirectToAction("Index");
             }
             
             await _fakeDataService.InsertVisitedCountyDatas(fakeDataViewModel.VisitedCountyAmount);
 
-            return View("Index");
+            return RedirectToAction("Index");
         }
     }
 }

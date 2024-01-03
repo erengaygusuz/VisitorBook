@@ -26,8 +26,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label" asp-for="@Model.UserAmount">@localization["FakeDatas.SubTitle1.Text"]</label>
-                                        <input type="text" class="form-control" asp-for="@Model.UserAmount" placeholder="@localization["FakeDatas.Item1.Text"]" />
-                                        <span asp-validation-for="@Model.UserAmount" class="error invalid-feedback"></span>
+                                        <input class="form-control" asp-for="@Model.UserAmount" placeholder="@localization["FakeDatas.Item1.Text"]" />
+                                        <span class="error invalid-feedback">@TempData["ErrorMessage1"]</span>
                                     </div>
                                 </div>
                             </div>
@@ -38,8 +38,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label" asp-for="@Model.VisitedCountyAmount">@localization["FakeDatas.SubTitle2.Text"]</label>
-                                        <input type="text" class="form-control" asp-for="@Model.VisitedCountyAmount" placeholder="@localization["FakeDatas.Item2.Text"]" />
-                                        <span asp-validation-for="@Model.VisitedCountyAmount" class="error invalid-feedback"></span>
+                                        <input class="form-control" asp-for="@Model.VisitedCountyAmount" placeholder="@localization["FakeDatas.Item2.Text"]" />
+                                        <span class="error invalid-feedback">@TempData["ErrorMessage2"]</span>
                                     </div>
                                 </div>
                             </div>

@@ -144,6 +144,7 @@ builder.Services.AddScoped<IValidator<UserViewModel>, UserViewModelValidator>();
 builder.Services.AddScoped<IValidator<RoleRequestDto>, RoleRequestDtoValidator>();
 builder.Services.AddScoped<IValidator<SubRegionViewModel>, SubRegionViewModelValidator>();
 builder.Services.AddScoped<IValidator<RegionRequestDto>, RegionRequestDtoValidator>();
+builder.Services.AddScoped<IValidator<FakeDataViewModel>, FakeDataViewModelValidator>();
 
 builder.Services.AddFluentValidation(fv => {
     fv.DisableDataAnnotationsValidation = true;
