@@ -37,7 +37,9 @@ namespace VisitorBook.BL.Concrete
 
         private List<UserRequestDto> GetGeneratedUserData(int amount)
         {
-            return new Faker<UserRequestDto>()
+            var currentLanguage = Thread.CurrentThread.CurrentCulture.Name.Substring(0, 2);
+
+            return new Faker<UserRequestDto>(currentLanguage)
                 .RuleFor(v => v.Name, f => f.Person.FirstName)
                 .RuleFor(v => v.Surname, f => f.Person.LastName)
                 .RuleFor(v => v.BirthDate, f => f.Person.DateOfBirth)
@@ -67,7 +69,9 @@ namespace VisitorBook.BL.Concrete
 
         private List<VisitedCountyRequestDto> GetGeneratedVisitedCountyData(int amount)
         {
-            return new Faker<VisitedCountyRequestDto>()
+            var currentLanguage = Thread.CurrentThread.CurrentCulture.Name.Substring(0, 2);
+
+            return new Faker<VisitedCountyRequestDto>(currentLanguage)
                 .RuleFor(v => v.UserId, f => f.PickRandom(_userManager.Users.ToList()).Id)
                 .RuleFor(v => v.CountyId, f => f.PickRandom(counties.ToList()).Id)
                 .RuleFor(v => v.VisitDate, f => f.Date.Between(new DateTime(day: 1, month: 1, year: 2000), new DateTime(day: 2, month: 11, year: 2023)))
