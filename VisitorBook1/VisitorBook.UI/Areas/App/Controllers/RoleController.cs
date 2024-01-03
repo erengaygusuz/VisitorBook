@@ -15,6 +15,8 @@ using FluentValidation;
 using VisitorBook.Core.Constants;
 using VisitorBook.Core.ViewModels;
 using System.Security.Claims;
+using VisitorBook.Core.Abstract;
+using AutoMapper.QueryableExtensions;
 
 namespace VisitorBook.UI.Areas.AppControllers
 {
@@ -28,10 +30,11 @@ namespace VisitorBook.UI.Areas.AppControllers
         private readonly RoleDataTablesOptions _roleDataTableOptions;
         private readonly IMapper _mapper;
         private readonly IValidator<RoleRequestDto> _roleRequestDtoValidator;
+        private readonly IPropertyMappingService _propertyMappingService;
 
         public RoleController(RazorViewConverter razorViewConverter,
             IStringLocalizer<Language> localization, RoleManager<Role> roleManager, RoleDataTablesOptions roleDataTableOptions,
-            IMapper mapper, IValidator<RoleRequestDto> roleRequestDtoValidator)
+            IMapper mapper, IValidator<RoleRequestDto> roleRequestDtoValidator, IPropertyMappingService propertyMappingService)
         {
             _roleManager = roleManager;
             _localization = localization;
@@ -39,6 +42,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             _roleDataTableOptions = roleDataTableOptions;
             _mapper = mapper;
             _roleRequestDtoValidator = roleRequestDtoValidator;
+            _propertyMappingService = propertyMappingService;
         }
 
         [Authorize(Permissions.UserManagement.View)]
@@ -53,14 +57,13 @@ namespace VisitorBook.UI.Areas.AppControllers
         {
             _roleDataTableOptions.SetDataTableOptions(Request);
 
-            var result = _roleManager.Roles.Select(x => 
+            var propertyMappings = _propertyMappingService.GetMappings<Role, RoleResponseDto>();
 
-                new RoleResponseDto 
-                { 
-                    Id = x.Id,
-                    Name = x.Name
-
-                }).ToPagedList(_roleDataTableOptions.GetDataTablesOptions());
+            var result = _roleManager.Roles
+                .ApplySearch(_roleDataTableOptions.GetDataTablesOptions(), propertyMappings)
+                .ApplySort(_roleDataTableOptions.GetDataTablesOptions(), propertyMappings)
+                .ProjectTo<RoleResponseDto>(_mapper.ConfigurationProvider)
+                .ToPagedList(_roleDataTableOptions.GetDataTablesOptions());
 
             return DataTablesResult(result);
         }

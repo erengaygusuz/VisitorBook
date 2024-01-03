@@ -20,6 +20,7 @@ using VisitorBook.Core.Dtos.RoleDtos;
 using Microsoft.AspNetCore.Authorization;
 using FluentValidation;
 using VisitorBook.Core.Constants;
+using AutoMapper.QueryableExtensions;
 
 namespace VisitorBook.UI.Areas.AppControllers
 {
@@ -36,12 +37,13 @@ namespace VisitorBook.UI.Areas.AppControllers
         private readonly UserDataTablesOptions _userDataTableOptions;
         private readonly IMapper _mapper;
         private readonly IValidator<UserViewModel> _userViewModelValidator;
+        private readonly IPropertyMappingService _propertyMappingService;
 
         public UserController(IService<County> countyService, IService<City> cityService,
             UserManager<User> userManager, IStringLocalizer<Language> localization,
             RazorViewConverter razorViewConverter,
             UserDataTablesOptions userDataTableOptions, IMapper mapper, RoleManager<Role> roleManager,
-            IValidator<UserViewModel> userViewModelValidator)
+            IValidator<UserViewModel> userViewModelValidator, IPropertyMappingService propertyMappingService)
         {
             _countyService = countyService;
             _cityService = cityService;
@@ -52,6 +54,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             _mapper = mapper;
             _roleManager = roleManager;
             _userViewModelValidator = userViewModelValidator;
+            _propertyMappingService = propertyMappingService;
         }
 
         [Authorize(Permissions.UserManagement.View)]
@@ -66,17 +69,23 @@ namespace VisitorBook.UI.Areas.AppControllers
         {
             _userDataTableOptions.SetDataTableOptions(Request);
 
-            var result = _userManager.Users.Select(x =>
+            var propertyMappings = _propertyMappingService.GetMappings<User, UserResponseDto>();
 
-                new UserResponseDto
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Surname = x.Surname,
-                    BirthDate = x.BirthDate,
-                    Gender = _localization["Enum.Gender." + x.Gender.ToString() + ".Text"].Value
+            var result = _userManager.Users
+                .ApplySearch(_userDataTableOptions.GetDataTablesOptions(), propertyMappings)
+                .ApplySort(_userDataTableOptions.GetDataTablesOptions(), propertyMappings)
+                .ProjectTo<UserResponseDto>(_mapper.ConfigurationProvider)
+                .Select(x =>
+                    new UserResponseDto
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        Surname = x.Surname,
+                        BirthDate = x.BirthDate,
+                        Gender = _localization["Enum.Gender." + x.Gender.ToString() + ".Text"].Value
 
-                }).ToPagedList(_userDataTableOptions.GetDataTablesOptions());
+                    })
+                .ToPagedList(_userDataTableOptions.GetDataTablesOptions());
 
             return DataTablesResult(result);
         }

@@ -103,7 +103,7 @@ function loadDataTable(
             datatype: "json"
         },
         columns: [
-            { data: 'name', width: '40%' },
+            { data: 'name', width: '80%' },
             {
                 data: 'id',
                 render: function (data) {
