@@ -8,32 +8,32 @@ namespace VisitorBook.BL.Concrete
     public class EmailService : IEmailService
     {
         private readonly IConfiguration _configuration;
+        
 
         public EmailService(IConfiguration configuration)
         {
             _configuration = configuration;
         }
 
-        public async Task SendResetPasswordEmail(string resetPasswordEmailLink, string toEmail)
+        public async Task SendResetPasswordEmail(string toEmail, string subject, string bodyHtml)
         {
             var smtpClient = new SmtpClient();
 
-            smtpClient.Host = _configuration["EmailSettings:Host"];
+            smtpClient.Host = _configuration["EmailSettings:Natro:Host"];
             smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtpClient.UseDefaultCredentials = false;
-            smtpClient.Port = Convert.ToInt32(_configuration["EmailSettings:Port"]);
-            smtpClient.Credentials = new NetworkCredential(_configuration["EmailSettings:Email"], _configuration["EmailSettings:Password"]);
-            smtpClient.EnableSsl = true;
+            smtpClient.Port = Convert.ToInt32(_configuration["EmailSettings:Natro:Port"]);
+            smtpClient.Credentials = new NetworkCredential(_configuration["EmailSettings:Natro:Email"], _configuration["EmailSettings:Natro:Password"]);
+            smtpClient.EnableSsl = Convert.ToBoolean(_configuration["EmailSettings:Natro:SSLCertificate"]);
 
             var mailMessage = new MailMessage();
 
-            mailMessage.From = new MailAddress(_configuration["EmailSettings:Email"]);
+            mailMessage.From = new MailAddress(_configuration["EmailSettings:Natro:Email"]);
             mailMessage.To.Add(toEmail);
 
-            mailMessage.Subject = "Localhost | Şifre Sıfırlama Linki";
+            mailMessage.Subject = subject;
 
-            mailMessage.Body = @$"<h4>Şifrenizi yenilemek için aşağıdaki linke tıklayınız.</h4>
-                                <p><a href='{resetPasswordEmailLink}'>Şifre yenileme linki</a></p>";
+            mailMessage.Body = bodyHtml;
 
             mailMessage.IsBodyHtml = true;
 

@@ -1223,4 +1223,40 @@
   <data name="Roles.Permission.ContactMessageManagement.Text" xml:space="preserve">
     <value>İletişim Mesajı Yönetimi</value>
   </data>
+  <data name="EmailTemplates.ForgotPassword.Text1" xml:space="preserve">
+    <value>Merhaba</value>
+  </data>
+  <data name="EmailTemplates.ForgotPassword.Text10" xml:space="preserve">
+    <value>https://visitor-book.erengaygusuz.com.tr/home/contact</value>
+  </data>
+  <data name="EmailTemplates.ForgotPassword.Text11" xml:space="preserve">
+    <value>bölümündeki iletişim formunu kullanabilirsiniz.</value>
+  </data>
+  <data name="EmailTemplates.ForgotPassword.Text12" xml:space="preserve">
+    <value>Ziyaretçi Defteri | Şifre Sıfırlama İşlemi</value>
+  </data>
+  <data name="EmailTemplates.ForgotPassword.Text2" xml:space="preserve">
+    <value>Şifrenizi sıfırlama isteğinde bulundunuz.</value>
+  </data>
+  <data name="EmailTemplates.ForgotPassword.Text3" xml:space="preserve">
+    <value>Şifrenizi sıfırlamak için lütfen tıklayınız.</value>
+  </data>
+  <data name="EmailTemplates.ForgotPassword.Text4" xml:space="preserve">
+    <value>Şifremi Sıfırla</value>
+  </data>
+  <data name="EmailTemplates.ForgotPassword.Text5" xml:space="preserve">
+    <value>Eğer yukarıdaki buton çalışmıyorsa aşağıdaki linki tarayıcınıza yapıştırarak ilgili adrese gidip şifrenizi sıfırlama işlemi yapabilirsiniz.</value>
+  </data>
+  <data name="EmailTemplates.ForgotPassword.Text6" xml:space="preserve">
+    <value>Eğer bu işlemi siz gerçekleştirmediyseniz bu e-postayı dikkate almayınız.</value>
+  </data>
+  <data name="EmailTemplates.ForgotPassword.Text7" xml:space="preserve">
+    <value>Bizimle iletişime geçmek için</value>
+  </data>
+  <data name="EmailTemplates.ForgotPassword.Text8" xml:space="preserve">
+    <value>visitor.book@erengaygusuz.com.tr</value>
+  </data>
+  <data name="EmailTemplates.ForgotPassword.Text9" xml:space="preserve">
+    <value>e-posta adresini veya</value>
+  </data>
 </root>

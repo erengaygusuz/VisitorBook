@@ -1221,4 +1221,40 @@
   <data name="Roles.Permission.ContactMessageManagement.Text" xml:space="preserve">
     <value>Contact Message Management</value>
   </data>
+  <data name="EmailTemplates.ForgotPassword.Text1" xml:space="preserve">
+    <value>Hello</value>
+  </data>
+  <data name="EmailTemplates.ForgotPassword.Text10" xml:space="preserve">
+    <value>https://visitor-book.erengaygusuz.com.tr/home/contact</value>
+  </data>
+  <data name="EmailTemplates.ForgotPassword.Text11" xml:space="preserve">
+    <value>web address</value>
+  </data>
+  <data name="EmailTemplates.ForgotPassword.Text12" xml:space="preserve">
+    <value>Visitor Book | Password Reset Proccess</value>
+  </data>
+  <data name="EmailTemplates.ForgotPassword.Text2" xml:space="preserve">
+    <value>You send a request to reset your password.</value>
+  </data>
+  <data name="EmailTemplates.ForgotPassword.Text3" xml:space="preserve">
+    <value>Please click to reset your password.</value>
+  </data>
+  <data name="EmailTemplates.ForgotPassword.Text4" xml:space="preserve">
+    <value>Reset My Password</value>
+  </data>
+  <data name="EmailTemplates.ForgotPassword.Text5" xml:space="preserve">
+    <value>If above button not work, you can copy the link below to your browser address bar and open it to reset your password</value>
+  </data>
+  <data name="EmailTemplates.ForgotPassword.Text6" xml:space="preserve">
+    <value>If this proccess not done by you you can ignore this e-mail.</value>
+  </data>
+  <data name="EmailTemplates.ForgotPassword.Text7" xml:space="preserve">
+    <value>To contact with us you can use</value>
+  </data>
+  <data name="EmailTemplates.ForgotPassword.Text8" xml:space="preserve">
+    <value>visitor.book@erengaygusuz.com.tr</value>
+  </data>
+  <data name="EmailTemplates.ForgotPassword.Text9" xml:space="preserve">
+    <value>e-mail address or contact form at</value>
+  </data>
 </root>

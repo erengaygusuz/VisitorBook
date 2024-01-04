@@ -24,11 +24,12 @@ namespace VisitorBook.UI.Controllers
         private readonly IValidator<RegisterRequestDto> _registerRequestDtoValidator;
         private readonly IValidator<ForgotPasswordRequestDto> _forgotPasswordRequestDtoValidator;
         private readonly IValidator<ResetPasswordRequestDto> _resetPasswordRequestDtoValidator;
+        private readonly IWebHostEnvironment _environment;
 
         public AuthController(UserManager<User> userManager, SignInManager<User> signInManager, IEmailService emailService, INotyfService notifyService,
             IStringLocalizer<Language> localization, IValidator<LoginRequestDto> loginRequestDtoValidator, 
             IValidator<RegisterRequestDto> registerRequestDtoValidator, IValidator<ForgotPasswordRequestDto> forgotPasswordRequestDtoValidator, 
-            IValidator<ResetPasswordRequestDto> resetPasswordRequestDtoValidator)
+            IValidator<ResetPasswordRequestDto> resetPasswordRequestDtoValidator, IWebHostEnvironment environment)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -39,6 +40,7 @@ namespace VisitorBook.UI.Controllers
             _registerRequestDtoValidator = registerRequestDtoValidator;
             _forgotPasswordRequestDtoValidator = forgotPasswordRequestDtoValidator;
             _resetPasswordRequestDtoValidator = resetPasswordRequestDtoValidator;
+            _environment = environment;
         }
 
         public IActionResult Login()
@@ -167,7 +169,39 @@ namespace VisitorBook.UI.Controllers
 
             var passwordResetLink = Url.Action("ResetPassword", "Auth", new { userId = user.Id, token = passwordResetToken }, HttpContext.Request.Scheme);
 
-            await _emailService.SendResetPasswordEmail(passwordResetLink, user.Email);
+            var pathToFile = _environment.WebRootPath
+                            + Path.DirectorySeparatorChar.ToString()
+                            + "templates"
+                            + Path.DirectorySeparatorChar.ToString()
+                            + "email-template.html";
+
+            string[] text;
+
+            using (StreamReader streamReader = System.IO.File.OpenText(pathToFile))
+            {
+                text = streamReader.ReadToEnd().Split('@');
+
+                text[4] = _localization["Layout.Header.Title.Text"].Value;
+                text[6] = _localization["EmailTemplates.ForgotPassword.Text1"].Value;
+                text[8] = user.Name + " " + user.Surname;
+                text[10] = _localization["EmailTemplates.ForgotPassword.Text2"].Value;
+                text[12] = _localization["EmailTemplates.ForgotPassword.Text3"].Value;
+                text[14] = passwordResetLink;
+                text[16] = _localization["EmailTemplates.ForgotPassword.Text4"].Value;
+                text[18] = _localization["EmailTemplates.ForgotPassword.Text5"].Value;
+                text[20] = passwordResetLink;
+                text[22] = passwordResetLink;
+                text[24] = _localization["EmailTemplates.ForgotPassword.Text6"].Value;
+                text[26] = _localization["EmailTemplates.ForgotPassword.Text7"].Value;
+                text[28] = _localization["EmailTemplates.ForgotPassword.Text8"].Value;
+                text[30] = _localization["EmailTemplates.ForgotPassword.Text8"].Value;
+                text[32] = _localization["EmailTemplates.ForgotPassword.Text9"].Value;
+                text[34] = _localization["EmailTemplates.ForgotPassword.Text10"].Value;
+                text[36] = _localization["EmailTemplates.ForgotPassword.Text10"].Value;
+                text[38] = _localization["EmailTemplates.ForgotPassword.Text11"].Value;
+            }
+
+            await _emailService.SendResetPasswordEmail(user.Email, _localization["EmailTemplates.ForgotPassword.Text12"].Value, String.Concat(text));
 
             _notifyService.Success(_localization["Auth.ForgotPassword.Message2.Text"].Value);
 
