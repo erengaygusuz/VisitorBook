@@ -1,8 +1,6 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
-using System.Linq;
 using VisitorBook.Core.Entities;
 using VisitorBook.Core.ViewModels;
 using VisitorBook.UI.Languages;

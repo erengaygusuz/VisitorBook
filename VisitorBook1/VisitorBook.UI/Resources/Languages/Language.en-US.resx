@@ -694,7 +694,7 @@
     <value>Mamak, Ankara, TURKEY</value>
   </data>
   <data name="Home.Footer.Info3.Text" xml:space="preserve">
-    <value>+09 0555 55 55</value>
+    <value>+90 555 55 55</value>
   </data>
   <data name="Home.Footer.Info4.Text" xml:space="preserve">
     <value>visitor-book@erengaygusuz.com.tr</value>
@@ -1154,5 +1154,44 @@
   </data>
   <data name="Roles.Permission.VisitedCountyManagement.Text" xml:space="preserve">
     <value>Visited County Management</value>
+  </data>
+  <data name="Validators.ContactMessage.Message1.Text" xml:space="preserve">
+    <value>Please fill the name and surname area</value>
+  </data>
+  <data name="Validators.ContactMessage.Message10.Text" xml:space="preserve">
+    <value>Please fill the message area</value>
+  </data>
+  <data name="Validators.ContactMessage.Message11.Text" xml:space="preserve">
+    <value>Please enter a message value minimum 20 character at least</value>
+  </data>
+  <data name="Validators.ContactMessage.Message12.Text" xml:space="preserve">
+    <value>Please enter a message value maximum 500 character at most</value>
+  </data>
+  <data name="Validators.ContactMessage.Message2.Text" xml:space="preserve">
+    <value>Name and surname can not contain number</value>
+  </data>
+  <data name="Validators.ContactMessage.Message3.Text" xml:space="preserve">
+    <value>Please enter a name and surname value minimum 3 character at least</value>
+  </data>
+  <data name="Validators.ContactMessage.Message4.Text" xml:space="preserve">
+    <value>Please enter a name and surname value maximum 100 character at most</value>
+  </data>
+  <data name="Validators.ContactMessage.Message5.Text" xml:space="preserve">
+    <value>Please fill the email area</value>
+  </data>
+  <data name="Validators.ContactMessage.Message6.Text" xml:space="preserve">
+    <value>Please enter a valid e-mail</value>
+  </data>
+  <data name="Validators.ContactMessage.Message7.Text" xml:space="preserve">
+    <value>Please fill the subject area</value>
+  </data>
+  <data name="Validators.ContactMessage.Message8.Text" xml:space="preserve">
+    <value>Please enter a subject value minimum 3 character at least</value>
+  </data>
+  <data name="Validators.ContactMessage.Message9.Text" xml:space="preserve">
+    <value>Please enter a subject value maximum 150 character at most</value>
+  </data>
+  <data name="ContactMessages.Notification.SuccessfullSend.Text" xml:space="preserve">
+    <value>Your message send successfully</value>
   </data>
 </root>

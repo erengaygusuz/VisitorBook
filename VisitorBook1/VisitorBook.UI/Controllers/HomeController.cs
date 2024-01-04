@@ -1,8 +1,15 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using VisitorBook.Core.Abstract;
+using VisitorBook.Core.Dtos.ContactMessageDtos;
+using VisitorBook.Core.Entities;
+using VisitorBook.Core.Extensions;
 using VisitorBook.Core.ViewModels;
+using VisitorBook.UI.Languages;
 
 namespace VisitorBook.UI.Controllers
 {
@@ -10,10 +17,19 @@ namespace VisitorBook.UI.Controllers
     public class HomeController : Controller
     {
         private readonly IHomeFactStatisticService _homeFactStatisticService;
+        private readonly IService<ContactMessage> _contactMessageService;
+        private readonly IValidator<ContactMessageRequestDto> _contactMessageRequestDtoValidator;
+        private readonly INotyfService _notifyService;
+        private readonly IStringLocalizer<Language> _localization;
 
-        public HomeController(IHomeFactStatisticService homeFactStatisticService)
+        public HomeController(IHomeFactStatisticService homeFactStatisticService, IService<ContactMessage> contactMessageService, 
+            IValidator<ContactMessageRequestDto> contactMessageRequestDtoValidator, INotyfService notifyService, IStringLocalizer<Language> localization)
         {
             _homeFactStatisticService = homeFactStatisticService;
+            _contactMessageService = contactMessageService;
+            _contactMessageRequestDtoValidator = contactMessageRequestDtoValidator;
+            _notifyService = notifyService;
+            _localization = localization;
         }
 
         public async Task<IActionResult> Index()
@@ -39,6 +55,26 @@ namespace VisitorBook.UI.Controllers
 
         public IActionResult Contact()
         {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Contact(ContactMessageRequestDto contactMessageRequestDto)
+        {
+            var validationResult = await _contactMessageRequestDtoValidator.ValidateAsync(contactMessageRequestDto);
+
+            if (!validationResult.IsValid)
+            {
+                validationResult.AddToModelState(ModelState);
+
+                return View(contactMessageRequestDto);
+            }
+
+            await _contactMessageService.AddAsync(contactMessageRequestDto);
+
+            _notifyService.Success(_localization["ContactMessages.Notification.SuccessfullSend.Text"].Value);
+
             return View();
         }
 

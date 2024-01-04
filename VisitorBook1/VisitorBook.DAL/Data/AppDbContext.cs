@@ -15,6 +15,7 @@ namespace VisitorBook.DAL.Data
         public DbSet<Region> Regions { get; set; }
         public DbSet<SubRegion> SubRegions { get; set; }
         public DbSet<Country> Countries { get; set; }
+        public DbSet<ContactMessage> ContactMessages { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base (options)
         {

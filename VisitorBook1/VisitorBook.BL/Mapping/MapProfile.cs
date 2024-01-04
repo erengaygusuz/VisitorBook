@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using VisitorBook.Core.Dtos.CityDtos;
+using VisitorBook.Core.Dtos.ContactMessageDtos;
 using VisitorBook.Core.Dtos.CountryDtos;
 using VisitorBook.Core.Dtos.CountyDtos;
 using VisitorBook.Core.Dtos.RegionDtos;
@@ -85,6 +86,9 @@ namespace VisitorBook.BL.Mapping
             CreateMap<RoleRequestDto, Role>();
             CreateMap<Role, RoleResponseDto>();
             CreateMap<RoleResponseDto, Role>();
+
+            CreateMap<ContactMessageRequestDto, ContactMessage>();
+            CreateMap<ContactMessage, ContactMessageResponseDto>();
         }
     }
 }

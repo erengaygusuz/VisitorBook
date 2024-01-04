@@ -698,7 +698,7 @@
     <value>Mamak, Ankara, TÜRKİYE</value>
   </data>
   <data name="Home.Footer.Info3.Text" xml:space="preserve">
-    <value>+09 0555 55 55</value>
+    <value>+90 555 55 55</value>
   </data>
   <data name="Home.Footer.Info4.Text" xml:space="preserve">
     <value>visitor-book@erengaygusuz.com.tr</value>
@@ -834,7 +834,7 @@
     <value>Lütfen bir ülke seçiniz</value>
   </data>
   <data name="Validators.ForgotPassword.Message1.Text" xml:space="preserve">
-    <value>Lütfen email alanını boş bırakmayınız</value>
+    <value>Lütfen e-posta alanını boş bırakmayınız</value>
   </data>
   <data name="Validators.ForgotPassword.Message2.Text" xml:space="preserve">
     <value>Lütfen geçerli bir e-posta giriniz</value>
@@ -903,7 +903,7 @@
     <value>Lütfen maksimum 100 karaktere sahip bir soyad giriniz</value>
   </data>
   <data name="Validators.Register.Message9.Text" xml:space="preserve">
-    <value>Lütfen email alanını boş bırakmayınız</value>
+    <value>Lütfen e-posta alanını boş bırakmayınız</value>
   </data>
   <data name="Validators.ResetPassword.Message1.Text" xml:space="preserve">
     <value>Lütfen şifre alanını boş bırakmayınız</value>
@@ -1029,7 +1029,7 @@
     <value>Bu kullanıcı adı daha önceden alınmış. Lütfen farklı bir kullanıcı adı seçiniz</value>
   </data>
   <data name="Validators.User.Message7.Text" xml:space="preserve">
-    <value>Lütfen email alanını boş bırakmayınız</value>
+    <value>Lütfen e-posta alanını boş bırakmayınız</value>
   </data>
   <data name="Validators.User.Message8.Text" xml:space="preserve">
     <value>Lütfen geçerli bir e-posta giriniz</value>
@@ -1156,5 +1156,44 @@
   </data>
   <data name="Roles.Permission.VisitedCountyManagement.Text" xml:space="preserve">
     <value>Ziyaret Edilen İlçe Yönetimi</value>
+  </data>
+  <data name="Validators.ContactMessage.Message1.Text" xml:space="preserve">
+    <value>Lütfen ad ve soyad alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.ContactMessage.Message10.Text" xml:space="preserve">
+    <value>Lütfen mesaj alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.ContactMessage.Message11.Text" xml:space="preserve">
+    <value>Lütfen minimum 20 karaktere sahip bir mesaj giriniz</value>
+  </data>
+  <data name="Validators.ContactMessage.Message12.Text" xml:space="preserve">
+    <value>Lütfen maksimum 500 karaktere sahip bir mesaj giriniz</value>
+  </data>
+  <data name="Validators.ContactMessage.Message2.Text" xml:space="preserve">
+    <value>Ad ve Soyad rakam içeremez</value>
+  </data>
+  <data name="Validators.ContactMessage.Message3.Text" xml:space="preserve">
+    <value>Lütfen minimum 3 karaktere sahip bir ad ve soyad değeri giriniz</value>
+  </data>
+  <data name="Validators.ContactMessage.Message4.Text" xml:space="preserve">
+    <value>Lütfen maksimum 100 karaktere sahip bir ad ve soyad değeri giriniz</value>
+  </data>
+  <data name="Validators.ContactMessage.Message5.Text" xml:space="preserve">
+    <value>Lütfen e-posta alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.ContactMessage.Message6.Text" xml:space="preserve">
+    <value>Lütfen geçerli bir e-posta giriniz</value>
+  </data>
+  <data name="Validators.ContactMessage.Message7.Text" xml:space="preserve">
+    <value>Lütfen konu alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.ContactMessage.Message8.Text" xml:space="preserve">
+    <value>Lütfen minimum 3 karaktere sahip bir konu giriniz</value>
+  </data>
+  <data name="Validators.ContactMessage.Message9.Text" xml:space="preserve">
+    <value>Lütfen maksimum 150 karaktere sahip bir konu giriniz</value>
+  </data>
+  <data name="ContactMessages.Notification.SuccessfullSend.Text" xml:space="preserve">
+    <value>Mesajınız başarılı bir şekilde iletilmiştir</value>
   </data>
 </root>

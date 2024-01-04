@@ -30,6 +30,7 @@ using FluentValidation.AspNetCore;
 using VisitorBook.Core.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using VisitorBook.UI.Filters;
+using VisitorBook.Core.Dtos.ContactMessageDtos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -145,6 +146,7 @@ builder.Services.AddScoped<IValidator<RoleRequestDto>, RoleRequestDtoValidator>(
 builder.Services.AddScoped<IValidator<SubRegionViewModel>, SubRegionViewModelValidator>();
 builder.Services.AddScoped<IValidator<RegionRequestDto>, RegionRequestDtoValidator>();
 builder.Services.AddScoped<IValidator<FakeDataViewModel>, FakeDataViewModelValidator>();
+builder.Services.AddScoped<IValidator<ContactMessageRequestDto>, ContactMessageRequestDtoValidator>();
 
 builder.Services.AddFluentValidation(fv => {
     fv.DisableDataAnnotationsValidation = true;

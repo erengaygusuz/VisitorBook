@@ -3,6 +3,8 @@
     Layout = "_Layout";
 }
 
+@model ContactMessageRequestDto
+
 <div class="container-fluid page-header wow fadeIn"
      data-wow-delay="0.1s">
     <div class="container py-5">
@@ -27,42 +29,43 @@
                 <p class="mb-4">
                     @localization["Home.Contact.Info.Text"]
                 </p>
-                <form>
+                <form asp-controller="Home" asp-action="Contact">
                     <div class="row g-3">
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text"
+                                <input asp-for="@Model.NameSurname"
                                        class="form-control"
-                                       id="name"
                                        placeholder="@localization["Home.Contact.Item1.Text"]" />
-                                <label for="name">@localization["Home.Contact.Item1.Text"]</label>
+                                <label asp-for ="@Model.NameSurname">@localization["Home.Contact.Item1.Text"]</label>
+                                <span asp-validation-for="@Model.NameSurname" class="invalid"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="email"
+                                <input asp-for="@Model.Email"
                                        class="form-control"
-                                       id="email"
                                        placeholder="@localization["Home.Contact.Item2.Text"]" />
-                                <label for="email">@localization["Home.Contact.Item2.Text"]</label>
+                                <label asp-for="@Model.Email">@localization["Home.Contact.Item2.Text"]</label>
+                                <span asp-validation-for="@Model.Email" class="invalid"></span>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-floating">
-                                <input type="text"
+                                <input asp-for="@Model.Subject"
                                        class="form-control"
-                                       id="subject"
                                        placeholder="@localization["Home.Contact.Item3.Text"]" />
-                                <label for="subject">@localization["Home.Contact.Item3.Text"]</label>
+                                <label asp-for="@Model.Subject">@localization["Home.Contact.Item3.Text"]</label>
+                                <span asp-validation-for="@Model.Subject" class="invalid"></span>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-floating">
-                                <textarea class="form-control"
+                                <textarea asp-for="@Model.Message"
+                                          class="form-control"
                                           placeholder="@localization["Home.Contact.Item4.Text"]"
-                                          id="message"
                                           style="height: 100px"></textarea>
-                                <label for="message">@localization["Home.Contact.Item4.Text"]</label>
+                                <label asp-for="@Model.Message">@localization["Home.Contact.Item4.Text"]</label>
+                                <span asp-validation-for="@Model.Message" class="invalid"></span>
                             </div>
                         </div>
                         <div class="col-12">
