@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+@model IQueryable<ContactMessage>
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">@localization["ContactMessages.Title.Text"]</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">@localization["Role." + @User.Claims.Where(x => x.Type == ClaimTypes.Role).Select(x => x.Value).FirstOrDefault() + ".Text"]</li>
+                    <li class="breadcrumb-item active">@localization["ContactMessages.Title.Text"]</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        @(Html
+                            .Grid(Model)
+                            .Build(columns =>
+                            {
+                                columns.Add(model => $"<div class='d-flex justify-content-center'><button class='btn btn-block btn-default btn-sm' onclick=\"showInPopup('/App/ContactMessage/Message/{model.Id}', '{localization["ContactMessages.ViewModal.Title.Text"].Value}')\"><i class='fas fa-eye'></i></button></div>").Encoded(false);
+                                columns.Add(model => model.NameSurname).Titled(@localization["ContactMessages.Table.Column1.Text"]);
+                                columns.Add(model => model.Email).Titled(@localization["ContactMessages.Table.Column2.Text"]);
+                                columns.Add(model => model.Subject).Titled(@localization["ContactMessages.Table.Column3.Text"]);
+                            })
+                            .Filterable(GridFilterCase.Lower)
+                            .Using(GridFilterMode.Header)
+                            .Empty(@localization["ContactMessages.Table.ResultMessage.Text"])
+                            .Pageable(pager =>
+                            {
+                                pager.RowsPerPage = 10;
+                            })
+                            .Sortable()
+                            )
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/view-resources/app/views/contactmessage/contact-message.js"></script>
+}

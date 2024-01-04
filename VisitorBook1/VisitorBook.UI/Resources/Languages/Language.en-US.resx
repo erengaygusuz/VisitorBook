@@ -1194,4 +1194,31 @@
   <data name="ContactMessages.Notification.SuccessfullSend.Text" xml:space="preserve">
     <value>Your message send successfully</value>
   </data>
+  <data name="ContactMessages.Table.Column1.Text" xml:space="preserve">
+    <value>Name and Surname</value>
+  </data>
+  <data name="ContactMessages.Table.Column2.Text" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="ContactMessages.Table.Column3.Text" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="ContactMessages.Table.ResultMessage.Text" xml:space="preserve">
+    <value>There is no message to show</value>
+  </data>
+  <data name="ContactMessages.Title.Text" xml:space="preserve">
+    <value>Contact Messages</value>
+  </data>
+  <data name="ContactMessages.ViewModal.Title.Text" xml:space="preserve">
+    <value>View Message</value>
+  </data>
+  <data name="ContactMessages.Table.Column4.Text" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items13.Text" xml:space="preserve">
+    <value>Contact Messages</value>
+  </data>
+  <data name="Roles.Permission.ContactMessageManagement.Text" xml:space="preserve">
+    <value>Contact Message Management</value>
+  </data>
 </root>

@@ -17,6 +17,7 @@
             var makeUserActive = "";
             var makeRoleActive = "";
             var makeFakeDataActive = "";
+            var makeContactMessageActive = "";
 
             @if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "home")
             {
@@ -57,6 +58,10 @@
             else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "fakedata")
             {
                 makeFakeDataActive = "active";
+            }
+            else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "contactmessage")
+            {
+                makeContactMessageActive = "active";
             }
         }
         <nav class="mt-2">
@@ -181,6 +186,18 @@
                             <i class="nav-icon fas fa-user-secret"></i>
                             <p>
                                 @localization["Layout.Header.Navbar.Items12.Text"]
+                            </p>
+                        </a>
+                    </li>
+                }
+                @if (User.HasClaim(x => x.Type == "Permission" && x.Value == Permissions.ContactMessageManagement.View))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link @makeContactMessageActive" asp-area="App" asp-controller="ContactMessage"
+                           asp-action="Index">
+                            <i class="nav-icon fas fa-envelope"></i>
+                            <p>
+                                @localization["Layout.Header.Navbar.Items13.Text"]
                             </p>
                         </a>
                     </li>

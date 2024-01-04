@@ -5,6 +5,7 @@
         UserManagement,
         PlaceManagement,
         VisitedCountyManagement,
-        FakeDataManagement
+        FakeDataManagement,
+        ContactMessageManagement
     }
 }

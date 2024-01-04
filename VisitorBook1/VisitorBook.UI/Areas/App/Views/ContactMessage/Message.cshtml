@@ -1,0 +1,43 @@
+﻿@model ContactMessage
+
+@{
+    ViewData["Title"] = "View";
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label">@localization["ContactMessages.Table.Column1.Text"]</label>
+                    <p>@Model.NameSurname</p>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label">@localization["ContactMessages.Table.Column2.Text"]</label>
+                    <p>@Model.Email</p>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label">@localization["ContactMessages.Table.Column3.Text"]</label>
+                    <p>@Model.Subject</p>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label">@localization["ContactMessages.Table.Column4.Text"]</label>
+                    <p>@Model.Message</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
