@@ -1377,4 +1377,7 @@
   <data name="Auth.ResetPassword.Message4.Text" xml:space="preserve">
     <value>An error occured. Please try it again.</value>
   </data>
+  <data name="Validators.Register.Message21.Text" xml:space="preserve">
+    <value>This e-mail is taken. Please enter another e-mail.</value>
+  </data>
 </root>

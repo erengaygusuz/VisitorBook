@@ -42,6 +42,7 @@ namespace VisitorBook.UI.Area.App.Controllers
         }
 
         [Authorize(Permissions.PlaceManagement.View)]
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
@@ -59,6 +60,7 @@ namespace VisitorBook.UI.Area.App.Controllers
         }
 
         [Authorize(Permissions.PlaceManagement.View)]
+        [HttpGet]
         public async Task<IActionResult> GetAllByCountry(int countryId)
         {
             var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>(
@@ -78,6 +80,7 @@ namespace VisitorBook.UI.Area.App.Controllers
         }
 
         [Authorize(Permissions.PlaceManagement.Create)]
+        [HttpGet]
         public async Task<IActionResult> Add()
         {
             var countryResponseDtos = await _countryService.GetAllAsync<CountryResponseDto>();
@@ -97,6 +100,7 @@ namespace VisitorBook.UI.Area.App.Controllers
         }
 
         [Authorize(Permissions.PlaceManagement.Edit)]
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             var cityResponseDto = await _cityService.GetAsync<CityResponseDto>(x => x.Id == id, include: x => x.Include(c => c.Country));
@@ -182,7 +186,7 @@ namespace VisitorBook.UI.Area.App.Controllers
         }
 
         [Authorize(Permissions.PlaceManagement.Delete)]
-        [HttpDelete]
+        [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
             var cityResponseDto = await _cityService.GetAsync<CityResponseDto>(u => u.Id == id);

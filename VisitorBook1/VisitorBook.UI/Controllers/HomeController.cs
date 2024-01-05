@@ -32,6 +32,7 @@ namespace VisitorBook.UI.Controllers
             _localization = localization;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var countryCount = _homeFactStatisticService.GetTotalCountryCount();
@@ -53,6 +54,7 @@ namespace VisitorBook.UI.Controllers
             return View(homeFactViewModel);
         }
 
+        [HttpGet]
         public IActionResult Contact()
         {
             return View();
@@ -78,6 +80,7 @@ namespace VisitorBook.UI.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Service()
         {
             return View();

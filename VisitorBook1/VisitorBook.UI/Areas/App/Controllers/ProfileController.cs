@@ -46,6 +46,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             _notifyService = notifyService;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.Users.Include(u => u.UserAddress).ThenInclude(c => c.County).FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
@@ -247,6 +248,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         public async Task Logout()
         {
             await _signInManager.SignOutAsync();

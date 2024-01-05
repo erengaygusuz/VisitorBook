@@ -58,6 +58,7 @@ namespace VisitorBook.UI.Areas.AppControllers
         }
 
         [Authorize(Permissions.UserManagement.View)]
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
@@ -91,6 +92,7 @@ namespace VisitorBook.UI.Areas.AppControllers
         }
 
         [Authorize(Permissions.UserManagement.Create)]
+        [HttpGet]
         public async Task<IActionResult> Add()
         {
             var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>();
@@ -132,6 +134,7 @@ namespace VisitorBook.UI.Areas.AppControllers
         }
 
         [Authorize(Permissions.UserManagement.Edit)]
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             var user = await _userManager.Users.Include(u => u.UserAddress).ThenInclude(c => c.County).FirstOrDefaultAsync(u => u.Id == id);
@@ -354,7 +357,7 @@ namespace VisitorBook.UI.Areas.AppControllers
         }
 
         [Authorize(Permissions.UserManagement.Delete)]
-        [HttpDelete]
+        [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
             var userToDelete = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == id);

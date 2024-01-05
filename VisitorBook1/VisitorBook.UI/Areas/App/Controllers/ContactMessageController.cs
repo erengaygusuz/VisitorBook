@@ -18,6 +18,7 @@ namespace VisitorBook.UI.Areas.App.Controllers
         }
 
         [Authorize(Permissions.ContactMessageManagement.View)]
+        [HttpGet]
         public IActionResult Index()
         {
             var contactMessages = _contactMessageRepository.GetAll();
@@ -26,6 +27,7 @@ namespace VisitorBook.UI.Areas.App.Controllers
         }
 
         [Authorize(Permissions.ContactMessageManagement.View)]
+        [HttpGet]
         public async Task<IActionResult> Message(int id)
         {
             var contactMessage = await _contactMessageRepository.GetAsync(x => x.Id == id);

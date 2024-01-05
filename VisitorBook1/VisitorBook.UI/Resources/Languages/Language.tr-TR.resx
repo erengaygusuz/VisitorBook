@@ -1379,4 +1379,7 @@
   <data name="Auth.ResetPassword.Message4.Text" xml:space="preserve">
     <value>İşlem esnasında hata meydana geldi. Lütfen tekrar deneyiniz.</value>
   </data>
+  <data name="Validators.Register.Message21.Text" xml:space="preserve">
+    <value>Bu e-posta adresi daha önceden alınmış. Lütfen farklı bir e-posta adresi giriniz</value>
+  </data>
 </root>

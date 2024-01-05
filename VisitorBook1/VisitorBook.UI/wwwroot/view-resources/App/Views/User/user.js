@@ -287,7 +287,7 @@ function deleteRecord(url) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                type: 'DELETE',
+                type: 'GET',
                 url: url,
                 success: function (res) {
                     dataTable.ajax.reload()

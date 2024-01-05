@@ -50,6 +50,7 @@ namespace VisitorBook.UI.Area.App.Controllers
         }
 
         [Authorize(Permissions.VisitedCountyManagement.View)]
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
@@ -84,6 +85,7 @@ namespace VisitorBook.UI.Area.App.Controllers
         }
 
         [Authorize(Permissions.VisitedCountyManagement.Create)]
+        [HttpGet]
         public async Task<IActionResult> Add()
         {
             var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>();
@@ -131,6 +133,7 @@ namespace VisitorBook.UI.Area.App.Controllers
         }
 
         [Authorize(Permissions.VisitedCountyManagement.Edit)]
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             var visitedCountyResponseDto = await _visitedCountyService.GetAsync<VisitedCountyResponseDto>(u => u.Id == id, 
@@ -303,7 +306,7 @@ namespace VisitorBook.UI.Area.App.Controllers
         }
 
         [Authorize(Permissions.VisitedCountyManagement.Delete)]
-        [HttpDelete]
+        [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
             var visitedCountyResponseDto = await _visitedCountyService.GetAsync<VisitedCountyResponseDto>(u => u.Id == id, 

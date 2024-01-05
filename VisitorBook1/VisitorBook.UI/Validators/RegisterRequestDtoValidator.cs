@@ -31,7 +31,8 @@ namespace VisitorBook.UI.Validators
 
             RuleFor(x => x.Email)
                 .NotNull().WithMessage(_localization["Validators.Register.Message9.Text"].Value)
-                .EmailAddress().WithMessage(_localization["Validators.Register.Message10.Text"].Value);
+                .EmailAddress().WithMessage(_localization["Validators.Register.Message10.Text"].Value)
+                .Must(UniqueEmail).WithMessage(_localization["Validators.Register.Message21.Text"].Value);
 
             RuleFor(x => x.Username)
                 .NotNull().WithMessage(_localization["Validators.Register.Message11.Text"].Value)
@@ -59,6 +60,23 @@ namespace VisitorBook.UI.Validators
             } 
 
             var user = _userManager.FindByNameAsync(username).GetAwaiter().GetResult();
+
+            if (user == null)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool UniqueEmail(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+            {
+                return true;
+            }
+
+            var user = _userManager.FindByEmailAsync(email).GetAwaiter().GetResult();
 
             if (user == null)
             {

@@ -41,6 +41,7 @@ namespace VisitorBook.UI.Area.App.Controllers
         }
 
         [Authorize(Permissions.PlaceManagement.View)]
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
@@ -57,6 +58,7 @@ namespace VisitorBook.UI.Area.App.Controllers
             return DataTablesResult(result);
         }
 
+        [HttpGet]
         public async Task<IActionResult> GetAllByCity(int cityId)
         {
             var countyResponseDtos = await _countyService.GetAllAsync<CountyResponseDto>(
@@ -76,6 +78,7 @@ namespace VisitorBook.UI.Area.App.Controllers
         }
 
         [Authorize(Permissions.PlaceManagement.Create)]
+        [HttpGet]
         public async Task<IActionResult> Add()
         {
             var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>();
@@ -95,6 +98,7 @@ namespace VisitorBook.UI.Area.App.Controllers
         }
 
         [Authorize(Permissions.PlaceManagement.Edit)]
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             var countyResponseDto = await _countyService.GetAsync<CountyResponseDto>(x => x.Id == id, include: x => x.Include(c => c.City));
@@ -181,7 +185,7 @@ namespace VisitorBook.UI.Area.App.Controllers
         }
 
         [Authorize(Permissions.PlaceManagement.Delete)]
-        [HttpDelete]
+        [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
             var countyResponseDto = await _countyService.GetAsync<CountyResponseDto>(u => u.Id == id);

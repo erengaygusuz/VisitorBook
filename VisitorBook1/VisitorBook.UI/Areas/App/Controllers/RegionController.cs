@@ -35,6 +35,7 @@ namespace VisitorBook.UI.Areas.AppControllers
         }
 
         [Authorize(Permissions.PlaceManagement.View)]
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
@@ -52,12 +53,14 @@ namespace VisitorBook.UI.Areas.AppControllers
         }
 
         [Authorize(Permissions.PlaceManagement.Create)]
+        [HttpGet]
         public IActionResult Add()
         {
             return View();
         }
 
         [Authorize(Permissions.PlaceManagement.Edit)]
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             var regionResponseDto = await _regionService.GetAsync<RegionResponseDto>(x => x.Id == id);
@@ -112,7 +115,7 @@ namespace VisitorBook.UI.Areas.AppControllers
         }
 
         [Authorize(Permissions.PlaceManagement.Delete)]
-        [HttpDelete]
+        [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
             var regionResponseDto = await _regionService.GetAsync<RegionResponseDto>(u => u.Id == id);

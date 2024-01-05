@@ -10,6 +10,7 @@ namespace VisitorBook.UI.Controllers
     public class ErrorController : Controller
     {
         [Route("/Error")]
+        [HttpGet]
         public IActionResult Error()
         {
             var context = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
@@ -28,6 +29,7 @@ namespace VisitorBook.UI.Controllers
         }
 
         [Route("/Error/{statusCode}")]
+        [HttpGet]
         public IActionResult Error(int statusCode)
         {
             var feature = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();

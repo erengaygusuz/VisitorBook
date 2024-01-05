@@ -43,6 +43,7 @@ namespace VisitorBook.UI.Controllers
             _environment = environment;
         }
 
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
@@ -101,6 +102,7 @@ namespace VisitorBook.UI.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Register()
         {
             return View();
@@ -184,6 +186,7 @@ namespace VisitorBook.UI.Controllers
             return View();
         }
 
+        [HttpGet]
         public async Task<IActionResult> RegisterConfirmation(string userId, string token, string returnUrl = null)
         {
             if (userId == null || token == null)
@@ -231,6 +234,7 @@ namespace VisitorBook.UI.Controllers
             }
         }
 
+        [HttpGet]
         public IActionResult ForgotPassword()
         {
             return View();
@@ -300,6 +304,7 @@ namespace VisitorBook.UI.Controllers
             return RedirectToAction(nameof(ForgotPassword));
         }
 
+        [HttpGet]
         public IActionResult ResetPassword(string userId, string token)
         {
             TempData["userId"] = userId;
@@ -361,6 +366,12 @@ namespace VisitorBook.UI.Controllers
                 return View();
             }
 
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult RegisterApplication()
+        {
             return View();
         }
     }

@@ -49,6 +49,7 @@ namespace VisitorBook.UI.Areas.AppControllers
         }
 
         [Authorize(Permissions.UserManagement.View)]
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
@@ -72,12 +73,14 @@ namespace VisitorBook.UI.Areas.AppControllers
         }
 
         [Authorize(Permissions.UserManagement.Create)]
+        [HttpGet]
         public IActionResult Add()
         {
             return View();
         }
 
         [Authorize(Permissions.UserManagement.Edit)]
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             var role = await _roleManager.Roles.FirstOrDefaultAsync(x => x.Id == id);
@@ -177,7 +180,7 @@ namespace VisitorBook.UI.Areas.AppControllers
         }
 
         [Authorize(Permissions.UserManagement.Delete)]
-        [HttpDelete]
+        [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
             var roleToDelete = await _roleManager.Roles.FirstOrDefaultAsync(x => x.Id == id);

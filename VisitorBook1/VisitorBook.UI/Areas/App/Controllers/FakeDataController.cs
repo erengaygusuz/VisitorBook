@@ -21,6 +21,7 @@ namespace VisitorBook.UI.Areas.App.Controllers
         }
 
         [Authorize(Permissions.FakeDataManagement.View)]
+        [HttpGet]
         public IActionResult Index()
         {
             return View();

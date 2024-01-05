@@ -42,6 +42,7 @@ namespace VisitorBook.UI.Areas.AppControllers
         }
 
         [Authorize(Permissions.PlaceManagement.View)]
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
@@ -59,6 +60,7 @@ namespace VisitorBook.UI.Areas.AppControllers
         }
 
         [Authorize(Permissions.PlaceManagement.View)]
+        [HttpGet]
         public async Task<IActionResult> GetAllByRegion(int regionId)
         {
             var subRegionResponseDtos = await _subRegionService.GetAllAsync<SubRegionResponseDto>(
@@ -78,6 +80,7 @@ namespace VisitorBook.UI.Areas.AppControllers
         }
 
         [Authorize(Permissions.PlaceManagement.Create)]
+        [HttpGet]
         public async Task<IActionResult> Add()
         {
             var regionResponseDtos = await _regionService.GetAllAsync<RegionResponseDto>();
@@ -97,6 +100,7 @@ namespace VisitorBook.UI.Areas.AppControllers
         }
 
         [Authorize(Permissions.PlaceManagement.Edit)]
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             var subRegionResponseDto = await _subRegionService.GetAsync<SubRegionResponseDto>(x => x.Id == id, include: x => x.Include(c => c.Region));
@@ -181,7 +185,7 @@ namespace VisitorBook.UI.Areas.AppControllers
         }
 
         [Authorize(Permissions.PlaceManagement.Delete)]
-        [HttpDelete]
+        [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
             var subRegionResponseDto = await _subRegionService.GetAsync<SubRegionResponseDto>(u => u.Id == id);

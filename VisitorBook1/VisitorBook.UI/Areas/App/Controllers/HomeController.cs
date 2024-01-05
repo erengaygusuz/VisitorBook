@@ -25,6 +25,7 @@ namespace VisitorBook.UI.Area.App.Controllers
             _localization = localization;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             VisitorStatisticViewModel visitorStatisticViewModel = new VisitorStatisticViewModel()
@@ -50,6 +51,7 @@ namespace VisitorBook.UI.Area.App.Controllers
             return LocalRedirect(returnUrl);
         }
 
+        [HttpGet]
         public IActionResult AccessDenied(string returnUrl)
         {
             ViewBag.message = _localization["AccessDenied.Message.Text"].Value;
