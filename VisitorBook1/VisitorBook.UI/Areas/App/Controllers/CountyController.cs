@@ -57,7 +57,6 @@ namespace VisitorBook.UI.Area.App.Controllers
             return DataTablesResult(result);
         }
 
-        [Authorize(Permissions.PlaceManagement.View)]
         public async Task<IActionResult> GetAllByCity(int cityId)
         {
             var countyResponseDtos = await _countyService.GetAllAsync<CountyResponseDto>(

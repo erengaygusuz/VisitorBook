@@ -1,6 +1,5 @@
 ﻿@model ProfileViewModel
 
-<!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -14,10 +13,9 @@
                 </ol>
             </div>
         </div>
-    </div><!-- /.container-fluid -->
+    </div>
 </section>
 
-<!-- Main content -->
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -25,49 +23,75 @@
                 <div class="card">
                     <div class="card-header p-2">
                         <ul class="nav nav-pills">
-                            <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">@localization["Profiles.GeneralTab.Title.Text"]</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">@localization["Profiles.SecurityTab.Title.Text"]</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="#general" data-toggle="tab">@localization["Profiles.GeneralTab.Title.Text"]</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#security" data-toggle="tab">@localization["Profiles.SecurityTab.Title.Text"]</a></li>
                         </ul>
                     </div>
                     <div class="card-body">
                         <input type="hidden" id="ActiveLanguage" value="@Thread.CurrentThread.CurrentCulture.Name" />
+                        <input type="hidden" id="AddOrEditModalCountySelectionText" value="@localization["AddOrEditModal.CountySelection.Text"]" />
                         <div class="tab-content">
-                            <div class="active tab-pane" id="activity">
-                                <form class="form-horizontal" asp-area="App" asp-controller="Profile" asp-action="UpdateGeneralInfo" id="UpdateGeneralInfoForm">
+                            <div class="active tab-pane" id="general">
+                                <form class="form-horizontal" asp-area="App" asp-controller="Profile" asp-action="UpdateGeneralInfo">
+                                    <input type="hidden" asp-for="@Model.UserGeneralInfo.UserAddress!.Id" />
                                     <div class="form-group row">
-                                        <label for="name" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row1.Text"]</label>
+                                        <label asp-for="@Model.UserGeneralInfo.Name" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row1.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="name" name="name" value="@Model.UserGeneralInfo.Name" placeholder="@localization["Profiles.GeneralTab.Row1.Text"]">
+                                            <input class="form-control" asp-for="@Model.UserGeneralInfo.Name" placeholder="@localization["Profiles.GeneralTab.Row1.Text"]">
+                                            <span class="error invalid-feedback">@TempData["Name"]</span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="surname" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row2.Text"]</label>
+                                        <label asp-for="@Model.UserGeneralInfo.Surname" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row2.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="surname" name="surname" value="@Model.UserGeneralInfo.Surname" placeholder="@localization["Profiles.GeneralTab.Row2.Text"]">
+                                            <input class="form-control" asp-for="@Model.UserGeneralInfo.Surname" placeholder="@localization["Profiles.GeneralTab.Row2.Text"]">
+                                            <span class="error invalid-feedback">@TempData["Surname"]</span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="birthdate" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row3.Text"]</label>
+                                        <label asp-for="@Model.UserGeneralInfo.BirthDate" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row3.Text"]</label>
                                         <div class="col-sm-10">
                                             <div class="input-group date" id="user-birthdate" data-target-input="nearest">
-                                                <input type="text" class="form-control datetimepicker-input" data-target="#user-birthdate" name="birthDate" id="birthDate" value="@Model.UserGeneralInfo.BirthDate">
+                                                <input type="text" class="form-control datetimepicker-input" data-target="#user-birthdate" id="birthDate" asp-for="@Model.UserGeneralInfo.BirthDate">
                                                 <div class="input-group-append" data-target="#user-birthdate" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                 </div>
                                             </div>
+                                            <span class="error invalid-feedback">@TempData["BirthDate"]</span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="phoneNumber" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row4.Text"]</label>
+                                        <label asp-for="@Model.UserGeneralInfo.PhoneNumber" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row4.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="@Model.UserGeneralInfo.PhoneNumber" data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                                            <input type="text" class="form-control" id="phoneNumber" asp-for="@Model.UserGeneralInfo.PhoneNumber" data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                                            <span class="error invalid-feedback">@TempData["PhoneNumber"]</span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="gender" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row5.Text"]</label>
+                                        <label asp-for="@Model.UserGeneralInfo.Gender" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row5.Text"]</label>
                                         <div class="col-sm-10">
-                                            <select asp-for="@Model.UserGeneralInfo.Gender" id="" asp-items="@Model.GenderList" class="form-control select2" style="width: 100% !important;" name="gender" id="gender">
-                                                <option disabled selected>@localization["AddOrEditModal.GenderSelection.Text"]</option>
+                                            <select asp-for="@Model.UserGeneralInfo.Gender" asp-items="@Model.GenderList" class="form-control select2" style="width: 100% !important;">
+                                                <option disabled selected value="0">@localization["AddOrEditModal.GenderSelection.Text"]</option>
+                                            </select>
+                                            <span class="error invalid-feedback">@TempData["Gender"]</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label asp-for="@Model.UserGeneralInfo.UserAddress!.CityId" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row6.Text"]</label>
+                                        <div class="col-sm-10">
+                                            <select onchange="cityChange()" asp-for="@Model.UserGeneralInfo.UserAddress!.CityId" id="citylist"
+                                                    asp-items="@Model.CityList" class="form-control select2" style="width: 100% !important;">
+                                                <option disabled selected value="0">@localization["AddOrEditModal.CitySelection.Text"]</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" id="countylist-box">
+                                        <label asp-for="@Model.UserGeneralInfo.UserAddress!.CountyId" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row7.Text"]</label>
+                                        <div class="col-sm-10">
+                                            <select asp-for="@Model.UserGeneralInfo.UserAddress!.CountyId" asp-items="@Model.CountyList" class="form-control select2" style="width: 100% !important;" id="countylist">
+                                                <option disabled selected value="0">
+                                                    @localization["AddOrEditModal.CountySelection.Text"]
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -78,8 +102,8 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="tab-pane" id="settings">
-                                <form class="form-horizontal" asp-area="App" asp-controller="Profile" asp-action="UpdateSecurityInfo" id="UpdateSecurityInfoForm">
+                            <div class="tab-pane" id="security">
+                                <form class="form-horizontal" asp-area="App" asp-controller="Profile" asp-action="UpdateSecurityInfo">
                                     <div class="form-group row">
                                         <label for="username" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row1.Text"]</label>
                                         <div class="col-sm-10">
@@ -93,21 +117,24 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="passwordOld" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row3.Text"]</label>
+                                        <label asp-for="@Model.UserSecurityInfo.PasswordOld" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row3.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="password" name="passwordOld" id="passwordOld" class="form-control" value="@Model.UserSecurityInfo.PasswordOld" placeholder="@localization["Profiles.SecurityTab.Row3.Text"]">
+                                            <input type="password" id="passwordOld" class="form-control" asp-for="@Model.UserSecurityInfo.PasswordOld" placeholder="@localization["Profiles.SecurityTab.Row3.Text"]">
+                                            <span class="error invalid-feedback">@TempData["PasswordOld"]</span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="passwordNew" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row4.Text"]</label>
+                                        <label asp-for="@Model.UserSecurityInfo.PasswordNew" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row4.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="password" name="passwordNew" id="passwordNew" class="form-control" value="@Model.UserSecurityInfo.PasswordNew" placeholder="@localization["Profiles.SecurityTab.Row4.Text"]">
+                                            <input type="password" id="passwordNew" class="form-control" asp-for="@Model.UserSecurityInfo.PasswordNew" placeholder="@localization["Profiles.SecurityTab.Row4.Text"]">
+                                            <span class="error invalid-feedback">@TempData["PasswordNew"]</span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="passwordNewConfirm" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row5.Text"]</label>
+                                        <label asp-for="@Model.UserSecurityInfo.PasswordNewConfirm" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row5.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="password" name="passwordNewConfirm" id="passwordNewConfirm" class="form-control" value="@Model.UserSecurityInfo.PasswordNewConfirm" placeholder="@localization["Profiles.SecurityTab.Row5.Text"]">
+                                            <input type="password" id="passwordNewConfirm" class="form-control" asp-for="@Model.UserSecurityInfo.PasswordNewConfirm" placeholder="@localization["Profiles.SecurityTab.Row5.Text"]">
+                                            <span class="error invalid-feedback">@TempData["PasswordNewConfirm"]</span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -117,19 +144,14 @@
                                     </div>
                                 </form>
                             </div>
-                            <!-- /.tab-pane -->
                         </div>
-                        <!-- /.tab-content -->
-                    </div><!-- /.card-body -->
+                    </div>
                 </div>
-                <!-- /.card -->
             </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
-    </div><!-- /.container-fluid -->
+    </div>
 </section>
-<!-- /.content -->
+
 @section Scripts {
     <script src="~/view-resources/app/views/profile/profile.js"></script>
 }

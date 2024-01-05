@@ -9,6 +9,14 @@ using VisitorBook.Core.Enums;
 using VisitorBook.Core.Extensions;
 using VisitorBook.UI.Languages;
 using VisitorBook.Core.ViewModels;
+using VisitorBook.Core.Dtos.CityDtos;
+using VisitorBook.Core.Abstract;
+using VisitorBook.Core.Dtos.VisitorAddressDtos;
+using Microsoft.EntityFrameworkCore;
+using VisitorBook.Core.Dtos.CountyDtos;
+using AutoMapper;
+using FluentValidation;
+using AspNetCoreHero.ToastNotification.Abstractions;
 
 namespace VisitorBook.UI.Areas.AppControllers
 {
@@ -19,17 +27,49 @@ namespace VisitorBook.UI.Areas.AppControllers
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
         private readonly IStringLocalizer<Language> _localization;
+        private readonly IService<City> _cityService;
+        private readonly IMapper _mapper;
+        private readonly IService<County> _countyService;
+        private readonly IValidator<ProfileViewModel> _profileViewModelValidator;
+        private readonly INotyfService _notifyService;
 
-        public ProfileController(SignInManager<User> signInManager, UserManager<User> userManager, IStringLocalizer<Language> localization)
+        public ProfileController(SignInManager<User> signInManager, UserManager<User> userManager, IStringLocalizer<Language> localization,
+            IService<City> cityService, IMapper mapper, IService<County> countyService, IValidator<ProfileViewModel> profileViewModelValidator, INotyfService notifyService)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _localization = localization;
+            _cityService = cityService;
+            _mapper = mapper;
+            _countyService = countyService;
+            _profileViewModelValidator = profileViewModelValidator;
+            _notifyService = notifyService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            var user = await _userManager.Users.Include(u => u.UserAddress).ThenInclude(c => c.County).FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+            IEnumerable<CountyResponseDto> countyResponseDtos;
+
+            var userAddressResponseDto = new UserAddressResponseDto();
+
+            if (user.UserAddress != null)
+            {
+                userAddressResponseDto = _mapper.Map<UserAddressResponseDto>(user.UserAddress);
+
+                countyResponseDtos = await _countyService.GetAllAsync<CountyResponseDto>(
+                    orderBy: o => o.OrderBy(x => x.Name),
+                    expression: u => u.CityId == userAddressResponseDto.CityId,
+                    include: x => x.Include(c => c.City));
+            }
+
+            else
+            {
+                countyResponseDtos = new List<CountyResponseDto>();
+            }
+
+            var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>();
 
             var profileViewModel = new ProfileViewModel
             {
@@ -44,13 +84,34 @@ namespace VisitorBook.UI.Areas.AppControllers
                     Surname = user.Surname,
                     BirthDate = user.BirthDate,
                     Gender = user.Gender.ToString(),
-                    PhoneNumber = user.PhoneNumber
+                    PhoneNumber = user.PhoneNumber,
+                    UserAddress = user.UserAddress != null ?
+                    new UserAddressRequestDto()
+                    {
+                        Id = userAddressResponseDto.Id,
+                        CityId = userAddressResponseDto.CityId,
+                        CountyId = userAddressResponseDto.CountyId
+                    }
+                    :
+                    new UserAddressRequestDto()
                 },
                 GenderList = new List<string> { "Male", "Female" }
                    .Select(u => new SelectListItem
                    {
                        Text = _localization["Enum.Gender." + u + ".Text"].Value,
                        Value = u.ToString()
+                   }),
+                CityList = (cityResponseDtos)
+                   .Select(u => new SelectListItem
+                   {
+                       Text = u.Name,
+                       Value = u.Id.ToString()
+                   }),
+                CountyList = (countyResponseDtos)
+                   .Select(u => new SelectListItem
+                   {
+                       Text = u.Name,
+                       Value = u.Id.ToString()
                    })
             };
 
@@ -59,51 +120,121 @@ namespace VisitorBook.UI.Areas.AppControllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateSecurityInfo(UpdateSecurityInfoDto updateSecurityInfoDto)
+        public async Task<IActionResult> UpdateSecurityInfo(ProfileViewModel profileViewModel)
         {
+            var validationResult = await _profileViewModelValidator.ValidateAsync(profileViewModel, options =>
+            {
+                options.IncludeProperties("UserSecurityInfo");
+            });
+
+            if (!validationResult.IsValid)
+            {
+                var messages = validationResult.ToDictionary();
+
+                TempData["PasswordOld"] = messages.Where(x => x.Key == "UserSecurityInfo.PasswordOld").FirstOrDefault().Value 
+                    != null ? messages.Where(x => x.Key == "UserSecurityInfo.PasswordOld").FirstOrDefault().Value.FirstOrDefault() 
+                    : "";
+                TempData["PasswordNew"] = messages.Where(x => x.Key == "UserSecurityInfo.PasswordNew").FirstOrDefault().Value 
+                    != null ? messages.Where(x => x.Key == "UserSecurityInfo.PasswordNew").FirstOrDefault().Value.FirstOrDefault() 
+                    : "";
+                TempData["PasswordNewConfirm"] = messages.Where(x => x.Key == "UserSecurityInfo.PasswordNewConfirm").FirstOrDefault().Value 
+                    != null ? messages.Where(x => x.Key == "UserSecurityInfo.PasswordNewConfirm").FirstOrDefault().Value.FirstOrDefault() 
+                    : "";
+
+                return RedirectToAction("Index");
+            }
+
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            var checkOldPassword = await _userManager.CheckPasswordAsync(user, updateSecurityInfoDto.PasswordOld);
+            var checkOldPassword = await _userManager.CheckPasswordAsync(user, profileViewModel.UserSecurityInfo.PasswordOld);
 
             if (!checkOldPassword)
             {
-                return BadRequest(new { message = _localization["Profiles.SecurityTab.Message2.Text"].Value });
+                _notifyService.Error(_localization["Profiles.SecurityTab.Message2.Text"].Value);
+
+                return RedirectToAction("Index");
             }
 
-            var resultChangePassword = await _userManager.ChangePasswordAsync(user, updateSecurityInfoDto.PasswordOld, updateSecurityInfoDto.PasswordNew);
+            var resultChangePassword = await _userManager.ChangePasswordAsync(user, profileViewModel.UserSecurityInfo.PasswordOld, profileViewModel.UserSecurityInfo.PasswordNew);
 
             if (!resultChangePassword.Succeeded)
             {
                 ModelState.AddModelErrorList(resultChangePassword.Errors.Select(x => x.Description).ToList());
 
-                return BadRequest(new { message = _localization["Profiles.SecurityTab.Message4.Text"].Value });
+                _notifyService.Error(_localization["Profiles.SecurityTab.Message4.Text"].Value);
+
+                return RedirectToAction("Index");
             }
 
             await _userManager.UpdateSecurityStampAsync(user);
 
             await _signInManager.SignOutAsync();
-            await _signInManager.PasswordSignInAsync(user, updateSecurityInfoDto.PasswordNew, true, false);
+            await _signInManager.PasswordSignInAsync(user, profileViewModel.UserSecurityInfo.PasswordNew, true, false);
 
-            return Json(new { message = _localization["Profiles.SecurityTab.Message3.Text"].Value });
+            _notifyService.Success(_localization["Profiles.SecurityTab.Message3.Text"].Value);
+
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateGeneralInfo(UpdateGeneralInfoDto updateGeneralInfoDto)
+        public async Task<IActionResult> UpdateGeneralInfo(ProfileViewModel profileViewModel)
         {
+            var validationResult = await _profileViewModelValidator.ValidateAsync(profileViewModel, options =>
+            {
+                options.IncludeProperties("UserGeneralInfo");
+            });
+
+            if (!validationResult.IsValid)
+            {
+                var messages = validationResult.ToDictionary();
+
+                TempData["Name"] = messages.Where(x => x.Key == "UserGeneralInfo.Name").FirstOrDefault().Value 
+                    != null ? messages.Where(x => x.Key == "UserGeneralInfo.Name").FirstOrDefault().Value.FirstOrDefault() 
+                    : "";
+                TempData["Surname"] = messages.Where(x => x.Key == "UserGeneralInfo.Surname").FirstOrDefault().Value 
+                    != null ? messages.Where(x => x.Key == "UserGeneralInfo.Surname").FirstOrDefault().Value.FirstOrDefault() 
+                    : "";
+                TempData["BirthDate"] = messages.Where(x => x.Key == "UserGeneralInfo.BirthDate").FirstOrDefault().Value 
+                    != null ? messages.Where(x => x.Key == "UserGeneralInfo.BirthDate").FirstOrDefault().Value.FirstOrDefault() 
+                    : "";
+                TempData["Gender"] = messages.Where(x => x.Key == "UserGeneralInfo.Gender").FirstOrDefault().Value 
+                    != null ? messages.Where(x => x.Key == "UserGeneralInfo.Gender").FirstOrDefault().Value.FirstOrDefault() 
+                    : "";
+                TempData["PhoneNumber"] = messages.Where(x => x.Key == "UserGeneralInfo.PhoneNumber").FirstOrDefault().Value 
+                    != null ? messages.Where(x => x.Key == "UserGeneralInfo.PhoneNumber").FirstOrDefault().Value.FirstOrDefault() 
+                    : "";
+
+                var result = validationResult.ToDictionary();
+
+                return RedirectToAction("Index");
+            }
+
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            user.Name = updateGeneralInfoDto.Name;
-            user.Surname = updateGeneralInfoDto.Surname;
-            user.BirthDate = updateGeneralInfoDto.BirthDate;
-            user.Gender = (Gender) Enum.Parse(typeof(Gender), updateGeneralInfoDto.Gender);
-            user.PhoneNumber = updateGeneralInfoDto.PhoneNumber;
+            user.Name = profileViewModel.UserGeneralInfo.Name;
+            user.Surname = profileViewModel.UserGeneralInfo.Surname;
+            user.BirthDate = profileViewModel.UserGeneralInfo.BirthDate;
+            user.Gender = (Gender) Enum.Parse(typeof(Gender), profileViewModel.UserGeneralInfo.Gender);
+            user.PhoneNumber = profileViewModel.UserGeneralInfo.PhoneNumber;
+            user.UserAddress = profileViewModel.UserGeneralInfo.UserAddress != null 
+                               && profileViewModel.UserGeneralInfo.UserAddress.CityId != 0 
+                               && profileViewModel.UserGeneralInfo.UserAddress.CountyId != 0 ?
+                new UserAddress()
+                {
+                    Id = profileViewModel.UserGeneralInfo.UserAddress.Id,
+                    CountyId = profileViewModel.UserGeneralInfo.UserAddress.CountyId
+                }
+                :
+                null;
 
             var updateToUserResult = await _userManager.UpdateAsync(user);
 
             if (!updateToUserResult.Succeeded)
             {
-                return BadRequest(new { message = _localization["Profiles.GeneralTab.Message1.Text"].Value });
+                _notifyService.Error(_localization["Profiles.GeneralTab.Message1.Text"].Value);
+
+                return RedirectToAction("Index");
             }
 
             await _userManager.UpdateSecurityStampAsync(user);
@@ -111,7 +242,9 @@ namespace VisitorBook.UI.Areas.AppControllers
             await _signInManager.SignOutAsync();
             await _signInManager.SignInAsync(user, true);
 
-            return Json(new { message = _localization["Profiles.GeneralTab.Message2.Text"].Value });
+            _notifyService.Success(_localization["Profiles.GeneralTab.Message2.Text"].Value);
+
+            return RedirectToAction("Index");
         }
 
         public async Task Logout()

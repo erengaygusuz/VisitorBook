@@ -3,6 +3,7 @@ using VisitorBook.Core.Dtos.CityDtos;
 using VisitorBook.Core.Dtos.ContactMessageDtos;
 using VisitorBook.Core.Dtos.CountryDtos;
 using VisitorBook.Core.Dtos.CountyDtos;
+using VisitorBook.Core.Dtos.ProfileDtos;
 using VisitorBook.Core.Dtos.RegionDtos;
 using VisitorBook.Core.Dtos.RoleDtos;
 using VisitorBook.Core.Dtos.SubRegionDtos;

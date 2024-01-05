@@ -147,6 +147,7 @@ builder.Services.AddScoped<IValidator<SubRegionViewModel>, SubRegionViewModelVal
 builder.Services.AddScoped<IValidator<RegionRequestDto>, RegionRequestDtoValidator>();
 builder.Services.AddScoped<IValidator<FakeDataViewModel>, FakeDataViewModelValidator>();
 builder.Services.AddScoped<IValidator<ContactMessageRequestDto>, ContactMessageRequestDtoValidator>();
+builder.Services.AddScoped<IValidator<ProfileViewModel>, ProfileViewModelValidator>();
 
 builder.Services.AddFluentValidation(fv => {
     fv.DisableDataAnnotationsValidation = true;

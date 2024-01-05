@@ -95,7 +95,7 @@
 
         <!-- /.content-wrapper -->
         <footer class="main-footer text-center">
-            <strong>Copyright &copy; @DateTime.Now.Year - @localization["Layout.Header.Title.Text"]</strong>
+            <strong>Copyright &copy; 2023 - @DateTime.Now.Year - @localization["Layout.Header.Title.Text"]</strong>
         </footer>
 
         <!-- Control Sidebar -->
@@ -163,5 +163,7 @@
     </script>
 
     @await RenderSectionAsync("Scripts", required: false)
+
+    @await Component.InvokeAsync("Notyf")
 </body>
 </html>

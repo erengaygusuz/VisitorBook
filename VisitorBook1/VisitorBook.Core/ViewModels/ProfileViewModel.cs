@@ -12,5 +12,11 @@ namespace VisitorBook.Core.ViewModels
 
         [ValidateNever]
         public IEnumerable<SelectListItem> GenderList { get; set; }
+
+        [ValidateNever]
+        public IEnumerable<SelectListItem> CityList { get; set; }
+
+        [ValidateNever]
+        public IEnumerable<SelectListItem> CountyList { get; set; }
     }
 }

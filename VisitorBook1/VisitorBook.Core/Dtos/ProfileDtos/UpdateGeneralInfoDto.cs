@@ -1,4 +1,6 @@
-﻿namespace VisitorBook.Core.Dtos.ProfileDtos
+﻿using VisitorBook.Core.Dtos.VisitorAddressDtos;
+
+namespace VisitorBook.Core.Dtos.ProfileDtos
 {
     public class UpdateGeneralInfoDto
     {
@@ -7,5 +9,7 @@
         public DateTime BirthDate { get; set; }
         public string Gender { get; set; }
         public string PhoneNumber { get; set; }
+
+        public UserAddressRequestDto? UserAddress { get; set; }
     }
 }

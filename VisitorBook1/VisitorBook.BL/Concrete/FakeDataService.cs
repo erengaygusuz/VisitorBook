@@ -84,7 +84,7 @@ namespace VisitorBook.BL.Concrete
 
             foreach(var user in userList)
             {
-                var result = await _userManager.CreateAsync(user);
+                var result = await _userManager.CreateAsync(user, "12345");
 
                 if (result.Succeeded)
                 {

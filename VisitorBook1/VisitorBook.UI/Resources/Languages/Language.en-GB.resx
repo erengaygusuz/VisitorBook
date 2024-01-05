@@ -1084,13 +1084,13 @@
     <value>Please enter a valid visited date</value>
   </data>
   <data name="Profiles.SecurityTab.Message4.Text" xml:space="preserve">
-    <value>Please enter a password that has at least five character</value>
+    <value>Please enter a password that has at least 5 character</value>
   </data>
   <data name="Validators.Register.Message20.Text" xml:space="preserve">
-    <value>Please enter a password that has at least five character</value>
+    <value>Please enter a password that has at least 5 character</value>
   </data>
   <data name="Validators.ResetPassword.Message4.Text" xml:space="preserve">
-    <value>Please enter a password that has at least five character</value>
+    <value>Please enter a password that has at least 5 character</value>
   </data>
   <data name="Layout.Header.Navbar.Items12.Text" xml:space="preserve">
     <value>Fake Data Generation</value>
@@ -1256,5 +1256,68 @@
   </data>
   <data name="EmailTemplates.ForgotPassword.Text9" xml:space="preserve">
     <value>e-mail address or contact form at</value>
+  </data>
+  <data name="Profiles.GeneralTab.Row6.Text" xml:space="preserve">
+    <value>Address City</value>
+  </data>
+  <data name="Profiles.GeneralTab.Row7.Text" xml:space="preserve">
+    <value>Address County</value>
+  </data>
+  <data name="Validators.Profile.Message1.Text" xml:space="preserve">
+    <value>Please fill the name area</value>
+  </data>
+  <data name="Validators.Profile.Message10.Text" xml:space="preserve">
+    <value>Please enter a valid birthdate</value>
+  </data>
+  <data name="Validators.Profile.Message11.Text" xml:space="preserve">
+    <value>Please choose a gender</value>
+  </data>
+  <data name="Validators.Profile.Message12.Text" xml:space="preserve">
+    <value>Please fill the phone number area</value>
+  </data>
+  <data name="Validators.Profile.Message13.Text" xml:space="preserve">
+    <value>Please fill the old password area</value>
+  </data>
+  <data name="Validators.Profile.Message14.Text" xml:space="preserve">
+    <value>Please enter a old password that has at least 5 character</value>
+  </data>
+  <data name="Validators.Profile.Message15.Text" xml:space="preserve">
+    <value>Please fill the new password area</value>
+  </data>
+  <data name="Validators.Profile.Message16.Text" xml:space="preserve">
+    <value>Please enter a new password that has at least 5 character</value>
+  </data>
+  <data name="Validators.Profile.Message17.Text" xml:space="preserve">
+    <value>Please fill the new password again area</value>
+  </data>
+  <data name="Validators.Profile.Message18.Text" xml:space="preserve">
+    <value>Please enter a new password again that has at least 5 character</value>
+  </data>
+  <data name="Validators.Profile.Message19.Text" xml:space="preserve">
+    <value>The passwords that you entered do not match</value>
+  </data>
+  <data name="Validators.Profile.Message2.Text" xml:space="preserve">
+    <value>Name can not contain number</value>
+  </data>
+  <data name="Validators.Profile.Message3.Text" xml:space="preserve">
+    <value>Please enter a name minimum 3 character at least</value>
+  </data>
+  <data name="Validators.Profile.Message4.Text" xml:space="preserve">
+    <value>Please enter a name maximum 100 character at most</value>
+  </data>
+  <data name="Validators.Profile.Message5.Text" xml:space="preserve">
+    <value>Please fill the surname area</value>
+  </data>
+  <data name="Validators.Profile.Message6.Text" xml:space="preserve">
+    <value>Surname can not contain number</value>
+  </data>
+  <data name="Validators.Profile.Message7.Text" xml:space="preserve">
+    <value>Please enter a surname minimum 3 character at least</value>
+  </data>
+  <data name="Validators.Profile.Message8.Text" xml:space="preserve">
+    <value>Please enter a surname maximum 100 character at most</value>
+  </data>
+  <data name="Validators.Profile.Message9.Text" xml:space="preserve">
+    <value>Please fill the birthdate area</value>
   </data>
 </root>
