@@ -28,18 +28,37 @@
               autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="@Model.VisitedCounty.Id" />
-            <div class="row mt-4">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label asp-for="@Model.VisitedCounty.UserId"
-                               class="control-label">@localization["VisitedCounties.Table.Column1.Text"]</label>
-                        <select asp-for="@Model.VisitedCounty.UserId" asp-items="@Model.VisitorList" class="form-control select2" style="width: 100% !important;" id="visitor-select-field">
-                            <option disabled selected>@localization["AddOrEditModal.VisitorSelection.Text"]</option>
-                        </select>
-                        <span asp-validation-for="@Model.VisitedCounty.UserId" class=" text-danger"></span>
+            @if (@User.Claims.Where(x => x.Type == ClaimTypes.Role).Select(x => x.Value).FirstOrDefault() == AppRoles.Visitor)
+            {
+                <div class="row mt-4 d-none">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label asp-for="@Model.VisitedCounty.UserId"
+                                   class="control-label">@localization["VisitedCounties.Table.Column1.Text"]</label>
+                            <select asp-for="@Model.VisitedCounty.UserId" asp-items="@Model.VisitorList" class="form-control select2" style="width: 100% !important;" id="visitor-select-field">
+                            </select>
+                            <span asp-validation-for="@Model.VisitedCounty.UserId" class=" text-danger"></span>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
+
+            else
+            {
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label asp-for="@Model.VisitedCounty.UserId" class="control-label">@localization["VisitedCounties.Table.Column1.Text"]</label>
+
+                            <select asp-for="@Model.VisitedCounty.UserId" asp-items="@Model.VisitorList" class="form-control select2" style="width: 100% !important;" id="visitor-select-field">
+                                <option disabled selected>@localization["AddOrEditModal.VisitorSelection.Text"]</option>
+                            </select>
+
+                            <span asp-validation-for="@Model.VisitedCounty.UserId" class=" text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            }
             <div class="row mt-4">
                 <div class="col-md-12">
                     <div class="form-group">

@@ -17,6 +17,8 @@ using FluentValidation;
 using VisitorBook.Core.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using VisitorBook.Core.Constants;
+using System.Security.Claims;
+using VisitorBook.Core.Utilities.DataTablesServerSideHelpers;
 
 namespace VisitorBook.UI.Area.App.Controllers
 {
@@ -55,12 +57,28 @@ namespace VisitorBook.UI.Area.App.Controllers
 
         [Authorize(Permissions.VisitedCountyManagement.View)]
         [HttpPost]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
             _visitedCountyDataTableOptions.SetDataTableOptions(Request);
 
-            var result = _visitedCountyService.GetAll<VisitedCountyResponseDto>(_visitedCountyDataTableOptions.GetDataTablesOptions(), 
-                include: x => x.Include(c => c.User).Include(c => c.County).ThenInclude(c => c.City));
+            PagedList<VisitedCountyResponseDto> result;
+
+            if (User.Claims.Where(x => x.Type == ClaimTypes.Role).Select(x => x.Value).FirstOrDefault() == AppRoles.Visitor)
+            {
+                var userEmail = User.Claims.Where(x => x.Type == ClaimTypes.Email).Select(x => x.Value).FirstOrDefault();
+
+                var user = await _userManager.FindByEmailAsync(userEmail);
+
+                result = _visitedCountyService.GetAll<VisitedCountyResponseDto>(_visitedCountyDataTableOptions.GetDataTablesOptions(),
+                    include: x => x.Include(c => c.User).Include(c => c.County).ThenInclude(c => c.City),
+                    expression: x => x.UserId == user.Id);
+            }
+
+            else
+            {
+                result = _visitedCountyService.GetAll<VisitedCountyResponseDto>(_visitedCountyDataTableOptions.GetDataTablesOptions(),
+                    include: x => x.Include(c => c.User).Include(c => c.County).ThenInclude(c => c.City));
+            }
 
             return DataTablesResult(result);
         }
@@ -70,7 +88,24 @@ namespace VisitorBook.UI.Area.App.Controllers
         {
             var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>();
 
-            var visitorsWithVisitorAddress = await _userManager.Users.ToListAsync();
+            IList<User> visitorsWithVisitorAddress;
+
+            if (User.Claims.Where(x => x.Type == ClaimTypes.Role).Select(x => x.Value).FirstOrDefault() == AppRoles.Visitor)
+            {
+                var userEmail = User.Claims.Where(x => x.Type == ClaimTypes.Email).Select(x => x.Value).FirstOrDefault();
+
+                var user = await _userManager.FindByEmailAsync(userEmail);
+
+                visitorsWithVisitorAddress = new List<User>()
+                {
+                    user
+                };
+            }
+
+            else
+            {
+                visitorsWithVisitorAddress = await _userManager.GetUsersInRoleAsync(AppRoles.Visitor);
+            }
 
             var visitedCountyViewModel = new VisitedCountyViewModel()
             {
@@ -105,7 +140,24 @@ namespace VisitorBook.UI.Area.App.Controllers
 
             var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>();
 
-            var visitorsWithVisitorAddress = await _userManager.Users.ToListAsync();
+            IList<User> visitorsWithVisitorAddress; 
+
+            if (User.Claims.Where(x => x.Type == ClaimTypes.Role).Select(x => x.Value).FirstOrDefault() == AppRoles.Visitor)
+            {
+                var userEmail = User.Claims.Where(x => x.Type == ClaimTypes.Email).Select(x => x.Value).FirstOrDefault();
+
+                var user = await _userManager.FindByEmailAsync(userEmail);
+
+                visitorsWithVisitorAddress = new List<User>()
+                {
+                    user
+                };
+            }
+
+            else
+            {
+                visitorsWithVisitorAddress = await _userManager.GetUsersInRoleAsync(AppRoles.Visitor);
+            }
 
             var visitedCountyViewModel = new VisitedCountyViewModel()
             {
@@ -154,7 +206,24 @@ namespace VisitorBook.UI.Area.App.Controllers
 
                 var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>();
 
-                var visitorsWithVisitorAddress = await _userManager.Users.ToListAsync();
+                IList<User> visitorsWithVisitorAddress;
+
+                if (User.Claims.Where(x => x.Type == ClaimTypes.Role).Select(x => x.Value).FirstOrDefault() == AppRoles.Visitor)
+                {
+                    var userEmail = User.Claims.Where(x => x.Type == ClaimTypes.Email).Select(x => x.Value).FirstOrDefault();
+
+                    var user = await _userManager.FindByEmailAsync(userEmail);
+
+                    visitorsWithVisitorAddress = new List<User>()
+                    {
+                        user
+                    };
+                }
+
+                else
+                {
+                    visitorsWithVisitorAddress = await _userManager.GetUsersInRoleAsync(AppRoles.Visitor);
+                }
 
                 visitedCountyViewModel.CityList = (cityResponseDtos)
                        .Select(u => new SelectListItem
@@ -192,7 +261,24 @@ namespace VisitorBook.UI.Area.App.Controllers
 
                 var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>();
 
-                var visitorsWithVisitorAddress = await _userManager.Users.ToListAsync();
+                IList<User> visitorsWithVisitorAddress;
+
+                if (User.Claims.Where(x => x.Type == ClaimTypes.Role).Select(x => x.Value).FirstOrDefault() == AppRoles.Visitor)
+                {
+                    var userEmail = User.Claims.Where(x => x.Type == ClaimTypes.Email).Select(x => x.Value).FirstOrDefault();
+
+                    var user = await _userManager.FindByEmailAsync(userEmail);
+
+                    visitorsWithVisitorAddress = new List<User>()
+                    {
+                        user
+                    };
+                }
+
+                else
+                {
+                    visitorsWithVisitorAddress = await _userManager.GetUsersInRoleAsync(AppRoles.Visitor);
+                }
 
                 visitedCountyViewModel.CityList = (cityResponseDtos)
                        .Select(u => new SelectListItem
