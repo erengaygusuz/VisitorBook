@@ -143,9 +143,9 @@ namespace VisitorBook.UI.Areas.AppControllers
 
             if (!validationResult.IsValid)
             {
-                validationResult.AddToModelState(ModelState);
+                TempData["ErrorMessage"] = validationResult.Errors.FirstOrDefault().ErrorMessage;
 
-                return View(permissionViewModel);
+                return RedirectToAction("Edit", permissionViewModel.Role.Id);
             }
 
             var roleToUpdate = await _roleManager.Roles.FirstOrDefaultAsync(x => x.Id == permissionViewModel.Role.Id);
@@ -153,6 +153,8 @@ namespace VisitorBook.UI.Areas.AppControllers
             if (roleToUpdate == null)
             {
                 throw new Exception("Güncellenecek rol bulunamamıştır.");
+
+                return RedirectToAction("Edit", permissionViewModel.Role.Id);
             }
 
             roleToUpdate.Name = permissionViewModel.Role.Name;
@@ -173,7 +175,7 @@ namespace VisitorBook.UI.Areas.AppControllers
                 await _roleManager.AddClaimAsync(roleToUpdate, new Claim("Permission", claim.DisplayValue));
             }
 
-            return View(permissionViewModel);
+            return RedirectToAction("Edit", permissionViewModel.Role.Id);
         }
 
         [Authorize(Permissions.UserManagement.Delete)]
