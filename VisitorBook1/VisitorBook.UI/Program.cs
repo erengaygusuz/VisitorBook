@@ -31,6 +31,7 @@ using VisitorBook.Core.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using VisitorBook.UI.Filters;
 using VisitorBook.Core.Dtos.ContactMessageDtos;
+using VisitorBook.UI.TokenProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -76,8 +77,23 @@ builder.Services.AddIdentity<User, Role>(options =>
     options.Password.RequireLowercase = false;
     options.Password.RequireUppercase = false;
     options.User.RequireUniqueEmail = true;
+    options.SignIn.RequireConfirmedEmail = true;
+    options.Tokens.EmailConfirmationTokenProvider = "AccountConfirmationTokenProvider";
+    options.Tokens.PasswordResetTokenProvider = "PasswordResetTokenProvider";
 
-}).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+}).AddEntityFrameworkStores<AppDbContext>()
+.AddDefaultTokenProviders()
+.AddTokenProvider<AccountConfirmationTokenProvider<User>>("AccountConfirmationTokenProvider")
+.AddTokenProvider<PasswordResetTokenProvider<User>>("PasswordResetTokenProvider");
+
+builder.Services.Configure<DataProtectionTokenProviderOptions>(opt =>
+     opt.TokenLifespan = TimeSpan.FromMinutes(15));
+
+builder.Services.Configure<AccountConfirmationTokenProviderOptions>(opt =>
+    opt.TokenLifespan = TimeSpan.FromHours(2));
+
+builder.Services.Configure<PasswordResetTokenProviderOptions>(opt =>
+    opt.TokenLifespan = TimeSpan.FromMinutes(30));
 
 builder.Services.AddLocalization(options =>
 {

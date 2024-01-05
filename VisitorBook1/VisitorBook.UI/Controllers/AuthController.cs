@@ -71,6 +71,13 @@ namespace VisitorBook.UI.Controllers
                 return View();
             }
 
+            if (!user.EmailConfirmed)
+            {
+                _notifyService.Error(_localization["Auth.Login.Message5.Text"].Value);
+
+                return View();
+            }
+
             var signInResult = await _signInManager.PasswordSignInAsync(user, loginRequestDto.Password, loginRequestDto.RememberMe, true);
 
             if (signInResult.Succeeded)
@@ -122,12 +129,50 @@ namespace VisitorBook.UI.Controllers
 
             if (identityResult.Succeeded)
             {
-                var userToAssignRole = await _userManager.FindByEmailAsync(registerRequestDto.Email);
+                var user = await _userManager.FindByEmailAsync(registerRequestDto.Email);
 
-                var result = await _userManager.AddToRoleAsync(userToAssignRole, "Visitor");
+                var result = await _userManager.AddToRoleAsync(user, "Visitor");
 
                 if (result.Succeeded)
                 {
+                    string accountConfirmToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+                    var accountConfirmLink = Url.Action("RegisterConfirmation", "Auth", new { userId = user.Id, token = accountConfirmToken }, HttpContext.Request.Scheme);
+
+                    var pathToFile = _environment.WebRootPath
+                                    + Path.DirectorySeparatorChar.ToString()
+                                    + "templates"
+                                    + Path.DirectorySeparatorChar.ToString()
+                                    + "email-template.html";
+
+                    string[] text;
+
+                    using (StreamReader streamReader = System.IO.File.OpenText(pathToFile))
+                    {
+                        text = streamReader.ReadToEnd().Split('@');
+
+                        text[4] = _localization["Layout.Header.Title.Text"].Value;
+                        text[6] = _localization["EmailTemplates.AccountConfirmation.Text1"].Value;
+                        text[8] = user.Name + " " + user.Surname;
+                        text[10] = _localization["EmailTemplates.AccountConfirmation.Text2"].Value;
+                        text[12] = _localization["EmailTemplates.AccountConfirmation.Text3"].Value;
+                        text[14] = accountConfirmLink;
+                        text[16] = _localization["EmailTemplates.AccountConfirmation.Text4"].Value;
+                        text[18] = _localization["EmailTemplates.AccountConfirmation.Text5"].Value;
+                        text[20] = accountConfirmLink;
+                        text[22] = accountConfirmLink;
+                        text[24] = _localization["EmailTemplates.AccountConfirmation.Text6"].Value;
+                        text[26] = _localization["EmailTemplates.AccountConfirmation.Text7"].Value;
+                        text[28] = _localization["EmailTemplates.AccountConfirmation.Text8"].Value;
+                        text[30] = _localization["EmailTemplates.AccountConfirmation.Text8"].Value;
+                        text[32] = _localization["EmailTemplates.AccountConfirmation.Text9"].Value;
+                        text[34] = _localization["EmailTemplates.AccountConfirmation.Text10"].Value;
+                        text[36] = _localization["EmailTemplates.AccountConfirmation.Text10"].Value;
+                        text[38] = _localization["EmailTemplates.AccountConfirmation.Text11"].Value;
+                    }
+
+                    await _emailService.SendEmail(user.Email, _localization["EmailTemplates.AccountConfirmation.Text12"].Value, String.Concat(text));
+
                     _notifyService.Success(_localization["Auth.Register.Message2.Text"].Value);
 
                     return RedirectToAction(nameof(Register));
@@ -137,6 +182,53 @@ namespace VisitorBook.UI.Controllers
             ModelState.AddModelErrorList(identityResult.Errors.Select(x => x.Description).ToList());
 
             return View();
+        }
+
+        public async Task<IActionResult> RegisterConfirmation(string userId, string token, string returnUrl = null)
+        {
+            if (userId == null || token == null)
+            {
+                _notifyService.Error(_localization["Auth.Register.Message3.Text"].Value);
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                _notifyService.Error(_localization["Auth.Register.Message3.Text"].Value);
+
+                return RedirectToAction("Index");
+            }
+
+            var confirmationResult = await _userManager.VerifyUserTokenAsync(
+                user, _userManager.Options.Tokens.EmailConfirmationTokenProvider, "EmailConfirmation", token);
+
+            if (!confirmationResult)
+            {
+                _notifyService.Error(_localization["Auth.Register.Message3.Text"].Value);
+
+                return RedirectToAction("Index");
+            }
+
+            var result = await _userManager.ConfirmEmailAsync(user, token);
+
+            if (result.Succeeded)
+            {
+                returnUrl = returnUrl ?? Url.Action("Index", "Home", new { Area = "App" });
+
+                await _userManager.UpdateSecurityStampAsync(user);
+
+                _notifyService.Success(_localization["Auth.Register.Message5.Text"].Value);
+
+                return Redirect(returnUrl);
+            }
+
+            else
+            {
+                _notifyService.Error(_localization["Auth.Register.Message4.Text"].Value);
+
+                return RedirectToAction("Index");
+            }
         }
 
         public IActionResult ForgotPassword()
@@ -201,7 +293,7 @@ namespace VisitorBook.UI.Controllers
                 text[38] = _localization["EmailTemplates.ForgotPassword.Text11"].Value;
             }
 
-            await _emailService.SendResetPasswordEmail(user.Email, _localization["EmailTemplates.ForgotPassword.Text12"].Value, String.Concat(text));
+            await _emailService.SendEmail(user.Email, _localization["EmailTemplates.ForgotPassword.Text12"].Value, String.Concat(text));
 
             _notifyService.Success(_localization["Auth.ForgotPassword.Message2.Text"].Value);
 
@@ -233,21 +325,29 @@ namespace VisitorBook.UI.Controllers
 
             if (userId == null || token == null)
             {
-                throw new Exception("Bir hata meydana geldi");
+                _notifyService.Error(_localization["Auth.ResetPassword.Message3.Text"].Value);
             }
 
-            var hasUser = await _userManager.FindByIdAsync(userId);
+            var user = await _userManager.FindByIdAsync(userId);
 
-            if (hasUser == null)
+            if (user == null)
             {
-                ModelState.AddModelError(string.Empty, "Kullanıcı bulunamamıştır");
-
-                _notifyService.Error(_localization["Auth.ResetPassword.Message1.Text"].Value);
+                _notifyService.Error(_localization["Auth.ResetPassword.Message3.Text"].Value);
 
                 return View();
             }
 
-            var result = await _userManager.ResetPasswordAsync(hasUser, token, resetPasswordRequestDto.Password);
+            var confirmationResult = await _userManager.VerifyUserTokenAsync(
+                user, _userManager.Options.Tokens.EmailConfirmationTokenProvider, "EmailConfirmation", token);
+
+            if (!confirmationResult)
+            {
+                _notifyService.Error(_localization["Auth.ResetPassword.Message3.Text"].Value);
+
+                return View();
+            }
+
+            var result = await _userManager.ResetPasswordAsync(user, token, resetPasswordRequestDto.Password);
 
             if (result.Succeeded)
             {
@@ -256,7 +356,7 @@ namespace VisitorBook.UI.Controllers
 
             else
             {
-                ModelState.AddModelErrorList(result.Errors.Select(x => x.Description).ToList());
+                _notifyService.Error(_localization["Auth.ResetPassword.Message4.Text"].Value);
 
                 return View();
             }

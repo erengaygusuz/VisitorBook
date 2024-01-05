@@ -15,7 +15,7 @@ namespace VisitorBook.BL.Concrete
             _configuration = configuration;
         }
 
-        public async Task SendResetPasswordEmail(string toEmail, string subject, string bodyHtml)
+        public async Task SendEmail(string toEmail, string subject, string bodyHtml)
         {
             var smtpClient = new SmtpClient();
 

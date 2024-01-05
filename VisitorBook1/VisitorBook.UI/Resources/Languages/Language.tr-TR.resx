@@ -777,7 +777,7 @@
     <value>Lütfen bilgilerinizi eksiksiz bir şekilde doldurunuz.</value>
   </data>
   <data name="Auth.Register.Message2.Text" xml:space="preserve">
-    <value>Üyelik kayıt işlemi başarıyla gerçekleşmiştir.</value>
+    <value>Kaydınızı tamamlamanız için kayıt onaylama e-postası, e-posta adresinize başarıyla gönderilmiştir.</value>
   </data>
   <data name="Auth.ResetPassword.Message1.Text" xml:space="preserve">
     <value>Kullanıcı bulunamamıştır.</value>
@@ -1324,5 +1324,59 @@
   </data>
   <data name="Role.SuperAdmin.Text" xml:space="preserve">
     <value>Süper Admin</value>
+  </data>
+  <data name="EmailTemplates.AccountConfirmation.Text1" xml:space="preserve">
+    <value>Merhaba</value>
+  </data>
+  <data name="EmailTemplates.AccountConfirmation.Text10" xml:space="preserve">
+    <value>https://visitor-book.erengaygusuz.com.tr/home/contact</value>
+  </data>
+  <data name="EmailTemplates.AccountConfirmation.Text11" xml:space="preserve">
+    <value>bölümündeki iletişim formunu kullanabilirsiniz.</value>
+  </data>
+  <data name="EmailTemplates.AccountConfirmation.Text12" xml:space="preserve">
+    <value>Ziyaretçi Defteri | Kayıt Tamamlama İşlemi</value>
+  </data>
+  <data name="EmailTemplates.AccountConfirmation.Text2" xml:space="preserve">
+    <value>Sistemimize kaydınız başarılı bir şekilde gerçekleşmiştir.</value>
+  </data>
+  <data name="EmailTemplates.AccountConfirmation.Text3" xml:space="preserve">
+    <value>Kayıt işleminizi tamamlamak için lütfen tıklayınız.</value>
+  </data>
+  <data name="EmailTemplates.AccountConfirmation.Text4" xml:space="preserve">
+    <value>Kaydımı Tamamla</value>
+  </data>
+  <data name="EmailTemplates.AccountConfirmation.Text5" xml:space="preserve">
+    <value>Eğer yukarıdaki buton çalışmıyorsa aşağıdaki linki tarayıcınıza yapıştırarak ilgili adrese gidip kayıt tamamlama işlemi yapabilirsiniz.</value>
+  </data>
+  <data name="EmailTemplates.AccountConfirmation.Text6" xml:space="preserve">
+    <value>Eğer bu işlemi siz gerçekleştirmediyseniz bu e-postayı dikkate almayınız.</value>
+  </data>
+  <data name="EmailTemplates.AccountConfirmation.Text7" xml:space="preserve">
+    <value>Bizimle iletişime geçmek için</value>
+  </data>
+  <data name="EmailTemplates.AccountConfirmation.Text8" xml:space="preserve">
+    <value>visitor.book@erengaygusuz.com.tr</value>
+  </data>
+  <data name="EmailTemplates.AccountConfirmation.Text9" xml:space="preserve">
+    <value>e-posta adresini veya</value>
+  </data>
+  <data name="Auth.Login.Message5.Text" xml:space="preserve">
+    <value>Hesabınız henüz onaylanmamış. Lütfen e-postanıza gönderilen linke tıklayarak hesabınızı onaylatınız</value>
+  </data>
+  <data name="Auth.Register.Message3.Text" xml:space="preserve">
+    <value>Kayıt tamamlama bağlantınız geçersizdir.</value>
+  </data>
+  <data name="Auth.Register.Message4.Text" xml:space="preserve">
+    <value>İşlem esnasında hata meydana geldi. Lütfen tekrar deneyiniz.</value>
+  </data>
+  <data name="Auth.Register.Message5.Text" xml:space="preserve">
+    <value>Kaydınız başarılı bir şekilde onaylanmıştır. Şimdi sisteme giriş yapmayı deneyebilirsiniz.</value>
+  </data>
+  <data name="Auth.ResetPassword.Message3.Text" xml:space="preserve">
+    <value>Şifre sıfırlama bağlantınız geçersizdir.</value>
+  </data>
+  <data name="Auth.ResetPassword.Message4.Text" xml:space="preserve">
+    <value>İşlem esnasında hata meydana geldi. Lütfen tekrar deneyiniz.</value>
   </data>
 </root>
