@@ -9,7 +9,7 @@
         <div class="row mb-2">
             <div class="col-sm-6">
                 <h1 class="m-0">@localization["Roles.EditModal.Title.Text"]</h1>
-            </div><!-- /.col -->
+            </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item">@localization["Role." + @User.Claims.Where(x => x.Type == ClaimTypes.Role).Select(x => x.Value).FirstOrDefault() + ".Text"]</li>
@@ -30,7 +30,14 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label asp-for="@Model.Role.Name" class="control-label">@localization["Roles.Table.Column1.Text"]</label>
-                                        <input asp-for="@Model.Role.Name" class="form-control" />
+                                        @if (@User.Claims.Where(x => x.Type == ClaimTypes.Role).Select(x => x.Value).FirstOrDefault() == AppRoles.SuperAdmin && @Model.Role.Name == AppRoles.SuperAdmin)
+                                        {
+                                            <input asp-for="@Model.Role.Name" class="form-control" readonly/>
+                                        }
+                                        else
+                                        {
+                                            <input asp-for="@Model.Role.Name" class="form-control" />
+                                        }
                                         <span class="error invalid-feedback">@TempData["ErrorMessage"]</span>
                                     </div>
                                 </div>
@@ -52,7 +59,15 @@
                                             <td>
                                                 <input type="hidden" asp-for="@Model.RoleClaims[i].DisplayValue" />
                                                 <div class="form-check m-1">
-                                                    <input asp-for="@Model.RoleClaims[i].IsSelected" class="form-check-input" />
+                                                    @if (@User.Claims.Where(x => x.Type == ClaimTypes.Role).Select(x => x.Value).FirstOrDefault() == AppRoles.SuperAdmin && @Model.RoleClaims[i].IsSelected && @Model.Role.Name == AppRoles.SuperAdmin)
+                                                    {
+                                                        <input type="hidden" asp-for="@Model.RoleClaims[i].IsSelected" />
+                                                        <input asp-for="@Model.RoleClaims[i].IsSelected" class="form-check-input" disabled />
+                                                    }
+                                                    else
+                                                    {
+                                                        <input asp-for="@Model.RoleClaims[i].IsSelected" class="form-check-input" />
+                                                    }
                                                 </div>
                                             </td>
                                             <td>@localization["Roles.Permission." + @Model.RoleClaims[i].DisplayValue.Split('.')[1] + ".Text"]</td>

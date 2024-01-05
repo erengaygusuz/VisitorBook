@@ -17,6 +17,7 @@ using VisitorBook.Core.ViewModels;
 using System.Security.Claims;
 using VisitorBook.Core.Abstract;
 using AutoMapper.QueryableExtensions;
+using AspNetCoreHero.ToastNotification.Abstractions;
 
 namespace VisitorBook.UI.Areas.AppControllers
 {
@@ -31,10 +32,11 @@ namespace VisitorBook.UI.Areas.AppControllers
         private readonly IMapper _mapper;
         private readonly IValidator<RoleRequestDto> _roleRequestDtoValidator;
         private readonly IPropertyMappingService _propertyMappingService;
+        private readonly INotyfService _notifyService;
 
         public RoleController(RazorViewConverter razorViewConverter,
             IStringLocalizer<Language> localization, RoleManager<Role> roleManager, RoleDataTablesOptions roleDataTableOptions,
-            IMapper mapper, IValidator<RoleRequestDto> roleRequestDtoValidator, IPropertyMappingService propertyMappingService)
+            IMapper mapper, IValidator<RoleRequestDto> roleRequestDtoValidator, IPropertyMappingService propertyMappingService, INotyfService notifyService)
         {
             _roleManager = roleManager;
             _localization = localization;
@@ -43,6 +45,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             _mapper = mapper;
             _roleRequestDtoValidator = roleRequestDtoValidator;
             _propertyMappingService = propertyMappingService;
+            _notifyService = notifyService;
         }
 
         [Authorize(Permissions.UserManagement.View)]
@@ -150,13 +153,6 @@ namespace VisitorBook.UI.Areas.AppControllers
 
             var roleToUpdate = await _roleManager.Roles.FirstOrDefaultAsync(x => x.Id == permissionViewModel.Role.Id);
 
-            if (roleToUpdate == null)
-            {
-                throw new Exception("Güncellenecek rol bulunamamıştır.");
-
-                return RedirectToAction("Edit", permissionViewModel.Role.Id);
-            }
-
             roleToUpdate.Name = permissionViewModel.Role.Name;
 
             await _roleManager.UpdateAsync(roleToUpdate);
@@ -174,6 +170,8 @@ namespace VisitorBook.UI.Areas.AppControllers
             {
                 await _roleManager.AddClaimAsync(roleToUpdate, new Claim("Permission", claim.DisplayValue));
             }
+
+            _notifyService.Success(_localization["Roles.Notification.Edit.Text"].Value);
 
             return RedirectToAction("Edit", permissionViewModel.Role.Id);
         }

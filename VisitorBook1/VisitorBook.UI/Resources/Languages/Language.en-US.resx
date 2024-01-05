@@ -1320,4 +1320,7 @@
   <data name="Validators.Profile.Message9.Text" xml:space="preserve">
     <value>Please fill the birthdate area</value>
   </data>
+  <data name="Role.SuperAdmin.Text" xml:space="preserve">
+    <value>Süper Admin</value>
+  </data>
 </root>

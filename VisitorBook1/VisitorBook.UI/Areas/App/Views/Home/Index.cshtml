@@ -4,24 +4,24 @@
     ViewData["Title"] = "Home Page";
 }
 
-<!-- Content Header (Page header) -->
+
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
                 <h1 class="m-0">@localization["Layout.Header.Navbar.Items1.Text"]</h1>
-            </div><!-- /.col -->
+            </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item">@localization["Role." + @User.Claims.Where(x => x.Type == ClaimTypes.Role).Select(x => x.Value).FirstOrDefault() + ".Text"]</li>
                     <li class="breadcrumb-item active">@localization["Layout.Header.Navbar.Items1.Text"]</li>
                 </ol>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.content-header -->
-<!-- Main content -->
+
+
 <section class="content">
     <div class="container-fluid">
         <div class="row row-cols-xl-4 row-cols-lg-4 row-cols-md-2 row-cols-sm-2 row-cols-1">
@@ -74,6 +74,6 @@
                 </div>
             </div>
         </div>
-    </div><!-- /.container-fluid -->
+    </div>
 </section>
-<!-- /.content -->
+

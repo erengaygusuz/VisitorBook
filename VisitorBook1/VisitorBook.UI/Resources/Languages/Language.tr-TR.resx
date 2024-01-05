@@ -1322,4 +1322,7 @@
   <data name="Validators.Profile.Message9.Text" xml:space="preserve">
     <value>Lütfen doğum tarihi alanını boş bırakmayınız</value>
   </data>
+  <data name="Role.SuperAdmin.Text" xml:space="preserve">
+    <value>Süper Admin</value>
+  </data>
 </root>
