@@ -32,6 +32,7 @@ using Microsoft.AspNetCore.Authorization;
 using VisitorBook.UI.Filters;
 using VisitorBook.Core.Dtos.ContactMessageDtos;
 using VisitorBook.UI.TokenProviders;
+using Microsoft.AspNetCore.Components.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 

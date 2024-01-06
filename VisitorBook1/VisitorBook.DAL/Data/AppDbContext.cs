@@ -1,6 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using VisitorBook.Core.Entities;
+using VisitorBook.Core.Utilities;
+using VisitorBook.Core.Enums;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace VisitorBook.DAL.Data
 {
@@ -16,10 +22,13 @@ namespace VisitorBook.DAL.Data
         public DbSet<SubRegion> SubRegions { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<ContactMessage> ContactMessages { get; set; }
+        public DbSet<AuditTrail> AuditTrails { get; set; }
 
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base (options)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public AppDbContext(DbContextOptions<AppDbContext> options, IHttpContextAccessor httpContextAccessor) : base (options)
         {
-
+            _httpContextAccessor = httpContextAccessor;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -27,18 +36,93 @@ namespace VisitorBook.DAL.Data
             base.OnModelCreating(modelBuilder);
         }
 
-        public override int SaveChanges()
+        public async override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             UpdateChangeTracker();
 
-            return base.SaveChanges();
+            OnBeforeSaveChanges();
+
+            return await base.SaveChangesAsync(cancellationToken);
         }
 
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        private void OnBeforeSaveChanges()
         {
-            UpdateChangeTracker();
+            ChangeTracker.DetectChanges();
 
-            return base.SaveChangesAsync(cancellationToken);
+            var auditEntries = new List<AuditEntry>();
+
+            foreach (var entry in ChangeTracker.Entries())
+            {
+                if (entry.Entity is AuditTrail || entry.State == EntityState.Detached || entry.State == EntityState.Unchanged)
+                {
+                    continue;
+                }
+                    
+                var auditEntry = new AuditEntry(entry);
+
+                auditEntry.TableName = entry.Entity.GetType().Name;
+                auditEntry.Username = GetUserName();
+
+                auditEntries.Add(auditEntry);
+
+                foreach (var property in entry.Properties)
+                {
+                    string propertyName = property.Metadata.Name;
+
+                    if (property.Metadata.IsPrimaryKey())
+                    {
+                        int propValue = (int)property.CurrentValue;
+
+                        if (propertyName == "Id" && propValue < 0)
+                        {
+                            property.CurrentValue = 0;
+                        }
+
+                        auditEntry.KeyValues[propertyName] = property.CurrentValue;
+
+                        continue;
+                    }
+
+                    switch (entry.State)
+                    {
+                        case EntityState.Added:
+
+                            auditEntry.AuditType = AuditType.Create;
+                            auditEntry.NewValues[propertyName] = property.CurrentValue;
+
+                            break;
+
+                        case EntityState.Deleted:
+
+                            auditEntry.AuditType = AuditType.Delete;
+                            auditEntry.OldValues[propertyName] = property.OriginalValue;
+
+                            break;
+
+                        case EntityState.Modified:
+
+                            if (property.IsModified)
+                            {
+                                auditEntry.ChangedColumns.Add(propertyName);
+                                auditEntry.AuditType = AuditType.Update;
+                                auditEntry.OldValues[propertyName] = property.OriginalValue;
+                                auditEntry.NewValues[propertyName] = property.CurrentValue;
+                            }
+
+                            break;
+                    }
+                }
+            }
+
+            foreach (var auditEntry in auditEntries)
+            {
+                AuditTrails.Add(auditEntry.ToAudit());
+            }
+        }
+
+        private string GetUserName()
+        {
+            return _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.Name);
         }
 
         public void UpdateChangeTracker()
