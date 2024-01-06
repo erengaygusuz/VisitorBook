@@ -1382,4 +1382,46 @@
   <data name="Validators.Register.Message21.Text" xml:space="preserve">
     <value>Bu e-posta adresi daha önceden alınmış. Lütfen farklı bir e-posta adresi giriniz</value>
   </data>
+  <data name="Layout.Header.Navbar.Items14.Text" xml:space="preserve">
+    <value>Denetim Günlükleri</value>
+  </data>
+  <data name="Roles.Permission.AuditTrailManagement.Text" xml:space="preserve">
+    <value>Denetim Günlüğü Yönetimi</value>
+  </data>
+  <data name="AuditTrails.Table.Column1.Text" xml:space="preserve">
+    <value>İşlemi Yapan Kullanıcı Adı</value>
+  </data>
+  <data name="AuditTrails.Table.Column2.Text" xml:space="preserve">
+    <value>Etkilenen Tablo</value>
+  </data>
+  <data name="AuditTrails.Table.Column3.Text" xml:space="preserve">
+    <value>İşlem Türü</value>
+  </data>
+  <data name="AuditTrails.Table.ResultMessage.Text" xml:space="preserve">
+    <value>Herhangi bir mesaj bulunamadı</value>
+  </data>
+  <data name="AuditTrails.Title.Text" xml:space="preserve">
+    <value>Denetim Günlükleri</value>
+  </data>
+  <data name="AuditTrails.View.Title.Text" xml:space="preserve">
+    <value>Denetim Günlüğü Görüntüle</value>
+  </data>
+  <data name="AuditTrails.Table.Column4.Text" xml:space="preserve">
+    <value>Birincil Anahtar</value>
+  </data>
+  <data name="AuditTrails.Table.Column5.Text" xml:space="preserve">
+    <value>Etkilenen Kolonlar</value>
+  </data>
+  <data name="AuditTrails.Table.Column6.Text" xml:space="preserve">
+    <value>Eski Değerleri</value>
+  </data>
+  <data name="AuditTrails.Table.Column7.Text" xml:space="preserve">
+    <value>Yeni Değerleri</value>
+  </data>
+  <data name="AuditTrails.Table.Column8.Text" xml:space="preserve">
+    <value>İşlem Tarihi</value>
+  </data>
+  <data name="AuditTrails.Table.AffectedColumn.Text" xml:space="preserve">
+    <value>Kolon Adı</value>
+  </data>
 </root>

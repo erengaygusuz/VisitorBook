@@ -1380,4 +1380,46 @@
   <data name="Validators.Register.Message21.Text" xml:space="preserve">
     <value>This e-mail is taken. Please enter another e-mail.</value>
   </data>
+  <data name="Layout.Header.Navbar.Items14.Text" xml:space="preserve">
+    <value>Audit Trails</value>
+  </data>
+  <data name="Roles.Permission.AuditTrailManagement.Text" xml:space="preserve">
+    <value>Audit Trail Management</value>
+  </data>
+  <data name="AuditTrails.Table.Column1.Text" xml:space="preserve">
+    <value>Username for Performed Process</value>
+  </data>
+  <data name="AuditTrails.Table.Column2.Text" xml:space="preserve">
+    <value>Affected Table</value>
+  </data>
+  <data name="AuditTrails.Table.Column3.Text" xml:space="preserve">
+    <value>Process Type</value>
+  </data>
+  <data name="AuditTrails.Table.ResultMessage.Text" xml:space="preserve">
+    <value>There is no message to show</value>
+  </data>
+  <data name="AuditTrails.Title.Text" xml:space="preserve">
+    <value>Audit Trails</value>
+  </data>
+  <data name="AuditTrails.View.Title.Text" xml:space="preserve">
+    <value>Audit Trail View</value>
+  </data>
+  <data name="AuditTrails.Table.Column4.Text" xml:space="preserve">
+    <value>Primary Key</value>
+  </data>
+  <data name="AuditTrails.Table.Column5.Text" xml:space="preserve">
+    <value>Affected Columns</value>
+  </data>
+  <data name="AuditTrails.Table.Column6.Text" xml:space="preserve">
+    <value>Old Values</value>
+  </data>
+  <data name="AuditTrails.Table.Column7.Text" xml:space="preserve">
+    <value>New Values</value>
+  </data>
+  <data name="AuditTrails.Table.Column8.Text" xml:space="preserve">
+    <value>Process Date</value>
+  </data>
+  <data name="AuditTrails.Table.AffectedColumn.Text" xml:space="preserve">
+    <value>Column Name</value>
+  </data>
 </root>

@@ -18,6 +18,7 @@
             var makeRoleActive = "";
             var makeFakeDataActive = "";
             var makeContactMessageActive = "";
+            var makeAuditTrailActive = "";
 
             @if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "home")
             {
@@ -62,6 +63,10 @@
             else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "contactmessage")
             {
                 makeContactMessageActive = "active";
+            }
+            else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "audittrail")
+            {
+                makeAuditTrailActive = "active";
             }
         }
         <nav class="mt-2">
@@ -198,6 +203,18 @@
                             <i class="nav-icon fas fa-envelope"></i>
                             <p>
                                 @localization["Layout.Header.Navbar.Items13.Text"]
+                            </p>
+                        </a>
+                    </li>
+                }
+                @if (User.HasClaim(x => x.Type == "Permission" && x.Value == Permissions.ContactMessageManagement.View))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link @makeAuditTrailActive" asp-area="App" asp-controller="AuditTrail"
+                           asp-action="Index">
+                            <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                            <p>
+                                @localization["Layout.Header.Navbar.Items14.Text"]
                             </p>
                         </a>
                     </li>

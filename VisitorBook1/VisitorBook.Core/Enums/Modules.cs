@@ -6,6 +6,7 @@
         PlaceManagement,
         VisitedCountyManagement,
         FakeDataManagement,
-        ContactMessageManagement
+        ContactMessageManagement,
+        AuditTrailManagement
     }
 }

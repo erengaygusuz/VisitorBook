@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
+using Newtonsoft.Json;
+using VisitorBook.Core.Dtos.AuditTrailDtos;
 using VisitorBook.Core.Dtos.CityDtos;
 using VisitorBook.Core.Dtos.ContactMessageDtos;
 using VisitorBook.Core.Dtos.CountryDtos;
 using VisitorBook.Core.Dtos.CountyDtos;
-using VisitorBook.Core.Dtos.ProfileDtos;
 using VisitorBook.Core.Dtos.RegionDtos;
 using VisitorBook.Core.Dtos.RoleDtos;
 using VisitorBook.Core.Dtos.SubRegionDtos;
@@ -90,6 +91,16 @@ namespace VisitorBook.BL.Mapping
 
             CreateMap<ContactMessageRequestDto, ContactMessage>();
             CreateMap<ContactMessage, ContactMessageResponseDto>();
+
+            CreateMap<AuditTrail, AuditTrailResponseDto>()
+               .ForMember(e => e.Username, opts => opts.MapFrom(e => e.Username))
+               .ForMember(e => e.Type, opts => opts.MapFrom(e => e.Type))
+               .ForMember(e => e.TableName, opts => opts.MapFrom(e => e.TableName))
+               .ForMember(e => e.CreatedDate, opts => opts.MapFrom(e => e.CreatedDate.ToString("dd/MM/yyyy HH:mm:ss")))
+               .ForMember(e => e.OldValues, opts => opts.MapFrom(e => JsonConvert.DeserializeObject<Dictionary<string, string>>(e.OldValues)))
+               .ForMember(e => e.NewValues, opts => opts.MapFrom(e => JsonConvert.DeserializeObject<Dictionary<string, string>>(e.NewValues)))
+               .ForMember(e => e.AffectedColumns, opts => opts.MapFrom(e => JsonConvert.DeserializeObject<List<string>>(e.AffectedColumns)))
+               .ForMember(e => e.PrimaryKey, opts => opts.MapFrom(e => JsonConvert.DeserializeObject<Dictionary<string, string>>(e.PrimaryKey)));
         }
     }
 }

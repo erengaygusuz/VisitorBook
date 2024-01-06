@@ -68,5 +68,13 @@ namespace VisitorBook.Core.Constants
             public const string Edit = "Permissions.ContactMessageManagement.Edit";
             public const string Delete = "Permissions.ContactMessageManagement.Delete";
         }
+
+        public static class AuditTrailManagement
+        {
+            public const string View = "Permissions.AuditTrailManagement.View";
+            public const string Create = "Permissions.AuditTrailManagement.Create";
+            public const string Edit = "Permissions.AuditTrailManagement.Edit";
+            public const string Delete = "Permissions.AuditTrailManagement.Delete";
+        }
     }
 }

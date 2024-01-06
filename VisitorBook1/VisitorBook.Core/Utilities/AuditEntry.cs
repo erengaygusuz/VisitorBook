@@ -35,7 +35,7 @@ namespace VisitorBook.Core.Utilities
             audit.Username = Username;
             audit.Type = AuditType.ToString();
             audit.TableName = TableName;
-            audit.TimeStamp = DateTime.Now;
+            audit.CreatedDate = DateTime.Now;
             audit.PrimaryKey = JsonConvert.SerializeObject(KeyValues);
             audit.OldValues = OldValues.Count == 0 ? null : JsonConvert.SerializeObject(OldValues);
             audit.NewValues = NewValues.Count == 0 ? null : JsonConvert.SerializeObject(NewValues);
