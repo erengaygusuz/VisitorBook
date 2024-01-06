@@ -136,8 +136,6 @@ namespace VisitorBook.UI.Areas.AppControllers
 
             if (!validationResult.IsValid)
             {
-                validationResult.AddToModelState(ModelState);
-
                 var regionResponseDtos = await _regionService.GetAllAsync<RegionResponseDto>();
 
                 subRegionViewModel.RegionList = (regionResponseDtos)
@@ -165,8 +163,6 @@ namespace VisitorBook.UI.Areas.AppControllers
 
             if (!validationResult.IsValid)
             {
-                validationResult.AddToModelState(ModelState);
-
                 var regionResponseDtos = await _regionService.GetAllAsync<RegionResponseDto>();
 
                 subRegionViewModel.RegionList = (regionResponseDtos)

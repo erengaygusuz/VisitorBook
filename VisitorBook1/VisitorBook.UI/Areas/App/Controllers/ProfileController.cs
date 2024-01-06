@@ -160,8 +160,6 @@ namespace VisitorBook.UI.Areas.AppControllers
 
             if (!resultChangePassword.Succeeded)
             {
-                ModelState.AddModelErrorList(resultChangePassword.Errors.Select(x => x.Description).ToList());
-
                 _notifyService.Error(_localization["Profiles.SecurityTab.Message4.Text"].Value);
 
                 return RedirectToAction("Index");

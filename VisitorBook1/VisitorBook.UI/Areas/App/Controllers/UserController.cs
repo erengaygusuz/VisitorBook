@@ -235,8 +235,6 @@ namespace VisitorBook.UI.Areas.AppControllers
 
             if (!validationResult.IsValid)
             {
-                validationResult.AddToModelState(ModelState);
-
                 var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>();
 
                 userViewModel.CityList = (cityResponseDtos)
@@ -299,8 +297,6 @@ namespace VisitorBook.UI.Areas.AppControllers
 
             if (!validationResult.IsValid)
             {
-                validationResult.AddToModelState(ModelState);
-
                 var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>();
 
                 userViewModel.CityList = (cityResponseDtos)

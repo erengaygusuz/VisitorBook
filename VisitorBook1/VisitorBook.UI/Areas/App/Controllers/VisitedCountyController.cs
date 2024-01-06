@@ -205,8 +205,6 @@ namespace VisitorBook.UI.Area.App.Controllers
 
             if (!validationResult.IsValid)
             {
-                validationResult.AddToModelState(ModelState);
-
                 var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>();
 
                 IList<User> visitorsWithVisitorAddress;
@@ -260,8 +258,6 @@ namespace VisitorBook.UI.Area.App.Controllers
 
             if (!validationResult.IsValid)
             {
-                validationResult.AddToModelState(ModelState);
-
                 var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>();
 
                 IList<User> visitorsWithVisitorAddress;

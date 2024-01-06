@@ -136,7 +136,25 @@ namespace VisitorBook.UI.Area.App.Controllers
 
             if (!validationResult.IsValid)
             {
-                validationResult.AddToModelState(ModelState);
+                if (validationResult.ToDictionary().Where(x => x.Key == "County.Latitude").FirstOrDefault().Value != null)
+                {
+                    var latitudeMessages = ModelState.Where(x => x.Key == "County.Latitude").FirstOrDefault().Value;
+
+                    if (latitudeMessages.Errors.Count > 1)
+                    {
+                        latitudeMessages.Errors.RemoveAt(0);
+                    }
+                }
+
+                if (validationResult.ToDictionary().Where(x => x.Key == "County.Longitude").FirstOrDefault().Value != null)
+                {
+                    var latitudeMessages = ModelState.Where(x => x.Key == "County.Longitude").FirstOrDefault().Value;
+
+                    if (latitudeMessages.Errors.Count > 1)
+                    {
+                        latitudeMessages.Errors.RemoveAt(0);
+                    }
+                }
 
                 var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>();
 
@@ -165,7 +183,25 @@ namespace VisitorBook.UI.Area.App.Controllers
 
             if (!validationResult.IsValid)
             {
-                validationResult.AddToModelState(ModelState);
+                if (validationResult.ToDictionary().Where(x => x.Key == "County.Latitude").FirstOrDefault().Value != null)
+                {
+                    var latitudeMessages = ModelState.Where(x => x.Key == "County.Latitude").FirstOrDefault().Value;
+
+                    if (latitudeMessages.Errors.Count > 1)
+                    {
+                        latitudeMessages.Errors.RemoveAt(0);
+                    }
+                }
+
+                if (validationResult.ToDictionary().Where(x => x.Key == "County.Longitude").FirstOrDefault().Value != null)
+                {
+                    var latitudeMessages = ModelState.Where(x => x.Key == "County.Longitude").FirstOrDefault().Value;
+
+                    if (latitudeMessages.Errors.Count > 1)
+                    {
+                        latitudeMessages.Errors.RemoveAt(0);
+                    }
+                }
 
                 var cityResponseDtos = await _cityService.GetAllAsync<CityResponseDto>();
 

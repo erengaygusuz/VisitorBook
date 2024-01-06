@@ -68,8 +68,6 @@ namespace VisitorBook.UI.Controllers
 
             if (!validationResult.IsValid)
             {
-                validationResult.AddToModelState(ModelState);
-
                 return View(contactMessageRequestDto);
             }
 

@@ -115,8 +115,6 @@ namespace VisitorBook.UI.Controllers
 
             if (!validationResult.IsValid)
             {
-                validationResult.AddToModelState(ModelState);
-
                 return View();
             }
 
@@ -247,8 +245,6 @@ namespace VisitorBook.UI.Controllers
 
             if (!validationResult.IsValid)
             {
-                validationResult.AddToModelState(ModelState);
-
                 return View();
             }
 
@@ -320,8 +316,6 @@ namespace VisitorBook.UI.Controllers
 
             if (!validationResult.IsValid)
             {
-                validationResult.AddToModelState(ModelState);
-
                 return View();
             }
 

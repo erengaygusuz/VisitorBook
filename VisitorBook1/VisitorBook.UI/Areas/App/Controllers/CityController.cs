@@ -137,8 +137,6 @@ namespace VisitorBook.UI.Area.App.Controllers
 
             if (!validationResult.IsValid)
             {
-                validationResult.AddToModelState(ModelState);
-
                 var countryResponseDtos = await _countryService.GetAllAsync<CountryResponseDto>();
 
                 cityViewModel.CountryList = (countryResponseDtos)
@@ -166,8 +164,6 @@ namespace VisitorBook.UI.Area.App.Controllers
 
             if (!validationResult.IsValid)
             {
-                validationResult.AddToModelState(ModelState);
-
                 var countryResponseDtos = await _countryService.GetAllAsync<CountryResponseDto>();
 
                 cityViewModel.CountryList = (countryResponseDtos)

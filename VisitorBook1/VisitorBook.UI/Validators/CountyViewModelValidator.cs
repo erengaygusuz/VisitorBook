@@ -1,5 +1,8 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.Localization;
+using System.Text.RegularExpressions;
+using VisitorBook.Core.Entities;
+using VisitorBook.Core.Extensions;
 using VisitorBook.Core.ViewModels;
 using VisitorBook.UI.Languages;
 
@@ -15,7 +18,7 @@ namespace VisitorBook.UI.Validators
 
             RuleFor(x => x.County.Name)
                 .NotNull().WithMessage(_localization["Validators.County.Message1.Text"].Value)
-                .Matches("[a-zA-Z]").WithMessage(_localization["Validators.County.Message2.Text"].Value)
+                .Matches("^((?![0-9]).)*$").WithMessage(_localization["Validators.County.Message2.Text"].Value)
                 .MinimumLength(2).WithMessage(_localization["Validators.County.Message3.Text"].Value)
                 .MaximumLength(50).WithMessage(_localization["Validators.County.Message4.Text"].Value);
 

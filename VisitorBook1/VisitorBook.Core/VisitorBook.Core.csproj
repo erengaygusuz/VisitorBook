@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Extensions\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Bogus" Version="35.2.0" />
     <PackageReference Include="FluentValidation" Version="11.9.0" />
     <PackageReference Include="GeoTimeZone" Version="5.3.0" />

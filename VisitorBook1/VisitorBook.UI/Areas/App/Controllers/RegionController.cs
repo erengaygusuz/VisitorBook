@@ -84,8 +84,6 @@ namespace VisitorBook.UI.Areas.AppControllers
 
             if (!validationResult.IsValid)
             {
-                validationResult.AddToModelState(ModelState);
-
                 return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Add", regionRequestDto) });
             }
             
@@ -104,8 +102,6 @@ namespace VisitorBook.UI.Areas.AppControllers
 
             if (!validationResult.IsValid)
             {
-                validationResult.AddToModelState(ModelState);
-
                 return Json(new { isValid = false, html = await _razorViewConverter.GetStringFromRazorView(this, "Edit", regionRequestDto) });
             }
             
