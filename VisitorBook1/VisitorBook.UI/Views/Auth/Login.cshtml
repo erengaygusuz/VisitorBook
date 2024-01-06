@@ -62,7 +62,6 @@
                     <i class="fab fa-facebook mr-2"></i> @localization["Login.SubmitBtn2.Text"]
                 </a>
             </div>
-            <!-- /.social-auth-links -->
 
             <p class="mb-1">
                 <a asp-controller="Auth" asp-action="ForgotPassword">@localization["Login.Item4.Text"]</a>
@@ -73,10 +72,12 @@
             <p>
                 <a asp-controller="Home" asp-action="Index" class="text-center">@localization["Login.Item6.Text"]</a>
             </p>
+            <p>
+                <div class="full-width">
+                    <partial name="_CulturePartial" />
+                </div>
+            </p>
         </div>
-        <!-- /.card-body -->
     </div>
     
 </div>
-<!-- /.login-box -->
-

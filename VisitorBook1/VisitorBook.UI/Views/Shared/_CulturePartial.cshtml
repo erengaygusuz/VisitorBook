@@ -10,7 +10,6 @@
         ? "~/"
         : $"~{Context.Request.Path.Value}{Context.Request.QueryString}";
 }
-<div>
     <form asp-controller="Home" asp-action="SetCulture" asp-route-returnUrl="@returnUrl"
           class="form-horizontal text-dark me-4 mb-lg-0 mb-md-3 mb-sm-3 mb-3">
         <select name="culture" class="form-select"
@@ -22,4 +21,3 @@
             }
         </select>
     </form>
-</div>
