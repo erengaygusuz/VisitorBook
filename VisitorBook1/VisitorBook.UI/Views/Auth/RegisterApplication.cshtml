@@ -5,62 +5,7 @@
     Layout = "_AuthLayout";
 }
 
-<div class="mb-5 p-4 bg-white shadow-sm">
-    <h3>Non linear stepper (with fade)</h3>
-    <div id="stepper3" class="bs-stepper">
-        <div class="bs-stepper-header" role="tablist">
-            <div class="step" data-target="#test-nlf-1">
-                <button type="button" class="step-trigger" role="tab" id="stepper3trigger1" aria-controls="test-nlf-1" aria-selected="false">
-                    <span class="bs-stepper-circle">
-                        <span class="fas fa-user" aria-hidden="true"></span>
-                    </span>
-                    <span class="bs-stepper-label">Name</span>
-                </button>
-            </div>
-            <div class="bs-stepper-line"></div>
-            <div class="step" data-target="#test-nlf-2">
-                <button type="button" class="step-trigger" role="tab" id="stepper3trigger2" aria-controls="test-nlf-2" aria-selected="false">
-                    <span class="bs-stepper-circle">
-                        <span class="fas fa-map-marked" aria-hidden="true"></span>
-                    </span>
-                    <span class="bs-stepper-label">Address</span>
-                </button>
-            </div>
-            <div class="bs-stepper-line"></div>
-            <div class="step active" data-target="#test-nlf-3">
-                <button type="button" class="step-trigger" role="tab" id="stepper3trigger3" aria-controls="test-nlf-3" aria-selected="true">
-                    <span class="bs-stepper-circle">
-                        <span class="fas fa-save" aria-hidden="true"></span>
-                    </span>
-                    <span class="bs-stepper-label">Submit</span>
-                </button>
-            </div>
-        </div>
-        <div class="bs-stepper-content">
-            <form onsubmit="return false">
-                <div id="test-nlf-1" role="tabpanel" class="bs-stepper-pane fade dstepper-block dstepper-none" aria-labelledby="stepper3trigger1">
-                    <div class="form-group">
-                        <label for="exampleInputName2">Name</label>
-                        <input type="email" class="form-control" id="exampleInputName2" placeholder="Enter your name">
-                    </div>
-                    <button class="btn btn-primary" onclick="stepper.next()">Next</button>
-                </div>
-                <div id="test-nlf-2" role="tabpanel" class="bs-stepper-pane fade dstepper-block dstepper-none" aria-labelledby="stepper3trigger2">
-                    <div class="form-group">
-                        <label for="exampleInpuAddress2">Address</label>
-                        <input type="email" class="form-control" id="exampleInpuAddress2" placeholder="Enter your address">
-                    </div>
-                    <button class="btn btn-primary" onclick="stepper.next()">Next</button>
-                </div>
-                <div id="test-nlf-3" role="tabpanel" class="bs-stepper-pane fade text-center dstepper-block active" aria-labelledby="stepper3trigger3">
-                    <button type="submit" class="btn btn-primary mt-5">Submit</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<div class="register-box">
+<div class="col-md-4 mt-5">
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
             <div class="row">
@@ -73,9 +18,92 @@
             <h1>@localization["Layout.Header.Title.Text"]</h1>
         </div>
         <div class="card-body">
-            <p class="login-box-msg">@localization["Register.SubTitle.Text"]</p>
-
-            
+            <p class="login-box-msg pl-5 pr-5">
+                Lütfen Ziyaretçi Kaydedici hesabı başvurusu yapmak için formu doldurup gönderin
+            </p>
+            <div id="stepper3" class="bs-stepper">
+                <div class="bs-stepper-header" role="tablist">
+                    <div class="step" data-target="#test-nlf-1">
+                        <button type="button" class="step-trigger" role="tab" id="stepper3trigger1" aria-controls="test-nlf-1" aria-selected="false">
+                            <span class="bs-stepper-circle">
+                                <span class="fas fa-user" aria-hidden="true"></span>
+                            </span>
+                            <span class="bs-stepper-label">Kişisel Bilgiler</span>
+                        </button>
+                    </div>
+                    <div class="bs-stepper-line"></div>
+                    <div class="step" data-target="#test-nlf-2">
+                        <button type="button" class="step-trigger" role="tab" id="stepper3trigger2" aria-controls="test-nlf-2" aria-selected="false">
+                            <span class="bs-stepper-circle">
+                                <span class="fas fa-map-marked" aria-hidden="true"></span>
+                            </span>
+                            <span class="bs-stepper-label">Açıklama</span>
+                        </button>
+                    </div>
+                    <div class="bs-stepper-line"></div>
+                    <div class="step active" data-target="#test-nlf-3">
+                        <button type="button" class="step-trigger" role="tab" id="stepper3trigger3" aria-controls="test-nlf-3" aria-selected="true">
+                            <span class="bs-stepper-circle">
+                                <span class="fas fa-save" aria-hidden="true"></span>
+                            </span>
+                            <span class="bs-stepper-label">Gönderim</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="bs-stepper-content pb-4 pr-1 pl-1">
+                    <form onsubmit="return false">
+                        <div id="test-nlf-1" role="tabpanel" class="bs-stepper-pane fade dstepper-block dstepper-none" aria-labelledby="stepper3trigger1">
+                            <div class="input-group mb-3 mt-2">
+                                <input type="text" class="form-control" placeholder="@localization["Register.Item1.Text"]" asp-for="@Model.Name">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-user"></span>
+                                    </div>
+                                </div>
+                                <span asp-validation-for="@Model.Name" class="error invalid-feedback"></span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="@localization["Register.Item2.Text"]" asp-for="@Model.Surname">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-user"></span>
+                                    </div>
+                                </div>
+                                <span asp-validation-for="@Model.Surname" class="error invalid-feedback"></span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="@localization["Register.Item3.Text"]" asp-for="@Model.Username">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-user"></span>
+                                    </div>
+                                </div>
+                                <span asp-validation-for="@Model.Username" class="error invalid-feedback"></span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="email" class="form-control" placeholder="@localization["Register.Item4.Text"]" asp-for="@Model.Email">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-envelope"></span>
+                                    </div>
+                                </div>
+                                <span asp-validation-for="@Model.Email" class="error invalid-feedback"></span>
+                            </div>
+                            <button class="btn btn-primary" onclick="stepper.next()">İlerle</button>
+                        </div>
+                        <div id="test-nlf-2" role="tabpanel" class="bs-stepper-pane fade dstepper-block dstepper-none" aria-labelledby="stepper3trigger2">
+                            <div class="input-group mb-3 mt-2">
+                                <textarea class="form-control" rows="6" placeholder="Lütfen neden ziyaretçi kaydedici hesabı başvrusu yaptığınızı kısaca belirtiniz"></textarea>
+                                <span asp-validation-for="@Model.Username" class="error invalid-feedback"></span>
+                            </div>
+                            <button class="btn btn-primary" onclick="stepper.next()">İlerle</button>
+                        </div>
+                        <div id="test-nlf-3" role="tabpanel" class="bs-stepper-pane fade text-center dstepper-block active" aria-labelledby="stepper3trigger3">
+                            <button type="submit" class="btn btn-primary mt-5">Gönder</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
             <a asp-controller="Auth" asp-action="Login" class="text-center">@localization["Register.Item7.Text"]</a>
             <p>
@@ -97,4 +125,3 @@
         })
     </script>
 }
-
