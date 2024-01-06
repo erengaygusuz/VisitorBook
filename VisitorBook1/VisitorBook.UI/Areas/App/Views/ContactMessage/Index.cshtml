@@ -35,7 +35,7 @@
                                 columns.Add(model => model.Subject).Titled(@localization["ContactMessages.Table.Column3.Text"]);
                             })
                             .Filterable(GridFilterCase.Lower)
-                            .Using(GridFilterMode.Header)
+                            .Using(GridFilterMode.Row)
                             .Empty(@localization["ContactMessages.Table.ResultMessage.Text"])
                             .Pageable(pager =>
                             {

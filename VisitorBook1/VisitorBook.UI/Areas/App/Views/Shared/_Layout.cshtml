@@ -158,6 +158,10 @@
     <script src="~/plugins/inputmask/jquery.inputmask.min.js"></script>
     <!-- Mvc Grid -->
     <script src="~/js/mvc-grid/mvc-grid.js"></script>
+    @if (@Thread.CurrentThread.CurrentCulture.Name == "tr-TR")
+    {
+        <script src="~/js/mvc-grid/mvc-grid-lang.js"></script>
+    }
     <script>
         document.querySelectorAll(".mvc-grid").forEach(element => new MvcGrid(element));
     </script>

@@ -203,7 +203,7 @@ namespace VisitorBook.UI.Area.App.Controllers
                 return Json(new { message = _localization["Cities.Notification.SuccessfullDelete.Text"].Value });
             }
 
-            return BadRequest(new { message = _localization["Cities.Notification.UnSuccessfullDelete.Text"].Value });
+            return Json(new { message = _localization["Cities.Notification.UnSuccessfullDelete.Text"].Value });
         }
     }
 }

@@ -374,7 +374,7 @@ namespace VisitorBook.UI.Areas.AppControllers
                 return Json(new { message = _localization["Users.Notification.SuccessfullDelete.Text"].Value });
             }
 
-            return BadRequest(new { message = _localization["Users.Notification.UnSuccessfullDelete.Text"].Value });
+            return Json(new { message = _localization["Users.Notification.UnSuccessfullDelete.Text"].Value });
         }
     }
 }
