@@ -1,0 +1,72 @@
+﻿<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">@localization["RegisterApplications.Title.Text"]</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">@localization["Role." + @User.Claims.Where(x => x.Type == ClaimTypes.Role).Select(x => x.Value).FirstOrDefault() + ".Text"]</li>
+                    <li class="breadcrumb-item active">@localization["RegisterApplications.Title.Text"]</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+                            <input type="hidden" id="TableExportBtnText" value="@localization["Table.ExportBtn.Text"]" />
+                            <input type="hidden" id="TableViewBtnText" value="@localization["Table.ViewBtn.Text"]" />
+                            <input type="hidden" id="ActiveLanguage" value="@Thread.CurrentThread.CurrentCulture.Name" />
+
+                            <input type="hidden" id="RegisterApplicationsViewModalTitleText" value="@localization["RegisterApplications.ViewModal.Title.Text"]" />
+
+                            <div class="row d-flex justify-content-between">
+                                <div id="outside">
+                                </div>
+                            </div>
+                        </div>
+                        <table id="tblData" class="table table-bordered table-striped" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @localization["RegisterApplications.Table.Column1.Text"]
+                                    </th>
+                                    <th>
+                                        @localization["RegisterApplications.Table.Column2.Text"]
+                                    </th>
+                                    <th>
+                                        @localization["RegisterApplications.Table.Column3.Text"]
+                                    </th>
+                                    <th>
+                                        @localization["RegisterApplications.Table.Column4.Text"]
+                                    </th>
+                                    <th>
+                                        @localization["RegisterApplications.Table.Column5.Text"]
+                                    </th>
+                                    <th>
+                                        @localization["RegisterApplications.Table.Column6.Text"]
+                                    </th>
+                                    <th>
+
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/view-resources/app/views/registerapplication/application.js"></script>
+}

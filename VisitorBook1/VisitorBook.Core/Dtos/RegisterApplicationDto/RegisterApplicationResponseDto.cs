@@ -11,5 +11,7 @@ namespace VisitorBook.Core.Dtos.RegisterApplicationDto
         public string Explanation { get; set; }
 
         public string Status { get; set; }
+
+        public DateTime CreatedDate { get; set; }
     }
 }

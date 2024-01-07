@@ -6,7 +6,7 @@ namespace VisitorBook.Core.ViewModels
 {
     public class RegisterApplicationViewModel
     {
-        public RegisterApplicationRequestDto RegisterApplication { get; set; }
+        public RegisterApplicationResponseDto RegisterApplication { get; set; }
 
         [ValidateNever]
         public IEnumerable<SelectListItem> RegisterApplicationStatusList { get; set; }

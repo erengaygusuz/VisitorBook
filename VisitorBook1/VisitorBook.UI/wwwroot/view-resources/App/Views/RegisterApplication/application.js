@@ -1,12 +1,12 @@
 var dataTable
 
 $(document).ready(function () {
+
     $.fn.dataTable.moment('DD/MM/YYYY')
 
     var exportBtnText = document.getElementById('TableExportBtnText').value
-    var editBtnText = document.getElementById('TableEditBtnText').value
-    var deleteBtnText = document.getElementById('TableDeleteBtnText').value
-    var editModalTitleText = document.getElementById('UsersEditModalTitleText').value
+    var viewBtnText = document.getElementById('TableViewBtnText').value
+    var viewModalTitleText = document.getElementById('RegisterApplicationsViewModalTitleText').value
 
     var activeLanguage = document.getElementById('ActiveLanguage').value
 
@@ -23,19 +23,17 @@ $(document).ready(function () {
 
     loadDataTable(
         exportBtnText,
-        editBtnText,
-        deleteBtnText,
+        viewBtnText,
         activeLanguagePath,
-        editModalTitleText
+        viewModalTitleText
     )
 })
 
 function loadDataTable(
     exportBtnText,
-    editBtnText,
-    deleteBtnText,
+    viewBtnText,
     activeLanguagePath,
-    editModalTitleText
+    viewModalTitleText
 ) {
     dataTable = $('#tblData').DataTable({
         dom: "B<'row'<'col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 'l><'col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12'f>>tr<'row mt-3'<'col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12'i><'col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12'p>>",
@@ -43,7 +41,7 @@ function loadDataTable(
             {
                 extend: 'pdfHtml5',
                 text: exportBtnText,
-                filename: 'VisitorBook-Users',
+                filename: 'VisitorBook-Applications',
                 orientation: 'landscape',
                 pageSize: 'A4',
                 customize: function (doc) {
@@ -80,7 +78,7 @@ function loadDataTable(
                     doc.content[0].layout = objLayout
                 },
                 exportOptions: {
-                    columns: [0, 1, 2, 3],
+                    columns: [0, 1, 2, 3, 4, 5],
                 },
             },
         ],
@@ -100,49 +98,71 @@ function loadDataTable(
         filter: true,
         responsive: true,
         ajax: {
-            url: '/app/user/getall',
+            url: '/app/registerapplication/getall',
             type: 'POST',
             datatype: 'json',
         },
         columns: [
-            { data: 'name', width: '30%' },
-            { data: 'surname', width: '30%' },
+            { data: 'user.name', width: '19%' },
+            { data: 'user.surname', width: '19%' },
+            { data: 'user.email', width: '15%' },
+            { data: 'user.username', width: '15%' },
             {
-                data: 'birthDate',
+                data: 'createdDate',
                 width: '12%',
                 render: function (data) {
                     return moment(data).format('DD/MM/YYYY')
                 }
             },
-            { data: 'gender', width: '8%' },
+            {
+                data: 'status',
+                render: function (data) {
+                    
+                    if (data == "Pending") {
+                        return `
+                        <div class="d-flex justify-content-around align-items-center">
+                            <span class="badge badge-warning p-2"><i class="fas fa-clock"></i></span>
+                        </div>
+                        `;
+                        }
+                    else if (data == "Approved") {
+                        return `
+                        <div class="d-flex justify-content-around align-items-center">
+                            <span class="badge badge-success p-2"><i class="fas fa-check-circle"></i></span>
+                        </div>
+                        `;
+                        }
+                    else {
+                        return `
+                        <div class="d-flex justify-content-around align-items-center">
+                            <span class="badge badge-danger p-2"><i class="fas fa-times-circle"></i></span>
+                        </div>
+                        `;
+                    }
+                },
+                width: '10%'
+            },
             {
                 data: 'id',
                 render: function (data) {
                     return `
                             <div class="d-flex justify-content-around align-items-center">
-                               <a onclick="showInPopup('/app/user/edit/${data}', 
-                               '${editModalTitleText}')" class="btn btn-warning"> ${editBtnText}</a>
-                               <a onclick=deleteRecord('/app/user/delete/${data}') class="btn btn-danger">
-                                  ${deleteBtnText}
-                               </a>
+                               <a onclick="showInPopup('/app/registerapplication/application/${data}',
+                               '${viewModalTitleText}')" class="btn btn-block btn-default btn-sm"> ${viewBtnText}</a>
                             </div>
                            `
                 },
-                width: '20%',
+                width: '10%',
             },
         ],
         columnDefs: [
             {
-                targets: [4],
+                targets: [6],
                 orderable: false,
             },
         ],
     })
 }
-
-$("#general-modal").on("hidden.bs.modal", function () {
-    $("#general-modal").removeClass("modal-lg");
-});
 
 showInPopup = (url, title) => {
     $.ajax({
@@ -152,82 +172,9 @@ showInPopup = (url, title) => {
             $('#form-modal .modal-body').html(res)
             $('#form-modal .modal-title').html(title)
 
-            $("#general-modal").addClass("modal-lg");
-
             $('#form-modal').modal('show')
-
-            if ($('#citylist option:selected').val() == 0) {
-                $('#countylist').hide()
-            } else {
-                $('#countylist').show()
-            }
         },
     })
-}
-
-function fillCountyList(cityId, selectedIndex) {
-
-    $.ajax({
-        type: 'GET',
-        url: '/app/county/getallbycity?cityId=' + cityId,
-        success: function (res) {
-
-            $('#county-id').empty()
-
-            var countySelectionText = document.getElementById(
-                'AddOrEditModalCountySelectionText'
-            ).value
-
-            $('#county-id').append(
-                $('<option disabled value="0">' + countySelectionText + '</option>')
-            )
-
-            $.each(res.data, function (index, value) {
-                $('#county-id').append(
-                    $('<option value="' + value.id + '">' + value.name + '</option>')
-                )
-            })
-
-            $('#county-id option:eq(' + selectedIndex + ')').prop(
-                'selected',
-                true
-            )
-        },
-        error: function (err) {
-            console.log(err)
-        },
-    })
-}
-
-AddRecord = (form) => {
-    try {
-        $.ajax({
-            type: 'POST',
-            url: form.action,
-            data: new FormData(form),
-            contentType: false,
-            processData: false,
-            success: function (res) {
-                if (res.isValid) {
-                    $('#form-modal .modal-body').html('')
-                    $('#form-modal .modal-title').html('')
-                    $('#form-modal').modal('hide')
-
-                    dataTable.ajax.reload()
-                    toastr.success(res.message)
-                } else {
-                    $('#form-modal .modal-body').html(res.html)
-                }
-            },
-            error: function (err) {
-                console.log(err)
-            },
-        })
-    } catch (e) {
-        console.log(e)
-    }
-
-    return false
 }
 
 EditRecord = (form) => {
@@ -259,60 +206,4 @@ EditRecord = (form) => {
     }
 
     return false
-}
-
-function deleteRecord(url) {
-    var deleteRequestPopupTitleText = document.getElementById(
-        'DeleteRequestPopupTitleText'
-    ).value
-    var deleteRequestPopupBodyText = document.getElementById(
-        'DeleteRequestPopupBodyText'
-    ).value
-    var deleteRequestPopupConfirmBtnText = document.getElementById(
-        'DeleteRequestPopupConfirmBtnText'
-    ).value
-    var deleteRequestPopupCancelBtnText = document.getElementById(
-        'DeleteRequestPopupCancelBtnText'
-    ).value
-
-    Swal.fire({
-        title: deleteRequestPopupTitleText,
-        text: deleteRequestPopupBodyText,
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: deleteRequestPopupConfirmBtnText,
-        cancelButtonText: deleteRequestPopupCancelBtnText,
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                type: 'GET',
-                url: url,
-                success: function (res) {
-                    dataTable.ajax.reload()
-                    toastr.success(res.message)
-                },
-                error: function (xhr, err) {
-                    var err = eval("(" + xhr.responseText + ")");
-
-                    toastr.error(err.message)
-                }
-            })
-        }
-    })
-
-    return false
-}
-
-function cityChange() {
-    if ($('#citylist option:selected').val() == 0) {
-        $('#countylist').hide()
-    } else {
-        $('#countylist').show()
-
-        var cityId = $('#citylist option:selected').val()
-
-        fillCountyList(cityId, 0)
-    }
 }

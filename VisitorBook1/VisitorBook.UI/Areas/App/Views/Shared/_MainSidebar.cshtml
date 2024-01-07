@@ -19,8 +19,7 @@
             var makeFakeDataActive = "";
             var makeContactMessageActive = "";
             var makeAuditTrailActive = "";
-            var makePendingApplicationsActive = "";
-            var makePastApplicationsActive = "";
+            var makeRegisterApplicationsActive = "";
 
             @if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "home")
             {
@@ -72,11 +71,7 @@
             }
             else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "registerapplication")
             {
-                makePendingApplicationsActive = "active";
-            }
-            else if (this.ViewContext.RouteData.Values["controller"].ToString().ToLower() == "registerapplication")
-            {
-                makePastApplicationsActive = "active";
+                makeRegisterApplicationsActive = "active";
             }
         }
         <nav class="mt-2">
@@ -232,33 +227,13 @@
                 @if (User.HasClaim(x => x.Type == "Permission" && x.Value == Permissions.RegisterApplicationManagement.View))
                 {
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a class="nav-link @makeRegisterApplicationsActive" asp-area="App" asp-controller="RegisterApplication"
+                           asp-action="Index">
                             <i class="nav-icon far fa-id-card"></i>
                             <p>
                                 @localization["Layout.Header.Navbar.Items15.Text"]
-                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
-                        <ul class="nav nav-treeview" style="display: none;">
-                            <li class="nav-item">
-                                <a class="nav-link @makePendingApplicationsActive" asp-area="App" asp-controller="RegisterApplication"
-                                   asp-action="PendingApplications">
-                                    <i class="nav-icon fas fa-hourglass-half"></i>
-                                    <p>
-                                        @localization["Layout.Header.Navbar.Items16.Text"]
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link @makePastApplicationsActive" asp-area="App" asp-controller="RegisterApplication"
-                                   asp-action="PastApplications">
-                                    <i class="nav-icon fas fa-book"></i>
-                                    <p>
-                                        @localization["Layout.Header.Navbar.Items17.Text"]
-                                    </p>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                 }
             </ul>

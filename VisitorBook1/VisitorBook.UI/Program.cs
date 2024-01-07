@@ -136,6 +136,7 @@ builder.Services.AddScoped(typeof(CountyDataTablesOptions));
 builder.Services.AddScoped(typeof(VisitedCountyDataTablesOptions));
 builder.Services.AddScoped(typeof(UserDataTablesOptions));
 builder.Services.AddScoped(typeof(RoleDataTablesOptions));
+builder.Services.AddScoped(typeof(RegisterApplicationDataTablesOptions));
 
 builder.Services.ConfigureApplicationCookie(opt =>
 {
@@ -167,7 +168,8 @@ builder.Services.AddScoped<IValidator<RegionRequestDto>, RegionRequestDtoValidat
 builder.Services.AddScoped<IValidator<FakeDataViewModel>, FakeDataViewModelValidator>();
 builder.Services.AddScoped<IValidator<ContactMessageRequestDto>, ContactMessageRequestDtoValidator>();
 builder.Services.AddScoped<IValidator<ProfileViewModel>, ProfileViewModelValidator>();
-builder.Services.AddScoped<IValidator<RegisterApplicationRequestDto>, RegisterApplicationRequestDtoValidator>();
+builder.Services.AddScoped<IValidator<RegisterApplicationCreateRequestDto>, RegisterApplicationCreateRequestDtoValidator>();
+builder.Services.AddScoped<IValidator<RegisterApplicationViewModel>, RegisterApplicationViewModelValidator>();
 
 builder.Services.AddFluentValidation(fv => {
     fv.DisableDataAnnotationsValidation = true;

@@ -6,6 +6,7 @@ using VisitorBook.Core.Dtos.ContactMessageDtos;
 using VisitorBook.Core.Dtos.CountryDtos;
 using VisitorBook.Core.Dtos.CountyDtos;
 using VisitorBook.Core.Dtos.RegionDtos;
+using VisitorBook.Core.Dtos.RegisterApplicationDto;
 using VisitorBook.Core.Dtos.RoleDtos;
 using VisitorBook.Core.Dtos.SubRegionDtos;
 using VisitorBook.Core.Dtos.UserDtos;
@@ -101,6 +102,13 @@ namespace VisitorBook.BL.Mapping
                .ForMember(e => e.NewValues, opts => opts.MapFrom(e => JsonConvert.DeserializeObject<Dictionary<string, string>>(e.NewValues)))
                .ForMember(e => e.AffectedColumns, opts => opts.MapFrom(e => JsonConvert.DeserializeObject<List<string>>(e.AffectedColumns)))
                .ForMember(e => e.PrimaryKey, opts => opts.MapFrom(e => JsonConvert.DeserializeObject<Dictionary<string, string>>(e.PrimaryKey)));
+
+            CreateMap<RegisterApplicationRequestDto, RegisterApplication>();
+            CreateMap<RegisterApplication, RegisterApplicationResponseDto>()
+                .ForMember(e => e.User, opts => opts.MapFrom(e => e.User))
+                .ForMember(e => e.Status, opts => opts.MapFrom(e => e.Status.ToString()))
+                .ForMember(e => e.Explanation, opts => opts.MapFrom(e => e.Explanation))
+                .ForMember(e => e.CreatedDate, opts => opts.MapFrom(e => e.CreatedDate));
         }
     }
 }

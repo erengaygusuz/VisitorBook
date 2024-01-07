@@ -14,7 +14,6 @@ using VisitorBook.UI.Areas.App.Controllers;
 using VisitorBook.Core.Dtos.CityDtos;
 using VisitorBook.Core.Dtos.CountyDtos;
 using FluentValidation;
-using VisitorBook.Core.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using VisitorBook.Core.Constants;
 using System.Security.Claims;

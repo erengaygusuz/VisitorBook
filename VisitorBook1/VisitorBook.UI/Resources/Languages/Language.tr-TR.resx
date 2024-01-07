@@ -1478,13 +1478,175 @@
   <data name="Layout.Header.Navbar.Items15.Text" xml:space="preserve">
     <value>Kayıt Başvuruları</value>
   </data>
-  <data name="Layout.Header.Navbar.Items16.Text" xml:space="preserve">
-    <value>Bekleyen Başvurular</value>
-  </data>
-  <data name="Layout.Header.Navbar.Items17.Text" xml:space="preserve">
-    <value>Geçmiş Başvurular</value>
-  </data>
   <data name="Roles.Permission.RegisterApplicationManagement.Text" xml:space="preserve">
     <value>Kayıt Başvuruları Yönetimi</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message1.Text" xml:space="preserve">
+    <value>Lütfen ad alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message10.Text" xml:space="preserve">
+    <value>Lütfen geçerli bir e-posta giriniz</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message11.Text" xml:space="preserve">
+    <value>Bu e-posta adresi daha önceden alınmış. Lütfen farklı bir e-posta adresi giriniz</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message12.Text" xml:space="preserve">
+    <value>Lütfen kullanıcı adı alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message13.Text" xml:space="preserve">
+    <value>Kullanıcı adınız boşluk içeremez</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message14.Text" xml:space="preserve">
+    <value>Kullanıcı adınız türkçe karakter içeremez</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message15.Text" xml:space="preserve">
+    <value>Kullanıcı adınız büyük harf içeremez</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message16.Text" xml:space="preserve">
+    <value>Kullanıcı adınız rakam içeremez</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message17.Text" xml:space="preserve">
+    <value>Bu kullanıcı adı daha önceden alınmış. Lütfen farklı bir kullanıcı adı giriniz</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message18.Text" xml:space="preserve">
+    <value>Lütfen açıklama alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message19.Text" xml:space="preserve">
+    <value>Lütfen minimum 20 karaktere sahip bir açıklama giriniz</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message2.Text" xml:space="preserve">
+    <value>Ad rakam içeremez</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message20.Text" xml:space="preserve">
+    <value>Lütfen maksimum 500 karaktere sahip bir açıklama giriniz</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message3.Text" xml:space="preserve">
+    <value>Lütfen minimum 3 karaktere sahip bir ad giriniz</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message4.Text" xml:space="preserve">
+    <value>Lütfen maksimum 100 karaktere sahip bir ad giriniz</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message5.Text" xml:space="preserve">
+    <value>Lütfen soyad alanını boş bırakmayınız</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message6.Text" xml:space="preserve">
+    <value>Soyad rakam içeremez</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message7.Text" xml:space="preserve">
+    <value>Lütfen minimum 3 karaktere sahip bir soyad giriniz</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message8.Text" xml:space="preserve">
+    <value>Lütfen maksimum 100 karaktere sahip bir soyad giriniz</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message9.Text" xml:space="preserve">
+    <value>Lütfen e-posta alanını boş bırakmayınız</value>
+  </data>
+  <data name="RegisterApplications.Table.Column1.Text" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="RegisterApplications.Table.Column2.Text" xml:space="preserve">
+    <value>Soyad</value>
+  </data>
+  <data name="RegisterApplications.Table.Column3.Text" xml:space="preserve">
+    <value>E-Posta</value>
+  </data>
+  <data name="RegisterApplications.Table.Column4.Text" xml:space="preserve">
+    <value>Kullanıcı Adı</value>
+  </data>
+  <data name="RegisterApplications.Table.Column5.Text" xml:space="preserve">
+    <value>Başvuru Tarihi</value>
+  </data>
+  <data name="RegisterApplications.Table.Column6.Text" xml:space="preserve">
+    <value>Başvuru Durumu</value>
+  </data>
+  <data name="RegisterApplications.Title.Text" xml:space="preserve">
+    <value>Kayıt Başvuruları Listesi</value>
+  </data>
+  <data name="RegisterApplications.ViewModal.Title.Text" xml:space="preserve">
+    <value>Kayıt Başvurusu Görüntüle</value>
+  </data>
+  <data name="Table.ViewBtn.Text" xml:space="preserve">
+    <value>Görüntüle</value>
+  </data>
+  <data name="AddOrEditModal.RegisterApplicationStatusSelection.Text" xml:space="preserve">
+    <value>--Durum Seç--</value>
+  </data>
+  <data name="Enum.RegisterApplicationStatus.Approved.Text" xml:space="preserve">
+    <value>Onaylandı</value>
+  </data>
+  <data name="Enum.RegisterApplicationStatus.Pending.Text" xml:space="preserve">
+    <value>Onay Bekliyor</value>
+  </data>
+  <data name="Enum.RegisterApplicationStatus.Rejected.Text" xml:space="preserve">
+    <value>Reddedildi</value>
+  </data>
+  <data name="RegisterApplications.Table.Column7.Text" xml:space="preserve">
+    <value>Açıklama</value>
+  </data>
+  <data name="RegisterApplications.Notification.Edit.Text" xml:space="preserve">
+    <value>Başvuru başarılı bir şekilde düzenlendi</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message21.Text" xml:space="preserve">
+    <value>Lütfen bir durum seçiniz</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplication.Text1" xml:space="preserve">
+    <value>Ziyaretçi Defteri | Ziyaretçi Kaydedici Hesabı Başvuru Sonucu</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationApproved.Text1" xml:space="preserve">
+    <value>Merhaba</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationApproved.Text10" xml:space="preserve">
+    <value>visitor-book.erengaygusuz.com.tr/home/contact</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationApproved.Text11" xml:space="preserve">
+    <value>bölümündeki iletişim formunu kullanabilirsiniz.</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationApproved.Text2" xml:space="preserve">
+    <value>Ziyaretçi Kaydedici hesabı başvurunuz onaylanmıştır.</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationApproved.Text3" xml:space="preserve">
+    <value>Sisteme erişim için hesap bilgileriniz aşağıda yer almaktadır:</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationApproved.Text4" xml:space="preserve">
+    <value>E-Posta:</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationApproved.Text5" xml:space="preserve">
+    <value>Şifre:</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationApproved.Text6" xml:space="preserve">
+    <value>Sisteme ilk kez girdikten sonra profil bölümünden şifrenizi değiştirmenizi tavsiye ederiz.</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationApproved.Text7" xml:space="preserve">
+    <value>Bizimle iletişime geçmek için</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationApproved.Text8" xml:space="preserve">
+    <value>visitor.book@erengaygusuz.com.tr</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationApproved.Text9" xml:space="preserve">
+    <value>e-posta adresini veya</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationRejected.Text1" xml:space="preserve">
+    <value>Merhaba</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationRejected.Text2" xml:space="preserve">
+    <value>Ziyaretçi Kaydedici hesabı başvurunuz maalesef reddedilmiştir.</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationRejected.Text3" xml:space="preserve">
+    <value>Eğer bu işlemin bir hata olduğunu düşünüyorsanız bizimle iletişime geçmek için</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationRejected.Text4" xml:space="preserve">
+    <value>visitor.book@erengaygusuz.com.tr</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationRejected.Text5" xml:space="preserve">
+    <value>e-posta adresini veya</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationRejected.Text6" xml:space="preserve">
+    <value>visitor-book.erengaygusuz.com.tr/home/contact</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationRejected.Text7" xml:space="preserve">
+    <value>bölümündeki iletişim formunu kullanabilirsiniz.</value>
+  </data>
+  <data name="Auth.Login.Message6.Text" xml:space="preserve">
+    <value>Bu hesabın başvurusu reddedilmiştir. Sisteme giriş yapamazsınız.</value>
   </data>
 </root>

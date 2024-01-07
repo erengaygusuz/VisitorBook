@@ -10,6 +10,7 @@ namespace VisitorBook.Core.Dtos.UserDtos
             new PropertyMapping("User.Surname", "User.Surname"),
             new PropertyMapping("User.Username", "User.Username"),
             new PropertyMapping("User.Email", "User.Email"),
+            new PropertyMapping("CreatedDate", "CreatedDate"),
             new PropertyMapping("Status", "Status")
         };
 

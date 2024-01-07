@@ -1476,13 +1476,175 @@
   <data name="Layout.Header.Navbar.Items15.Text" xml:space="preserve">
     <value>Register Applications</value>
   </data>
-  <data name="Layout.Header.Navbar.Items16.Text" xml:space="preserve">
-    <value>Pending Applications</value>
-  </data>
-  <data name="Layout.Header.Navbar.Items17.Text" xml:space="preserve">
-    <value>Past Applications</value>
-  </data>
   <data name="Roles.Permission.RegisterApplicationManagement.Text" xml:space="preserve">
     <value>Register Application Management</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message1.Text" xml:space="preserve">
+    <value>Please fill the name area</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message10.Text" xml:space="preserve">
+    <value>Please enter a valid e-mail</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message11.Text" xml:space="preserve">
+    <value>This e-mail is taken. Please enter another e-mail.</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message12.Text" xml:space="preserve">
+    <value>Please fill the username area</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message13.Text" xml:space="preserve">
+    <value>Username can not contain white space</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message14.Text" xml:space="preserve">
+    <value>Username can not contain turkish letters</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message15.Text" xml:space="preserve">
+    <value>Username can not start with uppercase letter</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message16.Text" xml:space="preserve">
+    <value>Username can not contain number</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message17.Text" xml:space="preserve">
+    <value>This username is taken. Please enter another username.</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message18.Text" xml:space="preserve">
+    <value>Please fill the explanation area</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message19.Text" xml:space="preserve">
+    <value>Please enter a explanation minimum 20 character at least</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message2.Text" xml:space="preserve">
+    <value>Name can not contain number</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message20.Text" xml:space="preserve">
+    <value>Please enter a explanation maximum 500 character at most</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message3.Text" xml:space="preserve">
+    <value>Please enter a name minimum 3 character at least</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message4.Text" xml:space="preserve">
+    <value>Please enter a name maximum 100 character at most</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message5.Text" xml:space="preserve">
+    <value>Please fill the surname area</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message6.Text" xml:space="preserve">
+    <value>Surname can not contain number</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message7.Text" xml:space="preserve">
+    <value>Please enter a surname minimum 3 character at least</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message8.Text" xml:space="preserve">
+    <value>Please enter a surname maximum 100 character at most</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message9.Text" xml:space="preserve">
+    <value>Please fill the email area</value>
+  </data>
+  <data name="RegisterApplications.Table.Column1.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="RegisterApplications.Table.Column2.Text" xml:space="preserve">
+    <value>Surname</value>
+  </data>
+  <data name="RegisterApplications.Table.Column3.Text" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="RegisterApplications.Table.Column4.Text" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="RegisterApplications.Table.Column5.Text" xml:space="preserve">
+    <value>Application Date</value>
+  </data>
+  <data name="RegisterApplications.Table.Column6.Text" xml:space="preserve">
+    <value>Application Status</value>
+  </data>
+  <data name="RegisterApplications.Title.Text" xml:space="preserve">
+    <value>Register Applications List</value>
+  </data>
+  <data name="RegisterApplications.ViewModal.Title.Text" xml:space="preserve">
+    <value>Register Application View</value>
+  </data>
+  <data name="Table.ViewBtn.Text" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="AddOrEditModal.RegisterApplicationStatusSelection.Text" xml:space="preserve">
+    <value>--Select Status--</value>
+  </data>
+  <data name="Enum.RegisterApplicationStatus.Approved.Text" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="Enum.RegisterApplicationStatus.Pending.Text" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="Enum.RegisterApplicationStatus.Rejected.Text" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="RegisterApplications.Table.Column7.Text" xml:space="preserve">
+    <value>Explanation</value>
+  </data>
+  <data name="RegisterApplications.Notification.Edit.Text" xml:space="preserve">
+    <value>Application edited successfully</value>
+  </data>
+  <data name="Validators.RegisterApplication.Message21.Text" xml:space="preserve">
+    <value>Please select a status</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplication.Text1" xml:space="preserve">
+    <value>Visitor Book | Visitor Recorder Account Application Result</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationApproved.Text1" xml:space="preserve">
+    <value>Hello</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationApproved.Text10" xml:space="preserve">
+    <value>visitor-book.erengaygusuz.com.tr/home/contact</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationApproved.Text11" xml:space="preserve">
+    <value>web address</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationApproved.Text2" xml:space="preserve">
+    <value>Your Visitor Recorder Account Application has been apporoved.</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationApproved.Text3" xml:space="preserve">
+    <value>Your account information at below to log in the system:</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationApproved.Text4" xml:space="preserve">
+    <value>E-mail:</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationApproved.Text5" xml:space="preserve">
+    <value>Password:</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationApproved.Text6" xml:space="preserve">
+    <value>After first logged in the system we suggest that you should change your password by using your profile.</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationApproved.Text7" xml:space="preserve">
+    <value>To contact with us you can use</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationApproved.Text8" xml:space="preserve">
+    <value>visitor.book@erengaygusuz.com.tr</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationApproved.Text9" xml:space="preserve">
+    <value>e-mail address or contact form at</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationRejected.Text1" xml:space="preserve">
+    <value>Hello</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationRejected.Text2" xml:space="preserve">
+    <value>Your Visitor Recorder account application has been rejected.</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationRejected.Text3" xml:space="preserve">
+    <value>If you think this process is a mistake, you can contact with us by using</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationRejected.Text4" xml:space="preserve">
+    <value>visitor.book@erengaygusuz.com.tr</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationRejected.Text5" xml:space="preserve">
+    <value>e-mail address or contact form at</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationRejected.Text6" xml:space="preserve">
+    <value>visitor-book.erengaygusuz.com.tr/home/contact</value>
+  </data>
+  <data name="EmailTemplates.RegisterApplicationRejected.Text7" xml:space="preserve">
+    <value>web address</value>
+  </data>
+  <data name="Auth.Login.Message6.Text" xml:space="preserve">
+    <value>Register Application has been rejected for this account. You can not login the system with this account.</value>
   </data>
 </root>

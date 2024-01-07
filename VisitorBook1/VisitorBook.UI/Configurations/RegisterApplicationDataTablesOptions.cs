@@ -70,6 +70,18 @@ namespace VisitorBook.UI.Configurations
                     },
                     new Column
                     {
+                        Data = "CreatedDate",
+                        Name = "CreatedDate",
+                        Searchable = true,
+                        Orderable = true,
+                        Search = new Search
+                        {
+                            Value = httpRequest.Form["search[value]"].FirstOrDefault(),
+                            Regex = ""
+                        }
+                    },
+                    new Column
+                    {
                         Data = "Status",
                         Name = "Status",
                         Searchable = true,
@@ -88,6 +100,11 @@ namespace VisitorBook.UI.Configurations
                 },
                 Order = new List<Order>
                 {
+                    new Order
+                    {
+                        Column = Convert.ToInt32(httpRequest.Form["order[0][column]"].FirstOrDefault()),
+                        Dir = httpRequest.Form["order[0][dir]"].FirstOrDefault()
+                    },
                     new Order
                     {
                         Column = Convert.ToInt32(httpRequest.Form["order[0][column]"].FirstOrDefault()),

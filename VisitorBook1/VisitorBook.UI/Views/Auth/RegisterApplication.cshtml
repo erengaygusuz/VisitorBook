@@ -1,4 +1,4 @@
-﻿@model RegisterApplicationRequestDto
+﻿@model RegisterApplicationCreateRequestDto
 
 @{
     ViewData["Title"] = "RegisterApplication";
@@ -89,14 +89,14 @@
                                 </div>
                                 <span asp-validation-for="@Model.Email" class="error invalid-feedback"></span>
                             </div>
-                            <button class="btn btn-primary" onclick="stepper.next()">@localization["RegisterApplications.NextBtn.Text"]</button>
+                            <a class="btn btn-primary" onclick="stepper.next()">@localization["RegisterApplications.NextBtn.Text"]</a>
                         </div>
                         <div id="test-nlf-2" role="tabpanel" class="bs-stepper-pane fade dstepper-block dstepper-none" aria-labelledby="stepper3trigger2">
                             <div class="input-group mb-3 mt-2">
-                                <textarea class="form-control" rows="6" placeholder="@localization["RegisterApplications.Tab2.Row1.Text"]"></textarea>
+                                <textarea class="form-control" rows="6" placeholder="@localization["RegisterApplications.Tab2.Row1.Text"]" asp-for="@Model.Explanation"></textarea>
                                 <span asp-validation-for="@Model.Explanation" class="error invalid-feedback"></span>
                             </div>
-                            <button class="btn btn-primary" onclick="stepper.next()">@localization["RegisterApplications.NextBtn.Text"]</button>
+                            <a class="btn btn-primary" onclick="stepper.next()">@localization["RegisterApplications.NextBtn.Text"]</a>
                         </div>
                         <div id="test-nlf-3" role="tabpanel" class="bs-stepper-pane fade text-center dstepper-block active" aria-labelledby="stepper3trigger3">
                             <button type="submit" class="btn btn-primary mt-5">@localization["RegisterApplications.SubmitBtn.Text"]</button>

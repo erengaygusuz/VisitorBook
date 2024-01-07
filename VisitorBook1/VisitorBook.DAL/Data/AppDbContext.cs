@@ -123,7 +123,14 @@ namespace VisitorBook.DAL.Data
 
         private string GetUserName()
         {
-            return _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.Name);
+            var username = _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.Name);
+
+            if (username == null)
+            {
+                return "ANONYMOUS";
+            }
+                
+            return username;
         }
 
         public void UpdateChangeTracker()

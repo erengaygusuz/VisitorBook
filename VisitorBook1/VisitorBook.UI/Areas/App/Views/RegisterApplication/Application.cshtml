@@ -1,0 +1,100 @@
+﻿@model RegisterApplicationViewModel
+
+@{
+    ViewData["Title"] = "View";
+    Layout = null;
+}
+
+<script type="text/javascript">
+    $('.select2').select2({
+        dropdownParent: $('#form-modal'),
+        theme: 'bootstrap4',
+        language: document.getElementById('ActiveLanguage').value.substring(0, 2)
+    });
+</script>
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-controller="RegisterApplication" asp-action="Application" asp-route-id="@Model.RegisterApplication.Id" onsubmit="return EditRecord(this);" autocomplete="off">
+            <div class="row mt-4">
+                <input hidden asp-for="@Model.RegisterApplication.Id" />
+                <input hidden asp-for="@Model.RegisterApplication.User.Id" />
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">@localization["RegisterApplications.Table.Column1.Text"]</label>
+                        <input hidden asp-for="@Model.RegisterApplication.User.Name" />
+                        <p>@Model.RegisterApplication.User.Name</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">@localization["RegisterApplications.Table.Column2.Text"]</label>
+                        <input hidden asp-for="@Model.RegisterApplication.User.Surname" />
+                        <p>@Model.RegisterApplication.User.Surname</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">@localization["RegisterApplications.Table.Column3.Text"]</label>
+                        <input hidden asp-for="@Model.RegisterApplication.User.Email" />
+                        <p>@Model.RegisterApplication.User.Email</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">@localization["RegisterApplications.Table.Column4.Text"]</label>
+                        <input hidden asp-for="@Model.RegisterApplication.User.Username" />
+                        <p>@Model.RegisterApplication.User.Username</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">@localization["RegisterApplications.Table.Column7.Text"]</label>
+                        <input hidden asp-for="@Model.RegisterApplication.Explanation" />
+                        <p>@Model.RegisterApplication.Explanation</p>
+                    </div>
+                </div>
+            </div>
+            @if (Model.RegisterApplication.Status == RegisterApplicationStatus.Pending.ToString())
+            {
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label asp-for="@Model.RegisterApplication.Status" class="control-label">@localization["RegisterApplications.Table.Column6.Text"]</label>
+                            <select asp-for="@Model.RegisterApplication.Status" asp-items="@Model.RegisterApplicationStatusList" class="form-control select2" style="width: 100% !important;">
+                                <option disabled selected>@localization["AddOrEditModal.RegisterApplicationStatusSelection.Text"]</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="form-group mt-4">
+                            <input type="submit" value="@localization["AddOrEditModal.SubmitBtn.Text"]" class="btn btn-primary w-100" />
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label">@localization["RegisterApplications.Table.Column6.Text"]</label>
+                            <input hidden asp-for="@Model.RegisterApplication.Status" />
+                            <p>@localization["Enum.RegisterApplicationStatus." + Model.RegisterApplication.Status + ".Text"]</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </form>
+    </div>
+</div>
