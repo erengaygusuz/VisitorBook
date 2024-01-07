@@ -1,4 +1,4 @@
-﻿@model AuditTrailResponseDto
+﻿@model AuditTrailViewModel
 
 @{
     ViewData["Title"] = "View";
@@ -62,81 +62,19 @@
                                 <thead>
                                     <tr>
                                         <th>@localization["AuditTrails.Table.AffectedColumn.Text"]</th>
+                                        <th>@localization["AuditTrails.Table.Column6.Text"]</th>
+                                        <th>@localization["AuditTrails.Table.Column7.Text"]</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach (var item in Model.AffectedColumns)
                                     {
                                     <tr>
-                                        <td>@item</td>
+                                        <td>@item.ColumnName</td>
+                                        <td>@item.OldValue</td>
+                                        <td>@item.NewValue</td>
                                     </tr>
                                     }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-
-        @if (Model.OldValues.Count > 0)
-        {
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group mt-3 mb-0">
-                        <label class="control-label">@localization["AuditTrails.Table.Column6.Text"]</label>
-                    </div>
-                    <div class="card">
-                        <div class="card-body table-responsive p-0">
-                            <table class="table text-nowrap">
-                                <thead>
-                                    <tr>
-                                        @foreach (var item in Model.OldValues)
-                                        {
-                                            <th>@item.Key</th>
-                                        }
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        @foreach (var item in Model.OldValues)
-                                        {
-                                            <td>@item.Value</td>
-                                        }
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-
-        @if (Model.NewValues.Count > 0)
-        {
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group mt-3 mb-0">
-                        <label class="control-label">@localization["AuditTrails.Table.Column7.Text"]</label>
-                    </div>
-                    <div class="card">
-                        <div class="card-body table-responsive p-0">
-                            <table class="table text-nowrap">
-                                <thead>
-                                    <tr>
-                                        @foreach (var item in Model.NewValues)
-                                        {
-                                            <th>@item.Key</th>
-                                        }
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        @foreach (var item in Model.NewValues)
-                                        {
-                                            <td>@item.Value</td>
-                                        }
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
