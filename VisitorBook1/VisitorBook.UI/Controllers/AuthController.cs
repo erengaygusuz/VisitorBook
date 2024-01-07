@@ -5,8 +5,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using VisitorBook.Core.Abstract;
+using VisitorBook.Core.Constants;
 using VisitorBook.Core.Dtos.AuthDtos;
+using VisitorBook.Core.Dtos.RegisterApplicationDto;
 using VisitorBook.Core.Entities;
+using VisitorBook.Core.Enums;
 using VisitorBook.Core.Extensions;
 using VisitorBook.UI.Languages;
 
@@ -24,12 +27,15 @@ namespace VisitorBook.UI.Controllers
         private readonly IValidator<RegisterRequestDto> _registerRequestDtoValidator;
         private readonly IValidator<ForgotPasswordRequestDto> _forgotPasswordRequestDtoValidator;
         private readonly IValidator<ResetPasswordRequestDto> _resetPasswordRequestDtoValidator;
+        private readonly IValidator<RegisterApplicationRequestDto> _registerApplicationRequestDtoValidator;
         private readonly IWebHostEnvironment _environment;
+        private readonly IService<RegisterApplication> _registerApplicationService;
 
         public AuthController(UserManager<User> userManager, SignInManager<User> signInManager, IEmailService emailService, INotyfService notifyService,
             IStringLocalizer<Language> localization, IValidator<LoginRequestDto> loginRequestDtoValidator, 
             IValidator<RegisterRequestDto> registerRequestDtoValidator, IValidator<ForgotPasswordRequestDto> forgotPasswordRequestDtoValidator, 
-            IValidator<ResetPasswordRequestDto> resetPasswordRequestDtoValidator, IWebHostEnvironment environment)
+            IValidator<ResetPasswordRequestDto> resetPasswordRequestDtoValidator, IWebHostEnvironment environment, 
+            IValidator<RegisterApplicationRequestDto> registerApplicationRequestDtoValidator, IService<RegisterApplication> registerApplicationService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -40,7 +46,9 @@ namespace VisitorBook.UI.Controllers
             _registerRequestDtoValidator = registerRequestDtoValidator;
             _forgotPasswordRequestDtoValidator = forgotPasswordRequestDtoValidator;
             _resetPasswordRequestDtoValidator = resetPasswordRequestDtoValidator;
+            _registerApplicationRequestDtoValidator = registerApplicationRequestDtoValidator;
             _environment = environment;
+            _registerApplicationService = registerApplicationService;
         }
 
         [HttpGet]
@@ -131,7 +139,7 @@ namespace VisitorBook.UI.Controllers
             {
                 var user = await _userManager.FindByEmailAsync(registerRequestDto.Email);
 
-                var result = await _userManager.AddToRoleAsync(user, "Visitor");
+                var result = await _userManager.AddToRoleAsync(user, AppRoles.Visitor);
 
                 if (result.Succeeded)
                 {
@@ -177,11 +185,21 @@ namespace VisitorBook.UI.Controllers
 
                     return RedirectToAction(nameof(Register));
                 }
+
+                else
+                {
+                    _notifyService.Error(_localization["Auth.Register.Message4.Text"].Value);
+
+                    return View();
+                }
             }
 
-            ModelState.AddModelErrorList(identityResult.Errors.Select(x => x.Description).ToList());
+            else
+            {
+                _notifyService.Error(_localization["Auth.Register.Message4.Text"].Value);
 
-            return View();
+                return View();
+            }
         }
 
         [HttpGet]
@@ -367,6 +385,70 @@ namespace VisitorBook.UI.Controllers
         public IActionResult RegisterApplication()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RegisterApplication(RegisterApplicationRequestDto registerApplicationRequestDto)
+        {
+            var validationResult = await _registerApplicationRequestDtoValidator.ValidateAsync(registerApplicationRequestDto);
+
+            if (!validationResult.IsValid)
+            {
+                return View();
+            }
+
+            var identityResult = await _userManager.CreateAsync(new User()
+            {
+                Name = registerApplicationRequestDto.Name,
+                Surname = registerApplicationRequestDto.Surname,
+                UserName = registerApplicationRequestDto.Username,
+                Email = registerApplicationRequestDto.Email
+
+            }, "12345");
+
+            if (identityResult.Succeeded)
+            {
+                var user = await _userManager.FindByEmailAsync(registerApplicationRequestDto.Email);
+
+                var result = await _userManager.AddToRoleAsync(user, AppRoles.VisitorRecorder);
+
+                if (result.Succeeded)
+                {
+                    var registerApplicationResult =  await _registerApplicationService.AddAsync(new RegisterApplication
+                    {
+                        Explanation = registerApplicationRequestDto.Explanation,
+                        Status = RegisterApplicationStatus.Pending
+                    });
+
+                    if (registerApplicationResult)
+                    {
+                        _notifyService.Success(_localization["Auth.RegisterApplication.Message1.Text"].Value);
+
+                        return RedirectToAction(nameof(Register));
+                    }
+
+                    else
+                    {
+                        _notifyService.Error(_localization["Auth.RegisterApplication.Message2.Text"].Value);
+
+                        return View();
+                    }
+                }
+
+                else
+                {
+                    _notifyService.Error(_localization["Auth.RegisterApplication.Message2.Text"].Value);
+
+                    return View();
+                }
+            }
+
+            else
+            {
+                _notifyService.Error(_localization["Auth.RegisterApplication.Message2.Text"].Value);
+
+                return View();
+            }
         }
     }
 }

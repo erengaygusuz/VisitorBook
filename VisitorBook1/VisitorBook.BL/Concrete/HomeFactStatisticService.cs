@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using VisitorBook.Core.Abstract;
+using VisitorBook.Core.Constants;
 using VisitorBook.Core.Entities;
 
 namespace VisitorBook.BL.Concrete
@@ -34,7 +35,7 @@ namespace VisitorBook.BL.Concrete
 
         public async Task<int> GetTotalVisitorCountAsync()
         {
-            return (await _userManager.GetUsersInRoleAsync("Visitor")).Count;
+            return (await _userManager.GetUsersInRoleAsync(AppRoles.Visitor)).Count;
         }
     }
 }

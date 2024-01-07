@@ -1362,7 +1362,7 @@
     <value>e-posta adresini veya</value>
   </data>
   <data name="Auth.Login.Message5.Text" xml:space="preserve">
-    <value>Hesabınız henüz onaylanmamış. Lütfen e-postanıza gönderilen linke tıklayarak hesabınızı onaylatınız</value>
+    <value>Hesabınız henüz onaylanmamış. Lütfen e-postanıza gönderilen linke tıklayarak hesabınızı onaylayınız</value>
   </data>
   <data name="Auth.Register.Message3.Text" xml:space="preserve">
     <value>Kayıt tamamlama bağlantınız geçersizdir.</value>
@@ -1423,5 +1423,68 @@
   </data>
   <data name="AuditTrails.Table.AffectedColumn.Text" xml:space="preserve">
     <value>Kolon Adı</value>
+  </data>
+  <data name="RegisterApplications.Info1.Text" xml:space="preserve">
+    <value>Lütfen Ziyaretçi Kaydedici hesabı başvurusu yapmak için formu doldurup gönderin</value>
+  </data>
+  <data name="RegisterApplications.Info2.Text" xml:space="preserve">
+    <value>Zaten bir üyeliğim var</value>
+  </data>
+  <data name="RegisterApplications.Info3.Text" xml:space="preserve">
+    <value>Ana sayfaya geri dön</value>
+  </data>
+  <data name="RegisterApplications.NextBtn.Text" xml:space="preserve">
+    <value>İlerle</value>
+  </data>
+  <data name="RegisterApplications.SubmitBtn.Text" xml:space="preserve">
+    <value>Gönder</value>
+  </data>
+  <data name="RegisterApplications.Tab1.Row1.Text" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="RegisterApplications.Tab1.Row2.Text" xml:space="preserve">
+    <value>Soyad</value>
+  </data>
+  <data name="RegisterApplications.Tab1.Row3.Text" xml:space="preserve">
+    <value>Kullanıcı Adı</value>
+  </data>
+  <data name="RegisterApplications.Tab1.Row4.Text" xml:space="preserve">
+    <value>E-posta</value>
+  </data>
+  <data name="RegisterApplications.Tab1.Text" xml:space="preserve">
+    <value>Kişisel Bilgiler</value>
+  </data>
+  <data name="RegisterApplications.Tab2.Row1.Text" xml:space="preserve">
+    <value>Lütfen ziyaretçi kaydedici hesabı açma nedeninizi kısaca belirtiniz</value>
+  </data>
+  <data name="RegisterApplications.Tab2.Text" xml:space="preserve">
+    <value>Açıklama</value>
+  </data>
+  <data name="RegisterApplications.Tab3.Text" xml:space="preserve">
+    <value>Gönderim</value>
+  </data>
+  <data name="Register.Item9.Text" xml:space="preserve">
+    <value>Ziyaretçi Kaydedici hesabı için başvur</value>
+  </data>
+  <data name="RegisterApplications.Info4.Text" xml:space="preserve">
+    <value>Normal kayıt ekranına dön</value>
+  </data>
+  <data name="Auth.RegisterApplication.Message1.Text" xml:space="preserve">
+    <value>Başvurunuz alınmıştır. Başvuru sonucunuz yakın zamanda e-postanıza iletilecektir.</value>
+  </data>
+  <data name="Auth.RegisterApplication.Message2.Text" xml:space="preserve">
+    <value>İşlem esnasında hata meydana geldi. Lütfen tekrar deneyiniz.</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items15.Text" xml:space="preserve">
+    <value>Kayıt Başvuruları</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items16.Text" xml:space="preserve">
+    <value>Bekleyen Başvurular</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items17.Text" xml:space="preserve">
+    <value>Geçmiş Başvurular</value>
+  </data>
+  <data name="Roles.Permission.RegisterApplicationManagement.Text" xml:space="preserve">
+    <value>Kayıt Başvuruları Yönetimi</value>
   </data>
 </root>

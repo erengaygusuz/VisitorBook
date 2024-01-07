@@ -76,5 +76,13 @@ namespace VisitorBook.Core.Constants
             public const string Edit = "Permissions.AuditTrailManagement.Edit";
             public const string Delete = "Permissions.AuditTrailManagement.Delete";
         }
+
+        public static class RegisterApplicationManagement
+        {
+            public const string View = "Permissions.RegisterApplicationManagement.View";
+            public const string Create = "Permissions.RegisterApplicationManagement.Create";
+            public const string Edit = "Permissions.RegisterApplicationManagement.Edit";
+            public const string Delete = "Permissions.RegisterApplicationManagement.Delete";
+        }
     }
 }

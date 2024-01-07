@@ -33,6 +33,7 @@ using VisitorBook.UI.Filters;
 using VisitorBook.Core.Dtos.ContactMessageDtos;
 using VisitorBook.UI.TokenProviders;
 using Microsoft.AspNetCore.Components.Authorization;
+using VisitorBook.Core.Dtos.RegisterApplicationDto;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,6 +55,7 @@ builder.Services.AddScoped<IPropertyMappingCollection, RoleToRoleGetResponseDtoM
 builder.Services.AddScoped<IPropertyMappingCollection, SubRegionToSubRegionGetResponseDtoMappingCollection<SubRegion, SubRegionResponseDto>>();
 builder.Services.AddScoped<IPropertyMappingCollection, UserToUserGetResponseDtoMappingCollection<User, UserResponseDto>>();
 builder.Services.AddScoped<IPropertyMappingCollection, CountryToCountryGetResponseDtoMappingCollection<Country, CountryResponseDto>>();
+builder.Services.AddScoped<IPropertyMappingCollection, RegisterApplicationToRegisterApplicationGetResponseDtoMappingCollection<RegisterApplication, RegisterApplicationResponseDto>>();
 builder.Services.AddScoped(typeof(IVisitorStatisticService), typeof(VisitorStatisticService));
 builder.Services.AddScoped(typeof(LocationHelper));
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
@@ -165,6 +167,7 @@ builder.Services.AddScoped<IValidator<RegionRequestDto>, RegionRequestDtoValidat
 builder.Services.AddScoped<IValidator<FakeDataViewModel>, FakeDataViewModelValidator>();
 builder.Services.AddScoped<IValidator<ContactMessageRequestDto>, ContactMessageRequestDtoValidator>();
 builder.Services.AddScoped<IValidator<ProfileViewModel>, ProfileViewModelValidator>();
+builder.Services.AddScoped<IValidator<RegisterApplicationRequestDto>, RegisterApplicationRequestDtoValidator>();
 
 builder.Services.AddFluentValidation(fv => {
     fv.DisableDataAnnotationsValidation = true;

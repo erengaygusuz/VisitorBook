@@ -23,6 +23,7 @@ namespace VisitorBook.DAL.Data
         public DbSet<Country> Countries { get; set; }
         public DbSet<ContactMessage> ContactMessages { get; set; }
         public DbSet<AuditTrail> AuditTrails { get; set; }
+        public DbSet<RegisterApplication> RegisterApplications { get; set; }
 
         private readonly IHttpContextAccessor _httpContextAccessor;
 

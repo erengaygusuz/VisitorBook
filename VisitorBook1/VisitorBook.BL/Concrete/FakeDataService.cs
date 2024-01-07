@@ -4,6 +4,7 @@ using Bogus.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using VisitorBook.Core.Abstract;
+using VisitorBook.Core.Constants;
 using VisitorBook.Core.Dtos.UserDtos;
 using VisitorBook.Core.Dtos.VisitedCountyDtos;
 using VisitorBook.Core.Dtos.VisitorAddressDtos;
@@ -88,7 +89,7 @@ namespace VisitorBook.BL.Concrete
 
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, "Visitor");
+                    await _userManager.AddToRoleAsync(user, AppRoles.Visitor);
                 }
             }
         }

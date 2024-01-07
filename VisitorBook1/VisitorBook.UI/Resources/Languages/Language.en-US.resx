@@ -1422,4 +1422,67 @@
   <data name="AuditTrails.Table.AffectedColumn.Text" xml:space="preserve">
     <value>Column Name</value>
   </data>
+  <data name="RegisterApplications.Info1.Text" xml:space="preserve">
+    <value>Please fill the form and send us to apply Visitor Recorder Account Registration</value>
+  </data>
+  <data name="RegisterApplications.Info2.Text" xml:space="preserve">
+    <value>I have already an account</value>
+  </data>
+  <data name="RegisterApplications.Info3.Text" xml:space="preserve">
+    <value>Go back to home</value>
+  </data>
+  <data name="RegisterApplications.NextBtn.Text" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="RegisterApplications.SubmitBtn.Text" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="RegisterApplications.Tab1.Row1.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="RegisterApplications.Tab1.Row2.Text" xml:space="preserve">
+    <value>Surname</value>
+  </data>
+  <data name="RegisterApplications.Tab1.Row3.Text" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="RegisterApplications.Tab1.Row4.Text" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="RegisterApplications.Tab1.Text" xml:space="preserve">
+    <value>Personal Information</value>
+  </data>
+  <data name="RegisterApplications.Tab2.Row1.Text" xml:space="preserve">
+    <value>Please tell us briefly why you want to have an Visitor Recorder</value>
+  </data>
+  <data name="RegisterApplications.Tab2.Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="RegisterApplications.Tab3.Text" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Register.Item9.Text" xml:space="preserve">
+    <value>Apply for Visitor Recorder Account</value>
+  </data>
+  <data name="RegisterApplications.Info4.Text" xml:space="preserve">
+    <value>Go back to normal register screen</value>
+  </data>
+  <data name="Auth.RegisterApplication.Message1.Text" xml:space="preserve">
+    <value>Your application has been received. You will get an e-mail about your application soon. </value>
+  </data>
+  <data name="Auth.RegisterApplication.Message2.Text" xml:space="preserve">
+    <value>İşlem esnasında hata meydana geldi. Lütfen tekrar deneyiniz.</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items15.Text" xml:space="preserve">
+    <value>Register Applications</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items16.Text" xml:space="preserve">
+    <value>Pending Applications</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items17.Text" xml:space="preserve">
+    <value>Past Applications</value>
+  </data>
+  <data name="Roles.Permission.RegisterApplicationManagement.Text" xml:space="preserve">
+    <value>Register Application Management</value>
+  </data>
 </root>

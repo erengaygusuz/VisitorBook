@@ -7,6 +7,7 @@
         VisitedCountyManagement,
         FakeDataManagement,
         ContactMessageManagement,
-        AuditTrailManagement
+        AuditTrailManagement,
+        RegisterApplicationManagement
     }
 }
