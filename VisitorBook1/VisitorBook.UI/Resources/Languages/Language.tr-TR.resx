@@ -1649,4 +1649,7 @@
   <data name="Auth.Login.Message6.Text" xml:space="preserve">
     <value>Bu hesabın başvurusu reddedilmiştir. Sisteme giriş yapamazsınız.</value>
   </data>
+  <data name="Validators.Role.Message5.Text" xml:space="preserve">
+    <value>Rol adı boşluk içeremez</value>
+  </data>
 </root>

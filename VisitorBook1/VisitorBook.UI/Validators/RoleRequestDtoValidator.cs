@@ -15,6 +15,7 @@ namespace VisitorBook.UI.Validators
 
             RuleFor(x => x.Name)
                 .NotNull().WithMessage(_localization["Validators.Role.Message1.Text"].Value)
+                .Matches("^((?![ ]).)*$").WithMessage(_localization["Validators.Role.Message5.Text"].Value)
                 .Matches("^((?![0-9]).)*$").WithMessage(_localization["Validators.Role.Message2.Text"].Value)
                 .MinimumLength(3).WithMessage(_localization["Validators.Role.Message3.Text"].Value)
                 .MaximumLength(100).WithMessage(_localization["Validators.Role.Message4.Text"].Value);

@@ -1647,4 +1647,7 @@
   <data name="Auth.Login.Message6.Text" xml:space="preserve">
     <value>Register Application has been rejected for this account. You can not login the system with this account.</value>
   </data>
+  <data name="Validators.Role.Message5.Text" xml:space="preserve">
+    <value>Role name can not contain white space</value>
+  </data>
 </root>

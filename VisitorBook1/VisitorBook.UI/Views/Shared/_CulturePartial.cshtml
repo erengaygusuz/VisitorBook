@@ -15,9 +15,13 @@
         <select name="culture" class="form-select"
                 onchange="this.form.submit();"
                 asp-for="@requestCulture.RequestCulture.UICulture.Name">
-            @foreach (var item in cultureItems)
+
+        @{
+            var baseUrl = $"{Context.Request.Scheme}://{Context.Request.Host.Value.ToString()}{Context.Request.PathBase.Value.ToString()}";
+        }
+        @foreach (var item in cultureItems)
             {
-                <option value="@item.Value" data-icon="@Context.Request.QueryString/icons/flags/@string.Concat(item.Text, ".svg#", item.Text)">@item.Text</option>
+            <option value="@item.Value" data-icon="@baseUrl/icons/flags/@string.Concat(item.Text, ".svg#", item.Text)">@item.Text</option>
             }
         </select>
     </form>
