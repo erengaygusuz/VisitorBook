@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using VisitorBook.Core.Abstract;
@@ -35,12 +36,14 @@ namespace VisitorBook.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> Error(int statusCode)
         {
+            var feature = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
+
             var exceptionLogRequestDto = new ExceptionLogRequestDto()
             {
                 StatusCode = statusCode,
                 ExceptionTitle = ((HttpStatusCode)statusCode).ToString(),
                 RequestMethod = HttpContext.Request.Method,
-                RequestPath = HttpContext.Request.Path
+                RequestPath = feature.OriginalPath
             };
 
             await _exceptionLogService.AddAsync(exceptionLogRequestDto);

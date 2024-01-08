@@ -21,7 +21,7 @@ namespace VisitorBook.UI.Areas.App.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var contactMessages = _contactMessageRepository.GetAll();
+            var contactMessages = _contactMessageRepository.GetAll().OrderByDescending(x => x.CreatedDate);
 
             return View(contactMessages);
         }

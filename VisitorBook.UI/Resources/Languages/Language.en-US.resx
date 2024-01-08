@@ -1650,4 +1650,49 @@
   <data name="Validators.Role.Message5.Text" xml:space="preserve">
     <value>Role name can not contain white space</value>
   </data>
+  <data name="Errors.BackBtn.Text" xml:space="preserve">
+    <value>Go Back to Home</value>
+  </data>
+  <data name="Errors.Title.Text" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items16.Text" xml:space="preserve">
+    <value>Exception Logs</value>
+  </data>
+  <data name="ExceptionLogs.Table.Column1.Text" xml:space="preserve">
+    <value>Status Code</value>
+  </data>
+  <data name="ExceptionLogs.Table.Column2.Text" xml:space="preserve">
+    <value>Exception Type</value>
+  </data>
+  <data name="ExceptionLogs.Table.Column3.Text" xml:space="preserve">
+    <value>Exception Title</value>
+  </data>
+  <data name="ExceptionLogs.Table.Column4.Text" xml:space="preserve">
+    <value>Exception Message</value>
+  </data>
+  <data name="ExceptionLogs.Table.Column5.Text" xml:space="preserve">
+    <value>Request Method</value>
+  </data>
+  <data name="ExceptionLogs.Table.Column6.Text" xml:space="preserve">
+    <value>Request Path</value>
+  </data>
+  <data name="ExceptionLogs.Table.ResultMessage.Text" xml:space="preserve">
+    <value>There is no log to show</value>
+  </data>
+  <data name="ExceptionLogs.Title.Text" xml:space="preserve">
+    <value>Exception Logs</value>
+  </data>
+  <data name="ExceptionLogs.ViewModal.Title.Text" xml:space="preserve">
+    <value>Exception Log View</value>
+  </data>
+  <data name="Roles.Permission.ExceptionLogManagement.Text" xml:space="preserve">
+    <value>Exception Log Management</value>
+  </data>
+  <data name="ContactMessages.Table.Column5.Text" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="ExceptionLogs.Table.Column7.Text" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
 </root>

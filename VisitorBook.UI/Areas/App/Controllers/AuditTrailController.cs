@@ -25,7 +25,7 @@ namespace VisitorBook.UI.Areas.App.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var auditTrails = _auditTrailRepository.GetAll();
+            var auditTrails = _auditTrailRepository.GetAll().OrderByDescending(x => x.CreatedDate);
 
             return View(auditTrails);
         }

@@ -84,5 +84,13 @@ namespace VisitorBook.Core.Constants
             public const string Edit = "Permissions.RegisterApplicationManagement.Edit";
             public const string Delete = "Permissions.RegisterApplicationManagement.Delete";
         }
+
+        public static class ExceptionLogManagement
+        {
+            public const string View = "Permissions.ExceptionLogManagement.View";
+            public const string Create = "Permissions.ExceptionLogManagement.Create";
+            public const string Edit = "Permissions.ExceptionLogManagement.Edit";
+            public const string Delete = "Permissions.ExceptionLogManagement.Delete";
+        }
     }
 }

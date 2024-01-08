@@ -112,6 +112,7 @@ namespace VisitorBook.BL.Mapping
                 .ForMember(e => e.CreatedDate, opts => opts.MapFrom(e => e.CreatedDate));
 
             CreateMap<ExceptionLogRequestDto, ExceptionLog>();
+            CreateMap<ExceptionLog, ExceptionLogResponseDto>();
         }
     }
 }

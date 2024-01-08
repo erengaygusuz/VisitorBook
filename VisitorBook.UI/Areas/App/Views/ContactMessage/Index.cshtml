@@ -33,6 +33,7 @@
                                 columns.Add(model => model.NameSurname).Titled(@localization["ContactMessages.Table.Column1.Text"]);
                                 columns.Add(model => model.Email).Titled(@localization["ContactMessages.Table.Column2.Text"]);
                                 columns.Add(model => model.Subject).Titled(@localization["ContactMessages.Table.Column3.Text"]);
+                                columns.Add(model => model.CreatedDate).Titled(@localization["ContactMessages.Table.Column5.Text"]);
                             })
                             .Filterable(GridFilterCase.Lower)
                             .Using(GridFilterMode.Row)

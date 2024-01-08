@@ -8,6 +8,7 @@
         FakeDataManagement,
         ContactMessageManagement,
         AuditTrailManagement,
-        RegisterApplicationManagement
+        RegisterApplicationManagement,
+        ExceptionLogManagement
     }
 }

@@ -1,0 +1,67 @@
+﻿@model ExceptionLog
+
+@{
+    ViewData["Title"] = "View";
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label">@localization["ExceptionLogs.Table.Column7.Text"]</label>
+                    <p>@Model.CreatedDate</p>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label">@localization["ExceptionLogs.Table.Column1.Text"]</label>
+                    <p>@Model.StatusCode</p>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label">@localization["ExceptionLogs.Table.Column2.Text"]</label>
+                    <p>@Model.ExceptionType</p>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label">@localization["ExceptionLogs.Table.Column3.Text"]</label>
+                    <p>@Model.ExceptionTitle</p>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label">@localization["ExceptionLogs.Table.Column4.Text"]</label>
+                    <p>@Model.ExceptionMessage</p>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label">@localization["ExceptionLogs.Table.Column5.Text"]</label>
+                    <p>@Model.RequestMethod</p>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label">@localization["ExceptionLogs.Table.Column6.Text"]</label>
+                    <p>@Model.RequestPath</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

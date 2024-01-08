@@ -1652,4 +1652,49 @@
   <data name="Validators.Role.Message5.Text" xml:space="preserve">
     <value>Rol adı boşluk içeremez</value>
   </data>
+  <data name="Errors.BackBtn.Text" xml:space="preserve">
+    <value>Ana Sayfaya Geri Dön</value>
+  </data>
+  <data name="Errors.Title.Text" xml:space="preserve">
+    <value>Hata</value>
+  </data>
+  <data name="Layout.Header.Navbar.Items16.Text" xml:space="preserve">
+    <value>Hata Kayıtları</value>
+  </data>
+  <data name="ExceptionLogs.Table.Column1.Text" xml:space="preserve">
+    <value>Durum Kodu</value>
+  </data>
+  <data name="ExceptionLogs.Table.Column2.Text" xml:space="preserve">
+    <value>Hata Türü</value>
+  </data>
+  <data name="ExceptionLogs.Table.Column3.Text" xml:space="preserve">
+    <value>Hata Başlığı</value>
+  </data>
+  <data name="ExceptionLogs.Table.Column4.Text" xml:space="preserve">
+    <value>Hata Mesajı</value>
+  </data>
+  <data name="ExceptionLogs.Table.Column5.Text" xml:space="preserve">
+    <value>İstek Türü</value>
+  </data>
+  <data name="ExceptionLogs.Table.Column6.Text" xml:space="preserve">
+    <value>İstek Yolu</value>
+  </data>
+  <data name="ExceptionLogs.Table.ResultMessage.Text" xml:space="preserve">
+    <value>Herhangi bir kayıt bulunamadı</value>
+  </data>
+  <data name="ExceptionLogs.Title.Text" xml:space="preserve">
+    <value>Hata Kayıtları</value>
+  </data>
+  <data name="ExceptionLogs.ViewModal.Title.Text" xml:space="preserve">
+    <value>Hata Kaydı Görüntüle</value>
+  </data>
+  <data name="Roles.Permission.ExceptionLogManagement.Text" xml:space="preserve">
+    <value>Hata Kaydı Yönetimi</value>
+  </data>
+  <data name="ContactMessages.Table.Column5.Text" xml:space="preserve">
+    <value>Oluşturulma Tarihi</value>
+  </data>
+  <data name="ExceptionLogs.Table.Column7.Text" xml:space="preserve">
+    <value>Oluşturulma Tarihi</value>
+  </data>
 </root>

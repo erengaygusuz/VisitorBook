@@ -3,12 +3,12 @@
 <div class="container-fluid page-header wow fadeIn"
      data-wow-delay="0.1s">
     <div class="container py-5">
-        <h1 class="display-4 animated slideInDown mb-4">Hata</h1>
+        <h1 class="display-4 animated slideInDown mb-4">@localization["Errors.Title.Text"]</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#">@localization["Home.Navbar.Item1.Text"]</a></li>
+                <li class="breadcrumb-item">@localization["Home.Navbar.Item1.Text"]</li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    Hata
+                    @localization["Errors.Title.Text"]
                 </li>
             </ol>
         </nav>
@@ -23,7 +23,7 @@
                 <p class="mb-4">
                     @Model.ExceptionMessage
                 </p>
-                <a class="btn btn-primary py-3 px-5" href="">Ana sayfaya geri dön</a>
+                <a class="btn btn-primary py-3 px-5" asp-controller="Home" asp-action="Index">@localization["Errors.BackBtn.Text"]</a>
             </div>
         </div>
     </div>
