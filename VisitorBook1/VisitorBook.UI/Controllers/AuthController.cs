@@ -140,7 +140,8 @@ namespace VisitorBook.UI.Controllers
                 Name = registerRequestDto.Name,
                 Surname = registerRequestDto.Surname,
                 UserName = registerRequestDto.Username,
-                Email = registerRequestDto.Email
+                Email = registerRequestDto.Email,
+                BirthDate = new DateTime(day: 1, month: 1, year: 1991, hour: 12, minute: 30, second: 50)
 
             }, registerRequestDto.PasswordConfirm);
 
@@ -411,7 +412,8 @@ namespace VisitorBook.UI.Controllers
                 Name = registerApplicationCreateRequestDto.Name,
                 Surname = registerApplicationCreateRequestDto.Surname,
                 UserName = registerApplicationCreateRequestDto.Username,
-                Email = registerApplicationCreateRequestDto.Email
+                Email = registerApplicationCreateRequestDto.Email,
+                BirthDate = new DateTime(day: 1, month: 1, year: 1991, hour: 12, minute: 30, second: 50)
 
             }, "12345");
 
