@@ -10,7 +10,6 @@ using VisitorBook.Core.Dtos.AuthDtos;
 using VisitorBook.Core.Dtos.RegisterApplicationDto;
 using VisitorBook.Core.Entities;
 using VisitorBook.Core.Enums;
-using VisitorBook.Core.Extensions;
 using VisitorBook.UI.Languages;
 
 namespace VisitorBook.UI.Controllers

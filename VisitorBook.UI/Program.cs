@@ -4,6 +4,7 @@ using VisitorBook.DAL.Data;
 using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
 using VisitorBook.UI.Extensions;
+using VisitorBook.UI.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,9 +33,8 @@ builder.Services.AddValidationExt();
 
 var app = builder.Build();
 
-app.UseNotyf();
-
-app.UseStatusCodePagesWithReExecute("/Error/{0}");
+app.UseHsts();
+app.UseExceptionHandler("/Error");
 
 if (!app.Environment.IsDevelopment())
 {
@@ -49,9 +49,15 @@ app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocal
 
 app.UseRouting();
 
+app.UseMiddleware<ExceptionHandlingMiddleware>();
+
+app.UseStatusCodePagesWithReExecute("/Error/{0}");
+
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+app.UseNotyf();
 
 app.MapControllerRoute(
     name: "areas",

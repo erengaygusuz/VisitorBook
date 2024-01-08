@@ -24,6 +24,7 @@ namespace VisitorBook.DAL.Data
         public DbSet<ContactMessage> ContactMessages { get; set; }
         public DbSet<AuditTrail> AuditTrails { get; set; }
         public DbSet<RegisterApplication> RegisterApplications { get; set; }
+        public DbSet<ExceptionLog> ExceptionLogs { get; set; }
 
         private readonly IHttpContextAccessor _httpContextAccessor;
 

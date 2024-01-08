@@ -5,6 +5,7 @@ using VisitorBook.Core.Dtos.CityDtos;
 using VisitorBook.Core.Dtos.ContactMessageDtos;
 using VisitorBook.Core.Dtos.CountryDtos;
 using VisitorBook.Core.Dtos.CountyDtos;
+using VisitorBook.Core.Dtos.ExceptionLogDtos;
 using VisitorBook.Core.Dtos.RegionDtos;
 using VisitorBook.Core.Dtos.RegisterApplicationDto;
 using VisitorBook.Core.Dtos.RoleDtos;
@@ -109,6 +110,8 @@ namespace VisitorBook.BL.Mapping
                 .ForMember(e => e.Status, opts => opts.MapFrom(e => e.Status.ToString()))
                 .ForMember(e => e.Explanation, opts => opts.MapFrom(e => e.Explanation))
                 .ForMember(e => e.CreatedDate, opts => opts.MapFrom(e => e.CreatedDate));
+
+            CreateMap<ExceptionLogRequestDto, ExceptionLog>();
         }
     }
 }

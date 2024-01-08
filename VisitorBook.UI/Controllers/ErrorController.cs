@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using VisitorBook.Core.Abstract;
+using VisitorBook.Core.Dtos.ExceptionLogDtos;
+using VisitorBook.Core.Entities;
 using VisitorBook.Core.ViewModels;
 
 namespace VisitorBook.UI.Controllers
@@ -9,20 +11,21 @@ namespace VisitorBook.UI.Controllers
     [AllowAnonymous]
     public class ErrorController : Controller
     {
+        private readonly IService<ExceptionLog> _exceptionLogService;
+
+        public ErrorController(IService<ExceptionLog> exceptionLogService)
+        {
+            _exceptionLogService = exceptionLogService;
+        }
+
         [Route("/Error")]
         [HttpGet]
-        public IActionResult Error()
+        public async Task<IActionResult> Error()
         {
-            var context = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
-
-            var errorViewModel = new ErrorViewModel
+            var errorViewModel = new ErrorViewModel()
             {
-                StatusCode = StatusCodes.Status500InternalServerError,
-                ExceptionType = context.Error.GetType().Name,
-                ExceptionTitle = ((HttpStatusCode)StatusCodes.Status500InternalServerError).ToString(),
-                ExceptionMessage = context.Error.Message,
-                RequestMethod = HttpContext.Request.Method,
-                RequestPath = context.Path
+                StatusCode = TempData["StatusCode"].ToString(),
+                ExceptionMessage = TempData["ExceptionMessage"].ToString()
             };
 
             return View(errorViewModel);
@@ -30,16 +33,22 @@ namespace VisitorBook.UI.Controllers
 
         [Route("/Error/{statusCode}")]
         [HttpGet]
-        public IActionResult Error(int statusCode)
+        public async Task<IActionResult> Error(int statusCode)
         {
-            var feature = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
-
-            var errorViewModel = new ErrorViewModel
+            var exceptionLogRequestDto = new ExceptionLogRequestDto()
             {
                 StatusCode = statusCode,
                 ExceptionTitle = ((HttpStatusCode)statusCode).ToString(),
                 RequestMethod = HttpContext.Request.Method,
-                RequestPath = feature.OriginalPath
+                RequestPath = HttpContext.Request.Path
+            };
+
+            await _exceptionLogService.AddAsync(exceptionLogRequestDto);
+
+            var errorViewModel = new ErrorViewModel()
+            {
+                StatusCode = statusCode.ToString(),
+                ExceptionMessage = ((HttpStatusCode)statusCode).ToString()
             };
 
             return View(errorViewModel);
