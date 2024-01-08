@@ -733,7 +733,7 @@
     <value>You can create a Visitor Account to record the places where you visited</value>
   </data>
   <data name="Home.Service.Info2.Text" xml:space="preserve">
-    <value>By activating your location, you can apply for Visitor Recorder Account</value>
+    <value>You can apply for Visitor Recorder Account</value>
   </data>
   <data name="Home.Service.Info3.Text" xml:space="preserve">
     <value>When your Visitor Recorder approved you can record the visitors which visit your area</value>

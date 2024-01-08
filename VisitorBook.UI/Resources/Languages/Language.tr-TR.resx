@@ -735,7 +735,7 @@
     <value>Kendinize Ziyaretçi hesabı oluşturarak ziyaret ettiğiniz yerleri sisteme kaydedebilirsiniz</value>
   </data>
   <data name="Home.Service.Info2.Text" xml:space="preserve">
-    <value>Lokasyonunuzu açarak Ziyaretçi Kaydedici hesabı açma isteğinde bulunabilirsiniz</value>
+    <value>Ziyaretçi Kaydedici hesabı açma isteğinde bulunabilirsiniz</value>
   </data>
   <data name="Home.Service.Info3.Text" xml:space="preserve">
     <value>Hesabınız onaylandığında bulunduğunuz bölgeyi ziyaret eden kişileri sisteme kaydedebilir ve yönetimini sağlayabilirsiniz</value>
