@@ -7,7 +7,6 @@ using Microsoft.Extensions.Localization;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Dtos.ContactMessageDtos;
 using VisitorBook.Core.Entities;
-using VisitorBook.Core.Extensions;
 using VisitorBook.Core.ViewModels;
 using VisitorBook.UI.Languages;
 

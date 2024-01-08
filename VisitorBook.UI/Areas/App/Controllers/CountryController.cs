@@ -13,7 +13,6 @@ using VisitorBook.UI.Configurations;
 using VisitorBook.UI.Languages;
 using VisitorBook.Core.ViewModels;
 using FluentValidation;
-using VisitorBook.Core.Extensions;
 using VisitorBook.Core.Constants;
 
 namespace VisitorBook.UI.Areas.AppControllers

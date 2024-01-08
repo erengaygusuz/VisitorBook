@@ -9,7 +9,6 @@ using VisitorBook.Core.Dtos.RegionDtos;
 using VisitorBook.UI.Areas.App.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using FluentValidation;
-using VisitorBook.Core.Extensions;
 using VisitorBook.Core.Constants;
 
 namespace VisitorBook.UI.Areas.AppControllers
@@ -25,7 +24,8 @@ namespace VisitorBook.UI.Areas.AppControllers
         private readonly IValidator<RegionRequestDto> _regionRequestDtoValidator;
 
         public RegionController(RazorViewConverter razorViewConverter,
-            IStringLocalizer<Language> localization, IService<Region> regionService, RegionDataTablesOptions regionDataTableOptions, IValidator<RegionRequestDto> regionRequestDtoValidator)
+            IStringLocalizer<Language> localization, IService<Region> regionService, RegionDataTablesOptions regionDataTableOptions, 
+            IValidator<RegionRequestDto> regionRequestDtoValidator)
         {
             _regionService = regionService;
             _localization = localization;

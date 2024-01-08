@@ -36,7 +36,8 @@ namespace VisitorBook.UI.Area.App.Controllers
 
         public VisitedCountyController(IService<VisitedCounty> visitedCountyService, IService<City> cityService,
             VisitedCountyDataTablesOptions visitedCountyDataTableOptions, UserManager<User> userManager,
-            IService<County> countyService, IStringLocalizer<Language> localization, RazorViewConverter razorViewConverter, IValidator<VisitedCountyViewModel> visitedCountyViewModelValidator)
+            IService<County> countyService, IStringLocalizer<Language> localization, RazorViewConverter razorViewConverter, 
+            IValidator<VisitedCountyViewModel> visitedCountyViewModelValidator)
         {
             _localization = localization;
             _razorViewConverter = razorViewConverter;

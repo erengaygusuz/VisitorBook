@@ -30,10 +30,17 @@ namespace VisitorBook.UI.Area.App.Controllers
         {
             VisitorStatisticViewModel visitorStatisticViewModel = new VisitorStatisticViewModel()
             {
-                GetHighestCountOfVisitedCityByVisitor = _mapper.Map<HighestCountOfVisitedCityByVisitorResponseDto>(await _visitorStatisticService.GetHighestCountOfVisitedCityByVisitorAsync()),
-                GetHighestCountOfVisitedCountyByVisitor = _mapper.Map<HighestCountOfVisitedCountyByVisitorResponseDto>(await _visitorStatisticService.GetHighestCountOfVisitedCountyByVisitorAsync()),
-                GetLongestDistanceByVisitorOneTime = _mapper.Map<LongestDistanceByVisitorOneTimeResponseDto>(await _visitorStatisticService.GetLongestDistanceByVisitorOneTimeAsync()),
-                GetLongestDistanceByVisitorAllTime = _mapper.Map<LongestDistanceByVisitorAllTimeResponseDto>(await _visitorStatisticService.GetLongestDistanceByVisitorAllTimeAsync())
+                GetHighestCountOfVisitedCityByVisitor = _mapper.Map<HighestCountOfVisitedCityByVisitorResponseDto>(
+                    await _visitorStatisticService.GetHighestCountOfVisitedCityByVisitorAsync()),
+
+                GetHighestCountOfVisitedCountyByVisitor = _mapper.Map<HighestCountOfVisitedCountyByVisitorResponseDto>(
+                    await _visitorStatisticService.GetHighestCountOfVisitedCountyByVisitorAsync()),
+
+                GetLongestDistanceByVisitorOneTime = _mapper.Map<LongestDistanceByVisitorOneTimeResponseDto>(
+                    await _visitorStatisticService.GetLongestDistanceByVisitorOneTimeAsync()),
+
+                GetLongestDistanceByVisitorAllTime = _mapper.Map<LongestDistanceByVisitorAllTimeResponseDto>(
+                    await _visitorStatisticService.GetLongestDistanceByVisitorAllTimeAsync())
             };            
 
             return View(visitorStatisticViewModel);

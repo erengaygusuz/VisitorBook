@@ -10,18 +10,18 @@
         ? "~/"
         : $"~{Context.Request.Path.Value}{Context.Request.QueryString}";
 }
-    <form asp-controller="Home" asp-action="SetCulture" asp-route-returnUrl="@returnUrl"
-          class="form-horizontal text-dark me-4 mb-lg-0 mb-md-3 mb-sm-3 mb-3">
-        <select name="culture" class="form-select"
-                onchange="this.form.submit();"
-                asp-for="@requestCulture.RequestCulture.UICulture.Name">
+<form asp-controller="Home" asp-action="SetCulture" asp-route-returnUrl="@returnUrl"
+      class="form-horizontal text-dark me-4 mb-lg-0 mb-md-3 mb-sm-3 mb-3">
+    <select name="culture" class="form-select"
+            onchange="this.form.submit();"
+            asp-for="@requestCulture.RequestCulture.UICulture.Name">
 
         @{
             var baseUrl = $"{Context.Request.Scheme}://{Context.Request.Host.Value.ToString()}{Context.Request.PathBase.Value.ToString()}";
         }
         @foreach (var item in cultureItems)
-            {
+        {
             <option value="@item.Value" data-icon="@baseUrl/icons/flags/@string.Concat(item.Text, ".svg#", item.Text)">@item.Text</option>
-            }
-        </select>
-    </form>
+        }
+    </select>
+</form>

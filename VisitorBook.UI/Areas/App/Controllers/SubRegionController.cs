@@ -13,7 +13,6 @@ using VisitorBook.Core.Dtos.SubRegionDtos;
 using VisitorBook.Core.Dtos.RegionDtos;
 using Microsoft.AspNetCore.Authorization;
 using FluentValidation;
-using VisitorBook.Core.Extensions;
 using VisitorBook.Core.Constants;
 
 namespace VisitorBook.UI.Areas.AppControllers

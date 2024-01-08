@@ -4,12 +4,10 @@
         <span class="d-none d-md-inline">@User.Identity.Name</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-        <!-- User image -->
         <li class="user-header mt-2 mb-0 align-middle" style="height: auto;">
             <img src="~/dist/img/user-avatar.png" class="img-circle elevation-2" alt="User Image">
             <p>@User.Identity.Name</p>
         </li>
-        <!-- Menu Footer-->
         <li class="user-footer">
             <a asp-controller="Profile" asp-action="Index" class="btn btn-default btn-flat">@localization["Profiles.RightMenu.Item1.Text"]</a>
             <a asp-route-returnurl="/Home/Index" asp-area="App" asp-controller="Profile" asp-action="Logout" class="btn btn-default btn-flat float-right">@localization["Profiles.RightMenu.Item2.Text"]</a>

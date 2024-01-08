@@ -6,7 +6,6 @@ using Microsoft.Extensions.Localization;
 using VisitorBook.Core.Dtos.ProfileDtos;
 using VisitorBook.Core.Entities;
 using VisitorBook.Core.Enums;
-using VisitorBook.Core.Extensions;
 using VisitorBook.UI.Languages;
 using VisitorBook.Core.ViewModels;
 using VisitorBook.Core.Dtos.CityDtos;
