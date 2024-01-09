@@ -2,9 +2,9 @@
 using Bogus;
 using Bogus.Extensions;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Constants;
+using VisitorBook.Core.Dtos.CountyDtos;
 using VisitorBook.Core.Dtos.UserDtos;
 using VisitorBook.Core.Dtos.VisitedCountyDtos;
 using VisitorBook.Core.Dtos.VisitorAddressDtos;
@@ -19,88 +19,119 @@ namespace VisitorBook.BL.Concrete
         public List<UserAddressRequestDto> UserAddresses = new();
         public List<VisitedCountyRequestDto> VisitedCounties = new();
 
-        private readonly IRepository<County> _countyRepository;
-        private readonly IService<VisitedCounty> _visitedCounty;
+        private readonly IService<County> _countyService;
+        private readonly IService<VisitedCounty> _visitedCountyService;
+        private readonly IService<UserAddress> _userAddressService;
         private readonly UserManager<User> _userManager;
         private readonly IMapper _mapper;
 
-        private IEnumerable<County> counties;
+        private IEnumerable<CountyResponseDto> counties;
 
-        public FakeDataService(IRepository<County> countyRepository, IService<VisitedCounty> visitedCounty, UserManager<User> userManager, IMapper mapper)
+        public FakeDataService(IService<County> countyService, IService<VisitedCounty> visitedCountyService, UserManager<User> userManager, 
+            IMapper mapper, IService<UserAddress> userAddressService)
         {
-            _countyRepository = countyRepository;
-            _visitedCounty = visitedCounty;
+            _countyService = countyService;
+            _visitedCountyService = visitedCountyService;
             _userManager = userManager;
             _mapper = mapper;
+            _userAddressService = userAddressService;
 
-            counties = _countyRepository.GetAll(include: x => x.Include(a => a.City));
+            counties = _countyService.GetAllAsync<CountyResponseDto>().GetAwaiter().GetResult();
         }
 
-        private List<UserRequestDto> GetGeneratedUserData(int amount)
+        private void GeneratedUserData(int amount)
         {
-            var currentLanguage = Thread.CurrentThread.CurrentCulture.Name.Substring(0, 2);
-
-            return new Faker<UserRequestDto>(currentLanguage)
+            var datas = new Faker<UserRequestDto>()
                 .RuleFor(v => v.Name, f => f.Person.FirstName)
                 .RuleFor(v => v.Surname, f => f.Person.LastName)
                 .RuleFor(v => v.BirthDate, f => f.Person.DateOfBirth)
                 .RuleFor(v => v.Email, f => f.Lorem.Word().ClampLength(5, 15).ToLower() + "@gmail.com")
                 .RuleFor(v => v.Username, f => f.Lorem.Word().ClampLength(5, 15).ToLower())
                 .RuleFor(v => v.Gender, f => f.PickRandom<Gender>().ToString())
-                .RuleFor(v => v.UserAddress, f => GetGeneratedUserAddressData(f.PickRandom(counties.ToList())))
                 .Generate(amount);
+
+            Users.AddRange(datas);
         }
 
-        private UserAddressRequestDto? GetGeneratedUserAddressData(County county)
-        {
-            Random random = new Random();
-
-            var nmbr = random.Next(0, 2);
-
-            if (nmbr > 0)
-            {
-                return new Faker<UserAddressRequestDto>()
-                    .RuleFor(v => v.CityId, f => county.City.Id)
-                    .RuleFor(v => v.CountyId, f => county.Id)
-                    .Generate(1).FirstOrDefault();
-            }
-
-            return null;
-        }
-
-        private List<VisitedCountyRequestDto> GetGeneratedVisitedCountyData(int amount)
+        private void GeneratedUserAddressData(int amount)
         {
             var currentLanguage = Thread.CurrentThread.CurrentCulture.Name.Substring(0, 2);
 
-            return new Faker<VisitedCountyRequestDto>(currentLanguage)
+            Random random = new Random();
+
+            for (int i = 0; i < amount; i++)
+            {
+                var nmbr = random.Next(0, 2);
+
+                if (nmbr > 0)
+                {
+                    UserAddresses.Add(new Faker<UserAddressRequestDto>(currentLanguage)
+                        .RuleFor(v => v.CountyId, f => f.PickRandom(counties).Id)
+                        .Generate(1).FirstOrDefault());
+                }
+
+                else
+                {
+                    UserAddresses.Add(null);
+                }
+            }
+        }
+
+        private void GeneratedVisitedCountyData(int amount)
+        {
+            var currentLanguage = Thread.CurrentThread.CurrentCulture.Name.Substring(0, 2);
+
+            var datas = new Faker<VisitedCountyRequestDto>(currentLanguage)
                 .RuleFor(v => v.UserId, f => f.PickRandom(_userManager.Users.ToList()).Id)
-                .RuleFor(v => v.CountyId, f => f.PickRandom(counties.ToList()).Id)
+                .RuleFor(v => v.CountyId, f => f.PickRandom(counties).Id)
                 .RuleFor(v => v.VisitDate, f => f.Date.Between(new DateTime(day: 1, month: 1, year: 2000), new DateTime(day: 2, month: 11, year: 2023)))
                 .Generate(amount);
+
+            VisitedCounties.AddRange(datas);
         }
 
         public async Task InsertUserDatas(int amount)
         {
-            var userList = _mapper.Map<List<User>>(GetGeneratedUserData(amount));
+            GeneratedUserData(amount);
+            GeneratedUserAddressData(amount);
 
-            foreach(var user in userList)
+            var userList = _mapper.Map<List<User>>(Users);
+
+            for (int i = 0; i < userList.Count; i++)
             {
-                var result = await _userManager.CreateAsync(user, "12345");
+                var userExistByEmail = await _userManager.FindByEmailAsync(userList[i].Email);
+                var userExistByUsername = await _userManager.FindByNameAsync(userList[i].UserName);
 
-                if (result.Succeeded)
+                if (userExistByEmail == null && userExistByUsername == null)
                 {
-                    await _userManager.AddToRoleAsync(user, AppRoles.Visitor);
+                    var result = await _userManager.CreateAsync(userList[i], "12345");
+
+                    if (UserAddresses[i] != null)
+                    {
+                        var user = await _userManager.FindByEmailAsync(userList[i].Email);
+
+                        await _userAddressService.AddAsync(new UserAddressRequestDto
+                        {
+                            UserId = user.Id,
+                            CountyId = UserAddresses[i].CountyId
+                        });
+                    }
+
+                    if (result.Succeeded)
+                    {
+                        await _userManager.AddToRoleAsync(userList[i], AppRoles.Visitor);
+                    }
                 }
             }
         }
 
         public async Task InsertVisitedCountyDatas(int amount)
         {
-            var visitedCountyList = _mapper.Map<List<VisitedCounty>>(GetGeneratedVisitedCountyData(amount));
+            GeneratedVisitedCountyData(amount);
 
-            foreach (var visitedCounty in visitedCountyList)
+            foreach (var visitedCounty in VisitedCounties)
             {
-                await _visitedCounty.AddAsync(visitedCounty);
+                await _visitedCountyService.AddAsync(visitedCounty);
             }
         }
     }
