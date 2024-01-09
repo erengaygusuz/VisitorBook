@@ -1697,4 +1697,55 @@
   <data name="ExceptionLogs.Table.Column7.Text" xml:space="preserve">
     <value>Oluşturulma Tarihi</value>
   </data>
+  <data name="StatusCodes.400.Text" xml:space="preserve">
+    <value>Hatalı içerik gönderilerek istek yapıldı. Sunucu yanıt vermiyor.</value>
+  </data>
+  <data name="StatusCodes.401.Text" xml:space="preserve">
+    <value>Bu sayfayı görmeye yetkiniz yok.</value>
+  </data>
+  <data name="StatusCodes.403.Text" xml:space="preserve">
+    <value>Bu sayfayı görmeniz yasaklandı.</value>
+  </data>
+  <data name="StatusCodes.404.Text" xml:space="preserve">
+    <value>Maalesef sitede böyle bir sayfa yok.</value>
+  </data>
+  <data name="StatusCodes.405.Text" xml:space="preserve">
+    <value>Yapılan istek türü yanlış.</value>
+  </data>
+  <data name="StatusCodes.406.Text" xml:space="preserve">
+    <value>Herhangi bir içerik bulunamadı.</value>
+  </data>
+  <data name="StatusCodes.408.Text" xml:space="preserve">
+    <value>İstek zaman aşımına uğradı.</value>
+  </data>
+  <data name="StatusCodes.409.Text" xml:space="preserve">
+    <value>İstekte çakışma meydana geldi.</value>
+  </data>
+  <data name="StatusCodes.410.Text" xml:space="preserve">
+    <value>Erişmeye çalıştığınız sayfa siteden kaldırılmış.</value>
+  </data>
+  <data name="StatusCodes.411.Text" xml:space="preserve">
+    <value>Yapılan isteğin içerik boyutu belirtilmemiş.</value>
+  </data>
+  <data name="StatusCodes.414.Text" xml:space="preserve">
+    <value>Yapılan isteğin URI bilgisi gereğinden fazla uzun.</value>
+  </data>
+  <data name="StatusCodes.415.Text" xml:space="preserve">
+    <value>Desteklenmeyen medya türü ile istek yapıldı.</value>
+  </data>
+  <data name="StatusCodes.429.Text" xml:space="preserve">
+    <value>Çok fazla istek yapıldı.</value>
+  </data>
+  <data name="StatusCodes.431.Text" xml:space="preserve">
+    <value>İstek başlığı bilgisi çok uzun.</value>
+  </data>
+  <data name="StatusCodes.500.Text" xml:space="preserve">
+    <value>Sunucu kaynaklı bir hata meydana geldi.</value>
+  </data>
+  <data name="StatusCodes.502.Text" xml:space="preserve">
+    <value>Sunucu yanıtı doğrulanamadı.</value>
+  </data>
+  <data name="StatusCodes.503.Text" xml:space="preserve">
+    <value>Sunucu şuan aktif değil.</value>
+  </data>
 </root>

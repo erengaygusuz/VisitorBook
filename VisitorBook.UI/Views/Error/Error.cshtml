@@ -21,7 +21,7 @@
                 <i class="bi bi-exclamation-triangle display-1 text-primary"></i>
                 <h1 class="mb-4 mt-5">@Model.StatusCode</h1>
                 <p class="mb-4">
-                    @Model.ExceptionMessage
+                    @localization["StatusCodes." + @Model.StatusCode + ".Text"]
                 </p>
                 <a class="btn btn-primary py-3 px-5" asp-controller="Home" asp-action="Index">@localization["Errors.BackBtn.Text"]</a>
             </div>

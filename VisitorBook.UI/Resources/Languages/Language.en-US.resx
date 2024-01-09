@@ -1695,4 +1695,55 @@
   <data name="ExceptionLogs.Table.Column7.Text" xml:space="preserve">
     <value>Created Date</value>
   </data>
+  <data name="StatusCodes.400.Text" xml:space="preserve">
+    <value>The request was made by sending incorrect content. The server is not responding.</value>
+  </data>
+  <data name="StatusCodes.401.Text" xml:space="preserve">
+    <value>You are not authorized to view this page.</value>
+  </data>
+  <data name="StatusCodes.403.Text" xml:space="preserve">
+    <value>You are prohibited from viewing this page.</value>
+  </data>
+  <data name="StatusCodes.404.Text" xml:space="preserve">
+    <value>Unfortunately, there is no such page on the site.</value>
+  </data>
+  <data name="StatusCodes.405.Text" xml:space="preserve">
+    <value>The type of request made is incorrect.</value>
+  </data>
+  <data name="StatusCodes.406.Text" xml:space="preserve">
+    <value>No content found.</value>
+  </data>
+  <data name="StatusCodes.408.Text" xml:space="preserve">
+    <value>The request has timed out.</value>
+  </data>
+  <data name="StatusCodes.409.Text" xml:space="preserve">
+    <value>A conflict occurred in the request.</value>
+  </data>
+  <data name="StatusCodes.410.Text" xml:space="preserve">
+    <value>The page you are trying to access has been removed from the site.</value>
+  </data>
+  <data name="StatusCodes.411.Text" xml:space="preserve">
+    <value>The content size of the request is not specified.</value>
+  </data>
+  <data name="StatusCodes.414.Text" xml:space="preserve">
+    <value>The URI information for the request is too long.</value>
+  </data>
+  <data name="StatusCodes.415.Text" xml:space="preserve">
+    <value>A request was made with an unsupported media type.</value>
+  </data>
+  <data name="StatusCodes.429.Text" xml:space="preserve">
+    <value>Many requests have been made.</value>
+  </data>
+  <data name="StatusCodes.431.Text" xml:space="preserve">
+    <value>Request header information is too long.</value>
+  </data>
+  <data name="StatusCodes.500.Text" xml:space="preserve">
+    <value>A server error occurred.</value>
+  </data>
+  <data name="StatusCodes.502.Text" xml:space="preserve">
+    <value>The server response could not be verified.</value>
+  </data>
+  <data name="StatusCodes.503.Text" xml:space="preserve">
+    <value>The server is currently not active.</value>
+  </data>
 </root>
