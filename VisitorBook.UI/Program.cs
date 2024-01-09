@@ -14,14 +14,14 @@ builder.Services.AddMappingExt();
 
 builder.Services.AddServiceRepositoryExt();
 
-builder.Services.AddCookieExt();
-
 builder.Services.AddDbContext<AppDbContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("SQLServerConnection"));
 });
 
 builder.Services.AddIdentityExt();
+
+builder.Services.AddCookieExt();
 
 builder.Services.AddLocalizationExt();
 

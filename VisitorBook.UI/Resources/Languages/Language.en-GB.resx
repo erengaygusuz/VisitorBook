@@ -1450,7 +1450,7 @@
     <value>E-mail</value>
   </data>
   <data name="RegisterApplications.Tab1.Text" xml:space="preserve">
-    <value>Personal Information</value>
+    <value>Personal</value>
   </data>
   <data name="RegisterApplications.Tab2.Row1.Text" xml:space="preserve">
     <value>Please tell us briefly why you want to have an Visitor Recorder</value>
