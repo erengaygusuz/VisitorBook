@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using VisitorBook.Core.Dtos.VisitorAddressDtos;
 
 namespace VisitorBook.Core.Dtos.UserDtos
 {
@@ -15,7 +14,5 @@ namespace VisitorBook.Core.Dtos.UserDtos
 
         [ValidateNever]
         public string SecurityStamp { get; set; }
-
-        public UserAddressRequestDto? UserAddress { get; set; }
     }
 }

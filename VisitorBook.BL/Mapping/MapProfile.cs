@@ -60,12 +60,7 @@ namespace VisitorBook.BL.Mapping
             CreateMap<UserAddressResponseDto, UserAddress>();
 
             CreateMap<UserRequestDto, User>()
-                .ForPath(e => e.Gender, opts => opts.MapFrom(e => (Gender)Enum.Parse(typeof(Gender), e.Gender)))
-                .ForMember(e => e.UserAddress, opts => 
-                { 
-                    opts.Condition(e => e.UserAddress == null || (e.UserAddress != null && e.UserAddress.CityId != 0 && e.UserAddress.CountyId != 0)); 
-                    opts.MapFrom(e => e.UserAddress); 
-                });
+                .ForPath(e => e.Gender, opts => opts.MapFrom(e => (Gender)Enum.Parse(typeof(Gender), e.Gender)));
             CreateMap<User, UserResponseDto>()
                 .ForMember(e => e.Gender, opts => opts.MapFrom(e => e.Gender.ToString()))
                 .ForMember(e => e.UserAddress, opts => { opts.Condition(e => e.UserAddress != null); opts.MapFrom(e => e.UserAddress); });

@@ -28,6 +28,7 @@ namespace VisitorBook.UI.Areas.AppControllers
     [Area("App")]
     public class UserController : BaseController
     {
+        private readonly IService<UserAddress> _userAddressService;
         private readonly IService<County> _countyService;
         private readonly IService<City> _cityService;
         private readonly UserManager<User> _userManager;
@@ -43,7 +44,8 @@ namespace VisitorBook.UI.Areas.AppControllers
             UserManager<User> userManager, IStringLocalizer<Language> localization,
             RazorViewConverter razorViewConverter,
             UserDataTablesOptions userDataTableOptions, IMapper mapper, RoleManager<Role> roleManager,
-            IValidator<UserViewModel> userViewModelValidator, IPropertyMappingService propertyMappingService)
+            IValidator<UserViewModel> userViewModelValidator, IPropertyMappingService propertyMappingService, 
+            IService<UserAddress> userAddressService)
         {
             _countyService = countyService;
             _cityService = cityService;
@@ -55,6 +57,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             _roleManager = roleManager;
             _userViewModelValidator = userViewModelValidator;
             _propertyMappingService = propertyMappingService;
+            _userAddressService = userAddressService;
         }
 
         [Authorize(Permissions.UserManagement.View)]
@@ -184,8 +187,9 @@ namespace VisitorBook.UI.Areas.AppControllers
                     Surname = user.Surname,
                     BirthDate = user.BirthDate,
                     Gender = user.Gender.ToString(),
-                    SecurityStamp = user.SecurityStamp,
-                    UserAddress = user.UserAddress != null ?
+                    SecurityStamp = user.SecurityStamp
+                },
+                UserAddress = user.UserAddress != null ?
                     new UserAddressRequestDto()
                     {
                         Id = userAddressResponseDto.Id,
@@ -193,8 +197,7 @@ namespace VisitorBook.UI.Areas.AppControllers
                         CountyId = userAddressResponseDto.CountyId
                     }
                     :
-                    new UserAddressRequestDto()
-                },
+                    new UserAddressRequestDto(),
                 RoleId = userRoleId,
                 GenderList = new List<string> { "Male", "Female" }
                    .Select(u => new SelectListItem
@@ -271,13 +274,26 @@ namespace VisitorBook.UI.Areas.AppControllers
             }
 
             var user = _mapper.Map<User>(userViewModel.User);
-            user.SecurityStamp = _userManager.CreateSecurityTokenAsync(user).ToString();
 
             var result = await _userManager.CreateAsync(user, "12345");
 
             if (result.Succeeded)
             {
                 var userToAssignRole = await _userManager.FindByEmailAsync(userViewModel.User.Email);
+
+                userToAssignRole.SecurityStamp = _userManager.CreateSecurityTokenAsync(userToAssignRole).ToString();
+                userToAssignRole.EmailConfirmed = true;
+
+                await _userManager.UpdateAsync(userToAssignRole);
+
+                if (userViewModel.UserAddress != null)
+                {
+                    await _userAddressService.AddAsync(new UserAddressRequestDto
+                    {
+                        UserId = userToAssignRole.Id,
+                        CountyId = userViewModel.UserAddress.CountyId
+                    });
+                }
 
                 var role = await _roleManager.Roles.FirstOrDefaultAsync(r => r.Id == userViewModel.RoleId);
 
@@ -337,6 +353,13 @@ namespace VisitorBook.UI.Areas.AppControllers
             _mapper.Map(userViewModel.User, userToUpdate);
 
             await _userManager.UpdateAsync(userToUpdate);
+
+            await _userAddressService.UpdateAsync(new UserAddressRequestDto
+            {
+                Id = userViewModel.UserAddress.Id,
+                UserId = userViewModel.User.Id,
+                CountyId = userViewModel.UserAddress.CountyId
+            });
 
             var userRoles = await _userManager.GetRolesAsync(userToUpdate);
 

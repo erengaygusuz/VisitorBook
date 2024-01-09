@@ -1746,4 +1746,7 @@
   <data name="StatusCodes.503.Text" xml:space="preserve">
     <value>The server is currently not active.</value>
   </data>
+  <data name="Statistics.Title2.Text" xml:space="preserve">
+    <value>User Datas Statistics</value>
+  </data>
 </root>

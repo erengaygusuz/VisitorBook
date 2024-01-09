@@ -1748,4 +1748,7 @@
   <data name="StatusCodes.503.Text" xml:space="preserve">
     <value>Sunucu şuan aktif değil.</value>
   </data>
+  <data name="Statistics.Title2.Text" xml:space="preserve">
+    <value>Kullanıcı Verileri İstatistikleri</value>
+  </data>
 </root>

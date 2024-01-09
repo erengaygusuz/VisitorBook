@@ -29,7 +29,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="@Model.User.SecurityStamp" />
             <input type="hidden" asp-for="@Model.User.Id" />
-            <input type="hidden" asp-for="@Model.User.UserAddress.Id" />
+            <input type="hidden" asp-for="@Model.UserAddress.Id" />
             <div class="row mt-4">
                 <div class="col-md-6 mb-md-0 mb-sm-4 mb-4">
                     <div class="form-group">
@@ -107,25 +107,25 @@
             <div class="row mt-4">
                 <div class="col-md-6 mb-md-0 mb-sm-4 mb-4">
                     <div class="form-group">
-                        <label asp-for="@Model.User.UserAddress!.CityId"
+                        <label asp-for="@Model.UserAddress!.CityId"
                                class="control-label">@localization["Users.Table.Column6.Text"]</label>
-                        <select id="citylist" onchange="cityChange()" asp-for="@Model.User.UserAddress!.CityId"
+                        <select id="citylist" onchange="cityChange()" asp-for="@Model.UserAddress!.CityId"
                                 asp-items="@Model.CityList" class="form-control select2" style="width: 100% !important;">
                             <option disabled selected value="0">@localization["AddOrEditModal.CitySelection.Text"]</option>
                         </select>
-                        <span asp-validation-for="@Model.User.UserAddress!.CityId" class="error invalid-feedback"></span>
+                        <span asp-validation-for="@Model.UserAddress!.CityId" class="error invalid-feedback"></span>
                     </div>
                 </div>
                 <div class="col-md-6" id="countylist">
                     <div class="form-group">
-                        <label asp-for="@Model.User.UserAddress!.CountyId"
+                        <label asp-for="@Model.UserAddress!.CountyId"
                                class="control-label">@localization["Users.Table.Column7.Text"]</label>
-                        <select id="county-id" asp-for="@Model.User.UserAddress!.CountyId" asp-items="@Model.CountyList" class="form-control select2" style="width: 100% !important;">
+                        <select id="county-id" asp-for="@Model.UserAddress!.CountyId" asp-items="@Model.CountyList" class="form-control select2" style="width: 100% !important;">
                             <option disabled selected value="0">
                                 @localization["AddOrEditModal.CountySelection.Text"]
                             </option>
                         </select>
-                        <span asp-validation-for="@Model.User.UserAddress!.CountyId" class="error invalid-feedback"></span>
+                        <span asp-validation-for="@Model.UserAddress!.CountyId" class="error invalid-feedback"></span>
                     </div>
                 </div>
             </div>

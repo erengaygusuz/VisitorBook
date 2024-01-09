@@ -31,9 +31,11 @@ namespace VisitorBook.UI.Areas.AppControllers
         private readonly IService<County> _countyService;
         private readonly IValidator<ProfileViewModel> _profileViewModelValidator;
         private readonly INotyfService _notifyService;
+        private readonly IService<UserAddress> _userAddressService;
 
         public ProfileController(SignInManager<User> signInManager, UserManager<User> userManager, IStringLocalizer<Language> localization,
-            IService<City> cityService, IMapper mapper, IService<County> countyService, IValidator<ProfileViewModel> profileViewModelValidator, INotyfService notifyService)
+            IService<City> cityService, IMapper mapper, IService<County> countyService, IValidator<ProfileViewModel> profileViewModelValidator, 
+            INotyfService notifyService, IService<UserAddress> userAddressService)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -43,6 +45,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             _countyService = countyService;
             _profileViewModelValidator = profileViewModelValidator;
             _notifyService = notifyService;
+            _userAddressService = userAddressService;
         }
 
         [HttpGet]
@@ -84,8 +87,9 @@ namespace VisitorBook.UI.Areas.AppControllers
                     Surname = user.Surname,
                     BirthDate = user.BirthDate,
                     Gender = user.Gender.ToString(),
-                    PhoneNumber = user.PhoneNumber,
-                    UserAddress = user.UserAddress != null ?
+                    PhoneNumber = user.PhoneNumber
+                },
+                UserAddress = user.UserAddress != null ?
                     new UserAddressRequestDto()
                     {
                         Id = userAddressResponseDto.Id,
@@ -93,8 +97,7 @@ namespace VisitorBook.UI.Areas.AppControllers
                         CountyId = userAddressResponseDto.CountyId
                     }
                     :
-                    new UserAddressRequestDto()
-                },
+                    new UserAddressRequestDto(),
                 GenderList = new List<string> { "Male", "Female" }
                    .Select(u => new SelectListItem
                    {
@@ -215,18 +218,18 @@ namespace VisitorBook.UI.Areas.AppControllers
             user.BirthDate = profileViewModel.UserGeneralInfo.BirthDate;
             user.Gender = (Gender) Enum.Parse(typeof(Gender), profileViewModel.UserGeneralInfo.Gender);
             user.PhoneNumber = profileViewModel.UserGeneralInfo.PhoneNumber;
-            user.UserAddress = profileViewModel.UserGeneralInfo.UserAddress != null 
-                               && profileViewModel.UserGeneralInfo.UserAddress.CityId != 0 
-                               && profileViewModel.UserGeneralInfo.UserAddress.CountyId != 0 ?
-                new UserAddress()
-                {
-                    Id = profileViewModel.UserGeneralInfo.UserAddress.Id,
-                    CountyId = profileViewModel.UserGeneralInfo.UserAddress.CountyId
-                }
-                :
-                null;
 
             var updateToUserResult = await _userManager.UpdateAsync(user);
+
+            if (profileViewModel.UserAddress != null)
+            {
+                await _userAddressService.UpdateAsync(new UserAddressRequestDto
+                {
+                    Id = profileViewModel.UserAddress.Id,
+                    UserId = user.Id,
+                    CountyId = profileViewModel.UserAddress.CountyId
+                });
+            }
 
             if (!updateToUserResult.Succeeded)
             {
