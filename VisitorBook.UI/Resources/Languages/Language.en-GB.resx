@@ -555,9 +555,6 @@
   <data name="Login.SubmitBtn1.Text" xml:space="preserve">
     <value>Login</value>
   </data>
-  <data name="Login.SubmitBtn2.Text" xml:space="preserve">
-    <value>Login with Facebook</value>
-  </data>
   <data name="Login.SubTitle.Text" xml:space="preserve">
     <value>Please login to enter the system</value>
   </data>
@@ -587,9 +584,6 @@
   </data>
   <data name="Register.SubmitBtn1.Text" xml:space="preserve">
     <value>Register</value>
-  </data>
-  <data name="Register.SubmitBtn2.Text" xml:space="preserve">
-    <value>Register with Facebook</value>
   </data>
   <data name="Register.SubTitle.Text" xml:space="preserve">
     <value>Please register to enter the system</value>
