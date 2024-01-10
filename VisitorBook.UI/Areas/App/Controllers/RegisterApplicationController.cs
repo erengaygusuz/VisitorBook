@@ -137,23 +137,23 @@ namespace VisitorBook.UI.Areas.App.Controllers
                 {
                     text = streamReader.ReadToEnd().Split('@');
 
-                    text[4] = _localization["Layout.Header.Title.Text"].Value;
-                    text[6] = _localization["EmailTemplates.RegisterApplicationApproved.Text1"].Value;
-                    text[8] = user.Name + " " + user.Surname;
-                    text[10] = _localization["EmailTemplates.RegisterApplicationApproved.Text2"].Value;
-                    text[12] = _localization["EmailTemplates.RegisterApplicationApproved.Text3"].Value;
-                    text[14] = _localization["EmailTemplates.RegisterApplicationApproved.Text4"].Value;
-                    text[16] = user.Email;
-                    text[18] = _localization["EmailTemplates.RegisterApplicationApproved.Text5"].Value;
-                    text[20] = "12345";
-                    text[22] = _localization["EmailTemplates.RegisterApplicationApproved.Text6"].Value;
-                    text[24] = _localization["EmailTemplates.RegisterApplicationApproved.Text7"].Value;
-                    text[26] = _localization["EmailTemplates.RegisterApplicationApproved.Text8"].Value;
-                    text[28] = _localization["EmailTemplates.RegisterApplicationApproved.Text8"].Value;
-                    text[30] = _localization["EmailTemplates.RegisterApplicationApproved.Text9"].Value;
-                    text[32] = _localization["EmailTemplates.RegisterApplicationApproved.Text10"].Value;
-                    text[34] = _localization["EmailTemplates.RegisterApplicationApproved.Text10"].Value;
-                    text[36] = _localization["EmailTemplates.RegisterApplicationApproved.Text11"].Value;
+                    text[1] = _localization["Layout.Header.Title.Text"].Value;
+                    text[3] = _localization["EmailTemplates.RegisterApplicationApproved.Text1"].Value;
+                    text[5] = user.Name + " " + user.Surname;
+                    text[7] = _localization["EmailTemplates.RegisterApplicationApproved.Text2"].Value;
+                    text[9] = _localization["EmailTemplates.RegisterApplicationApproved.Text3"].Value;
+                    text[11] = _localization["EmailTemplates.RegisterApplicationApproved.Text4"].Value;
+                    text[13] = user.Email;
+                    text[15] = _localization["EmailTemplates.RegisterApplicationApproved.Text5"].Value;
+                    text[17] = "12345";
+                    text[19] = _localization["EmailTemplates.RegisterApplicationApproved.Text6"].Value;
+                    text[21] = _localization["EmailTemplates.RegisterApplicationApproved.Text7"].Value;
+                    text[23] = _localization["EmailTemplates.RegisterApplicationApproved.Text8"].Value;
+                    text[25] = _localization["EmailTemplates.RegisterApplicationApproved.Text8"].Value;
+                    text[27] = _localization["EmailTemplates.RegisterApplicationApproved.Text9"].Value;
+                    text[29] = _localization["EmailTemplates.RegisterApplicationApproved.Text10"].Value;
+                    text[31] = _localization["EmailTemplates.RegisterApplicationApproved.Text10"].Value;
+                    text[33] = _localization["EmailTemplates.RegisterApplicationApproved.Text11"].Value;
                 }
 
                 await _emailService.SendEmail(user.Email, _localization["EmailTemplates.RegisterApplication.Text1"].Value, String.Concat(text));
@@ -173,17 +173,17 @@ namespace VisitorBook.UI.Areas.App.Controllers
                 {
                     text = streamReader.ReadToEnd().Split('@');
 
-                    text[4] = _localization["Layout.Header.Title.Text"].Value;
-                    text[6] = _localization["EmailTemplates.RegisterApplicationRejected.Text1"].Value;
-                    text[8] = user.Name + " " + user.Surname;
-                    text[10] = _localization["EmailTemplates.RegisterApplicationRejected.Text2"].Value;
-                    text[12] = _localization["EmailTemplates.RegisterApplicationRejected.Text3"].Value;
-                    text[14] = _localization["EmailTemplates.RegisterApplicationRejected.Text4"].Value;
-                    text[16] = _localization["EmailTemplates.RegisterApplicationRejected.Text4"].Value;
-                    text[18] = _localization["EmailTemplates.RegisterApplicationRejected.Text5"].Value;
-                    text[20] = _localization["EmailTemplates.RegisterApplicationRejected.Text6"].Value;
-                    text[22] = _localization["EmailTemplates.RegisterApplicationRejected.Text6"].Value;
-                    text[24] = _localization["EmailTemplates.RegisterApplicationRejected.Text7"].Value;
+                    text[1] = _localization["Layout.Header.Title.Text"].Value;
+                    text[3] = _localization["EmailTemplates.RegisterApplicationRejected.Text1"].Value;
+                    text[5] = user.Name + " " + user.Surname;
+                    text[7] = _localization["EmailTemplates.RegisterApplicationRejected.Text2"].Value;
+                    text[9] = _localization["EmailTemplates.RegisterApplicationRejected.Text3"].Value;
+                    text[11] = _localization["EmailTemplates.RegisterApplicationRejected.Text4"].Value;
+                    text[13] = _localization["EmailTemplates.RegisterApplicationRejected.Text4"].Value;
+                    text[15] = _localization["EmailTemplates.RegisterApplicationRejected.Text5"].Value;
+                    text[17] = _localization["EmailTemplates.RegisterApplicationRejected.Text6"].Value;
+                    text[19] = _localization["EmailTemplates.RegisterApplicationRejected.Text6"].Value;
+                    text[21] = _localization["EmailTemplates.RegisterApplicationRejected.Text7"].Value;
                 }
 
                 await _emailService.SendEmail(user.Email, _localization["EmailTemplates.RegisterApplication.Text1"].Value, String.Concat(text));

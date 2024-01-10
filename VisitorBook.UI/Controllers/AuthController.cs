@@ -166,24 +166,24 @@ namespace VisitorBook.UI.Controllers
                     {
                         text = streamReader.ReadToEnd().Split('@');
 
-                        text[4] = _localization["Layout.Header.Title.Text"].Value;
-                        text[6] = _localization["EmailTemplates.AccountConfirmation.Text1"].Value;
-                        text[8] = user.Name + " " + user.Surname;
-                        text[10] = _localization["EmailTemplates.AccountConfirmation.Text2"].Value;
-                        text[12] = _localization["EmailTemplates.AccountConfirmation.Text3"].Value;
-                        text[14] = accountConfirmLink;
-                        text[16] = _localization["EmailTemplates.AccountConfirmation.Text4"].Value;
-                        text[18] = _localization["EmailTemplates.AccountConfirmation.Text5"].Value;
-                        text[20] = accountConfirmLink;
-                        text[22] = accountConfirmLink;
-                        text[24] = _localization["EmailTemplates.AccountConfirmation.Text6"].Value;
-                        text[26] = _localization["EmailTemplates.AccountConfirmation.Text7"].Value;
-                        text[28] = _localization["EmailTemplates.AccountConfirmation.Text8"].Value;
-                        text[30] = _localization["EmailTemplates.AccountConfirmation.Text8"].Value;
-                        text[32] = _localization["EmailTemplates.AccountConfirmation.Text9"].Value;
-                        text[34] = _localization["EmailTemplates.AccountConfirmation.Text10"].Value;
-                        text[36] = _localization["EmailTemplates.AccountConfirmation.Text10"].Value;
-                        text[38] = _localization["EmailTemplates.AccountConfirmation.Text11"].Value;
+                        text[1] = _localization["Layout.Header.Title.Text"].Value;
+                        text[3] = _localization["EmailTemplates.AccountConfirmation.Text1"].Value;
+                        text[5] = user.Name + " " + user.Surname;
+                        text[7] = _localization["EmailTemplates.AccountConfirmation.Text2"].Value;
+                        text[9] = _localization["EmailTemplates.AccountConfirmation.Text3"].Value;
+                        text[11] = accountConfirmLink;
+                        text[13] = _localization["EmailTemplates.AccountConfirmation.Text4"].Value;
+                        text[15] = _localization["EmailTemplates.AccountConfirmation.Text5"].Value;
+                        text[17] = accountConfirmLink;
+                        text[19] = accountConfirmLink;
+                        text[21] = _localization["EmailTemplates.AccountConfirmation.Text6"].Value;
+                        text[23] = _localization["EmailTemplates.AccountConfirmation.Text7"].Value;
+                        text[25] = _localization["EmailTemplates.AccountConfirmation.Text8"].Value;
+                        text[27] = _localization["EmailTemplates.AccountConfirmation.Text8"].Value;
+                        text[29] = _localization["EmailTemplates.AccountConfirmation.Text9"].Value;
+                        text[31] = _localization["EmailTemplates.AccountConfirmation.Text10"].Value;
+                        text[33] = _localization["EmailTemplates.AccountConfirmation.Text10"].Value;
+                        text[35] = _localization["EmailTemplates.AccountConfirmation.Text11"].Value;
                     }
 
                     await _emailService.SendEmail(user.Email, _localization["EmailTemplates.AccountConfirmation.Text12"].Value, String.Concat(text));
@@ -298,24 +298,24 @@ namespace VisitorBook.UI.Controllers
             {
                 text = streamReader.ReadToEnd().Split('@');
 
-                text[4] = _localization["Layout.Header.Title.Text"].Value;
-                text[6] = _localization["EmailTemplates.ForgotPassword.Text1"].Value;
-                text[8] = user.Name + " " + user.Surname;
-                text[10] = _localization["EmailTemplates.ForgotPassword.Text2"].Value;
-                text[12] = _localization["EmailTemplates.ForgotPassword.Text3"].Value;
-                text[14] = passwordResetLink;
-                text[16] = _localization["EmailTemplates.ForgotPassword.Text4"].Value;
-                text[18] = _localization["EmailTemplates.ForgotPassword.Text5"].Value;
-                text[20] = passwordResetLink;
-                text[22] = passwordResetLink;
-                text[24] = _localization["EmailTemplates.ForgotPassword.Text6"].Value;
-                text[26] = _localization["EmailTemplates.ForgotPassword.Text7"].Value;
-                text[28] = _localization["EmailTemplates.ForgotPassword.Text8"].Value;
-                text[30] = _localization["EmailTemplates.ForgotPassword.Text8"].Value;
-                text[32] = _localization["EmailTemplates.ForgotPassword.Text9"].Value;
-                text[34] = _localization["EmailTemplates.ForgotPassword.Text10"].Value;
-                text[36] = _localization["EmailTemplates.ForgotPassword.Text10"].Value;
-                text[38] = _localization["EmailTemplates.ForgotPassword.Text11"].Value;
+                text[1] = _localization["Layout.Header.Title.Text"].Value;
+                text[3] = _localization["EmailTemplates.ForgotPassword.Text1"].Value;
+                text[5] = user.Name + " " + user.Surname;
+                text[7] = _localization["EmailTemplates.ForgotPassword.Text2"].Value;
+                text[9] = _localization["EmailTemplates.ForgotPassword.Text3"].Value;
+                text[11] = passwordResetLink;
+                text[13] = _localization["EmailTemplates.ForgotPassword.Text4"].Value;
+                text[15] = _localization["EmailTemplates.ForgotPassword.Text5"].Value;
+                text[17] = passwordResetLink;
+                text[19] = passwordResetLink;
+                text[21] = _localization["EmailTemplates.ForgotPassword.Text6"].Value;
+                text[23] = _localization["EmailTemplates.ForgotPassword.Text7"].Value;
+                text[25] = _localization["EmailTemplates.ForgotPassword.Text8"].Value;
+                text[27] = _localization["EmailTemplates.ForgotPassword.Text8"].Value;
+                text[29] = _localization["EmailTemplates.ForgotPassword.Text9"].Value;
+                text[31] = _localization["EmailTemplates.ForgotPassword.Text10"].Value;
+                text[33] = _localization["EmailTemplates.ForgotPassword.Text10"].Value;
+                text[35] = _localization["EmailTemplates.ForgotPassword.Text11"].Value;
             }
 
             await _emailService.SendEmail(user.Email, _localization["EmailTemplates.ForgotPassword.Text12"].Value, String.Concat(text));
