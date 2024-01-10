@@ -1,4 +1,4 @@
-﻿namespace VisitorBook.Core.Dtos.VisitorStatisticDtos
+﻿namespace VisitorBook.Core.Dtos.UserDataStatisticDtos
 {
     public class LongestDistanceByVisitorOneTimeResponseDto
     {

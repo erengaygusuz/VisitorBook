@@ -14,7 +14,9 @@ namespace VisitorBook.UI.Extensions
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IPropertyMappingService), typeof(PropertyMappingService));
             services.AddScoped(typeof(IFakeDataService), typeof(FakeDataService));
-            services.AddScoped(typeof(IVisitorStatisticService), typeof(VisitorStatisticService));
+            services.AddScoped(typeof(IUserDataStatisticService), typeof(UserDataStatisticService));
+            services.AddScoped(typeof(IUserStatisticService), typeof(UserStatisticService));
+            services.AddScoped(typeof(IPlaceStatisticService), typeof(PlaceStatisticService));
             services.AddScoped(typeof(IEmailService), typeof(EmailService));
             services.AddScoped(typeof(IHomeFactStatisticService), typeof(HomeFactStatisticService));
 

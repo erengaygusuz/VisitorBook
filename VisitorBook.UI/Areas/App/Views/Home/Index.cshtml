@@ -21,264 +21,248 @@
 </div>
 <section class="content">
     <div class="container-fluid">
-        @* <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Kullanıcı İstatistikleri</h3>
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="maximize">
-                        <i class="fas fa-expand"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="card-body" style="display: block;">
-                <div class="row">
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-success">
-                            <div class="inner">
-                                <h3>50</h3>
-                                <p>Kullanıcı</p>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">@localization["Statistics.Item1.Title.Text"]</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body" style="display: block;">
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                                <div class="small-box bg-success">
+                                    <div class="inner">
+                                        <h3>@Model.GetTotalUserCount</h3>
+                                        <p>@localization["Statistics.Item1.Info1.Text"]</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="icon">
-                                <i class="fas fa-user"></i>
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                                <div class="small-box bg-success">
+                                    <div class="inner">
+                                        <h3>@Model.GetTotalVisitorUserCount</h3>
+                                        <p>@localization["Statistics.Item1.Info2.Text"]</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-user-ninja"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                                <div class="small-box bg-success">
+                                    <div class="inner">
+                                        <h3>@Model.GetTotalVisitorRecorderUserCount</h3>
+                                        <p>@localization["Statistics.Item1.Info3.Text"]</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-user-nurse"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                                <div class="small-box bg-success">
+                                    <div class="inner">
+                                        <h3>@Model.GetTotalAdminUserCount</h3>
+                                        <p>@localization["Statistics.Item1.Info4.Text"]</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-user-tie"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-success">
-                            <div class="inner">
-                                <h3>50</h3>
-                                <p>Ziyaretçi</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-user-ninja"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-success">
-                            <div class="inner">
-                                <h3>50</h3>
-                                <p>Ziyaretçi Kaydedici</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-user-nurse"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-success">
-                            <div class="inner">
-                                <h3>50</h3>
-                                <p>Yönetici</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-user-tie"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> *@
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">@localization["Statistics.Title2.Text"]</h3>
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="maximize">
-                        <i class="fas fa-expand"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="card-body" style="display: block;">
-                <div class="row">
-                    <div class="col-xl-3 col-lg-6 col-md-6 col-12">
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3>@Model.GetLongestDistanceByVisitorOneTime.LongestDistance @localization["HomePage.Card1.Body.Text"]</h3>
-                                <p>@localization["HomePage.Card1.Footer.Text"]</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-walking"></i>
-                            </div>
-                            <span class="small-box-footer">
-                                @Model.GetLongestDistanceByVisitorOneTime.VisitorInfo
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-md-6 col-12">
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3>@Model.GetLongestDistanceByVisitorAllTime.LongestDistance @localization["HomePage.Card2.Body.Text"]</h3>
-                                <p>@localization["HomePage.Card2.Footer.Text"]</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-running"></i>
-                            </div>
-                            <span class="small-box-footer">
-                                @Model.GetLongestDistanceByVisitorAllTime.VisitorInfo
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-md-6 col-12">
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3>@Model.GetHighestCountOfVisitedCountyByVisitor.CountOfDistinctVisitedCounty @localization["HomePage.Card3.Body.Text"]</h3>
-                                <p>@localization["HomePage.Card3.Footer.Text"]</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-skating"></i>
-                            </div>
-                            <span class="small-box-footer">
-                                @Model.GetHighestCountOfVisitedCountyByVisitor.VisitorInfo
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-md-6 col-12">
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3>@Model.GetHighestCountOfVisitedCityByVisitor.CountOfDistinctVisitedCity @localization["HomePage.Card4.Body.Text"]</h3>
-                                <p>@localization["HomePage.Card4.Footer.Text"]</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-hiking"></i>
-                            </div>
-                            <span class="small-box-footer">
-                                @Model.GetHighestCountOfVisitedCityByVisitor.VisitorInfo
-                            </span>
-                        </div>
-                    </div>
-                    @* <div class="col-lg-3 col-6">
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3>@Model.GetHighestCountOfVisitedCityByVisitor.CountOfDistinctVisitedCity ülke</h3>
-                                <p>En Çok Ülke Gezen Ziyaretçi</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-snowboarding"></i>
-                            </div>
-                            <span class="small-box-footer">
-                                @Model.GetHighestCountOfVisitedCityByVisitor.VisitorInfo
-                            </span>
-                        </div>
-                    </div> *@
                 </div>
             </div>
         </div>
-        @* <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Yer İstatistikleri</h3>
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="maximize">
-                        <i class="fas fa-expand"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="card-body" style="display: block;">
-                <div class="row">
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-warning">
-                            <div class="inner">
-                                <h3>40</h3>
-                                <p>Bölge</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-globe-africa"></i>
-                            </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">@localization["Statistics.Item2.Title.Text"]</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                <i class="fas fa-expand"></i>
+                            </button>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-warning">
-                            <div class="inner">
-                                <h3>44</h3>
-                                <p>Alt Bölge</p>
+                    <div class="card-body" style="display: block;">
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                                <div class="small-box bg-info">
+                                    <div class="inner">
+                                        <h3>@Model.GetLongestDistanceByVisitorOneTime.LongestDistance @localization["Statistics.Item2.Info1.Text"]</h3>
+                                        <p>@localization["Statistics.Item2.Info2.Text"]</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-walking"></i>
+                                    </div>
+                                    <span class="small-box-footer">
+                                        @Model.GetLongestDistanceByVisitorOneTime.VisitorInfo
+                                    </span>
+                                </div>
                             </div>
-                            <div class="icon">
-                                <i class="fas fa-map"></i>
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                                <div class="small-box bg-info">
+                                    <div class="inner">
+                                        <h3>@Model.GetLongestDistanceByVisitorAllTime.LongestDistance @localization["Statistics.Item2.Info3.Text"]</h3>
+                                        <p>@localization["Statistics.Item2.Info4.Text"]</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-running"></i>
+                                    </div>
+                                    <span class="small-box-footer">
+                                        @Model.GetLongestDistanceByVisitorAllTime.VisitorInfo
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-warning">
-                            <div class="inner">
-                                <h3>33</h3>
-                                <p>Ülke</p>
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                                <div class="small-box bg-info">
+                                    <div class="inner">
+                                        <h3>@Model.GetHighestCountOfVisitedCountyByVisitor.CountOfDistinctVisitedCounty @localization["Statistics.Item2.Info5.Text"]</h3>
+                                        <p>@localization["Statistics.Item2.Info6.Text"]</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-skating"></i>
+                                    </div>
+                                    <span class="small-box-footer">
+                                        @Model.GetHighestCountOfVisitedCountyByVisitor.VisitorInfo
+                                    </span>
+                                </div>
                             </div>
-                            <div class="icon">
-                                <i class="fas fa-flag"></i>
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                                <div class="small-box bg-info">
+                                    <div class="inner">
+                                        <h3>@Model.GetHighestCountOfVisitedCityByVisitor.CountOfDistinctVisitedCity @localization["Statistics.Item2.Info7.Text"]</h3>
+                                        <p>@localization["Statistics.Item2.Info8.Text"]</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-hiking"></i>
+                                    </div>
+                                    <span class="small-box-footer">
+                                        @Model.GetHighestCountOfVisitedCityByVisitor.VisitorInfo
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-warning">
-                            <div class="inner">
-                                <h3>22</h3>
-                                <p>İl</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-city"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-warning">
-                            <div class="inner">
-                                <h3>22</h3>
-                                <p>İlçe</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-building"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> *@
-        @* <div class="card" style="margin-bottom: 80px;">
-            <div class="card-header">
-                <h3 class="card-title">Ziyaret Edilen Yer İstatistikleri</h3>
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="maximize">
-                        <i class="fas fa-expand"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="card-body" style="display: block;">
-                <div class="row">
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3>44</h3>
-                                <p>Ziyaret Edilen Yer</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-store-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3>44</h3>
-                                <p>Kaydedilen Ziyaret Edilen Yer</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-hospital-user"></i>
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                                <div class="small-box bg-info">
+                                    <div class="inner">
+                                        <h3>@Model.GetHighestCountOfVisitedCountryByVisitor.CountOfDistinctVisitedCountry @localization["Statistics.Item2.Info9.Text"]</h3>
+                                        <p>@localization["Statistics.Item2.Info10.Text"]</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-snowboarding"></i>
+                                    </div>
+                                    <span class="small-box-footer">
+                                        @Model.GetHighestCountOfVisitedCountryByVisitor.VisitorInfo
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> *@
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card" style="margin-bottom: 80px;">
+                    <div class="card-header">
+                        <h3 class="card-title">@localization["Statistics.Item3.Title.Text"]</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body" style="display: block;">
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                                <div class="small-box bg-warning">
+                                    <div class="inner">
+                                        <h3>@Model.GetTotalRegionCount</h3>
+                                        <p>@localization["Statistics.Item3.Info1.Text"]</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-globe-africa"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                                <div class="small-box bg-warning">
+                                    <div class="inner">
+                                        <h3>@Model.GetTotalSubRegionCount</h3>
+                                        <p>@localization["Statistics.Item3.Info2.Text"]</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-map"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                                <div class="small-box bg-warning">
+                                    <div class="inner">
+                                        <h3>@Model.GetTotalCountryCount</h3>
+                                        <p>@localization["Statistics.Item3.Info3.Text"]</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-flag"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                                <div class="small-box bg-warning">
+                                    <div class="inner">
+                                        <h3>@Model.GetTotalCityCount</h3>
+                                        <p>@localization["Statistics.Item3.Info4.Text"]</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-city"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                                <div class="small-box bg-warning">
+                                    <div class="inner">
+                                        <h3>@Model.GetTotalCountyCount</h3>
+                                        <p>@localization["Statistics.Item3.Info5.Text"]</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-building"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                                <div class="small-box bg-warning">
+                                    <div class="inner">
+                                        <h3>@Model.GetTotalVisitedCountyCount</h3>
+                                        <p>@localization["Statistics.Item3.Info6.Text"]</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-store-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>

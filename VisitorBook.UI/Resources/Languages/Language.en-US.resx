@@ -141,28 +141,28 @@
   <data name="Cities.Title.Text" xml:space="preserve">
     <value>City List</value>
   </data>
-  <data name="HomePage.Card1.Body.Text" xml:space="preserve">
+  <data name="Statistics.Item2.Info1.Text" xml:space="preserve">
     <value>km</value>
   </data>
-  <data name="HomePage.Card1.Footer.Text" xml:space="preserve">
+  <data name="Statistics.Item2.Info2.Text" xml:space="preserve">
     <value>Longest Distance By Visitor One Time</value>
   </data>
-  <data name="HomePage.Card2.Body.Text" xml:space="preserve">
+  <data name="Statistics.Item2.Info3.Text" xml:space="preserve">
     <value>km</value>
   </data>
-  <data name="HomePage.Card2.Footer.Text" xml:space="preserve">
+  <data name="Statistics.Item2.Info4.Text" xml:space="preserve">
     <value>Longest Distance By Visitor All Time</value>
   </data>
-  <data name="HomePage.Card3.Body.Text" xml:space="preserve">
+  <data name="Statistics.Item2.Info5.Text" xml:space="preserve">
     <value>county</value>
   </data>
-  <data name="HomePage.Card3.Footer.Text" xml:space="preserve">
+  <data name="Statistics.Item2.Info6.Text" xml:space="preserve">
     <value>Highest Count Of Visited County By Visitor</value>
   </data>
-  <data name="HomePage.Card4.Body.Text" xml:space="preserve">
+  <data name="Statistics.Item2.Info7.Text" xml:space="preserve">
     <value>city</value>
   </data>
-  <data name="HomePage.Card4.Footer.Text" xml:space="preserve">
+  <data name="Statistics.Item2.Info8.Text" xml:space="preserve">
     <value>Highest Count Of Visited City By Visitor</value>
   </data>
   <data name="Layout.Footer.Text" xml:space="preserve">
@@ -1740,7 +1740,7 @@
   <data name="StatusCodes.503.Text" xml:space="preserve">
     <value>The server is currently not active.</value>
   </data>
-  <data name="Statistics.Title2.Text" xml:space="preserve">
+  <data name="Statistics.Item2.Title.Text" xml:space="preserve">
     <value>User Datas Statistics</value>
   </data>
   <data name="FakeDatas.Notification.UserAdd.Text" xml:space="preserve">
@@ -1748,5 +1748,47 @@
   </data>
   <data name="FakeDatas.Notification.VisitedCountyAdd.Text" xml:space="preserve">
     <value>Visited Counties created successfully</value>
+  </data>
+  <data name="Statistics.Item2.Info9.Text" xml:space="preserve">
+    <value>country</value>
+  </data>
+  <data name="Statistics.Item2.Info10.Text" xml:space="preserve">
+    <value>Highest Count Of Visited Country By Visitor</value>
+  </data>
+  <data name="Statistics.Item1.Title.Text" xml:space="preserve">
+    <value>User Statistics</value>
+  </data>
+  <data name="Statistics.Item1.Info1.Text" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Statistics.Item1.Info2.Text" xml:space="preserve">
+    <value>Visitor</value>
+  </data>
+  <data name="Statistics.Item1.Info3.Text" xml:space="preserve">
+    <value>Visitor Recorder</value>
+  </data>
+  <data name="Statistics.Item1.Info4.Text" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="Statistics.Item3.Info1.Text" xml:space="preserve">
+    <value>Region</value>
+  </data>
+  <data name="Statistics.Item3.Info2.Text" xml:space="preserve">
+    <value>SubRegion</value>
+  </data>
+  <data name="Statistics.Item3.Info3.Text" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="Statistics.Item3.Info4.Text" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Statistics.Item3.Info5.Text" xml:space="preserve">
+    <value>County</value>
+  </data>
+  <data name="Statistics.Item3.Info6.Text" xml:space="preserve">
+    <value>Visited County</value>
+  </data>
+  <data name="Statistics.Item3.Title.Text" xml:space="preserve">
+    <value>Place Statistics</value>
   </data>
 </root>

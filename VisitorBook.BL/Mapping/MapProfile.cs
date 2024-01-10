@@ -13,7 +13,7 @@ using VisitorBook.Core.Dtos.SubRegionDtos;
 using VisitorBook.Core.Dtos.UserDtos;
 using VisitorBook.Core.Dtos.VisitedCountyDtos;
 using VisitorBook.Core.Dtos.VisitorAddressDtos;
-using VisitorBook.Core.Dtos.VisitorStatisticDtos;
+using VisitorBook.Core.Dtos.UserDataStatisticDtos;
 using VisitorBook.Core.Entities;
 using VisitorBook.Core.Enums;
 
@@ -73,6 +73,10 @@ namespace VisitorBook.BL.Mapping
             CreateMap<Tuple<string, string>, HighestCountOfVisitedCityByVisitorResponseDto>()
                 .ForMember(e => e.VisitorInfo, opts => opts.MapFrom(e => e.Item1))
                 .ForMember(e => e.CountOfDistinctVisitedCity, opts => opts.MapFrom(e => e.Item2));
+
+            CreateMap<Tuple<string, string>, HighestCountOfVisitedCountryByVisitorResponseDto>()
+                .ForMember(e => e.VisitorInfo, opts => opts.MapFrom(e => e.Item1))
+                .ForMember(e => e.CountOfDistinctVisitedCountry, opts => opts.MapFrom(e => e.Item2));
 
             CreateMap<Tuple<string, string>, LongestDistanceByVisitorOneTimeResponseDto>()
                 .ForMember(e => e.VisitorInfo, opts => opts.MapFrom(e => e.Item1))

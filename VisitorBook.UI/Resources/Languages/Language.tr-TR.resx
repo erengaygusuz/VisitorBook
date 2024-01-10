@@ -141,28 +141,28 @@
   <data name="Cities.Title.Text" xml:space="preserve">
     <value>İl Listesi</value>
   </data>
-  <data name="HomePage.Card1.Body.Text" xml:space="preserve">
+  <data name="Statistics.Item2.Info1.Text" xml:space="preserve">
     <value>km</value>
   </data>
-  <data name="HomePage.Card1.Footer.Text" xml:space="preserve">
+  <data name="Statistics.Item2.Info2.Text" xml:space="preserve">
     <value>Tek Seferde En Uzun Mesafe Giden Ziyaretçi</value>
   </data>
-  <data name="HomePage.Card2.Body.Text" xml:space="preserve">
+  <data name="Statistics.Item2.Info3.Text" xml:space="preserve">
     <value>km</value>
   </data>
-  <data name="HomePage.Card2.Footer.Text" xml:space="preserve">
+  <data name="Statistics.Item2.Info4.Text" xml:space="preserve">
     <value>Toplam En Uzun Mesafe Giden Ziyaretçi</value>
   </data>
-  <data name="HomePage.Card3.Body.Text" xml:space="preserve">
+  <data name="Statistics.Item2.Info5.Text" xml:space="preserve">
     <value>ilçe</value>
   </data>
-  <data name="HomePage.Card3.Footer.Text" xml:space="preserve">
+  <data name="Statistics.Item2.Info6.Text" xml:space="preserve">
     <value>En Çok İlçe Gezen Ziyaretçi</value>
   </data>
-  <data name="HomePage.Card4.Body.Text" xml:space="preserve">
+  <data name="Statistics.Item2.Info7.Text" xml:space="preserve">
     <value>il</value>
   </data>
-  <data name="HomePage.Card4.Footer.Text" xml:space="preserve">
+  <data name="Statistics.Item2.Info8.Text" xml:space="preserve">
     <value>En Çok İl Gezen Ziyaretçi</value>
   </data>
   <data name="Layout.Footer.Text" xml:space="preserve">
@@ -1742,7 +1742,7 @@
   <data name="StatusCodes.503.Text" xml:space="preserve">
     <value>Sunucu şuan aktif değil.</value>
   </data>
-  <data name="Statistics.Title2.Text" xml:space="preserve">
+  <data name="Statistics.Item2.Title.Text" xml:space="preserve">
     <value>Kullanıcı Verileri İstatistikleri</value>
   </data>
   <data name="FakeDatas.Notification.UserAdd.Text" xml:space="preserve">
@@ -1750,5 +1750,47 @@
   </data>
   <data name="FakeDatas.Notification.VisitedCountyAdd.Text" xml:space="preserve">
     <value>Ziyaret edilen ilçeler başarılı bir şekilde oluşturuldu</value>
+  </data>
+  <data name="Statistics.Item2.Info9.Text" xml:space="preserve">
+    <value>ülke</value>
+  </data>
+  <data name="Statistics.Item2.Info10.Text" xml:space="preserve">
+    <value>En Çok Ülke Gezen Ziyaretçi</value>
+  </data>
+  <data name="Statistics.Item1.Title.Text" xml:space="preserve">
+    <value>Kullanıcı İstatistikleri</value>
+  </data>
+  <data name="Statistics.Item1.Info1.Text" xml:space="preserve">
+    <value>Kullanıcı</value>
+  </data>
+  <data name="Statistics.Item1.Info2.Text" xml:space="preserve">
+    <value>Ziyaretçi</value>
+  </data>
+  <data name="Statistics.Item1.Info3.Text" xml:space="preserve">
+    <value>Ziyaretçi Kaydedici</value>
+  </data>
+  <data name="Statistics.Item1.Info4.Text" xml:space="preserve">
+    <value>Yönetici</value>
+  </data>
+  <data name="Statistics.Item3.Info1.Text" xml:space="preserve">
+    <value>Bölge</value>
+  </data>
+  <data name="Statistics.Item3.Info2.Text" xml:space="preserve">
+    <value>Alt Bölge</value>
+  </data>
+  <data name="Statistics.Item3.Info3.Text" xml:space="preserve">
+    <value>Ülke</value>
+  </data>
+  <data name="Statistics.Item3.Info4.Text" xml:space="preserve">
+    <value>İl</value>
+  </data>
+  <data name="Statistics.Item3.Info5.Text" xml:space="preserve">
+    <value>İlçe</value>
+  </data>
+  <data name="Statistics.Item3.Title.Text" xml:space="preserve">
+    <value>Yer İstatistikleri</value>
+  </data>
+  <data name="Statistics.Item3.Info6.Text" xml:space="preserve">
+    <value>Ziyaret Edilen İlçe</value>
   </data>
 </root>

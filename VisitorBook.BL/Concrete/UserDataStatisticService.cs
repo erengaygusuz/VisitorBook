@@ -5,12 +5,12 @@ using VisitorBook.Core.Utilities;
 
 namespace VisitorBook.BL.Concrete
 {
-    public class VisitorStatisticService : IVisitorStatisticService
+    public class UserDataStatisticService : IUserDataStatisticService
     {
         private readonly IRepository<VisitedCounty> _visitedCountyRepository;
         private readonly LocationHelper _locationHelper;
 
-        public VisitorStatisticService(IRepository<VisitedCounty> visitedCountyRepository, LocationHelper locationHelper)
+        public UserDataStatisticService(IRepository<VisitedCounty> visitedCountyRepository, LocationHelper locationHelper)
         {
             _locationHelper = locationHelper;
             _visitedCountyRepository = visitedCountyRepository;
@@ -33,7 +33,9 @@ namespace VisitorBook.BL.Concrete
                     CountOfDistinctVisitedCounty = a.Distinct().Count()
                 }).OrderByDescending(a => a.CountOfDistinctVisitedCounty).ThenBy(b => b.VisitorInfo).FirstAsync();
 
-                tuple = new Tuple<string, string>(highestCountOfVisitedCountyByVisitor.VisitorInfo, highestCountOfVisitedCountyByVisitor.CountOfDistinctVisitedCounty.ToString());
+                tuple = new Tuple<string, string>(
+                    highestCountOfVisitedCountyByVisitor.VisitorInfo, 
+                    highestCountOfVisitedCountyByVisitor.CountOfDistinctVisitedCounty.ToString());
             }
 
             return tuple;
@@ -56,7 +58,34 @@ namespace VisitorBook.BL.Concrete
                     CountOfDistinctVisitedCounty = a.GroupBy(c => c.County.City).Count()
                 }).OrderByDescending(a => a.CountOfDistinctVisitedCounty).ThenBy(b => b.VisitorInfo).FirstAsync();
 
-                tuple = new Tuple<string, string>(highestCountOfVisitedCityByVisitor.VisitorInfo, highestCountOfVisitedCityByVisitor.CountOfDistinctVisitedCounty.ToString());
+                tuple = new Tuple<string, string>(
+                    highestCountOfVisitedCityByVisitor.VisitorInfo, 
+                    highestCountOfVisitedCityByVisitor.CountOfDistinctVisitedCounty.ToString());
+            }
+
+            return tuple;
+        }
+
+        public async Task<Tuple<string, string>> GetHighestCountOfVisitedCountryByVisitorAsync()
+        {
+            var visitedCountyWithVisitorAndVisitorAddress = _visitedCountyRepository
+                .GetAll(v => v.User.UserAddress != null, include: u => u.Include(a => a.County).Include(a => a.User));
+
+            var groupedVisitedList = visitedCountyWithVisitorAndVisitorAddress.GroupBy(a => a.UserId);
+
+            var tuple = new Tuple<string, string>("--", "0");
+
+            if (groupedVisitedList.Count() > 0)
+            {
+                var highestCountOfVisitedCountryByVisitor = await groupedVisitedList.Select(a => new
+                {
+                    VisitorInfo = a.First().User.Name + " " + a.First().User.Surname,
+                    CountOfDistinctVisitedCountry = a.GroupBy(c => c.County.City.Country).Count()
+                }).OrderByDescending(a => a.CountOfDistinctVisitedCountry).ThenBy(b => b.VisitorInfo).FirstAsync();
+
+                tuple = new Tuple<string, string>(
+                    highestCountOfVisitedCountryByVisitor.VisitorInfo,
+                    highestCountOfVisitedCountryByVisitor.CountOfDistinctVisitedCountry.ToString());
             }
 
             return tuple;
