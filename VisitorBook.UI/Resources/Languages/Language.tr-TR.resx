@@ -1751,4 +1751,10 @@
   <data name="Statistics.Title2.Text" xml:space="preserve">
     <value>Kullanıcı Verileri İstatistikleri</value>
   </data>
+  <data name="FakeDatas.Notification.UserAdd.Text" xml:space="preserve">
+    <value>Kullanıcılar başarılı bir şekilde oluşturuldu</value>
+  </data>
+  <data name="FakeDatas.Notification.VisitedCountyAdd.Text" xml:space="preserve">
+    <value>Ziyaret edilen ilçeler başarılı bir şekilde oluşturuldu</value>
+  </data>
 </root>

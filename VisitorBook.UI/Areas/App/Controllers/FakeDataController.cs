@@ -1,9 +1,12 @@
-﻿using FluentValidation;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Constants;
 using VisitorBook.Core.ViewModels;
+using VisitorBook.UI.Languages;
 
 namespace VisitorBook.UI.Areas.App.Controllers
 {
@@ -13,11 +16,16 @@ namespace VisitorBook.UI.Areas.App.Controllers
     {
         private readonly IFakeDataService _fakeDataService;
         private readonly IValidator<FakeDataViewModel> _fakeDataViewModelValidator;
+        private readonly INotyfService _notifyService;
+        private readonly IStringLocalizer<Language> _localization;
 
-        public FakeDataController(IFakeDataService fakeDataService, IValidator<FakeDataViewModel> fakeDataViewModelValidator)
+        public FakeDataController(IFakeDataService fakeDataService, IValidator<FakeDataViewModel> fakeDataViewModelValidator, INotyfService notifyService,
+            IStringLocalizer<Language> localization)
         {
             _fakeDataService = fakeDataService;
             _fakeDataViewModelValidator = fakeDataViewModelValidator;
+            _notifyService = notifyService;
+            _localization = localization;
         }
 
         [Authorize(Permissions.FakeDataManagement.View)]
@@ -46,6 +54,8 @@ namespace VisitorBook.UI.Areas.App.Controllers
 
             await _fakeDataService.InsertUserDatas(fakeDataViewModel.UserAmount);
 
+            _notifyService.Success(_localization["FakeDatas.Notification.UserAdd.Text"].Value);
+
             return RedirectToAction("Index");
         }
 
@@ -67,6 +77,8 @@ namespace VisitorBook.UI.Areas.App.Controllers
             }
             
             await _fakeDataService.InsertVisitedCountyDatas(fakeDataViewModel.VisitedCountyAmount);
+
+            _notifyService.Success(_localization["FakeDatas.Notification.VisitedCountyAdd.Text"].Value);
 
             return RedirectToAction("Index");
         }
