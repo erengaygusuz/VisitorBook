@@ -3,8 +3,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@localization["Layout.Header.Title.Text"]</title>
-    <!-- Site CSS -->
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <!-- Google Font: Source Sans Pro -->
     <link href="~/lib/google-font/css.css" rel="stylesheet" />
     <!-- Font Awesome -->
@@ -42,6 +40,8 @@
     <link href="~/lib/intl-tel-input/intltelinput.css" rel="stylesheet" />
     <!-- Mvc Grid -->
     <link href="~/css/mvc-grid/mvc-grid.css" rel="stylesheet" />
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
@@ -64,7 +64,7 @@
         </nav>
         <partial name="_MainSidebar" />
 
-        <div class="content-wrapper mb-5">
+        <div class="content-wrapper">
             @RenderBody()
         </div>
 
