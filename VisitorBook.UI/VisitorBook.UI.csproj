@@ -24,9 +24,6 @@
 		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.11" />
 		<PackageReference Include="NonFactors.Grid.Core.Mvc6" Version="7.2.0" />
 		<PackageReference Include="NonFactors.Grid.Mvc6" Version="7.2.0" />
-		<PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />
-		<PackageReference Include="Serilog.Settings.Configuration" Version="8.0.0" />
-		<PackageReference Include="Serilog.Sinks.MSSqlServer" Version="6.5.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -35,7 +32,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="wwwroot\css\general\" />
+	  <Folder Include="wwwroot\js\plugins\fancy-select\" />
 	  <Folder Include="wwwroot\templates\" />
 	</ItemGroup>
 

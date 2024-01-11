@@ -2,38 +2,53 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ziyaretçi Defteri</title>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
-    <!-- BS Stepper -->
-    <link rel="stylesheet" href="~/plugins/bs-stepper/css/bs-stepper.min.css">
+    <title>@localization["Layout.Header.Title.Text"]</title>
+
+    <!-- Google Web Fonts -->
+    <link rel="stylesheet" href="~/css/plugins/google-web-fonts/google-web-fonts.min.css">
+
+    <!-- Font Awesome 5.15.4 -->
+    <link rel="stylesheet" href="~/css/plugins/fontawesome-free/css/all.min.css">
+
+    <!-- Icheck Bootstrap 3.0.1 -->
+    <link rel="stylesheet" href="~/css/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+
+    <!-- Admin Lte 3.2.0 -->
+    <link rel="stylesheet" href="~/css/main/admin-lte/adminlte.min.css">
+
+    <!-- BS Stepper 1.7.0 -->
+    <link rel="stylesheet" href="~/css/plugins/bs-stepper/bs-stepper.min.css">
+
     <!-- Fancy Select -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mdbassit/FancySelect@latest/dist/fancyselect.min.css">
-    <!-- Template Stylesheet -->
-    <link href="~/view-resources/views/shared/auth-layout.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/plugins/fancy-select/fancyselect.min.css" />
+
+    <!-- Auth Layout -->
+    <link rel="stylesheet" href="~/css/custom/auth-layout.css" />
+
 </head>
 <body class="hold-transition login-page">
+
     @RenderBody()
-    <!-- jQuery -->
-    <script src="~/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="~/dist/js/adminlte.min.js"></script>
-    <!-- BS-Stepper -->
-    <script src="~/plugins/bs-stepper/js/bs-stepper.min.js"></script>
+
+    <!-- jQuery 3.6.0 -->
+    <script src="~/js/plugins/jquery-3.6.0/jquery.min.js"></script>
+
+    <!-- Bootstrap 4.6.1 -->
+    <script src="~/js/main/bootstrap4/bootstrap.bundle.min.js"></script>
+
+    <!-- Admin Lte 3.2.0 -->
+    <script src="~/js/main/admin-lte/adminlte.min.js"></script>
+
+    <!-- BS Stepper 1.7.0 -->
+    <script src="~/js/plugins/bs-stepper/bs-stepper.min.js"></script>
+
     <!-- Fancy Select -->
-    <script src="https://cdn.jsdelivr.net/gh/mdbassit/FancySelect@latest/dist/fancyselect.min.js"></script>
+    <script src="~/js/plugins/fancy-select/fancyselect.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 
     @await Component.InvokeAsync("Notyf")
+
 </body>
 </html>
