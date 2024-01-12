@@ -33,11 +33,11 @@ namespace VisitorBook.UI.Areas.AppControllers
         private readonly IValidator<ProfileViewModel> _profileViewModelValidator;
         private readonly INotyfService _notifyService;
         private readonly IService<UserAddress> _userAddressService;
-        private readonly IFileProvider _fileProvider;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
         public ProfileController(SignInManager<User> signInManager, UserManager<User> userManager, IStringLocalizer<Language> localization,
             IService<City> cityService, IMapper mapper, IService<County> countyService, IValidator<ProfileViewModel> profileViewModelValidator, 
-            INotyfService notifyService, IService<UserAddress> userAddressService, IFileProvider fileProvider)
+            INotyfService notifyService, IService<UserAddress> userAddressService, IWebHostEnvironment webHostEnvironment)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -48,7 +48,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             _profileViewModelValidator = profileViewModelValidator;
             _notifyService = notifyService;
             _userAddressService = userAddressService;
-            _fileProvider = fileProvider;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [HttpGet]
@@ -228,13 +228,28 @@ namespace VisitorBook.UI.Areas.AppControllers
 
             if (profileViewModel.UserGeneralInfo.Picture != null && profileViewModel.UserGeneralInfo.Picture.Length > 0)
             {
-                var imgFolder = _fileProvider.GetDirectoryContents("wwwroot/img");
+                var wwwRootPath = _webHostEnvironment.WebRootPath;
 
                 var randomFileName = $"{Guid.NewGuid().ToString()}{Path.GetExtension(profileViewModel.UserGeneralInfo.Picture.FileName)}";
 
-                var newPicturePath = Path.Combine(imgFolder.First(x => x.Name == "profile-photos").PhysicalPath, randomFileName);
+                var photosDirectoryPath = Path.Combine(wwwRootPath, @"img\profile-photos");
 
-                using var stream = new FileStream(newPicturePath, FileMode.Create);
+                if (!Directory.Exists(photosDirectoryPath))
+                {
+                    Directory.CreateDirectory(photosDirectoryPath);
+                }
+
+                if (user.Picture != null)
+                {
+                    var oldImagePath = Path.Combine(photosDirectoryPath, user.Picture);
+
+                    if (System.IO.File.Exists(oldImagePath))
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                    }
+                }
+
+                using var stream = new FileStream(Path.Combine(photosDirectoryPath, randomFileName), FileMode.Create);
 
                 await profileViewModel.UserGeneralInfo.Picture.CopyToAsync(stream);
 
