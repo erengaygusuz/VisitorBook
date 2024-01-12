@@ -42,8 +42,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="wwwroot\js\plugins\fancy-select\" />
-	  <Folder Include="wwwroot\templates\" />
+	  <Folder Include="wwwroot\img\profile-photos\" />
 	</ItemGroup>
 
 </Project>

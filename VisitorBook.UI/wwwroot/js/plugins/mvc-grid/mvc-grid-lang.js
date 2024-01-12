@@ -16,7 +16,7 @@
         "less-than": "Küçük",
         "greater-than": "Büyük",
         "less-than-or-equal": "Eşit ve Küçük",
-        "greater-than-o-requal": "Eşit ve Büyük"
+        "greater-than-or-equal": "Eşit ve Büyük"
     },
     date: {
         "equals": "Eşit",

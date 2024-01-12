@@ -16,6 +16,7 @@ using VisitorBook.Core.Dtos.CountyDtos;
 using AutoMapper;
 using FluentValidation;
 using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.Extensions.FileProviders;
 
 namespace VisitorBook.UI.Areas.AppControllers
 {
@@ -32,10 +33,11 @@ namespace VisitorBook.UI.Areas.AppControllers
         private readonly IValidator<ProfileViewModel> _profileViewModelValidator;
         private readonly INotyfService _notifyService;
         private readonly IService<UserAddress> _userAddressService;
+        private readonly IFileProvider _fileProvider;
 
         public ProfileController(SignInManager<User> signInManager, UserManager<User> userManager, IStringLocalizer<Language> localization,
             IService<City> cityService, IMapper mapper, IService<County> countyService, IValidator<ProfileViewModel> profileViewModelValidator, 
-            INotyfService notifyService, IService<UserAddress> userAddressService)
+            INotyfService notifyService, IService<UserAddress> userAddressService, IFileProvider fileProvider)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -46,6 +48,7 @@ namespace VisitorBook.UI.Areas.AppControllers
             _profileViewModelValidator = profileViewModelValidator;
             _notifyService = notifyService;
             _userAddressService = userAddressService;
+            _fileProvider = fileProvider;
         }
 
         [HttpGet]
@@ -206,6 +209,10 @@ namespace VisitorBook.UI.Areas.AppControllers
                     != null ? messages.Where(x => x.Key == "UserGeneralInfo.PhoneNumber").FirstOrDefault().Value.FirstOrDefault() 
                     : "";
 
+                TempData["Picture"] = messages.Where(x => x.Key == "UserGeneralInfo.Picture").FirstOrDefault().Value
+                    != null ? messages.Where(x => x.Key == "UserGeneralInfo.Picture").FirstOrDefault().Value.FirstOrDefault()
+                    : "";
+
                 var result = validationResult.ToDictionary();
 
                 return RedirectToAction("Index");
@@ -219,9 +226,24 @@ namespace VisitorBook.UI.Areas.AppControllers
             user.Gender = (Gender) Enum.Parse(typeof(Gender), profileViewModel.UserGeneralInfo.Gender);
             user.PhoneNumber = profileViewModel.UserGeneralInfo.PhoneNumber;
 
+            if (profileViewModel.UserGeneralInfo.Picture != null && profileViewModel.UserGeneralInfo.Picture.Length > 0)
+            {
+                var imgFolder = _fileProvider.GetDirectoryContents("wwwroot/img");
+
+                var randomFileName = $"{Guid.NewGuid().ToString()}{Path.GetExtension(profileViewModel.UserGeneralInfo.Picture.FileName)}";
+
+                var newPicturePath = Path.Combine(imgFolder.First(x => x.Name == "profile-photos").PhysicalPath, randomFileName);
+
+                using var stream = new FileStream(newPicturePath, FileMode.Create);
+
+                await profileViewModel.UserGeneralInfo.Picture.CopyToAsync(stream);
+
+                user.Picture = randomFileName;
+            }
+
             var updateToUserResult = await _userManager.UpdateAsync(user);
 
-            if (profileViewModel.UserAddress != null)
+            if (profileViewModel.UserAddress != null && profileViewModel.UserAddress.CountyId != 0 && profileViewModel.UserAddress.CityId != 0)
             {
                 await _userAddressService.UpdateAsync(new UserAddressRequestDto
                 {

@@ -354,12 +354,15 @@ namespace VisitorBook.UI.Areas.AppControllers
 
             await _userManager.UpdateAsync(userToUpdate);
 
-            await _userAddressService.UpdateAsync(new UserAddressRequestDto
+            if (userViewModel.UserAddress != null && userViewModel.UserAddress.CountyId != 0 && userViewModel.UserAddress.CityId != 0)
             {
-                Id = userViewModel.UserAddress.Id,
-                UserId = userViewModel.User.Id,
-                CountyId = userViewModel.UserAddress.CountyId
-            });
+                await _userAddressService.UpdateAsync(new UserAddressRequestDto
+                {
+                    Id = userViewModel.UserAddress.Id,
+                    UserId = userViewModel.User.Id,
+                    CountyId = userViewModel.UserAddress.CountyId
+                });
+            }
 
             var userRoles = await _userManager.GetRolesAsync(userToUpdate);
 

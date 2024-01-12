@@ -1800,4 +1800,13 @@
   <data name="MetaTags.Keywords.Text" xml:space="preserve">
     <value>Visitor, Visitor Book, Visiting, Visited Place</value>
   </data>
+  <data name="Profiles.GeneralTab.Row8.Text" xml:space="preserve">
+    <value>Profile Picture</value>
+  </data>
+  <data name="Profiles.GeneralTab.Row8.Info.Text" xml:space="preserve">
+    <value>Please choose a photo</value>
+  </data>
+  <data name="Validators.Profile.Message20.Text" xml:space="preserve">
+    <value>You can only select a photo that has jpeg, jpg or png extension</value>
+  </data>
 </root>

@@ -27,5 +27,7 @@ namespace VisitorBook.Core.Entities
 
         [ValidateNever]
         public UserAddress? UserAddress { get; set; }
+
+        public string? Picture { get; set;  }
     }
 }

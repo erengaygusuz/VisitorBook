@@ -2,6 +2,7 @@
 @using VisitorBook.Core.Dtos.RegionDtos
 @using VisitorBook.Core.Dtos.RoleDtos
 @using VisitorBook.Core.Dtos.UserDtos
+@using VisitorBook.Core.Dtos.ProfileDtos
 @using VisitorBook.Core.ViewModels
 @using VisitorBook.UI.Languages
 @using Microsoft.AspNetCore.Mvc.Localization
@@ -12,7 +13,11 @@
 @using System.Linq
 @using VisitorBook.Core.Dtos.AuditTrailDtos
 @using VisitorBook.Core.Enums
+@using Microsoft.AspNetCore.Identity
+@using AutoMapper;
 
 @inject IHtmlLocalizer<Language> localization
+@inject UserManager<User> userManager
+@inject IMapper mapper;
 
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

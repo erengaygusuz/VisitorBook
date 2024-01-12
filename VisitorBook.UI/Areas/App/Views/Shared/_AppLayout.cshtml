@@ -31,10 +31,15 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
             </ul>
+            @{
+                var user = await @userManager.FindByNameAsync(User.Identity.Name);
+
+                var userResponseDto = @mapper.Map(user, typeof(User), typeof(UserResponseDto));
+            }
 
             <ul class="navbar-nav ml-auto">
                 @await Html.PartialAsync("_CulturePartial")
-                @await Html.PartialAsync("_ProfileMenuPartial")
+                @await Html.PartialAsync("_ProfileMenuPartial", userResponseDto)
             </ul>
         </nav>
         <partial name="_MainSidebar" />

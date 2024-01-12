@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
 
+    bsCustomFileInput.init();
+
     $('[data-mask]').inputmask()
 
     $('.select2').select2({

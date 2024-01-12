@@ -1802,4 +1802,13 @@
   <data name="MetaTags.Keywords.Text" xml:space="preserve">
     <value>Ziyaretçi, Ziyaretçi Defteri, Ziyaret, Ziyaret Edilen Yer</value>
   </data>
+  <data name="Profiles.GeneralTab.Row8.Text" xml:space="preserve">
+    <value>Profil Fotoğrafı</value>
+  </data>
+  <data name="Profiles.GeneralTab.Row8.Info.Text" xml:space="preserve">
+    <value>Lütfen bir fotoğraf seçiniz</value>
+  </data>
+  <data name="Validators.Profile.Message20.Text" xml:space="preserve">
+    <value>Sadece jpeg, jpg veya png uzantılı fotoğraf seçebilirsiniz</value>
+  </data>
 </root>

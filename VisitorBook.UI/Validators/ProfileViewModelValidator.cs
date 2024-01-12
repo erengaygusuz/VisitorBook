@@ -35,6 +35,14 @@ namespace VisitorBook.UI.Validators
 
                 RuleFor(x => x.UserGeneralInfo.PhoneNumber)
                     .NotNull().WithMessage(_localization["Validators.Profile.Message12.Text"].Value);
+
+                When(x => x.UserGeneralInfo.Picture != null, () =>
+                {
+                    RuleFor(x => x.UserGeneralInfo.Picture)
+                        .Must(x => x.ContentType.Equals("image/jpeg") || x.ContentType.Equals("image/jpg") || x.ContentType.Equals("image/png"))
+                        .WithMessage(_localization["Validators.Profile.Message20.Text"].Value);
+                });
+                    
             });
 
             When(x => x.UserSecurityInfo != null, () => {

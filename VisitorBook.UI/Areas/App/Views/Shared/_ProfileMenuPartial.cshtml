@@ -1,12 +1,34 @@
-﻿<li class="nav-item dropdown user-menu">
+﻿@model UserResponseDto
+
+<li class="nav-item dropdown user-menu">
     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-        <img src="~/img/user-avatar-small.png" class="user-image img-circle elevation-2" alt="User Image">
-        <span class="d-none d-md-inline">@User.Identity.Name</span>
+
+        @if (string.IsNullOrEmpty(Model.Picture))
+        {
+            <img src="~/img/user-avatar-small.png" class="user-image img-circle elevation-2" alt="User Image">
+        }
+
+        else
+        {
+            <img src="~/img/profile-photos/@Model.Picture" class="user-image img-circle elevation-2" alt="User Image">
+        }
+
+        <span class="d-none d-md-inline">@Model.Name @Model.Surname</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
         <li class="user-header mt-2 mb-0 align-middle" style="height: auto;">
-            <img src="~/img/user-avatar.png" class="img-circle elevation-2" alt="User Image">
-            <p>@User.Identity.Name</p>
+
+            @if (string.IsNullOrEmpty(Model.Picture))
+            {
+                <img src="~/img/user-avatar.png" class="img-circle elevation-2" alt="User Image">
+            }
+
+            else
+            {
+                <img src="~/img/profile-photos/@Model.Picture" class="img-circle elevation-2" alt="User Image">
+            }
+
+            <p>@Model.Name @Model.Surname</p>
         </li>
         <li class="user-footer">
             <a asp-controller="Profile" asp-action="Index" class="btn btn-default btn-flat">@localization["Profiles.RightMenu.Item1.Text"]</a>

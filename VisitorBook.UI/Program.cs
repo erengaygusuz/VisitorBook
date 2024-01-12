@@ -6,12 +6,15 @@ using AspNetCoreHero.ToastNotification.Extensions;
 using VisitorBook.UI.Extensions;
 using VisitorBook.UI.Middlewares;
 using WebMarkupMin.AspNetCore7;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddPermissionExt();
 
 builder.Services.AddMappingExt();
+
+builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Directory.GetCurrentDirectory()));
 
 builder.Services.AddServiceRepositoryExt();
 
@@ -39,9 +42,6 @@ builder.Services.AddWebMarkupMin()
 
 var app = builder.Build();
 
-app.UseHsts();
-app.UseExceptionHandler("/Error");
-
 if (!app.Environment.IsDevelopment())
 {
     app.UseHsts();
@@ -55,9 +55,12 @@ app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocal
 
 app.UseRouting();
 
-app.UseMiddleware<ExceptionHandlingMiddleware>();
+if (!app.Environment.IsDevelopment())
+{
+    app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-app.UseStatusCodePagesWithReExecute("/Error/{0}");
+    app.UseStatusCodePagesWithReExecute("/Error/{0}");
+}
 
 app.UseAuthentication();
 

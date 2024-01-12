@@ -35,7 +35,7 @@
                         <input type="hidden" id="AddOrEditModalCountySelectionText" value="@localization["AddOrEditModal.CountySelection.Text"]" />
                         <div class="tab-content">
                             <div class="active tab-pane" id="general">
-                                <form class="form-horizontal" asp-area="App" asp-controller="Profile" asp-action="UpdateGeneralInfo">
+                                <form class="form-horizontal" asp-area="App" asp-controller="Profile" asp-action="UpdateGeneralInfo" enctype="multipart/form-data">
                                     <input type="hidden" asp-for="@Model.UserAddress!.Id" />
                                     <div class="form-group row">
                                         <label asp-for="@Model.UserGeneralInfo.Name" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row1.Text"]</label>
@@ -77,6 +77,16 @@
                                                 <option disabled selected value="0">@localization["AddOrEditModal.GenderSelection.Text"]</option>
                                             </select>
                                             <span class="error invalid-feedback">@TempData["Gender"]</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row8.Text"]</label>
+                                        <div class="col-sm-10">
+                                            <div class="custom-file">
+                                                <input type="file" accept=".png, .jpg, .jpeg" class="custom-file-input" asp-for="@Model.UserGeneralInfo.Picture">
+                                                <label asp-for="@Model.UserGeneralInfo.Picture" class="custom-file-label">@localization["Profiles.GeneralTab.Row8.Info.Text"]</label>
+                                            </div>
+                                            <span class="error invalid-feedback">@TempData["Picture"]</span>
                                         </div>
                                     </div>
                                     <div class="form-group row">

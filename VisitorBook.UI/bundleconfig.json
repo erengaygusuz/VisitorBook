@@ -78,6 +78,7 @@
       "wwwroot/js/plugins/moment/moment-with-locales.min.js",
       "wwwroot/js/plugins/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.js",
       "wwwroot/js/plugins/overlayScrollbars/jquery.overlayScrollbars.min.js",
+      "wwwroot/js/plugins/bs-custom-file-input/bs-custom-file-input.min.js",
       "wwwroot/js/main/admin-lte/adminlte.min.js",
       "wwwroot/js/plugins/datatables/jquery.dataTables.min.js",
       "wwwroot/js/plugins/datatables-bs4/dataTables.bootstrap4.min.js",
@@ -201,6 +202,12 @@
     "outputFileName": "wwwroot/js/custom/visited-county.min.js",
     "inputFiles": [
       "wwwroot/js/custom/visited-county.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/plugins/mvc-grid/mvc-grid-lang.min.js",
+    "inputFiles": [
+      "wwwroot/js/plugins/mvc-grid/mvc-grid-lang.js"
     ]
   }
 ]
