@@ -41,4 +41,8 @@
 		<ProjectReference Include="..\VisitorBook.DAL\VisitorBook.DAL.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="wwwroot\img\profile-photos\" />
+	</ItemGroup>
+
 </Project>
