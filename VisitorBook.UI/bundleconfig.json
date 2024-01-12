@@ -1,0 +1,206 @@
+[
+  {
+    "outputFileName": "wwwroot/bundles/css/auth.layout.bundle.min.css",
+    "inputFiles": [
+      "wwwroot/css/plugins/google-web-fonts/google-web-fonts.min.css",
+      "wwwroot/css/plugins/fontawesome-free/css/all.min.css",
+      "wwwroot/css/plugins/icheck-bootstrap/icheck-bootstrap.min.css",
+      "wwwroot/css/main/admin-lte/adminlte.min.css",
+      "wwwroot/css/plugins/bs-stepper/bs-stepper.min.css",
+      "wwwroot/css/plugins/fancy-select/fancyselect.min.css",
+      "wwwroot/css/custom/auth-layout.min.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/js/auth.layout.bundle.min.js",
+    "inputFiles": [
+      "wwwroot/js/plugins/jquery/jquery.min.js",
+      "wwwroot/js/main/bootstrap4/bootstrap.bundle.min.js",
+      "wwwroot/js/main/admin-lte/adminlte.min.js",
+      "wwwroot/js/plugins/bs-stepper/bs-stepper.min.js",
+      "wwwroot/js/plugins/fancy-select/fancyselect.min.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/css/general.layout.bundle.min.css",
+    "inputFiles": [
+      "wwwroot/css/plugins/google-web-fonts/google-web-fonts.min.css",
+      "wwwroot/css/plugins/fontawesome-free/css/all.min.css",
+      "wwwroot/css/plugins/bootstrap-icons/font/bootstrap-icons.min.css",
+      "wwwroot/css/plugins/animate/animate.min.css",
+      "wwwroot/css/plugins/owlcarousel/assets/owl.carousel.min.css",
+      "wwwroot/css/main/bootstrap5/bootstrap.min.css",
+      "wwwroot/css/plugins/fancy-select/fancyselect.min.css",
+      "wwwroot/css/custom/general-layout.min.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/js/general.layout.bundle.min.js",
+    "inputFiles": [
+      "wwwroot/js/plugins/jquery/jquery.min.js",
+      "wwwroot/js/main/bootstrap5/bootstrap.bundle.min.js",
+      "wwwroot/js/plugins/wow/wow.min.js",
+      "wwwroot/js/plugins/easing/easing.min.js",
+      "wwwroot/js/plugins/waypoints/waypoints.min.js",
+      "wwwroot/js/plugins/owlcarousel/owl.carousel.min.js",
+      "wwwroot/js/plugins/counterup/counterup.min.js",
+      "wwwroot/js/plugins/fancy-select/fancyselect.min.js",
+      "wwwroot/js/custom/general-layout.min.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/css/app.layout.bundle.min.css",
+    "inputFiles": [
+      "wwwroot/css/plugins/google-web-fonts/google-web-fonts.min.css",
+      "wwwroot/css/plugins/fontawesome-free/css/all.min.css",
+      "wwwroot/css/plugins/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.css",
+      "wwwroot/css/plugins/select2/select2.min.css",
+      "wwwroot/css/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css",
+      "wwwroot/css/plugins/icheck-bootstrap/icheck-bootstrap.min.css",
+      "wwwroot/css/main/admin-lte/adminlte.min.css",
+      "wwwroot/css/plugins/overlayScrollbars/OverlayScrollbars.min.css",
+      "wwwroot/css/plugins/datatables-bs4/dataTables.bootstrap4.min.css",
+      "wwwroot/css/plugins/datatables-responsive/responsive.bootstrap4.min.css",
+      "wwwroot/css/plugins/datatables-buttons/buttons.bootstrap4.min.css",
+      "wwwroot/css/plugins/flag-icon-css/flag-icon.min.css",
+      "wwwroot/css/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css",
+      "wwwroot/css/plugins/toastr/toastr.min.css",
+      "wwwroot/css/plugins/mvc-grid/mvc-grid.min.css",
+      "wwwroot/css/custom/app-layout.min.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/js/app.layout.bundle.min.js",
+    "inputFiles": [
+      "wwwroot/js/plugins/jquery/jquery.min.js",
+      "wwwroot/js/plugins/jquery-ui/jquery-ui.min.js",
+      "wwwroot/js/main/bootstrap4/bootstrap.bundle.min.js",
+      "wwwroot/js/plugins/moment/moment-with-locales.min.js",
+      "wwwroot/js/plugins/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.js",
+      "wwwroot/js/plugins/overlayScrollbars/jquery.overlayScrollbars.min.js",
+      "wwwroot/js/main/admin-lte/adminlte.min.js",
+      "wwwroot/js/plugins/datatables/jquery.dataTables.min.js",
+      "wwwroot/js/plugins/datatables-bs4/dataTables.bootstrap4.min.js",
+      "wwwroot/js/plugins/datatables-responsive/dataTables.responsive.min.js",
+      "wwwroot/js/plugins/datatables-responsive/responsive.bootstrap4.min.js",
+      "wwwroot/js/plugins/datatables-buttons/dataTables.buttons.min.js",
+      "wwwroot/js/plugins/datatables-buttons/buttons.bootstrap4.min.js",
+      "wwwroot/js/plugins/datatables-buttons/buttons.html5.min.js",
+      "wwwroot/js/plugins/datatables-buttons/buttons.print.min.js",
+      "wwwroot/js/plugins/datatables-buttons/buttons.colVis.min.js",
+      "wwwroot/js/plugins/jszip/jszip.min.js",
+      "wwwroot/js/plugins/pdfmake/pdfmake.min.js",
+      "wwwroot/js/plugins/pdfmake/vfs_fonts.min.js",
+      "wwwroot/js/plugins/datetime-moment/datetime-moment.min.js",
+      "wwwroot/js/plugins/sweetalert2/sweetalert2@11.min.js",
+      "wwwroot/js/plugins/toastr/toastr.min.js",
+      "wwwroot/js/plugins/select2/select2.full.min.js",
+      "wwwroot/js/plugins/select2/i18n/tr.min.js",
+      "wwwroot/js/plugins/select2/i18n/en.min.js",
+      "wwwroot/js/plugins/inputmask/jquery.inputmask.min.js",
+      "wwwroot/js/plugins/mvc-grid/mvc-grid.min.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/custom/app-layout.min.css",
+    "inputFiles": [
+      "wwwroot/css/custom/app-layout.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/custom/auth-layout.min.css",
+    "inputFiles": [
+      "wwwroot/css/custom/auth-layout.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/custom/general-layout.min.min.css",
+    "inputFiles": [
+      "wwwroot/css/custom/general-layout.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/custom/application.min.js",
+    "inputFiles": [
+      "wwwroot/js/custom/application.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/custom/city.min.js",
+    "inputFiles": [
+      "wwwroot/js/custom/city.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/custom/contact-message.min.js",
+    "inputFiles": [
+      "wwwroot/js/custom/contact-message.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/custom/country.min.js",
+    "inputFiles": [
+      "wwwroot/js/custom/country.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/custom/county.min.js",
+    "inputFiles": [
+      "wwwroot/js/custom/county.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/custom/exception-log.min.js",
+    "inputFiles": [
+      "wwwroot/js/custom/exception-log.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/custom/general-layout.min.js",
+    "inputFiles": [
+      "wwwroot/js/custom/general-layout.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/custom/profile.min.js",
+    "inputFiles": [
+      "wwwroot/js/custom/profile.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/custom/region.min.js",
+    "inputFiles": [
+      "wwwroot/js/custom/region.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/custom/register-application.min.js",
+    "inputFiles": [
+      "wwwroot/js/custom/register-application.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/custom/role.min.js",
+    "inputFiles": [
+      "wwwroot/js/custom/role.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/custom/sub-region.min.js",
+    "inputFiles": [
+      "wwwroot/js/custom/sub-region.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/custom/user.min.js",
+    "inputFiles": [
+      "wwwroot/js/custom/user.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/custom/visited-county.min.js",
+    "inputFiles": [
+      "wwwroot/js/custom/visited-county.js"
+    ]
+  }
+]

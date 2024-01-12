@@ -5,46 +5,16 @@
 
     <title>@localization["Layout.Header.Title.Text"]</title>
 
-    <!-- Google Web Fonts -->
-    <link rel="stylesheet" href="~/css/plugins/google-web-fonts/google-web-fonts.min.css">
-
-    <!-- Font Awesome 5.15.4 -->
-    <link rel="stylesheet" href="~/css/plugins/fontawesome-free/css/all.min.css">
-
-    <!-- Icheck Bootstrap 3.0.1 -->
-    <link rel="stylesheet" href="~/css/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-
-    <!-- Admin Lte 3.2.0 -->
-    <link rel="stylesheet" href="~/css/main/admin-lte/adminlte.min.css">
-
-    <!-- BS Stepper 1.7.0 -->
-    <link rel="stylesheet" href="~/css/plugins/bs-stepper/bs-stepper.min.css">
-
-    <!-- Fancy Select -->
-    <link rel="stylesheet" href="~/css/plugins/fancy-select/fancyselect.min.css" />
-
-    <!-- Auth Layout -->
-    <link rel="stylesheet" href="~/css/custom/auth-layout.css" />
+    <!-- Auth Layout Bundle -->
+    <link rel="stylesheet" href="~/bundles/css/auth.layout.bundle.min.css" />
 
 </head>
 <body class="hold-transition login-page">
 
     @RenderBody()
 
-    <!-- jQuery 3.6.0 -->
-    <script src="~/js/plugins/jquery-3.6.0/jquery.min.js"></script>
-
-    <!-- Bootstrap 4.6.1 -->
-    <script src="~/js/main/bootstrap4/bootstrap.bundle.min.js"></script>
-
-    <!-- Admin Lte 3.2.0 -->
-    <script src="~/js/main/admin-lte/adminlte.min.js"></script>
-
-    <!-- BS Stepper 1.7.0 -->
-    <script src="~/js/plugins/bs-stepper/bs-stepper.min.js"></script>
-
-    <!-- Fancy Select -->
-    <script src="~/js/plugins/fancy-select/fancyselect.min.js"></script>
+    <!-- Auth Layout Bundle -->
+    <script src="~/bundles/js/auth.layout.bundle.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 
