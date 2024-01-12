@@ -1791,4 +1791,13 @@
   <data name="Statistics.Item3.Title.Text" xml:space="preserve">
     <value>Place Statistics</value>
   </data>
+  <data name="MetaTags.Author.Text" xml:space="preserve">
+    <value>Eren Gaygusuz</value>
+  </data>
+  <data name="MetaTags.Description.Text" xml:space="preserve">
+    <value>Visitor and Visited Place Recording System</value>
+  </data>
+  <data name="MetaTags.Keywords.Text" xml:space="preserve">
+    <value>Visitor, Visitor Book, Visiting, Visited Place</value>
+  </data>
 </root>

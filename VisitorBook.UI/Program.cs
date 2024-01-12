@@ -5,6 +5,7 @@ using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
 using VisitorBook.UI.Extensions;
 using VisitorBook.UI.Middlewares;
+using WebMarkupMin.AspNetCore7;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +31,11 @@ builder.Services.AddConfigurationExt();
 builder.Services.AddNotyf(config => { config.DurationInSeconds = 5; config.IsDismissable = true; config.Position = NotyfPosition.TopRight; });
 
 builder.Services.AddValidationExt();
+
+builder.Services.AddWebMarkupMin()
+    .AddHtmlMinification()
+    .AddXmlMinification()
+    .AddHttpCompression();
 
 var app = builder.Build();
 
@@ -58,6 +64,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseNotyf();
+
+app.UseWebMarkupMin();
 
 app.MapControllerRoute(
     name: "areas",

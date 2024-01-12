@@ -1793,4 +1793,13 @@
   <data name="Statistics.Item3.Info6.Text" xml:space="preserve">
     <value>Ziyaret Edilen İlçe</value>
   </data>
+  <data name="MetaTags.Author.Text" xml:space="preserve">
+    <value>Eren Gaygusuz</value>
+  </data>
+  <data name="MetaTags.Description.Text" xml:space="preserve">
+    <value>Ziyaretçi ve Ziyaret Edilen Yer Kaydetme Sistemi</value>
+  </data>
+  <data name="MetaTags.Keywords.Text" xml:space="preserve">
+    <value>Ziyaretçi, Ziyaretçi Defteri, Ziyaret, Ziyaret Edilen Yer</value>
+  </data>
 </root>
