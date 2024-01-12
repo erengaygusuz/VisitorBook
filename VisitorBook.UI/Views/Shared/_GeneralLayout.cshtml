@@ -35,13 +35,6 @@
     <!-- General Layout -->
     <link rel="stylesheet" href="~/css/custom/general-layout.css" />
 
-   @* <environment names="Development">
-        <link href="plugins.bundle.min" rel="stylesheet" debug="true" />
-    </environment>
-
-    <environment names="Production">
-        <link href="plugins.bundle.min" rel="stylesheet" />
-    </environment> *@
 </head>
 
 <body>
@@ -157,14 +150,6 @@
 
     <!-- General Layout -->
     <script src="~/js/custom/general-layout.js"></script>
-
-    @* <environment names="Development">
-        <script src="plugins.bundle.min" debug="true"></script>
-    </environment>
-
-    <environment names="Production">
-        <script src="plugins.bundle.min"></script>
-    </environment> *@
 
     @await Component.InvokeAsync("Notyf")
 </body>
