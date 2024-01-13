@@ -2,7 +2,7 @@
   {
     "outputFileName": "wwwroot/bundles/css/auth.layout.bundle.min.css",
     "inputFiles": [
-      "wwwroot/css/plugins/google-web-fonts/google-web-fonts.min.css",
+      "wwwroot/css/plugins/google-web-fonts/google-web-fonts1.min.css",
       "wwwroot/css/plugins/fontawesome-free/css/all.min.css",
       "wwwroot/css/plugins/icheck-bootstrap/icheck-bootstrap.min.css",
       "wwwroot/css/main/admin-lte/adminlte.min.css",
@@ -24,7 +24,7 @@
   {
     "outputFileName": "wwwroot/bundles/css/general.layout.bundle.min.css",
     "inputFiles": [
-      "wwwroot/css/plugins/google-web-fonts/google-web-fonts.min.css",
+      "wwwroot/css/plugins/google-web-fonts/google-web-fonts2.min.css",
       "wwwroot/css/plugins/fontawesome-free/css/all.min.css",
       "wwwroot/css/plugins/bootstrap-icons/font/bootstrap-icons.min.css",
       "wwwroot/css/plugins/animate/animate.min.css",
@@ -51,13 +51,12 @@
   {
     "outputFileName": "wwwroot/bundles/css/app.layout.bundle.min.css",
     "inputFiles": [
-      "wwwroot/css/plugins/google-web-fonts/google-web-fonts.min.css",
+      "wwwroot/css/plugins/google-web-fonts/google-web-fonts.min1.css",
       "wwwroot/css/plugins/fontawesome-free/css/all.min.css",
+      "wwwroot/css/plugins/icheck-bootstrap/icheck-bootstrap.min.css",
       "wwwroot/css/plugins/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.css",
       "wwwroot/css/plugins/select2/select2.min.css",
       "wwwroot/css/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css",
-      "wwwroot/css/plugins/icheck-bootstrap/icheck-bootstrap.min.css",
-      "wwwroot/css/main/admin-lte/adminlte.min.css",
       "wwwroot/css/plugins/overlayScrollbars/OverlayScrollbars.min.css",
       "wwwroot/css/plugins/datatables-bs4/dataTables.bootstrap4.min.css",
       "wwwroot/css/plugins/datatables-responsive/responsive.bootstrap4.min.css",
@@ -66,6 +65,7 @@
       "wwwroot/css/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css",
       "wwwroot/css/plugins/toastr/toastr.min.css",
       "wwwroot/css/plugins/mvc-grid/mvc-grid.min.css",
+      "wwwroot/css/main/admin-lte/adminlte.min.css",
       "wwwroot/css/custom/app-layout.min.css"
     ]
   },
@@ -79,7 +79,6 @@
       "wwwroot/js/plugins/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.js",
       "wwwroot/js/plugins/overlayScrollbars/jquery.overlayScrollbars.min.js",
       "wwwroot/js/plugins/bs-custom-file-input/bs-custom-file-input.min.js",
-      "wwwroot/js/main/admin-lte/adminlte.min.js",
       "wwwroot/js/plugins/datatables/jquery.dataTables.min.js",
       "wwwroot/js/plugins/datatables-bs4/dataTables.bootstrap4.min.js",
       "wwwroot/js/plugins/datatables-responsive/dataTables.responsive.min.js",
@@ -99,7 +98,8 @@
       "wwwroot/js/plugins/select2/i18n/tr.min.js",
       "wwwroot/js/plugins/select2/i18n/en.min.js",
       "wwwroot/js/plugins/inputmask/jquery.inputmask.min.js",
-      "wwwroot/js/plugins/mvc-grid/mvc-grid.min.js"
+      "wwwroot/js/plugins/mvc-grid/mvc-grid.min.js",
+      "wwwroot/js/main/admin-lte/adminlte.min.js"
     ]
   },
   {
@@ -202,6 +202,12 @@
     "outputFileName": "wwwroot/js/custom/visited-county.min.js",
     "inputFiles": [
       "wwwroot/js/custom/visited-county.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/plugins/google-web-fonts/google-web-fonts2.min.css",
+    "inputFiles": [
+      "wwwroot/css/plugins/google-web-fonts/google-web-fonts2.css"
     ]
   }
 ]
