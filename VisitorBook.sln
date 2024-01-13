@@ -5,11 +5,13 @@ VisualStudioVersion = 17.9.34310.174
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisitorBook.UI", "VisitorBook.UI\VisitorBook.UI.csproj", "{407500FB-4100-4721-939E-3537044C451D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitorBook.BL", "VisitorBook.BL\VisitorBook.BL.csproj", "{1C0037EE-167B-498B-81F5-2B4C16011DF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisitorBook.BL", "VisitorBook.BL\VisitorBook.BL.csproj", "{1C0037EE-167B-498B-81F5-2B4C16011DF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitorBook.Core", "VisitorBook.Core\VisitorBook.Core.csproj", "{80866B53-8C0E-43BA-99F3-ADFF2E11BE97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisitorBook.Core", "VisitorBook.Core\VisitorBook.Core.csproj", "{80866B53-8C0E-43BA-99F3-ADFF2E11BE97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitorBook.DAL", "VisitorBook.DAL\VisitorBook.DAL.csproj", "{720F479A-9187-41A4-88E3-A643D7F3BAB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisitorBook.DAL", "VisitorBook.DAL\VisitorBook.DAL.csproj", "{720F479A-9187-41A4-88E3-A643D7F3BAB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitorBook.Test", "VisitorBook.Test\VisitorBook.Test.csproj", "{8A17A9B6-246B-4C00-B34E-CCF576B00855}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{720F479A-9187-41A4-88E3-A643D7F3BAB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{720F479A-9187-41A4-88E3-A643D7F3BAB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{720F479A-9187-41A4-88E3-A643D7F3BAB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A17A9B6-246B-4C00-B34E-CCF576B00855}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A17A9B6-246B-4C00-B34E-CCF576B00855}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A17A9B6-246B-4C00-B34E-CCF576B00855}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A17A9B6-246B-4C00-B34E-CCF576B00855}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

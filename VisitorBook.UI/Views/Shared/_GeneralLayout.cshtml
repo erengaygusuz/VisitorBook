@@ -109,6 +109,8 @@
     <!-- General Layout Bundle -->
     <script src="~/bundles/js/general.layout.bundle.min.js"></script>
 
+    @await RenderSectionAsync("Scripts", required: false)
+
     @await Component.InvokeAsync("Notyf")
 </body>
 </html>
