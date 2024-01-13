@@ -7,10 +7,6 @@ using VisitorBook.UI.Extensions;
 using VisitorBook.UI.Middlewares;
 using WebMarkupMin.AspNetCore7;
 using Microsoft.Extensions.FileProviders;
-using System.Net;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using System;
-using VisitorBook.Core.Dtos.ExceptionLogDtos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,28 +50,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseStaticFiles(new StaticFileOptions
-{
-    OnPrepareResponse = ctx =>
-    {
-        if (!ctx.Context.User.Identity.IsAuthenticated)
-        {
-            ctx.Context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-            ctx.Context.Response.ContentLength = 0;
-            ctx.Context.Response.Body = Stream.Null;
-            ctx.Context.Response.Headers.Add("Cache-Control", "no-store");
-
-            var tempData = ctx.Context.RequestServices.GetRequiredService<ITempDataProvider>().LoadTempData(ctx.Context);
-
-            tempData["StatusCode"] = (int)HttpStatusCode.Unauthorized;
-            tempData["ExceptionMessage"] = "";
-
-            ctx.Context.RequestServices.GetRequiredService<ITempDataProvider>().SaveTempData(ctx.Context, tempData);
-
-            ctx.Context.Response.Redirect("/Error");
-        }
-    }
-});
+app.UseStaticFiles();
 
 app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
 

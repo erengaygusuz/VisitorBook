@@ -203,11 +203,5 @@
     "inputFiles": [
       "wwwroot/js/custom/visited-county.js"
     ]
-  },
-  {
-    "outputFileName": "wwwroot/js/plugins/mvc-grid/mvc-grid-lang.min.js",
-    "inputFiles": [
-      "wwwroot/js/plugins/mvc-grid/mvc-grid-lang.js"
-    ]
   }
 ]
