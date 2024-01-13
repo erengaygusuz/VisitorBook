@@ -4,7 +4,7 @@
     Layout = "_AuthLayout";
 }
 
-<div class="register-box">
+<div class="col-xl-4 col-lg-4 col-md-6 col-sm-8 col-8" style="margin-top: 5%">
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
             <div class="row">
@@ -20,93 +20,111 @@
             <p class="login-box-msg">@localization["Register.SubTitle.Text"]</p>
 
             <form asp-controller="Auth" asp-action="Register">
-                <div class="input-group mb-3">
-                    <input type="text"
-                           class="form-control"
-                           data-val="true"
-                           data-val-required="@localization["Validators.Register.Message1.Text"]"
-                           data-val-minlength="@localization["Validators.Register.Message3.Text"]"
-                           data-val-maxlength="@localization["Validators.Register.Message4.Text"]"
-                           data-val-regex="@localization["Validators.Register.Message2.Text"]"
-                           placeholder="@localization["Register.Item1.Text"]" asp-for="@Model.Name">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-user"></span>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <input type="text"
+                                   class="form-control"
+                                   data-val="true"
+                                   data-val-required="@localization["Validators.Register.Message1.Text"]"
+                                   data-val-minlength="@localization["Validators.Register.Message3.Text"]"
+                                   data-val-maxlength="@localization["Validators.Register.Message4.Text"]"
+                                   data-val-regex="@localization["Validators.Register.Message2.Text"]"
+                                   placeholder="@localization["Register.Item1.Text"]" asp-for="@Model.Name">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                            <span asp-validation-for="@Model.Name" class="error invalid-feedback"></span>
                         </div>
                     </div>
-                    <span asp-validation-for="@Model.Name" class="error invalid-feedback"></span>
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <input type="text"
+                                   class="form-control"
+                                   data-val="true"
+                                   data-val-required="@localization["Validators.Register.Message5.Text"]"
+                                   data-val-minlength="@localization["Validators.Register.Message7.Text"]"
+                                   data-val-maxlength="@localization["Validators.Register.Message8.Text"]"
+                                   data-val-regex="@localization["Validators.Register.Message6.Text"]"
+                                   placeholder="@localization["Register.Item2.Text"]" asp-for="@Model.Surname">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                            <span asp-validation-for="@Model.Surname" class="error invalid-feedback"></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="input-group mb-3">
-                    <input type="text"
-                           class="form-control"
-                           data-val="true"
-                           data-val-required="@localization["Validators.Register.Message5.Text"]"
-                           data-val-minlength="@localization["Validators.Register.Message7.Text"]"
-                           data-val-maxlength="@localization["Validators.Register.Message8.Text"]"
-                           data-val-regex="@localization["Validators.Register.Message6.Text"]"
-                           placeholder="@localization["Register.Item2.Text"]" asp-for="@Model.Surname">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-user"></span>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <input type="text"
+                                   class="form-control"
+                                   data-val="true"
+                                   data-val-required="@localization["Validators.Register.Message11.Text"]"
+                                   data-val-regex="@localization["Validators.Register.Message15.Text"]"
+                                   placeholder="@localization["Register.Item3.Text"]" asp-for="@Model.Username">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                            <span asp-validation-for="@Model.Username" class="error invalid-feedback"></span>
                         </div>
                     </div>
-                    <span asp-validation-for="@Model.Surname" class="error invalid-feedback"></span>
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <input type="email"
+                                   class="form-control"
+                                   data-val="true"
+                                   data-val-required="@localization["Validators.Register.Message9.Text"]"
+                                   data-val-email="@localization["Validators.Register.Message10.Text"]"
+                                   placeholder="@localization["Register.Item4.Text"]" asp-for="@Model.Email">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
+                            </div>
+                            <span asp-validation-for="@Model.Email" class="error invalid-feedback"></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="input-group mb-3">
-                    <input type="text"
-                           class="form-control"
-                           data-val="true"
-                           data-val-required="@localization["Validators.Register.Message11.Text"]"
-                           data-val-regex="@localization["Validators.Register.Message15.Text"]"
-                           placeholder="@localization["Register.Item3.Text"]" asp-for="@Model.Username">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-user"></span>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <input type="password"
+                                   class="form-control"
+                                   data-val="true"
+                                   data-val-required="@localization["Validators.Register.Message17.Text"]"
+                                   data-val-minlength="@localization["Validators.Register.Message20.Text"]"
+                                   placeholder="@localization["Register.Item5.Text"]" asp-for="@Model.Password">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                            <span asp-validation-for="@Model.Password" class="error invalid-feedback"></span>
                         </div>
                     </div>
-                    <span asp-validation-for="@Model.Username" class="error invalid-feedback"></span>
-                </div>
-                <div class="input-group mb-3">
-                    <input type="email"
-                           class="form-control"
-                           data-val="true"
-                           data-val-required="@localization["Validators.Register.Message9.Text"]"
-                           data-val-email="@localization["Validators.Register.Message10.Text"]"
-                           placeholder="@localization["Register.Item4.Text"]" asp-for="@Model.Email">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <input type="password"
+                                   class="form-control"
+                                   data-val="true"
+                                   data-val-required="@localization["Validators.Register.Message18.Text"]"
+                                   data-val-minlength="@localization["Validators.Register.Message20.Text"]"
+                                   placeholder="@localization["Register.Item6.Text"]" asp-for="@Model.PasswordConfirm">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                            <span asp-validation-for="@Model.PasswordConfirm" class="error invalid-feedback"></span>
                         </div>
                     </div>
-                    <span asp-validation-for="@Model.Email" class="error invalid-feedback"></span>
-                </div>
-                <div class="input-group mb-3">
-                    <input type="password"
-                           class="form-control"
-                           data-val="true"
-                           data-val-required="@localization["Validators.Register.Message17.Text"]"
-                           data-val-minlength="@localization["Validators.Register.Message20.Text"]"
-                           placeholder="@localization["Register.Item5.Text"]" asp-for="@Model.Password">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                    <span asp-validation-for="@Model.Password" class="error invalid-feedback"></span>
-                </div>
-                <div class="input-group mb-3">
-                    <input type="password"
-                           class="form-control"
-                           data-val="true"
-                           data-val-required="@localization["Validators.Register.Message18.Text"]"
-                           data-val-minlength="@localization["Validators.Register.Message20.Text"]"
-                           placeholder="@localization["Register.Item6.Text"]" asp-for="@Model.PasswordConfirm">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                    <span asp-validation-for="@Model.PasswordConfirm" class="error invalid-feedback"></span>
                 </div>
                 <div class="row">
                     <div class="col-12">

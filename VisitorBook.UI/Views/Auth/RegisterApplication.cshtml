@@ -4,7 +4,7 @@
     Layout = "_AuthLayout";
 }
 
-<div class="col-md-4 mt-5">
+<div class="col-xl-4 col-lg-6 col-md-8 col-sm-10 col-10 mt-5">
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
             <div class="row">
@@ -53,7 +53,14 @@
                     <form asp-controller="Auth" asp-action="RegisterApplication">
                         <div id="test-nlf-1" role="tabpanel" class="bs-stepper-pane fade dstepper-block dstepper-none" aria-labelledby="stepper3trigger1">
                             <div class="input-group mb-3 mt-2">
-                                <input type="text" class="form-control" placeholder="@localization["RegisterApplications.Tab1.Row1.Text"]" asp-for="@Model.Name">
+                                <input type="text"
+                                       class="form-control"
+                                       data-val="true"
+                                       data-val-required="@localization["Validators.RegisterApplication.Message1.Text"]"
+                                       data-val-minlength="@localization["Validators.RegisterApplication.Message3.Text"]"
+                                       data-val-maxlength="@localization["Validators.RegisterApplication.Message4.Text"]"
+                                       data-val-regex="@localization["Validators.RegisterApplication.Message2.Text"]"
+                                       placeholder="@localization["RegisterApplications.Tab1.Row1.Text"]" asp-for="@Model.Name">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-user"></span>
@@ -62,7 +69,14 @@
                                 <span asp-validation-for="@Model.Name" class="error invalid-feedback"></span>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="@localization["RegisterApplications.Tab1.Row2.Text"]" asp-for="@Model.Surname">
+                                <input type="text"
+                                       class="form-control"
+                                       data-val="true"
+                                       data-val-required="@localization["Validators.RegisterApplication.Message5.Text"]"
+                                       data-val-minlength="@localization["Validators.RegisterApplication.Message7.Text"]"
+                                       data-val-maxlength="@localization["Validators.RegisterApplication.Message8.Text"]"
+                                       data-val-regex="@localization["Validators.RegisterApplication.Message6.Text"]"
+                                       placeholder="@localization["RegisterApplications.Tab1.Row2.Text"]" asp-for="@Model.Surname">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-user"></span>
@@ -71,7 +85,12 @@
                                 <span asp-validation-for="@Model.Surname" class="error invalid-feedback"></span>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="@localization["RegisterApplications.Tab1.Row3.Text"]" asp-for="@Model.Username">
+                                <input type="text"
+                                       class="form-control"
+                                       data-val="true"
+                                       data-val-required="@localization["Validators.RegisterApplication.Message12.Text"]"
+                                       data-val-regex="@localization["Validators.RegisterApplication.Message16.Text"]"
+                                       placeholder="@localization["RegisterApplications.Tab1.Row3.Text"]" asp-for="@Model.Username">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-user"></span>
@@ -80,7 +99,12 @@
                                 <span asp-validation-for="@Model.Username" class="error invalid-feedback"></span>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="email" class="form-control" placeholder="@localization["RegisterApplications.Tab1.Row4.Text"]" asp-for="@Model.Email">
+                                <input type="email"
+                                       class="form-control"
+                                       data-val="true"
+                                       data-val-required="@localization["Validators.RegisterApplication.Message9.Text"]"
+                                       data-val-email="@localization["Validators.RegisterApplication.Message10.Text"]"
+                                       placeholder="@localization["RegisterApplications.Tab1.Row4.Text"]" asp-for="@Model.Email">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-envelope"></span>
@@ -92,7 +116,13 @@
                         </div>
                         <div id="test-nlf-2" role="tabpanel" class="bs-stepper-pane fade dstepper-block dstepper-none" aria-labelledby="stepper3trigger2">
                             <div class="input-group mb-3 mt-2">
-                                <textarea class="form-control" rows="6" placeholder="@localization["RegisterApplications.Tab2.Row1.Text"]" asp-for="@Model.Explanation"></textarea>
+                                <textarea class="form-control"
+                                          data-val="true"
+                                          data-val-required="@localization["Validators.RegisterApplication.Message18.Text"]"
+                                          data-val-minlength="@localization["Validators.RegisterApplication.Message19.Text"]"
+                                          data-val-maxlength="@localization["Validators.RegisterApplication.Message20.Text"]"
+                                          rows="6"
+                                          placeholder="@localization["RegisterApplications.Tab2.Row1.Text"]" asp-for="@Model.Explanation"></textarea>
                                 <span asp-validation-for="@Model.Explanation" class="error invalid-feedback"></span>
                             </div>
                             <a class="btn btn-primary" onclick="stepper.next()">@localization["RegisterApplications.NextBtn.Text"]</a>
@@ -122,5 +152,9 @@
 </div>
 
 @section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
     <script src="~/js/custom/register-application.min.js"></script>
 }
