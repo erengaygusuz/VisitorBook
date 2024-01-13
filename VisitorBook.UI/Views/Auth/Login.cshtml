@@ -21,16 +21,25 @@
 
             <form asp-controller="Auth" asp-action="Login" asp-route-returnurl="@Context.Request.Query["returnURL"]">
                 <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="@localization["Login.Item1.Text"]" asp-for="@Model.Email">
+                    <input type="email"
+                           class="form-control"
+                           data-val="true"
+                           data-val-required="@localization["Validators.Login.Message1.Text"]"
+                           placeholder="@localization["Login.Item1.Text"]"
+                           asp-for="@Model.Email">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
                         </div>
                     </div>
-                    <span asp-validation-for ="@Model.Email" class="error invalid-feedback"></span>
+                    <span asp-validation-for="@Model.Email" class="error invalid-feedback"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="@localization["Login.Item2.Text"]" asp-for="@Model.Password">
+                    <input type="password"
+                           class="form-control"
+                           data-val="true"
+                           data-val-required="@localization["Validators.Login.Message2.Text"]"
+                           placeholder="@localization["Login.Item2.Text"]" asp-for="@Model.Password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -47,11 +56,11 @@
                             </label>
                         </div>
                     </div>
-                    
+
                     <div class="col-4">
                         <button type="submit" class="btn btn-primary btn-block">@localization["Login.SubmitBtn1.Text"]</button>
                     </div>
-                    
+
                 </div>
             </form>
             <p class="mb-1">
@@ -70,5 +79,10 @@
             </p>
         </div>
     </div>
-    
 </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

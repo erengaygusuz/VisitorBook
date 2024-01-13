@@ -13,8 +13,11 @@ namespace VisitorBook.UI.Validators
         {
             _localization = localization;
 
-            RuleFor(x => x.Email).NotNull().WithMessage(_localization["Validators.Login.Message1.Text"].Value);
-            RuleFor(x => x.Password).NotNull().WithMessage(_localization["Validators.Login.Message2.Text"].Value);
+            RuleFor(x => x.Email)
+                .NotNull().WithMessage(_localization["Validators.Login.Message1.Text"].Value);
+
+            RuleFor(x => x.Password)
+                .NotNull().WithMessage(_localization["Validators.Login.Message2.Text"].Value);
         }
     }
 }
