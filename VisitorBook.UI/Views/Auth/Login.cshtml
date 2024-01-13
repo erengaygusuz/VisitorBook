@@ -19,7 +19,7 @@
         <div class="card-body">
             <p class="login-box-msg">@localization["Login.SubTitle.Text"]</p>
 
-            <form asp-controller="Auth" asp-action="Login" asp-route-returnurl="@Context.Request.Query["returnURL"]">
+            <form asp-controller="Auth" asp-action="Login" asp-route-returnurl="@Context.Request.Query["returnURL"]" method="post">
                 <div class="input-group mb-3">
                     <input type="email"
                            class="form-control"
