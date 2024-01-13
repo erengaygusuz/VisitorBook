@@ -6,15 +6,16 @@ using AspNetCoreHero.ToastNotification.Extensions;
 using VisitorBook.UI.Extensions;
 using VisitorBook.UI.Middlewares;
 using WebMarkupMin.AspNetCore7;
-using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Mvc.DataAnnotations;
+using VisitorBook.Core.Utilities.Providers;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//builder.Services.AddSingleton<IValidationAttributeAdapterProvider, CustomAttributeAdapterProvider>();
 
 builder.Services.AddPermissionExt();
 
 builder.Services.AddMappingExt();
-
-builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Directory.GetCurrentDirectory()));
 
 builder.Services.AddServiceRepositoryExt();
 
