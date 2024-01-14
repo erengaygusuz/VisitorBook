@@ -40,43 +40,74 @@
                                     <div class="form-group row">
                                         <label asp-for="@Model.UserGeneralInfo.Name" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row1.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input class="form-control" asp-for="@Model.UserGeneralInfo.Name" placeholder="@localization["Profiles.GeneralTab.Row1.Text"]">
-                                            <span class="error invalid-feedback">@TempData["Name"]</span>
+                                            <input class="form-control"
+                                                   asp-for="@Model.UserGeneralInfo.Name"
+                                                   data-val="true"
+                                                   data-val-required="@localization["Validators.Profile.Message1.Text"]"
+                                                   data-val-minlength="@localization["Validators.Profile.Message3.Text"]"
+                                                   data-val-maxlength="@localization["Validators.Profile.Message4.Text"]"
+                                                   data-val-regex="@localization["Validators.Profile.Message2.Text"]"
+                                                   placeholder="@localization["Profiles.GeneralTab.Row1.Text"]">
+                                            <span asp-validation-for="@Model.UserGeneralInfo.Name" class="error invalid-feedback">@TempData["Name"]</span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label asp-for="@Model.UserGeneralInfo.Surname" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row2.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input class="form-control" asp-for="@Model.UserGeneralInfo.Surname" placeholder="@localization["Profiles.GeneralTab.Row2.Text"]">
-                                            <span class="error invalid-feedback">@TempData["Surname"]</span>
+                                            <input class="form-control"
+                                                   data-val="true"
+                                                   data-val-required="@localization["Validators.Profile.Message5.Text"]"
+                                                   data-val-minlength="@localization["Validators.Profile.Message7.Text"]"
+                                                   data-val-maxlength="@localization["Validators.Profile.Message8.Text"]"
+                                                   data-val-regex="@localization["Validators.Profile.Message6.Text"]"
+                                                   asp-for="@Model.UserGeneralInfo.Surname"
+                                                   placeholder="@localization["Profiles.GeneralTab.Row2.Text"]">
+                                            <span asp-validation-for="@Model.UserGeneralInfo.Surname" class="error invalid-feedback">@TempData["Surname"]</span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label asp-for="@Model.UserGeneralInfo.BirthDate" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row3.Text"]</label>
                                         <div class="col-sm-10">
                                             <div class="input-group date" id="user-birthdate" data-target-input="nearest">
-                                                <input type="text" class="form-control datetimepicker-input" data-target="#user-birthdate" id="birthDate" asp-for="@Model.UserGeneralInfo.BirthDate">
+                                                <input type="text"
+                                                       class="form-control datetimepicker-input"
+                                                       data-target="#user-birthdate"
+                                                       data-val="true"
+                                                       data-val-required="@localization["Validators.Profile.Message9.Text"]"
+                                                       id="birthDate"
+                                                       asp-for="@Model.UserGeneralInfo.BirthDate">
                                                 <div class="input-group-append" data-target="#user-birthdate" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                 </div>
                                             </div>
-                                            <span class="error invalid-feedback">@TempData["BirthDate"]</span>
+                                            <span asp-validation-for="@Model.UserGeneralInfo.BirthDate" class="error invalid-feedback">@TempData["BirthDate"]</span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label asp-for="@Model.UserGeneralInfo.PhoneNumber" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row4.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="phoneNumber" asp-for="@Model.UserGeneralInfo.PhoneNumber" data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                                            <span class="error invalid-feedback">@TempData["PhoneNumber"]</span>
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="phoneNumber"
+                                                   asp-for="@Model.UserGeneralInfo.PhoneNumber"
+                                                   data-inputmask='"mask": "(999) 999-9999"' data-mask
+                                                   data-val="true"
+                                                   data-val-required="@localization["Validators.Profile.Message12.Text"]">
+                                            <span asp-validation-for="@Model.UserGeneralInfo.PhoneNumber" class="error invalid-feedback">@TempData["PhoneNumber"]</span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label asp-for="@Model.UserGeneralInfo.Gender" class="col-sm-2 col-form-label">@localization["Profiles.GeneralTab.Row5.Text"]</label>
                                         <div class="col-sm-10">
-                                            <select asp-for="@Model.UserGeneralInfo.Gender" asp-items="@Model.GenderList" class="form-control select2" style="width: 100% !important;">
+                                            <select asp-for="@Model.UserGeneralInfo.Gender"
+                                                    asp-items="@Model.GenderList"
+                                                    class="form-control select2"
+                                                    data-val="true"
+                                                    data-val-required="@localization["Validators.Profile.Message11.Text"]"
+                                                    style="width: 100% !important;">
                                                 <option disabled selected value="0">@localization["AddOrEditModal.GenderSelection.Text"]</option>
                                             </select>
-                                            <span class="error invalid-feedback">@TempData["Gender"]</span>
+                                            <span asp-validation-for="@Model.UserGeneralInfo.Gender" class="error invalid-feedback">@TempData["Gender"]</span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -120,34 +151,58 @@
                                     <div class="form-group row">
                                         <label for="username" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row1.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="username" id="username" class="form-control" value="@Model.UserSecurityInfo.Username" placeholder="@localization["Profiles.SecurityTab.Row1.Text"]" disabled>
+                                            <input type="text" name="username" id="username"
+                                                   class="form-control"
+                                                   value="@Model.UserSecurityInfo.Username"
+                                                   placeholder="@localization["Profiles.SecurityTab.Row1.Text"]" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="email" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row2.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="email" name="email" id="email" class="form-control" value="@Model.UserSecurityInfo.Email" placeholder="@localization["Profiles.SecurityTab.Row2.Text"]" disabled>
+                                            <input type="email" name="email" id="email"
+                                                   class="form-control"
+                                                   value="@Model.UserSecurityInfo.Email"
+                                                   placeholder="@localization["Profiles.SecurityTab.Row2.Text"]" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label asp-for="@Model.UserSecurityInfo.PasswordOld" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row3.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="password" id="passwordOld" class="form-control" asp-for="@Model.UserSecurityInfo.PasswordOld" placeholder="@localization["Profiles.SecurityTab.Row3.Text"]">
-                                            <span class="error invalid-feedback">@TempData["PasswordOld"]</span>
+                                            <input type="password" id="passwordOld"
+                                                   class="form-control"
+                                                   data-val="true"
+                                                   data-val-required="@localization["Validators.Profile.Message13.Text"]"
+                                                   data-val-minlength="@localization["Validators.Profile.Message14.Text"]"
+                                                   asp-for="@Model.UserSecurityInfo.PasswordOld"
+                                                   placeholder="@localization["Profiles.SecurityTab.Row3.Text"]">
+                                            <span asp-validation-for="@Model.UserSecurityInfo.PasswordOld" class="error invalid-feedback">@TempData["PasswordOld"]</span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label asp-for="@Model.UserSecurityInfo.PasswordNew" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row4.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="password" id="passwordNew" class="form-control" asp-for="@Model.UserSecurityInfo.PasswordNew" placeholder="@localization["Profiles.SecurityTab.Row4.Text"]">
-                                            <span class="error invalid-feedback">@TempData["PasswordNew"]</span>
+                                            <input type="password" id="passwordNew"
+                                                   class="form-control"
+                                                   data-val="true"
+                                                   data-val-required="@localization["Validators.Profile.Message15.Text"]"
+                                                   data-val-minlength="@localization["Validators.Profile.Message16.Text"]"
+                                                   asp-for="@Model.UserSecurityInfo.PasswordNew"
+                                                   placeholder="@localization["Profiles.SecurityTab.Row4.Text"]">
+                                            <span asp-validation-for="@Model.UserSecurityInfo.PasswordNew" class="error invalid-feedback">@TempData["PasswordNew"]</span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label asp-for="@Model.UserSecurityInfo.PasswordNewConfirm" class="col-sm-2 col-form-label">@localization["Profiles.SecurityTab.Row5.Text"]</label>
                                         <div class="col-sm-10">
-                                            <input type="password" id="passwordNewConfirm" class="form-control" asp-for="@Model.UserSecurityInfo.PasswordNewConfirm" placeholder="@localization["Profiles.SecurityTab.Row5.Text"]">
-                                            <span class="error invalid-feedback">@TempData["PasswordNewConfirm"]</span>
+                                            <input type="password" id="passwordNewConfirm"
+                                                   class="form-control"
+                                                   data-val="true"
+                                                   data-val-required="@localization["Validators.Profile.Message17.Text"]"
+                                                   data-val-minlength="@localization["Validators.Profile.Message18.Text"]"
+                                                   asp-for="@Model.UserSecurityInfo.PasswordNewConfirm"
+                                                   placeholder="@localization["Profiles.SecurityTab.Row5.Text"]">
+                                            <span asp-validation-for="@Model.UserSecurityInfo.PasswordNewConfirm" class="error invalid-feedback">@TempData["PasswordNewConfirm"]</span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -166,5 +221,9 @@
 </section>
 
 @section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
     <script src="~/js/custom/profile.min.js"></script>
 }

@@ -8,10 +8,14 @@ using VisitorBook.UI.Middlewares;
 using WebMarkupMin.AspNetCore7;
 using Microsoft.AspNetCore.Mvc.DataAnnotations;
 using VisitorBook.Core.Utilities.Providers;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //builder.Services.AddSingleton<IValidationAttributeAdapterProvider, CustomAttributeAdapterProvider>();
+
+builder.Services.AddSingleton(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.BasicLatin, UnicodeRanges.Latin1Supplement, UnicodeRanges.LatinExtendedA }));
 
 builder.Services.AddPermissionExt();
 
