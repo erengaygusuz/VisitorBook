@@ -14,6 +14,17 @@
 		<SatelliteResourceLanguages>tr-TR</SatelliteResourceLanguages>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <Compile Remove="MyStaticFiles\**" />
+	  <Compile Remove="wwwroot\img\profile-photos\**" />
+	  <Content Remove="MyStaticFiles\**" />
+	  <Content Remove="wwwroot\img\profile-photos\**" />
+	  <EmbeddedResource Remove="MyStaticFiles\**" />
+	  <EmbeddedResource Remove="wwwroot\img\profile-photos\**" />
+	  <None Remove="MyStaticFiles\**" />
+	  <None Remove="wwwroot\img\profile-photos\**" />
+	</ItemGroup>
+
   <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\css\custom\app-layout.min.css" />
   </ItemGroup>
@@ -39,10 +50,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\VisitorBook.BL\VisitorBook.BL.csproj" />
 		<ProjectReference Include="..\VisitorBook.DAL\VisitorBook.DAL.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="wwwroot\img\profile-photos\" />
 	</ItemGroup>
 
 </Project>

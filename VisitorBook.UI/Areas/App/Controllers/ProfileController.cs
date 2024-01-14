@@ -17,6 +17,9 @@ using AutoMapper;
 using FluentValidation;
 using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.Extensions.FileProviders;
+using Azure.Core;
+using System.Security.Claims;
+using VisitorBook.Core.Constants;
 
 namespace VisitorBook.UI.Areas.AppControllers
 {
@@ -228,11 +231,11 @@ namespace VisitorBook.UI.Areas.AppControllers
 
             if (profileViewModel.UserGeneralInfo.Picture != null && profileViewModel.UserGeneralInfo.Picture.Length > 0)
             {
-                var wwwRootPath = _webHostEnvironment.WebRootPath;
+                var contentRootPath = Path.Combine(_webHostEnvironment.ContentRootPath, "StaticFiles");
 
                 var randomFileName = $"{Guid.NewGuid().ToString()}{Path.GetExtension(profileViewModel.UserGeneralInfo.Picture.FileName)}";
 
-                var photosDirectoryPath = Path.Combine(wwwRootPath, @"img\profile-photos");
+                var photosDirectoryPath = Path.Combine(contentRootPath, @"img\profile-photos");
 
                 if (!Directory.Exists(photosDirectoryPath))
                 {
@@ -254,6 +257,17 @@ namespace VisitorBook.UI.Areas.AppControllers
                 await profileViewModel.UserGeneralInfo.Picture.CopyToAsync(stream);
 
                 user.Picture = randomFileName;
+
+                var profilePhotoClaim = new Claim(CustomClaims.ProfilePhoto, randomFileName);
+
+                var claimResult = await _userManager.AddClaimAsync(user, profilePhotoClaim);
+
+                if (!claimResult.Succeeded)
+                {
+                    _notifyService.Error(_localization["Profiles.GeneralTab.Message1.Text"].Value);
+
+                    return RedirectToAction("Index");
+                }
             }
 
             var updateToUserResult = await _userManager.UpdateAsync(user);

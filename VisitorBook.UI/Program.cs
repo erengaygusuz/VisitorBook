@@ -6,14 +6,13 @@ using AspNetCoreHero.ToastNotification.Extensions;
 using VisitorBook.UI.Extensions;
 using VisitorBook.UI.Middlewares;
 using WebMarkupMin.AspNetCore7;
-using Microsoft.AspNetCore.Mvc.DataAnnotations;
-using VisitorBook.Core.Utilities.Providers;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Authorization;
+using VisitorBook.UI.Requirements;
 
 var builder = WebApplication.CreateBuilder(args);
-
-//builder.Services.AddSingleton<IValidationAttributeAdapterProvider, CustomAttributeAdapterProvider>();
 
 builder.Services.AddSingleton(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.BasicLatin, UnicodeRanges.Latin1Supplement, UnicodeRanges.LatinExtendedA }));
 
@@ -40,10 +39,22 @@ builder.Services.AddNotyf(config => { config.DurationInSeconds = 5; config.IsDis
 
 builder.Services.AddValidationExt();
 
+builder.Services.AddScoped<IAuthorizationHandler, ProfilePhotoRequirementHandler>();
+
 builder.Services.AddWebMarkupMin()
     .AddHtmlMinification()
     .AddXmlMinification()
     .AddHttpCompression();
+
+builder.Services.AddAuthorization(options =>
+{
+    var policyBuilder = new AuthorizationPolicyBuilder();
+
+    var requirements = policyBuilder.Requirements;
+    requirements.Add(new ProfilePhotoRequirement());
+
+    options.FallbackPolicy = policyBuilder.Build();
+});
 
 var app = builder.Build();
 
@@ -61,16 +72,19 @@ app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocal
 
 app.UseRouting();
 
-if (!app.Environment.IsDevelopment())
-{
-    app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-    app.UseStatusCodePagesWithReExecute("/Error/{0}");
-}
+app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "StaticFiles")),
+    RequestPath = "/static-files"
+});
 
 app.UseNotyf();
 
