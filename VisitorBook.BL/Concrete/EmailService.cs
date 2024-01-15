@@ -15,7 +15,7 @@ namespace VisitorBook.BL.Concrete
             _configuration = configuration;
         }
 
-        public async Task SendEmail(string toEmail, string subject, string bodyHtml)
+        public async Task<bool> SendEmail(string toEmail, string subject, string bodyHtml)
         {
             var smtpClient = new SmtpClient();
 
@@ -37,7 +37,17 @@ namespace VisitorBook.BL.Concrete
 
             mailMessage.IsBodyHtml = true;
 
-            await smtpClient.SendMailAsync(mailMessage);
+            try
+            {
+                await smtpClient.SendMailAsync(mailMessage);
+
+                return true;
+            }
+
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

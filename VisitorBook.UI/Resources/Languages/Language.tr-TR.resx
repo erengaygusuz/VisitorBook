@@ -1811,4 +1811,13 @@
   <data name="Validators.Profile.Message20.Text" xml:space="preserve">
     <value>Sadece jpeg, jpg veya png uzantılı fotoğraf seçebilirsiniz</value>
   </data>
+  <data name="Auth.ForgotPassword.Message3.Text" xml:space="preserve">
+    <value>İşlem esnasında hata meydana geldi. Lütfen tekrar deneyiniz.</value>
+  </data>
+  <data name="ContactMessages.Notification.UnSuccessfullSend.Text" xml:space="preserve">
+    <value>İşlem esnasında hata meydana geldi. Lütfen tekrar deneyiniz.</value>
+  </data>
+  <data name="AuditTrails.TrailNotFoundMessage.Text" xml:space="preserve">
+    <value>Denetim günlüğü bulunamadı</value>
+  </data>
 </root>

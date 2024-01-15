@@ -186,11 +186,18 @@ namespace VisitorBook.UI.Controllers
                         text[35] = _localization["EmailTemplates.AccountConfirmation.Text11"].Value;
                     }
 
-                    await _emailService.SendEmail(user.Email, _localization["EmailTemplates.AccountConfirmation.Text12"].Value, String.Concat(text));
+                    var emailSendResult = await _emailService.SendEmail(user.Email, _localization["EmailTemplates.AccountConfirmation.Text12"].Value, String.Concat(text));
 
-                    _notifyService.Success(_localization["Auth.Register.Message2.Text"].Value);
+                    if (emailSendResult)
+                    {
+                        _notifyService.Success(_localization["Auth.Register.Message2.Text"].Value);
 
-                    return RedirectToAction(nameof(Register));
+                        return View();
+                    }
+
+                    _notifyService.Error(_localization["Auth.Register.Message4.Text"].Value);
+
+                    return View();
                 }
 
                 else
@@ -215,6 +222,8 @@ namespace VisitorBook.UI.Controllers
             if (userId == null || token == null)
             {
                 _notifyService.Error(_localization["Auth.Register.Message3.Text"].Value);
+
+                return RedirectToAction("Index", "Home");
             }
 
             var user = await _userManager.FindByIdAsync(userId);
@@ -223,17 +232,17 @@ namespace VisitorBook.UI.Controllers
             {
                 _notifyService.Error(_localization["Auth.Register.Message3.Text"].Value);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
-            var confirmationResult = await _userManager.VerifyUserTokenAsync(
+            var userTokenVerificationResult = await _userManager.VerifyUserTokenAsync(
                 user, _userManager.Options.Tokens.EmailConfirmationTokenProvider, "EmailConfirmation", token);
 
-            if (!confirmationResult)
+            if (!userTokenVerificationResult)
             {
                 _notifyService.Error(_localization["Auth.Register.Message3.Text"].Value);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             var result = await _userManager.ConfirmEmailAsync(user, token);
@@ -253,7 +262,7 @@ namespace VisitorBook.UI.Controllers
             {
                 _notifyService.Error(_localization["Auth.Register.Message4.Text"].Value);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
         }
 
@@ -318,11 +327,18 @@ namespace VisitorBook.UI.Controllers
                 text[35] = _localization["EmailTemplates.ForgotPassword.Text11"].Value;
             }
 
-            await _emailService.SendEmail(user.Email, _localization["EmailTemplates.ForgotPassword.Text12"].Value, String.Concat(text));
+            var emailSendResult = await _emailService.SendEmail(user.Email, _localization["EmailTemplates.ForgotPassword.Text12"].Value, String.Concat(text));
 
-            _notifyService.Success(_localization["Auth.ForgotPassword.Message2.Text"].Value);
+            if (emailSendResult)
+            {
+                _notifyService.Success(_localization["Auth.ForgotPassword.Message2.Text"].Value);
 
-            return RedirectToAction(nameof(ForgotPassword));
+                return View();
+            }
+
+            _notifyService.Error(_localization["Auth.ForgotPassword.Message3.Text"].Value);
+
+            return View();
         }
 
         [HttpGet]
@@ -350,6 +366,8 @@ namespace VisitorBook.UI.Controllers
             if (userId == null || token == null)
             {
                 _notifyService.Error(_localization["Auth.ResetPassword.Message3.Text"].Value);
+
+                return View();
             }
 
             var user = await _userManager.FindByIdAsync(userId);
@@ -361,10 +379,10 @@ namespace VisitorBook.UI.Controllers
                 return View();
             }
 
-            var confirmationResult = await _userManager.VerifyUserTokenAsync(
+            var userTokenVerificationResult = await _userManager.VerifyUserTokenAsync(
                 user, _userManager.Options.Tokens.EmailConfirmationTokenProvider, "EmailConfirmation", token);
 
-            if (!confirmationResult)
+            if (!userTokenVerificationResult)
             {
                 _notifyService.Error(_localization["Auth.ResetPassword.Message3.Text"].Value);
 
@@ -373,17 +391,14 @@ namespace VisitorBook.UI.Controllers
 
             var result = await _userManager.ResetPasswordAsync(user, token, resetPasswordRequestDto.Password);
 
-            if (result.Succeeded)
-            {
-                _notifyService.Success(_localization["Auth.ResetPassword.Message2.Text"].Value);
-            }
-
-            else
+            if (!result.Succeeded)
             {
                 _notifyService.Error(_localization["Auth.ResetPassword.Message4.Text"].Value);
 
                 return View();
             }
+
+            _notifyService.Success(_localization["Auth.ResetPassword.Message2.Text"].Value);
 
             return View();
         }
@@ -433,7 +448,7 @@ namespace VisitorBook.UI.Controllers
                     {
                         _notifyService.Success(_localization["Auth.RegisterApplication.Message1.Text"].Value);
 
-                        return RedirectToAction(nameof(RegisterApplication));
+                        return View();
                     }
 
                     else

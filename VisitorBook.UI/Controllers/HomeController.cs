@@ -70,9 +70,14 @@ namespace VisitorBook.UI.Controllers
                 return View(contactMessageRequestDto);
             }
 
-            await _contactMessageService.AddAsync(contactMessageRequestDto);
+            var messageCreateResult = await _contactMessageService.AddAsync(contactMessageRequestDto);
 
-            _notifyService.Success(_localization["ContactMessages.Notification.SuccessfullSend.Text"].Value);
+            if (messageCreateResult)
+            {
+                _notifyService.Success(_localization["ContactMessages.Notification.SuccessfullSend.Text"].Value);
+            }
+
+            _notifyService.Error(_localization["ContactMessages.Notification.UnSuccessfullSend.Text"].Value);
 
             return View();
         }
@@ -86,6 +91,11 @@ namespace VisitorBook.UI.Controllers
         [HttpPost]
         public IActionResult SetCulture(string culture, string returnUrl)
         {
+            if (culture == null || returnUrl == null)
+            {
+                return View();
+            }
+
             Response.Cookies.Append(
                 CookieRequestCultureProvider.DefaultCookieName,
                 CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),

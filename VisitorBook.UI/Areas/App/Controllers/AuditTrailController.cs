@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using VisitorBook.Core.Abstract;
 using VisitorBook.Core.Constants;
 using VisitorBook.Core.Dtos.AuditTrailDtos;
 using VisitorBook.Core.Entities;
 using VisitorBook.Core.ViewModels;
+using VisitorBook.UI.Languages;
 
 namespace VisitorBook.UI.Areas.App.Controllers
 {
@@ -13,12 +17,17 @@ namespace VisitorBook.UI.Areas.App.Controllers
     public class AuditTrailController : Controller
     {
         private readonly IRepository<AuditTrail> _auditTrailRepository;
-        private readonly IService<AuditTrail> _auditTrailService;
+        private readonly IMapper _mapper;
+        private readonly INotyfService _notyfService;
+        private readonly IStringLocalizer<Language> _localization;
 
-        public AuditTrailController(IRepository<AuditTrail> auditTrailRepository, IService<AuditTrail> auditTrailService)
+        public AuditTrailController(IRepository<AuditTrail> auditTrailRepository, IMapper mapper, 
+            INotyfService notyfService, IStringLocalizer<Language> localization)
         {
             _auditTrailRepository = auditTrailRepository;
-            _auditTrailService = auditTrailService;
+            _mapper = mapper;
+            _notyfService = notyfService;
+            _localization = localization;
         }
 
         [Authorize(Permissions.AuditTrailManagement.View)]
@@ -34,7 +43,16 @@ namespace VisitorBook.UI.Areas.App.Controllers
         [HttpGet]
         public async Task<IActionResult> Trail(int id)
         {
-            var auditTrailResponseDto = await _auditTrailService.GetAsync<AuditTrailResponseDto>(x => x.Id == id);
+            var auditTrail = await _auditTrailRepository.GetAsync(x => x.Id == id);
+
+            if (auditTrail == null)
+            {
+                _notyfService.Error(_localization["AuditTrails.TrailNotFoundMessage.Text"].Value);
+
+                return View();
+            }
+
+            var auditTrailResponseDto = _mapper.Map<AuditTrailResponseDto>(auditTrail);
 
             var auditTrailAffectedColumnResponseDtos = new List<AuditTrailAffectedColumnResponseDto>();
 

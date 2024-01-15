@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\VisitorBook.UI\VisitorBook.UI.csproj" />
+  </ItemGroup>
+
 </Project>

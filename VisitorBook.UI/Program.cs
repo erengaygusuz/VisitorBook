@@ -10,7 +10,6 @@ using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Authorization;
-using VisitorBook.UI.Requirements;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,8 +38,6 @@ builder.Services.AddNotyf(config => { config.DurationInSeconds = 5; config.IsDis
 
 builder.Services.AddValidationExt();
 
-builder.Services.AddScoped<IAuthorizationHandler, ProfilePhotoRequirementHandler>();
-
 builder.Services.AddWebMarkupMin()
     .AddHtmlMinification()
     .AddXmlMinification()
@@ -48,12 +45,9 @@ builder.Services.AddWebMarkupMin()
 
 builder.Services.AddAuthorization(options =>
 {
-    var policyBuilder = new AuthorizationPolicyBuilder();
-
-    var requirements = policyBuilder.Requirements;
-    requirements.Add(new ProfilePhotoRequirement());
-
-    options.FallbackPolicy = policyBuilder.Build();
+    options.FallbackPolicy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
 });
 
 var app = builder.Build();

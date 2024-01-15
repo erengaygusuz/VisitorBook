@@ -1465,7 +1465,7 @@
     <value>Your application has been received. You will get an e-mail about your application soon. </value>
   </data>
   <data name="Auth.RegisterApplication.Message2.Text" xml:space="preserve">
-    <value>İşlem esnasında hata meydana geldi. Lütfen tekrar deneyiniz.</value>
+    <value>An error occured. Please try it again.</value>
   </data>
   <data name="Layout.Header.Navbar.Items15.Text" xml:space="preserve">
     <value>Register Applications</value>
@@ -1808,5 +1808,14 @@
   </data>
   <data name="Validators.Profile.Message20.Text" xml:space="preserve">
     <value>You can only select a photo that has jpeg, jpg or png extension</value>
+  </data>
+  <data name="Auth.ForgotPassword.Message3.Text" xml:space="preserve">
+    <value>An error occured. Please try it again.</value>
+  </data>
+  <data name="ContactMessages.Notification.UnSuccessfullSend.Text" xml:space="preserve">
+    <value>An error occured. Please try it again.</value>
+  </data>
+  <data name="AuditTrails.TrailNotFoundMessage.Text" xml:space="preserve">
+    <value>Audit Trail not found</value>
   </data>
 </root>
