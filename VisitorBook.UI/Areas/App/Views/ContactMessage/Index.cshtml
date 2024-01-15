@@ -32,7 +32,7 @@
                                 columns.Add(model => $"<div class='d-flex justify-content-center'><button class='btn btn-block btn-default btn-sm' onclick=\"showInPopup('/App/ContactMessage/Message/{model.Id}', '{localization["ContactMessages.ViewModal.Title.Text"].Value}')\"><i class='fas fa-eye'></i></button></div>").Encoded(false);
                                 columns.Add(model => model.NameSurname).Titled(@localization["ContactMessages.Table.Column1.Text"]);
                                 columns.Add(model => model.Email).Titled(@localization["ContactMessages.Table.Column2.Text"]);
-                                columns.Add(model => model.Subject).Titled(@localization["ContactMessages.Table.Column3.Text"]);
+                                columns.Add(model => model.Subject).Titled(@localization["ContactMessages.Table.Column3.Text"]).Css("text-break");
                                 columns.Add(model => model.CreatedDate).Titled(@localization["ContactMessages.Table.Column5.Text"]);
                             })
                             .Filterable(GridFilterCase.Lower)

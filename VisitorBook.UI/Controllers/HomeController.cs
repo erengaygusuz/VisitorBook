@@ -75,6 +75,8 @@ namespace VisitorBook.UI.Controllers
             if (messageCreateResult)
             {
                 _notifyService.Success(_localization["ContactMessages.Notification.SuccessfullSend.Text"].Value);
+
+                return View();
             }
 
             _notifyService.Error(_localization["ContactMessages.Notification.UnSuccessfullSend.Text"].Value);
