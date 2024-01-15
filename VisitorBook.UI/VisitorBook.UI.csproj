@@ -15,21 +15,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="MyStaticFiles\**" />
-	  <Compile Remove="wwwroot\img\profile-photos\**" />
-	  <Content Remove="MyStaticFiles\**" />
-	  <Content Remove="wwwroot\img\profile-photos\**" />
-	  <EmbeddedResource Remove="MyStaticFiles\**" />
-	  <EmbeddedResource Remove="wwwroot\img\profile-photos\**" />
-	  <None Remove="MyStaticFiles\**" />
-	  <None Remove="wwwroot\img\profile-photos\**" />
-	</ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="wwwroot\css\custom\app-layout.min.css" />
-  </ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="AspNetCoreHero.ToastNotification" Version="1.1.0" />
 		<PackageReference Include="AutoMapper" Version="12.0.1" />
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />

@@ -140,32 +140,32 @@
 
         }
 
-        public async void ResetPassword_ModelIsInvalid_ReturnView()
+        public async void ResetPassword_ModelIsInvalid_ReturnRedirectToHomeControllerIndexAction()
         {
 
         }
 
-        public async void ResetPassword_UserIdOrTokenIsNull_ReturnView()
+        public async void ResetPassword_UserIdOrTokenIsNull_ReturnRedirectToHomeControllerIndexAction()
         {
 
         }
 
-        public async void ResetPassword_UserIsNull_ReturnView()
+        public async void ResetPassword_UserIsNull_ReturnRedirectToHomeControllerIndexAction()
         {
 
         }
 
-        public async void ResetPassword_UserTokenVerificationResultIsFalse_ReturnView()
+        public async void ResetPassword_UserTokenVerificationResultIsFalse_ReturnRedirectToHomeControllerIndexAction()
         {
 
         }
 
-        public async void ResetPassword_ResetPasswordIsFailed_ReturnView()
+        public async void ResetPassword_ResetPasswordIsFailed_ReturnRedirectToHomeControllerIndexAction()
         {
 
         }
 
-        public async void ResetPassword_ResetPasswordIsSucceeded_ReturnView()
+        public async void ResetPassword_ResetPasswordIsSucceeded_ReturnRedirectToHomeControllerIndexAction()
         {
 
         }

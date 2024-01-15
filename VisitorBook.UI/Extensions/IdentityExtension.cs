@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using VisitorBook.Core.Entities;
 using VisitorBook.DAL.Data;
-using VisitorBook.UI.TokenProviders;
 
 namespace VisitorBook.UI.Extensions
 {
@@ -9,6 +8,11 @@ namespace VisitorBook.UI.Extensions
     {
         public static void AddIdentityExt(this IServiceCollection services)
         {
+            services.Configure<DataProtectionTokenProviderOptions>(opt =>
+            {
+                opt.TokenLifespan = TimeSpan.FromHours(2);
+            });
+
             services.Configure<SecurityStampValidatorOptions>(options =>
             {
                 options.ValidationInterval = TimeSpan.FromMinutes(30);
@@ -23,13 +27,11 @@ namespace VisitorBook.UI.Extensions
                 options.Password.RequireUppercase = false;
                 options.User.RequireUniqueEmail = true;
                 options.SignIn.RequireConfirmedEmail = true;
-                options.Tokens.EmailConfirmationTokenProvider = "AccountConfirmationTokenProvider";
-                options.Tokens.PasswordResetTokenProvider = "PasswordResetTokenProvider";
 
-            }).AddEntityFrameworkStores<AppDbContext>()
-              .AddDefaultTokenProviders()
-              .AddTokenProvider<AccountConfirmationTokenProvider<User>>("AccountConfirmationTokenProvider")
-              .AddTokenProvider<PasswordResetTokenProvider<User>>("PasswordResetTokenProvider");
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3);
+                options.Lockout.MaxFailedAccessAttempts = 3;
+
+            }).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
         }
     }
 }

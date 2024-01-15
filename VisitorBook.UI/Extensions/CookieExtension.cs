@@ -1,21 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
-using VisitorBook.UI.TokenProviders;
-
-namespace VisitorBook.UI.Extensions
+﻿namespace VisitorBook.UI.Extensions
 {
     public static class CookieExtension
     {
         public static void AddCookieExt(this IServiceCollection services)
         {
-            services.Configure<DataProtectionTokenProviderOptions>(opt =>
-                 opt.TokenLifespan = TimeSpan.FromMinutes(15));
-
-            services.Configure<AccountConfirmationTokenProviderOptions>(opt =>
-                opt.TokenLifespan = TimeSpan.FromHours(2));
-
-            services.Configure<PasswordResetTokenProviderOptions>(opt =>
-                opt.TokenLifespan = TimeSpan.FromMinutes(30));
-
             services.ConfigureApplicationCookie(opt =>
             {
                 var cookieBuilder = new CookieBuilder();
