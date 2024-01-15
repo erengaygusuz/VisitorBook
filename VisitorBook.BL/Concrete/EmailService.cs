@@ -19,16 +19,16 @@ namespace VisitorBook.BL.Concrete
         {
             var smtpClient = new SmtpClient();
 
-            smtpClient.Host = _configuration["EmailSettings:Natro:Host"];
+            smtpClient.Host = _configuration["EmailSettings:Host"];
             smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtpClient.UseDefaultCredentials = false;
-            smtpClient.Port = Convert.ToInt32(_configuration["EmailSettings:Natro:Port"]);
-            smtpClient.Credentials = new NetworkCredential(_configuration["EmailSettings:Natro:Email"], _configuration["EmailSettings:Natro:Password"]);
-            smtpClient.EnableSsl = Convert.ToBoolean(_configuration["EmailSettings:Natro:SSLCertificate"]);
+            smtpClient.Port = Convert.ToInt32(_configuration["EmailSettings:Port"]);
+            smtpClient.Credentials = new NetworkCredential(_configuration["EmailSettings:Email"], _configuration["EmailSettings:Password"]);
+            smtpClient.EnableSsl = Convert.ToBoolean(_configuration["EmailSettings:SSLCertificate"]);
 
             var mailMessage = new MailMessage();
 
-            mailMessage.From = new MailAddress(_configuration["EmailSettings:Natro:Email"]);
+            mailMessage.From = new MailAddress(_configuration["EmailSettings:Email"]);
             mailMessage.To.Add(toEmail);
 
             mailMessage.Subject = subject;

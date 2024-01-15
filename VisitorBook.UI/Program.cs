@@ -23,7 +23,7 @@ builder.Services.AddServiceRepositoryExt();
 
 builder.Services.AddDbContext<AppDbContext>(opt =>
 {
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("SQLServerConnection"));
+    opt.UseSqlServer(builder.Configuration["ConnectionString"]);
 });
 
 builder.Services.AddIdentityExt();
@@ -76,7 +76,7 @@ app.UseAuthorization();
 
 app.UseStaticFiles(new StaticFileOptions
 {
-    FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "StaticFiles")),
+    FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, builder.Configuration["StaticFilePath"])),
     RequestPath = "/static-files"
 });
 

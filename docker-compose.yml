@@ -1,0 +1,15 @@
+version: '3.5'
+services:
+  visitor-book:
+    image: erengaygusuz/visitor-book:0.0.1
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=524746EREN-g
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/localhost.pfx
+    ports:
+      - "5000:80"
+      - "5001:443"
+    volumes:
+      - C:\Users\gaygu\.aspnet\https:/https/
+      - E:\DownloadedFiles\StaticFiles:/app/StaticFiles

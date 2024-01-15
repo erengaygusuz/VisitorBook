@@ -1,0 +1,12 @@
+**/.dockerignore*
+**/Dockerfile*
+**/.env
+**/.git
+**/.github
+**/.gitignore
+**/.vs
+**/.vscode
+**/docker-compose.yml
+**/bin
+**/obj
+**/.md

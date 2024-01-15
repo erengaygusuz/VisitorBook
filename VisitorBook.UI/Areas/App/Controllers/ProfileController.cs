@@ -235,7 +235,7 @@ namespace VisitorBook.UI.Areas.AppControllers
 
                 var randomFileName = $"{Guid.NewGuid().ToString()}{Path.GetExtension(profileViewModel.UserGeneralInfo.Picture.FileName)}";
 
-                var photosDirectoryPath = Path.Combine(contentRootPath, @"img\profile-photos");
+                var photosDirectoryPath = Path.Combine(contentRootPath, "img", "profile-photos");
 
                 if (!Directory.Exists(photosDirectoryPath))
                 {
