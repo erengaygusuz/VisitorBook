@@ -1,6 +1,6 @@
 # Visitor Book
 
-![Alt text](/images/01-grade-calculator.png)
+![Alt text](/screenshots/11-visitor-book.png)
 
 ## Project Goal and Scope
 
@@ -38,7 +38,7 @@
  
 * Additionally, the general architectural diagram of the project is shown in the image below:
 
-![Alt text](/images/01-grade-calculator.png)
+![Alt text](/screenshots/visitor-book.system-architecture.png)
 
 ## General Technical Features of the Project
 
@@ -157,4 +157,68 @@ The MIT License (MIT)
 
 ## Screenshots
 
-![Alt text](/images/01-grade-calculator.png)
+![Alt text](/screenshots/01-visitor-book.png)
+
+![Alt text](/screenshots/02-visitor-book.png)
+
+![Alt text](/screenshots/03-visitor-book.png)
+
+![Alt text](/screenshots/04-visitor-book.png)
+
+![Alt text](/screenshots/05-visitor-book.png)
+
+![Alt text](/screenshots/06-visitor-book.png)
+
+![Alt text](/screenshots/07-visitor-book.png)
+
+![Alt text](/screenshots/08-visitor-book.png)
+
+![Alt text](/screenshots/09-visitor-book.png)
+
+![Alt text](/screenshots/10-visitor-book.png)
+
+![Alt text](/screenshots/11-visitor-book.png)
+
+![Alt text](/screenshots/12-visitor-book.png)
+
+![Alt text](/screenshots/13-visitor-book.png)
+
+![Alt text](/screenshots/14-visitor-book.png)
+
+![Alt text](/screenshots/15-visitor-book.png)
+
+![Alt text](/screenshots/16-visitor-book.png)
+
+![Alt text](/screenshots/17-visitor-book.png)
+
+![Alt text](/screenshots/18-visitor-book.png)
+
+![Alt text](/screenshots/19-visitor-book.png)
+
+![Alt text](/screenshots/20-visitor-book.png)
+
+![Alt text](/screenshots/21-visitor-book.png)
+
+![Alt text](/screenshots/22-visitor-book.png)
+
+![Alt text](/screenshots/23-visitor-book.png)
+
+![Alt text](/screenshots/24-visitor-book.png)
+
+![Alt text](/screenshots/25-visitor-book.png)
+
+![Alt text](/screenshots/26-visitor-book.png)
+
+![Alt text](/screenshots/27-visitor-book.png)
+
+![Alt text](/screenshots/28-visitor-book.png)
+
+![Alt text](/screenshots/29-visitor-book.png)
+
+![Alt text](/screenshots/30-visitor-book.png)
+
+![Alt text](/screenshots/31-visitor-book.png)
+
+![Alt text](/screenshots/32-visitor-book.png)
+
+![Alt text](/screenshots/33-visitor-book.png)
