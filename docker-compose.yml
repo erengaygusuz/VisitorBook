@@ -7,6 +7,12 @@ services:
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - ASPNETCORE_Kestrel__Certificates__Default__Password=524746EREN-g
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/localhost.pfx
+      - ConnectionString=Server=192.168.1.152;Database=VisitorBookDb;User ID=sa;Password=524746EREN-g;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
+      - EmailSettings__Host=smtp.gmail.com
+      - EmailSettings__Port=587
+      - EmailSettings__Email=erengaygusuz1992@gmail.com
+      - EmailSettings__Password=pyqskkjmzucjgwcg
+      - EmailSettings__SSLCertificate=true
     ports:
       - "5000:80"
       - "5001:443"
