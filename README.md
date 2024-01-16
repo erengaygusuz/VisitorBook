@@ -152,6 +152,24 @@
 
 ## Project Usage
 
+* There are some options to use this project. 
+
+* If you would like to run this project locally, you can do it with two options:
+
+  - Downloading and running its release package on IIS Server in Windows Machine
+    
+    - First, go to release section and dowload latest release from there.
+    - After that unzip the package. There are three appsettings.json files in this package.
+    - You should type your secrets there for environments. For example, you should add your database server connection string to ConnectionString section.
+    - You can use generic appsettings.json but if you want to use other environment please fill the releated one. For instance, for development use appsettings.Development.json
+      
+  - (Suggested) Pulling its docker image from dockerhub and running it as a container with docker-compose (Windows or Linux Machine does not matter)
+ 
+    - First download the docker-compose.yml file from repository.
+    - After that  
+
+First, you can download released zip file. 
+
 ## Related Links
 
 * Youtube:
