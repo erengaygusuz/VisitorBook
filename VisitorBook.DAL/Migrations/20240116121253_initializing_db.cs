@@ -17,7 +17,6 @@ namespace VisitorBook.DAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    GId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -33,11 +32,11 @@ namespace VisitorBook.DAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    GId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Surname = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Gender = table.Column<int>(type: "int", nullable: false),
+                    Picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -59,13 +58,71 @@ namespace VisitorBook.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AuditTrails",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TableName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OldValues = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NewValues = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AffectedColumns = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PrimaryKey = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AuditTrails", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ContactMessages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NameSurname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Subject = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ContactMessages", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ExceptionLogs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StatusCode = table.Column<int>(type: "int", nullable: false),
+                    ExceptionType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ExceptionTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExceptionMessage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RequestMethod = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RequestPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ExceptionLogs", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Regions",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    GId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -181,6 +238,29 @@ namespace VisitorBook.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RegisterApplications",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Explanation = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RegisterApplications", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RegisterApplications_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SubRegions",
                 columns: table => new
                 {
@@ -188,7 +268,6 @@ namespace VisitorBook.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     RegionId = table.Column<int>(type: "int", nullable: false),
-                    GId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -212,7 +291,6 @@ namespace VisitorBook.DAL.Migrations
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Code = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     SubRegionId = table.Column<int>(type: "int", nullable: false),
-                    GId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -236,7 +314,6 @@ namespace VisitorBook.DAL.Migrations
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Code = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CountryId = table.Column<int>(type: "int", nullable: false),
-                    GId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -261,7 +338,6 @@ namespace VisitorBook.DAL.Migrations
                     Longitude = table.Column<double>(type: "float", nullable: false),
                     Latitude = table.Column<double>(type: "float", nullable: false),
                     CityId = table.Column<int>(type: "int", nullable: false),
-                    GId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -277,53 +353,31 @@ namespace VisitorBook.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "VisitorAddress",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CountyId = table.Column<int>(type: "int", nullable: false),
-                    GId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_VisitorAddress", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_VisitorAddress_Counties_CountyId",
-                        column: x => x.CountyId,
-                        principalTable: "Counties",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Visitors",
+                name: "UserAddress",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    VisitorAddressId = table.Column<int>(type: "int", nullable: true),
-                    GId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CountyId = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Visitors", x => x.Id);
+                    table.PrimaryKey("PK_UserAddress", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Visitors_AspNetUsers_UserId",
+                        name: "FK_UserAddress_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Visitors_VisitorAddress_VisitorAddressId",
-                        column: x => x.VisitorAddressId,
-                        principalTable: "VisitorAddress",
-                        principalColumn: "Id");
+                        name: "FK_UserAddress_Counties_CountyId",
+                        column: x => x.CountyId,
+                        principalTable: "Counties",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -332,10 +386,9 @@ namespace VisitorBook.DAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    VisitorId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     CountyId = table.Column<int>(type: "int", nullable: false),
                     VisitDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    GId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -343,15 +396,15 @@ namespace VisitorBook.DAL.Migrations
                 {
                     table.PrimaryKey("PK_VisitedCounties", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_VisitedCounties_Counties_CountyId",
-                        column: x => x.CountyId,
-                        principalTable: "Counties",
+                        name: "FK_VisitedCounties_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_VisitedCounties_Visitors_VisitorId",
-                        column: x => x.VisitorId,
-                        principalTable: "Visitors",
+                        name: "FK_VisitedCounties_Counties_CountyId",
+                        column: x => x.CountyId,
+                        principalTable: "Counties",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -411,9 +464,25 @@ namespace VisitorBook.DAL.Migrations
                 column: "SubRegionId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_RegisterApplications_UserId",
+                table: "RegisterApplications",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SubRegions_RegionId",
                 table: "SubRegions",
                 column: "RegionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserAddress_CountyId",
+                table: "UserAddress",
+                column: "CountyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserAddress_UserId",
+                table: "UserAddress",
+                column: "UserId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_VisitedCounties_CountyId",
@@ -421,24 +490,9 @@ namespace VisitorBook.DAL.Migrations
                 column: "CountyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_VisitedCounties_VisitorId",
+                name: "IX_VisitedCounties_UserId",
                 table: "VisitedCounties",
-                column: "VisitorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_VisitorAddress_CountyId",
-                table: "VisitorAddress",
-                column: "CountyId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Visitors_UserId",
-                table: "Visitors",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Visitors_VisitorAddressId",
-                table: "Visitors",
-                column: "VisitorAddressId");
         }
 
         /// <inheritdoc />
@@ -460,19 +514,28 @@ namespace VisitorBook.DAL.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "AuditTrails");
+
+            migrationBuilder.DropTable(
+                name: "ContactMessages");
+
+            migrationBuilder.DropTable(
+                name: "ExceptionLogs");
+
+            migrationBuilder.DropTable(
+                name: "RegisterApplications");
+
+            migrationBuilder.DropTable(
+                name: "UserAddress");
+
+            migrationBuilder.DropTable(
                 name: "VisitedCounties");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Visitors");
-
-            migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "VisitorAddress");
 
             migrationBuilder.DropTable(
                 name: "Counties");
