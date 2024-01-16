@@ -10,6 +10,7 @@ using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Authorization;
+using VisitorBook.Core.Abstract;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -83,6 +84,12 @@ app.UseStaticFiles(new StaticFileOptions
 app.UseNotyf();
 
 app.UseWebMarkupMin();
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+    dbInitializer.Initialize();
+}
 
 app.MapControllerRoute(
     name: "areas",

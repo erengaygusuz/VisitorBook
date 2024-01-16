@@ -19,6 +19,7 @@ namespace VisitorBook.UI.Extensions
             services.AddScoped(typeof(IPlaceStatisticService), typeof(PlaceStatisticService));
             services.AddScoped(typeof(IEmailService), typeof(EmailService));
             services.AddScoped(typeof(IHomeFactStatisticService), typeof(HomeFactStatisticService));
+            services.AddScoped<IDbInitializer, DbInitializer>();
 
             services.AddScoped(typeof(LocationHelper));
             services.AddScoped(typeof(RazorViewConverter));
