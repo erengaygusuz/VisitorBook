@@ -12,7 +12,7 @@
 * You can try the live version of the project at the following address:
 * Link: https://visitor-book.erengaygusuz.com.tr
   
-* You can register the system as a Visitor or try as a Admin with using information below
+* You can register the system as a Visitor, request for Visitor Recorder Account or try as a Admin with using information below
   
 * Email: admin@gmail.com
 * Password: 12345
@@ -28,8 +28,9 @@
 
 * The permissions of user types can be changed at run time.
 * For example, while the Admin's powers are greater than those of the Visitor, their powers can be reduced by an edit.
-* You can access the authorization table of user types in the system from the file below.
-* Link: 
+* You can see the authorization table of user types in the system from the file below.
+
+![Alt text](/screenshots/visitor-book-user-authorization-table.png)
 
 ## Project Architecture
 
