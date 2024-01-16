@@ -11,6 +11,11 @@
 
 * You can try the live version of the project at the following address:
 * Link: https://visitor-book.erengaygusuz.com.tr
+  
+* You can register the system as a Visitor or try as a Admin with using information below
+  
+* Email: admin@gmail.com
+* Password: 12345
 
 ## User Types of the Project and the Transactions They Can Perform
 
