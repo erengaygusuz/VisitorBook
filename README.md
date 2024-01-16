@@ -14,8 +14,8 @@
   
 * You can register the system as a Visitor, request for Visitor Recorder Account or try as a Admin with using information below
   
-* Email: admin@gmail.com
-* Password: 12345
+* Email: ``` admin@gmail.com ```
+* Password: ``` 12345 ```
 
 ## User Types of the Project and the Transactions They Can Perform
 
@@ -79,7 +79,7 @@
 
 ## Tools and Technologies Used in the Project
 
-* The list of all packages and tools used in the project is provided below, along with their version and web address information.
+The list of all packages and tools used in the project is provided below, along with their version and web address information.
 
 * General Technologies
   
@@ -152,34 +152,39 @@
 
 ## Project Usage
 
-* There are some options to use this project. 
+There are some options to use this project.
+
+* If you want to run project on Visual Studio
+  
+  - Clone the project using this command: ``` https://github.com/erengaygusuz/VisitorBook.git ```
+  - Open the project solution with Visual Studio 2022 Preview (You can also use VS Code or others)
+  - Run the project with https port option.
+  - You should see project that is running on your browser like ``` https://localhost:{HTTPS_PORT} ``` 
 
 * If you would like to only run this project locally, you can do it with two options:
 
   - Downloading and running its release package on IIS Server in Windows Machine
     
     - First, go to release section and dowload latest release from there.
-    - After that unzip the package. There are three appsettings.json files in this package.
-    - You should type your secrets there for environments. For example, you should add your database server connection string to ConnectionString section.
-    - You can use generic appsettings.json but if you want to use other environment please fill the releated one. For instance, for development use appsettings.Development.json
+    - After that unzip the package. There are three ``` appsettings.json ``` files in this package.
+    - You should type your secrets there for environments. For example, you should add your database server connection string to ``` ConnectionString ``` section.
+    - You can use generic ``` appsettings.json ``` but if you want to use other environment please fill the releated one. For instance, for development use ``` appsettings.Development.json ```
       
   - (Suggested) Pulling its docker image from dockerhub and running it as a container with docker-compose (Windows or Linux Machine does not matter)
  
-    - First download the docker-compose.yml file from repository.
+    - First download the ``` docker-compose.yml ``` file from repository.
     - After that you should override the paths for volumes.
-    - For SSL certificate, type the certificate file path instead of this path: C:\Users\gaygu\.aspnet\https
-    - For Static Files, type static files path instead of this path: E:\DownloadedFiles\StaticFiles
+    - For SSL certificate, type the certificate file path instead of this path: ``` C:\Users\gaygu\.aspnet\https ```
+    - For Static Files, type static files path instead of this path: ``` E:\DownloadedFiles\StaticFiles ```
     - Now you should override environments values.
-    - Choose and envrironment. Type Development or Production for ASPNETCORE_ENVIRONMENT.
-    - Type your SSL certificate password for ASPNETCORE_Kestrel__Certificates__Default__Password.
-    - Type your certificate filename with extension for ASPNETCORE_Kestrel__Certificates__Default__Path after /https/.
-    - Type your connection string for ConnectionString.
-    - Type your credentils for EmailSettings__Host, EmailSettings__Port, EmailSettings__Email and EmailSettings__Password.
-    - Type true or false for EmailSettings__SSLCertificate if your mail server has SSL or not.
-    - Now you are read to go. Open a terminal or commant prompt and run this command docker-compose up
-    - After that your database will be created and also you can see the project by opening your browser and typing https://localhost:{HTTPS_PORT} 
-
-First, you can download released zip file. 
+    - Choose and envrironment. Type Development or Production for ``` ASPNETCORE_ENVIRONMENT ```.
+    - Type your SSL certificate password for ``` ASPNETCORE_Kestrel__Certificates__Default__Password ```.
+    - Type your certificate filename with extension for ``` ASPNETCORE_Kestrel__Certificates__Default__Path ``` after /https/.
+    - Type your connection string for ``` ConnectionString ```.
+    - Type your credentils for ``` EmailSettings__Host ```, ``` EmailSettings__Port ```, ``` EmailSettings__Email ``` and ``` EmailSettings__Password ```.
+    - Type true or false for ``` EmailSettings__SSLCertificate ``` if your mail server has SSL or not.
+    - Now you are read to go. Open a terminal or commant prompt and run this command ``` docker-compose up ```
+    - After that your database will be created and also you can see the project by opening your browser and typing ``` https://localhost:{HTTPS_PORT} ``` 
 
 ## Related Links
 
