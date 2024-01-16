@@ -154,7 +154,7 @@
 
 * There are some options to use this project. 
 
-* If you would like to run this project locally, you can do it with two options:
+* If you would like to only run this project locally, you can do it with two options:
 
   - Downloading and running its release package on IIS Server in Windows Machine
     
@@ -166,7 +166,18 @@
   - (Suggested) Pulling its docker image from dockerhub and running it as a container with docker-compose (Windows or Linux Machine does not matter)
  
     - First download the docker-compose.yml file from repository.
-    - After that  
+    - After that you should override the paths for volumes.
+    - For SSL certificate, type the certificate file path instead of this path: C:\Users\gaygu\.aspnet\https
+    - For Static Files, type static files path instead of this path: E:\DownloadedFiles\StaticFiles
+    - Now you should override environments values.
+    - Choose and envrironment. Type Development or Production for ASPNETCORE_ENVIRONMENT.
+    - Type your SSL certificate password for ASPNETCORE_Kestrel__Certificates__Default__Password.
+    - Type your certificate filename with extension for ASPNETCORE_Kestrel__Certificates__Default__Path after /https/.
+    - Type your connection string for ConnectionString.
+    - Type your credentils for EmailSettings__Host, EmailSettings__Port, EmailSettings__Email and EmailSettings__Password.
+    - Type true or false for EmailSettings__SSLCertificate if your mail server has SSL or not.
+    - Now you are read to go. Open a terminal or commant prompt and run this command docker-compose up
+    - After that your database will be created and also you can see the project by opening your browser and typing https://localhost:{HTTPS_PORT} 
 
 First, you can download released zip file. 
 
