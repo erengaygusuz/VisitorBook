@@ -1,7 +1,7 @@
 version: '3.5'
 services:
   visitor-book:
-    image: erengaygusuz/visitor-book:0.0.1
+    image: erengaygusuz/visitor-book:0.0.3
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
