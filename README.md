@@ -170,7 +170,7 @@ There are some options to use this project.
     - For SSL certificate, type the certificate file path instead of this path: ``` C:\Users\gaygu\.aspnet\https ```
     - For Static Files, type static files path instead of this path: ``` E:\DownloadedFiles\StaticFiles ```
     - Now you should override environments values.
-    - Choose and envrironment. Type Development or Production for ``` ASPNETCORE_ENVIRONMENT ```.
+    - Choose the envrironment. Type Development or Production for ``` ASPNETCORE_ENVIRONMENT ```.
     - Type your SSL certificate password for ``` ASPNETCORE_Kestrel__Certificates__Default__Password ```.
     - Type your certificate filename with extension for ``` ASPNETCORE_Kestrel__Certificates__Default__Path ``` after /https/.
     - Type your connection string for ``` ConnectionString ```.
