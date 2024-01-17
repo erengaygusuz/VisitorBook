@@ -12,7 +12,7 @@
 * You can try the live version of the project at the following address:
 * Link: https://visitor-book.erengaygusuz.com.tr
   
-* You can register the system as a Visitor, request for Visitor Recorder Account or try as a Admin with using information below
+* You can register the system as a Visitor, request for Visitor Recorder Account or try as an Admin with using information below
   
 * Email: ``` admin@gmail.com ```
 * Password: ``` 12345 ```
@@ -181,7 +181,7 @@ There are some options to use this project.
    
 * If you want to run project on Visual Studio
   
-  - Clone the project using this command: ``` https://github.com/erengaygusuz/VisitorBook.git ```
+  - Clone the project using this command: ``` git clone https://github.com/erengaygusuz/VisitorBook.git ```
   - After that you should add ``` appsettings.json ``` files to the project.
   - Open ``` VisitorBook.UI ``` layer and create these 3 files. ``` appsettings.json ```, ``` appsettings.Development.json ``` and ``` appsettings.Production.json ```
   - Copy and past the information below to all of them. Please do not forget the change values according to yours as I mention before.
