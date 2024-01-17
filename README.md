@@ -28,7 +28,7 @@
 
 * The permissions of user types can be changed at run time.
 * For example, while the Admin's powers are greater than those of the Visitor, their powers can be reduced by an edit.
-* You can see the authorization table of user types in the system from the file below.
+* You can see the authorization table of user types in the system at below.
 
 ![Alt text](/screenshots/visitor-book-user-authorization-table.png)
 
