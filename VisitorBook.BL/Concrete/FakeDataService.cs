@@ -106,6 +106,8 @@ namespace VisitorBook.BL.Concrete
                 {
                     var result = await _userManager.CreateAsync(userList[i], "12345");
 
+                    userList[i].EmailConfirmed = true;
+
                     if (UserAddresses[i] != null)
                     {
                         var user = await _userManager.FindByEmailAsync(userList[i].Email);
