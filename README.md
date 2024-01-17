@@ -200,7 +200,7 @@ There are some options to use this project.
       "Port": "TYPE_YOUR_EMAIL_SERVER_PORT",
       "Email": "TYPE_YOUR_SENDER_EMAIL",
       "Password": "TYPE_YOUR_SENDER_PASSWORD",
-      "SSLCertificate": "TYPE_IF_YOUR_SERVER_HAS_SSL_CERTIFICATE_OR_AS_BOOLEAN_TRUE_OR_FALSE"
+      "SSLCertificate": TYPE_IF_YOUR_SERVER_HAS_SSL_CERTIFICATE_OR_NOT_AS_BOOLEAN_TRUE_OR_FALSE
   },
     "StaticFilePath": "StaticFiles" 
   }
