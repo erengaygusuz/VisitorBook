@@ -154,13 +154,6 @@ The list of all packages and tools used in the project is provided below, along 
 
 There are some options to use this project.
 
-* If you want to run project on Visual Studio
-  
-  - Clone the project using this command: ``` https://github.com/erengaygusuz/VisitorBook.git ```
-  - Open the project solution with Visual Studio 2022 Preview (You can also use VS Code or others)
-  - Run the project with https port option.
-  - You should see project that is running on your browser like ``` https://localhost:{HTTPS_PORT} ``` 
-
 * If you would like to only run this project locally, you can do it with two options:
 
   - Downloading and running its release package on IIS Server in Windows Machine
@@ -184,7 +177,38 @@ There are some options to use this project.
     - Type your credentils for ``` EmailSettings__Host ```, ``` EmailSettings__Port ```, ``` EmailSettings__Email ``` and ``` EmailSettings__Password ```.
     - Type true or false for ``` EmailSettings__SSLCertificate ``` if your mail server has SSL or not.
     - Now you are read to go. Open a terminal or commant prompt and run this command ``` docker-compose up ```
-    - After that your database will be created and also you can see the project by opening your browser and typing ``` https://localhost:{HTTPS_PORT} ``` 
+    - After that your database will be created and also you can see the project by opening your browser and typing ``` https://localhost:{HTTPS_PORT} ```
+   
+* If you want to run project on Visual Studio
+  
+  - Clone the project using this command: ``` https://github.com/erengaygusuz/VisitorBook.git ```
+  - After that you should add ``` appsettings.json ``` files to the project.
+  - Open ``` VisitorBook.UI ``` layer and create these 3 files. ``` appsettings.json ```, ``` appsettings.Development.json ``` and ``` appsettings.Production.json ```
+  - Copy and past the information below to all of them. Please do not forget the change values according to yours as I mention before.
+    
+  ```
+  {
+    "ConnectionString": "TYPE_YOUR_DATABASE_CONNECTION_STRING",
+    "Logging": {
+      "LogLevel": {
+        "Default": "Information",
+        "Microsoft.AspNetCore": "Warning"
+    }
+  },
+    "EmailSettings": {
+      "Host": "TYPE_YOUR_EMAIL_SERVER_URL",
+      "Port": "TYPE_YOUR_EMAIL_SERVER_PORT",
+      "Email": "TYPE_YOUR_SENDER_EMAIL",
+      "Password": "TYPE_YOUR_SENDER_PASSWORD",
+      "SSLCertificate": "TYPE_IF_YOUR_SERVER_HAS_SSL_CERTIFICATE_OR_AS_BOOLEAN_TRUE_OR_FALSE"
+  },
+    "StaticFilePath": "StaticFiles" 
+  }
+  ```
+
+  - Now open the project solution with Visual Studio 2022 Preview (You can also use VS Code or others)
+  - Run the project with https port option.
+  - You should see project that is running on your browser like ``` https://localhost:{HTTPS_PORT} ``` 
 
 ## Related Links
 
