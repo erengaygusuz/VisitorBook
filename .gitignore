@@ -486,3 +486,6 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 /VisitorBook.UI/StaticFiles/
+/VisitorBook.UI/appsettings.json
+/VisitorBook.UI/appsettings.Development.json
+/VisitorBook.UI/appsettings.Production.json
